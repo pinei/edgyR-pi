@@ -9,6 +9,8 @@ apt-get install -qqy --no-install-recommends \
   build-essential \
   ca-certificates \
   fakeroot \
+  git \
+  git-lfs \
   gnupg \
   mlocate \
   software-properties-common \

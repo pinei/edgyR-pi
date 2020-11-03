@@ -15,8 +15,6 @@ apt-get install -qqy --no-install-recommends \
     ./r-base-dev_*.deb \
     ./r-base-html_*.deb \
     ./r-doc-html_*.deb \
-    ./r-doc-info_*.deb \
-    ./r-doc-pdf_*.deb \
     ./r-mathlib_*.deb
 cp *deb $PACKAGES/
 cp *dsc $PACKAGES/

@@ -1,0 +1,36 @@
+#! /bin/bash
+
+set -e
+
+# build and install recommended packages
+cd $SOURCE_DIR
+for i in \
+  r-cran-boot \
+  r-cran-cluster \
+  r-cran-codetools \
+  r-cran-foreign \
+  r-cran-lattice \
+  r-cran-mass \
+  r-cran-matrix \
+  r-cran-nlme \
+  r-cran-nnet \
+  r-cran-spatial \
+  r-cran-survival \
+  r-cran-class \
+  r-cran-kernsmooth \
+  r-cran-mgcv \
+  r-cran-rpart
+do 
+  rm -fr $SOURCE_DIR/$i-build
+  mkdir $SOURCE_DIR/$i-build
+  pushd $SOURCE_DIR/$i-build
+    apt-get build-dep -y $i
+    apt-get source --compile $i
+    apt-get install -qqy --no-install-recommends ./$i_*.deb
+    cp *deb $PACKAGES/
+    cp *dsc $PACKAGES/
+  popd
+  zip -9rmy $SOURCE_DIR/$i-build.zip $i-build
+done
+apt-get autoremove --purge -y
+apt-get clean

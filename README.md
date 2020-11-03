@@ -1,2 +1,3 @@
-# edgyr-containers
-Factoring the Docker piece out of the edgyR project
+# edgyR-containers
+
+Docker tools for R on the NVIDIA Jetson platform

@@ -1,0 +1,7 @@
+version: "3.5"
+services:
+  ocpu-jetson:
+    build:
+      context: ocpu-jetson
+      dockerfile: Dockerfile
+    image: docker.io/znmeb/ocpu-jetson

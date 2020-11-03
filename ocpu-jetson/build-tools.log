@@ -1,182 +1,0 @@
-Get:1 http://ports.ubuntu.com/ubuntu-ports bionic InRelease [242 kB]
-Get:2 http://ports.ubuntu.com/ubuntu-ports bionic-updates InRelease [88.7 kB]
-Get:3 http://ports.ubuntu.com/ubuntu-ports bionic-backports InRelease [74.6 kB]
-Get:4 http://ports.ubuntu.com/ubuntu-ports bionic-security InRelease [88.7 kB]
-Get:5 http://ports.ubuntu.com/ubuntu-ports bionic/main arm64 Packages [1285 kB]
-Get:6 http://ports.ubuntu.com/ubuntu-ports bionic/restricted arm64 Packages [572 B]
-Get:7 http://ports.ubuntu.com/ubuntu-ports bionic/universe arm64 Packages [11.0 MB]
-Get:8 http://ports.ubuntu.com/ubuntu-ports bionic/multiverse arm64 Packages [153 kB]
-Get:9 http://ports.ubuntu.com/ubuntu-ports bionic-updates/universe arm64 Packages [1861 kB]
-Get:10 http://ports.ubuntu.com/ubuntu-ports bionic-updates/multiverse arm64 Packages [5546 B]
-Get:11 http://ports.ubuntu.com/ubuntu-ports bionic-updates/restricted arm64 Packages [2242 B]
-Get:12 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 Packages [1415 kB]
-Get:13 http://ports.ubuntu.com/ubuntu-ports bionic-backports/main arm64 Packages [11.2 kB]
-Get:14 http://ports.ubuntu.com/ubuntu-ports bionic-backports/universe arm64 Packages [11.0 kB]
-Get:15 http://ports.ubuntu.com/ubuntu-ports bionic-security/universe arm64 Packages [1179 kB]
-Get:16 http://ports.ubuntu.com/ubuntu-ports bionic-security/main arm64 Packages [1037 kB]
-Get:17 http://ports.ubuntu.com/ubuntu-ports bionic-security/multiverse arm64 Packages [2430 B]
-Get:18 http://ports.ubuntu.com/ubuntu-ports bionic-security/restricted arm64 Packages [1149 B]
-Fetched 18.5 MB in 6s (3061 kB/s)
-Reading package lists...
-Reading package lists...
-Building dependency tree...
-Reading state information...
-Calculating upgrade...
-The following packages will be upgraded:
-  libc-bin libc6 libfreetype6 libperl5.26 locales multiarch-support perl
-  perl-base perl-modules-5.26
-9 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-Need to get 14.2 MB of archives.
-After this operation, 26.6 kB of additional disk space will be used.
-Get:1 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 libperl5.26 arm64 5.26.1-6ubuntu0.5 [3335 kB]
-Get:2 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 perl arm64 5.26.1-6ubuntu0.5 [201 kB]
-Get:3 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 perl-base arm64 5.26.1-6ubuntu0.5 [1237 kB]
-Get:4 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 perl-modules-5.26 all 5.26.1-6ubuntu0.5 [2762 kB]
-Get:5 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 libc6 arm64 2.27-3ubuntu1.3 [2275 kB]
-Get:6 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 locales all 2.27-3ubuntu1.3 [3613 kB]
-Get:7 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 libc-bin arm64 2.27-3ubuntu1.3 [466 kB]
-Get:8 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 multiarch-support arm64 2.27-3ubuntu1.3 [6948 B]
-Get:9 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main arm64 libfreetype6 arm64 2.8.1-2ubuntu2.1 [289 kB]
-debconf: delaying package configuration, since apt-utils is not installed
-Fetched 14.2 MB in 4s (3808 kB/s)
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 29262 files and directories currently installed.)
-Preparing to unpack .../libperl5.26_5.26.1-6ubuntu0.5_arm64.deb ...
-Unpacking libperl5.26:arm64 (5.26.1-6ubuntu0.5) over (5.26.1-6ubuntu0.3) ...
-Preparing to unpack .../perl_5.26.1-6ubuntu0.5_arm64.deb ...
-Unpacking perl (5.26.1-6ubuntu0.5) over (5.26.1-6ubuntu0.3) ...
-Preparing to unpack .../perl-base_5.26.1-6ubuntu0.5_arm64.deb ...
-Unpacking perl-base (5.26.1-6ubuntu0.5) over (5.26.1-6ubuntu0.3) ...
-Setting up perl-base (5.26.1-6ubuntu0.5) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 29262 files and directories currently installed.)
-Preparing to unpack .../perl-modules-5.26_5.26.1-6ubuntu0.5_all.deb ...
-Unpacking perl-modules-5.26 (5.26.1-6ubuntu0.5) over (5.26.1-6ubuntu0.3) ...
-Preparing to unpack .../libc6_2.27-3ubuntu1.3_arm64.deb ...
-Unpacking libc6:arm64 (2.27-3ubuntu1.3) over (2.27-3ubuntu1.2) ...
-Setting up libc6:arm64 (2.27-3ubuntu1.3) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 29262 files and directories currently installed.)
-Preparing to unpack .../locales_2.27-3ubuntu1.3_all.deb ...
-Unpacking locales (2.27-3ubuntu1.3) over (2.27-3ubuntu1.2) ...
-Preparing to unpack .../libc-bin_2.27-3ubuntu1.3_arm64.deb ...
-Unpacking libc-bin (2.27-3ubuntu1.3) over (2.27-3ubuntu1.2) ...
-Setting up libc-bin (2.27-3ubuntu1.3) ...
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 29262 files and directories currently installed.)
-Preparing to unpack .../multiarch-support_2.27-3ubuntu1.3_arm64.deb ...
-Unpacking multiarch-support (2.27-3ubuntu1.3) over (2.27-3ubuntu1.2) ...
-Preparing to unpack .../libfreetype6_2.8.1-2ubuntu2.1_arm64.deb ...
-Unpacking libfreetype6:arm64 (2.8.1-2ubuntu2.1) over (2.8.1-2ubuntu2) ...
-Setting up multiarch-support (2.27-3ubuntu1.3) ...
-Setting up perl-modules-5.26 (5.26.1-6ubuntu0.5) ...
-Setting up libfreetype6:arm64 (2.8.1-2ubuntu2.1) ...
-Setting up libperl5.26:arm64 (5.26.1-6ubuntu0.5) ...
-Setting up locales (2.27-3ubuntu1.3) ...
-Generating locales (this might take a while)...
-  en_AG.UTF-8... done
-  en_AU.UTF-8... done
-  en_BW.UTF-8... done
-  en_CA.UTF-8... done
-  en_DK.UTF-8... done
-  en_GB.UTF-8... done
-  en_HK.UTF-8... done
-  en_IE.UTF-8... done
-  en_IL.UTF-8... done
-  en_IN.UTF-8... done
-  en_NG.UTF-8... done
-  en_NZ.UTF-8... done
-  en_PH.UTF-8... done
-  en_SG.UTF-8... done
-  en_US.UTF-8... done
-  en_ZA.UTF-8... done
-  en_ZM.UTF-8... done
-  en_ZW.UTF-8... done
-Generation complete.
-Setting up perl (5.26.1-6ubuntu0.5) ...
-Processing triggers for libc-bin (2.27-3ubuntu1.3) ...
-debconf: delaying package configuration, since apt-utils is not installed
-Selecting previously unselected package libassuan0:arm64.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 29262 files and directories currently installed.)
-Preparing to unpack .../00-libassuan0_2.5.1-2_arm64.deb ...
-Unpacking libassuan0:arm64 (2.5.1-2) ...
-Selecting previously unselected package gpgconf.
-Preparing to unpack .../01-gpgconf_2.2.4-1ubuntu1.3_arm64.deb ...
-Unpacking gpgconf (2.2.4-1ubuntu1.3) ...
-Selecting previously unselected package libksba8:arm64.
-Preparing to unpack .../02-libksba8_1.3.5-2_arm64.deb ...
-Unpacking libksba8:arm64 (1.3.5-2) ...
-Selecting previously unselected package libnpth0:arm64.
-Preparing to unpack .../03-libnpth0_1.5-3_arm64.deb ...
-Unpacking libnpth0:arm64 (1.5-3) ...
-Selecting previously unselected package dirmngr.
-Preparing to unpack .../04-dirmngr_2.2.4-1ubuntu1.3_arm64.deb ...
-Unpacking dirmngr (2.2.4-1ubuntu1.3) ...
-Selecting previously unselected package gnupg-l10n.
-Preparing to unpack .../05-gnupg-l10n_2.2.4-1ubuntu1.3_all.deb ...
-Unpacking gnupg-l10n (2.2.4-1ubuntu1.3) ...
-Selecting previously unselected package gnupg-utils.
-Preparing to unpack .../06-gnupg-utils_2.2.4-1ubuntu1.3_arm64.deb ...
-Unpacking gnupg-utils (2.2.4-1ubuntu1.3) ...
-Selecting previously unselected package gpg.
-Preparing to unpack .../07-gpg_2.2.4-1ubuntu1.3_arm64.deb ...
-Unpacking gpg (2.2.4-1ubuntu1.3) ...
-Selecting previously unselected package pinentry-curses.
-Preparing to unpack .../08-pinentry-curses_1.1.0-1_arm64.deb ...
-Unpacking pinentry-curses (1.1.0-1) ...
-Selecting previously unselected package gpg-agent.
-Preparing to unpack .../09-gpg-agent_2.2.4-1ubuntu1.3_arm64.deb ...
-Unpacking gpg-agent (2.2.4-1ubuntu1.3) ...
-Selecting previously unselected package gpg-wks-client.
-Preparing to unpack .../10-gpg-wks-client_2.2.4-1ubuntu1.3_arm64.deb ...
-Unpacking gpg-wks-client (2.2.4-1ubuntu1.3) ...
-Selecting previously unselected package gpg-wks-server.
-Preparing to unpack .../11-gpg-wks-server_2.2.4-1ubuntu1.3_arm64.deb ...
-Unpacking gpg-wks-server (2.2.4-1ubuntu1.3) ...
-Selecting previously unselected package gpgsm.
-Preparing to unpack .../12-gpgsm_2.2.4-1ubuntu1.3_arm64.deb ...
-Unpacking gpgsm (2.2.4-1ubuntu1.3) ...
-Selecting previously unselected package gnupg.
-Preparing to unpack .../13-gnupg_2.2.4-1ubuntu1.3_arm64.deb ...
-Unpacking gnupg (2.2.4-1ubuntu1.3) ...
-Setting up libnpth0:arm64 (1.5-3) ...
-Setting up libksba8:arm64 (1.3.5-2) ...
-Setting up gnupg-l10n (2.2.4-1ubuntu1.3) ...
-Setting up libassuan0:arm64 (2.5.1-2) ...
-Setting up gpgconf (2.2.4-1ubuntu1.3) ...
-Setting up gpgsm (2.2.4-1ubuntu1.3) ...
-Setting up gnupg-utils (2.2.4-1ubuntu1.3) ...
-Setting up pinentry-curses (1.1.0-1) ...
-Setting up dirmngr (2.2.4-1ubuntu1.3) ...
-Setting up gpg (2.2.4-1ubuntu1.3) ...
-Setting up gpg-agent (2.2.4-1ubuntu1.3) ...
-Setting up gpg-wks-server (2.2.4-1ubuntu1.3) ...
-Setting up gpg-wks-client (2.2.4-1ubuntu1.3) ...
-Setting up gnupg (2.2.4-1ubuntu1.3) ...
-Processing triggers for libc-bin (2.27-3ubuntu1.3) ...
-Warning: apt-key output should not be parsed (stdout is not a terminal)
-Executing: /tmp/apt-key-gpghome.FVMv3bcqzs/gpg.1.sh --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9
-gpg: key 51716619E084DAB9: public key "Michael Rutter <marutter@gmail.com>" imported
-gpg: Total number processed: 1
-gpg:               imported: 1
-Ign:1 https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/ InRelease
-Err:2 https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/ Release
-  Certificate verification failed: The certificate is NOT trusted. The certificate issuer is unknown.  Could not handshake: Error in the certificate verification. [IP: 99.86.34.17 443]
-Hit:3 http://ports.ubuntu.com/ubuntu-ports bionic InRelease
-Hit:4 http://ports.ubuntu.com/ubuntu-ports bionic-updates InRelease
-Hit:5 http://ports.ubuntu.com/ubuntu-ports bionic-backports InRelease
-Hit:6 http://ports.ubuntu.com/ubuntu-ports bionic-security InRelease
-Get:7 http://ports.ubuntu.com/ubuntu-ports bionic/universe Sources [11.5 MB]
-Get:8 http://ports.ubuntu.com/ubuntu-ports bionic/main Sources [1063 kB]
-Get:9 http://ports.ubuntu.com/ubuntu-ports bionic/multiverse Sources [216 kB]
-Get:10 http://ports.ubuntu.com/ubuntu-ports bionic/restricted Sources [5823 B]
-Get:11 http://ports.ubuntu.com/ubuntu-ports bionic-updates/restricted Sources [18.4 kB]
-Get:12 http://ports.ubuntu.com/ubuntu-ports bionic-updates/main Sources [622 kB]
-Get:13 http://ports.ubuntu.com/ubuntu-ports bionic-updates/multiverse Sources [11.6 kB]
-Get:14 http://ports.ubuntu.com/ubuntu-ports bionic-updates/universe Sources [551 kB]
-Get:15 http://ports.ubuntu.com/ubuntu-ports bionic-backports/universe Sources [5759 B]
-Get:16 http://ports.ubuntu.com/ubuntu-ports bionic-backports/main Sources [5823 B]
-Get:17 http://ports.ubuntu.com/ubuntu-ports bionic-security/universe Sources [334 kB]
-Get:18 http://ports.ubuntu.com/ubuntu-ports bionic-security/main Sources [299 kB]
-Get:19 http://ports.ubuntu.com/ubuntu-ports bionic-security/multiverse Sources [4354 B]
-Get:20 http://ports.ubuntu.com/ubuntu-ports bionic-security/restricted Sources [13.0 kB]
-Reading package lists...
-W: https://cloud.r-project.org/bin/linux/ubuntu/bionic-cran40/InRelease: No system certificates available. Try installing ca-certificates.
-W: https://cloud.r-project.org/bin/linux/ubuntu/bionic-cran40/Release: No system certificates available. Try installing ca-certificates.
-E: The repository 'https://cloud.r-project.org/bin/linux/ubuntu bionic-cran40/ Release' does not have a Release file.

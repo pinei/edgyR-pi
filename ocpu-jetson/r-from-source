@@ -1,0 +1,74 @@
+#! /bin/bash
+
+echo "Installing build dependencies"
+apt-get update
+apt-get upgrade -y
+apt-get install -qqy --no-install-recommends \
+  apt-file \
+  build-essential \
+  curl \
+  default-jdk-headless \
+  gfortran \
+  git \
+  git-lfs \
+  libbz2-dev \
+  libcairo2-dev  \
+  libcurl4-openssl-dev \
+  libicu-dev  \
+  libjpeg-turbo8-dev  \
+  libjpeg8-dev  \
+  liblzma-dev \
+  libpango1.0-dev  \
+  libpcre2-dev \
+  libreadline-dev \
+  libtiff5-dev \
+  mlocate \
+  pkg-config \
+  texinfo \
+  time \
+  tk-dev \
+  tree \
+  vim-nox \
+  wget \
+  zlib1g-dev
+
+echo "Creating / entering source directory"
+mkdir --parents $SOURCE_DIR && cd $SOURCE_DIR
+
+echo "Removing old R source directories"
+rm -fr R-*
+
+export WEBSITE="https://cloud.r-project.org/src/base"
+export RELEASE_DIR="R-$R_VERSION_MAJOR"
+export R_TARBALL="$R_LATEST.tar.gz"
+
+echo "Downloading $WEBSITE/$RELEASE_DIR/$R_TARBALL"
+curl -Ls "$WEBSITE/$RELEASE_DIR/$R_TARBALL" | tar xzf -
+echo "Using $R_LATEST"
+
+echo "Configuring"
+mkdir --parents build-dir
+cd build-dir
+../$R_LATEST/configure --with-blas --enable-R-shlib
+
+echo "Compiling"
+make --jobs=`nproc`
+
+echo "Making standalone math library"
+pushd src/nmath/standalone
+make --jobs=`nproc`
+make install
+popd
+
+echo "Installing"
+make install
+cp $SCRIPTS/R.conf /etc/ld.so.conf.d/
+/sbin/ldconfig --verbose
+cd ..
+
+echo "Reconfiguring R Java interface"
+R CMD javareconf
+
+cd $SOURCE_DIR
+zip -9rmy $R_LATEST.zip $R_LATEST
+zip -9rmy build-dir.zip build-dir

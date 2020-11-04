@@ -28,8 +28,10 @@ apt-get install -qqy --no-install-recommends \
   time \
   tk-dev \
   tree \
+  unzip \
   vim-nox \
   wget \
+  zip \
   zlib1g-dev
 
 echo "Creating / entering source directory"

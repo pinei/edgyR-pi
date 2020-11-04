@@ -3,6 +3,6 @@
 for i in ocpu-jetson rstudio-package rstudio-jetson
 do
   pushd $i
-  ./docker-build
+  ../build-and-push $i
   popd
 done

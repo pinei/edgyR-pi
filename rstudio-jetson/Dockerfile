@@ -1,4 +1,4 @@
-FROM "docker.io/znmeb/ocpu-jetson"
+FROM "docker.io/edgyr/ocpu-jetson"
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive

@@ -1,0 +1,8 @@
+#! /bin/bash
+
+for i in ocpu-jetson rstudio-package rstudio-jetson
+do
+  pushd $i
+  ./docker-build
+  popd
+done

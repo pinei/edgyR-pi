@@ -1,7 +1,12 @@
 version: "3.5"
 services:
-  ocpu-jetson:
+  rstudio-jetson:
     build:
-      context: ocpu-jetson
+      context: rstudio-jetson
       dockerfile: Dockerfile
-    image: docker.io/znmeb/ocpu-jetson
+    image: docker.io/znmeb/rstudio-jetson
+    ports:
+      - 5656:5656
+      - 7878:7878
+    environment:
+      - EDGYR_PASSWORD

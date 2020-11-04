@@ -47,4 +47,5 @@ COPY --chown=edgyr:edgyr install-opencpu start-opencpu $EDGYR_SCRIPTS/
 RUN $EDGYR_SCRIPTS/install-opencpu > $EDGYR_LOGS/install-opencpu.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/install-opencpu.log
 
+EXPOSE 5656
 CMD [ "/home/edgyr/scripts/start-opencpu" ]

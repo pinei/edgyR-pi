@@ -1,0 +1,3 @@
+#! /usr/bin/env Rscript
+
+opencpu::ocpu_start_server()

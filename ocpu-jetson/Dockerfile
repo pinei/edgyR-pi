@@ -32,7 +32,9 @@ COPY passwordless-sudo /etc/sudoers.d/
 # set up 'edgyr' account
 ENV EDGYR_HOME=/home/edgyr
 ENV PROJECT_HOME=$EDGYR_HOME/Projects
-RUN mkdir --parents $PROJECT_HOME
+ENV EDGYR_SCRIPTS=$EDGYR_HOME/scripts
+ENV EDGYR_LOGS=$EDGYR_HOME/logs
+RUN mkdir --parents $PROJECT_HOME $EDGYR_SCRIPTS $EDGYR_LOGS
 
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr Renviron $EDGYR_HOME/.Renviron
@@ -41,4 +43,8 @@ RUN chown -R edgyr:edgyr $EDGYR_HOME
 
 USER edgyr
 WORKDIR $EDGYR_HOME
-CMD [ "/bin/bash" ]
+COPY --chown=edgyr:edgyr install-opencpu start-opencpu $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/install-opencpu > $EDGYR_LOGS/install-opencpu.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/install-opencpu.log
+
+CMD [ "/home/edgyr/scripts/start-opencpu" ]

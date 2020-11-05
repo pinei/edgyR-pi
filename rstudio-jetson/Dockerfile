@@ -11,7 +11,7 @@ WORKDIR $SOURCE_DIR/
 ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=3 RSTUDIO_VERSION_PATCH=1093
 ENV BUILD_DIR=$SOURCE_DIR/rstudio/build
 ENV PACKAGE_FILE=rstudio-server-$RSTUDIO_VERSION_MAJOR.$RSTUDIO_VERSION_MINOR.$RSTUDIO_VERSION_PATCH-arm64.tar.gz
-COPY --from=docker.io/znmeb/rstudio-package $BUILD_DIR/$PACKAGE_FILE $SOURCE_DIR
+COPY --from=docker.io/edgyr/rstudio-package $BUILD_DIR/$PACKAGE_FILE $SOURCE_DIR
 RUN tar -xf $PACKAGE_FILE --strip-components=1 --directory=/
 
 # configure RStudio Server
@@ -23,3 +23,18 @@ RUN $SCRIPTS/rstudio-configure
 # set entry point
 COPY docker-entrypoint.sh /
 CMD [ "/docker-entrypoint.sh" ]
+
+# Linux dependencies for R packages
+COPY linux-dependencies $SCRIPTS/
+RUN $SCRIPTS/linux-dependencies > $LOGS/linux-dependencies.log 2>&1 \
+  && gzip -9 $LOGS/linux-dependencies.log
+
+USER edgyr
+WORKDIR $EDGYR_HOME
+COPY --chown=edgyr:edgyr miniforge $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/miniforge > $EDGYR_LOGS/miniforge.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/miniforge.log
+COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
+
+USER root
+WORKDIR $SOURCE_DIR/

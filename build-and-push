@@ -2,5 +2,5 @@
 
 set -e
 
-sudo docker build --tag docker.io/edgyr/$1:testing .
-sudo docker push docker.io/edgyr/$1:testing
+sudo docker build --tag docker.io/edgyr/$1 .
+sudo docker push docker.io/edgyr/$1

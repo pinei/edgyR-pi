@@ -1,8 +1,12 @@
 #! /bin/bash
 
-for i in ocpu-jetson rstudio-package rstudio-jetson
+set -e
+
+for i in r-jetson ocpu-jetson rstudio-package rstudio-jetson
 do
   pushd $i
   ../build-and-push $i
   popd
 done
+sudo docker tag docker.io/edgyr/rstudio-jetson:latest docker.io/edgyr/edgyr-ml:latest
+sudo docker push docker.io/edgyr/edgyr-ml:latest

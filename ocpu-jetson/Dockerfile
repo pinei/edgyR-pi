@@ -40,30 +40,31 @@ ENV PROJECT_HOME=$EDGYR_HOME/Projects
 ENV EDGYR_SCRIPTS=$EDGYR_HOME/scripts
 ENV EDGYR_LOGS=$EDGYR_HOME/logs
 RUN mkdir --parents $PROJECT_HOME $EDGYR_SCRIPTS $EDGYR_LOGS
-
-COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
-COPY --chown=edgyr:edgyr Renviron $EDGYR_HOME/.Renviron
-COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.bash $EDGYR_HOME/
 RUN chown -R edgyr:edgyr $EDGYR_HOME
 
 USER edgyr
 WORKDIR $EDGYR_HOME
 
-COPY --chown=edgyr:edgyr configure-julia $EDGYR_SCRIPTS/
-RUN $EDGYR_SCRIPTS/configure-julia > $EDGYR_LOGS/configure-julia.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/configure-julia.log
-
-COPY --chown=edgyr:edgyr miniforge $EDGYR_SCRIPTS/
-RUN $EDGYR_SCRIPTS/miniforge > $EDGYR_LOGS/miniforge.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/miniforge.log
-COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
-COPY --chown=edgyr:edgyr start-jupyterlab $EDGYR_HOME
-COPY --chown=edgyr:edgyr start-opencpu $EDGYR_HOME
+COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
+COPY --chown=edgyr:edgyr Renviron $EDGYR_HOME/.Renviron
 COPY --chown=edgyr:edgyr r-packages $EDGYR_SCRIPTS/
 RUN $EDGYR_SCRIPTS/r-packages > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
 RUN Rscript -e "tinytex::install_tinytex()" > $EDGYR_LOGS/tinytex.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/tinytex.log
+
+COPY --chown=edgyr:edgyr miniforge $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/miniforge > $EDGYR_LOGS/miniforge.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/miniforge.log
+
+COPY --chown=edgyr:edgyr configure-julia $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/configure-julia > $EDGYR_LOGS/configure-julia.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/configure-julia.log
+
+COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
+COPY --chown=edgyr:edgyr start-jupyterlab $EDGYR_HOME/
+COPY --chown=edgyr:edgyr start-opencpu $EDGYR_HOME/
+COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.bash $EDGYR_HOME/
 
 EXPOSE 5656
 CMD [ "/home/edgyr/start-opencpu" ]

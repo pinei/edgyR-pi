@@ -62,6 +62,8 @@ COPY --chown=edgyr:edgyr start-opencpu $EDGYR_HOME
 COPY --chown=edgyr:edgyr r-packages $EDGYR_SCRIPTS/
 RUN $EDGYR_SCRIPTS/r-packages > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
+RUN Rscript -e "tinytex::install_tinytex()" > $EDGYR_LOGS/tinytex.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/tinytex.log
 
 EXPOSE 5656
 CMD [ "/home/edgyr/start-opencpu" ]

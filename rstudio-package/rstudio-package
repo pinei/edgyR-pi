@@ -11,7 +11,6 @@ apt-get install -qqy --no-install-recommends \
   pandoc-citeproc \
   pandoc-citeproc-preamble \
   uuid-dev
-apt-get autoremove --purge -y
 apt-get clean
 update-alternatives --set java /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
 ls -lAtr /etc/alternatives | grep java

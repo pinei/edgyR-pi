@@ -23,18 +23,3 @@ RUN $SCRIPTS/rstudio-configure
 # set entry point
 COPY docker-entrypoint.sh /
 CMD [ "/docker-entrypoint.sh" ]
-
-# Linux dependencies for R packages
-COPY linux-dependencies $SCRIPTS/
-RUN $SCRIPTS/linux-dependencies > $LOGS/linux-dependencies.log 2>&1 \
-  && gzip -9 $LOGS/linux-dependencies.log
-
-USER edgyr
-WORKDIR $EDGYR_HOME
-COPY --chown=edgyr:edgyr miniforge $EDGYR_SCRIPTS/
-RUN $EDGYR_SCRIPTS/miniforge > $EDGYR_LOGS/miniforge.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/miniforge.log
-COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
-
-USER root
-WORKDIR $SOURCE_DIR/

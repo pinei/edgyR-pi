@@ -18,7 +18,6 @@ apt-get install -qqy --no-install-recommends \
     ./r-mathlib_*.deb
 cp *deb $PACKAGES/
 cp *dsc $PACKAGES/
-apt-get autoremove --purge -y
 apt-get clean
 popd
 

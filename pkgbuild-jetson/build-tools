@@ -26,5 +26,4 @@ apt-key adv \
 apt-get update
 
 # cleanup
-apt-get autoremove --purge
 apt-get clean

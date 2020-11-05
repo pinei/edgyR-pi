@@ -7,5 +7,4 @@ apt-get install -qqy --no-install-recommends \
   libsodium-dev \
   libxml2-dev \
   python3-venv
-apt-get autoremove --purge -y
 apt-get clean

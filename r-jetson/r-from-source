@@ -41,7 +41,6 @@ apt-get install -qqy --no-install-recommends \
   wget \
   zip \
   zlib1g-dev
-apt-get autoremove --purge
 apt-get clean
 
 echo "Creating / entering source directory"

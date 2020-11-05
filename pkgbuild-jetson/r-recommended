@@ -32,5 +32,4 @@ do
   popd
   zip -9rmy $SOURCE_DIR/$i-build.zip $i-build
 done
-apt-get autoremove --purge -y
 apt-get clean

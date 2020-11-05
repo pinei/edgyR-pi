@@ -11,6 +11,17 @@ RUN mkdir --parents $SOURCE_DIR $LOGS $SCRIPTS $PACKAGES
 USER root
 WORKDIR $SOURCE_DIR
 
+# Julia
+ENV JULIA_VERSION_MAJOR=1 JULIA_VERSION_MINOR=5 JULIA_VERSION_PATCH=2
+COPY install-julia $SCRIPTS/
+RUN $SCRIPTS/install-julia > $LOGS/install-julia.log 2>&1 \
+  && gzip -9 $LOGS/install-julia.log
+
+# Linux dependencies for R packages
+COPY linux-dependencies $SCRIPTS/
+RUN $SCRIPTS/linux-dependencies > $LOGS/linux-dependencies.log 2>&1 \
+  && gzip -9 $LOGS/linux-dependencies.log
+
 # create admin user with 'sudo' privilege
 RUN useradd \
   --shell /bin/bash \
@@ -37,9 +48,20 @@ RUN chown -R edgyr:edgyr $EDGYR_HOME
 
 USER edgyr
 WORKDIR $EDGYR_HOME
-COPY --chown=edgyr:edgyr install-opencpu start-opencpu $EDGYR_SCRIPTS/
-RUN $EDGYR_SCRIPTS/install-opencpu > $EDGYR_LOGS/install-opencpu.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/install-opencpu.log
+
+COPY --chown=edgyr:edgyr configure-julia $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/configure-julia > $EDGYR_LOGS/configure-julia.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/configure-julia.log
+
+COPY --chown=edgyr:edgyr miniforge $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/miniforge > $EDGYR_LOGS/miniforge.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/miniforge.log
+COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
+COPY --chown=edgyr:edgyr start-jupyterlab $EDGYR_HOME
+COPY --chown=edgyr:edgyr start-opencpu $EDGYR_HOME
+COPY --chown=edgyr:edgyr r-packages $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/r-packages > $EDGYR_LOGS/r-packages.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/r-packages.log
 
 EXPOSE 5656
-CMD [ "/home/edgyr/scripts/start-opencpu" ]
+CMD [ "/home/edgyr/start-opencpu" ]

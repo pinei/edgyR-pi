@@ -1,0 +1,7 @@
+#! /bin/bash
+
+set -e
+
+echo "Enabling Julia kernel in JupyterLab and Julia CUDA access"
+export JUPYTER=`which jupyter`
+julia -e 'using Pkg; Pkg.add("IJulia"); Pkg.add("CUDA")'

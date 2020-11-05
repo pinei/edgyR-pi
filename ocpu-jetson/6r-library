@@ -1,0 +1,25 @@
+#! /bin/bash
+
+set -e
+
+echo "Installing R library packages"
+Rscript -e "install.packages('caracas', quiet = TRUE)"
+Rscript -e "install.packages('data.table', quiet = TRUE)"
+Rscript -e "install.packages('keras', quiet = TRUE)"
+Rscript -e "install.packages('knitr', quiet = TRUE)"
+Rscript -e "install.packages('renv', quiet = TRUE)"
+Rscript -e "install.packages('rmarkdown', quiet = TRUE)"
+Rscript -e "install.packages('rprojroot', quiet = TRUE)"
+Rscript -e "install.packages('rTorch', quiet = TRUE)"
+Rscript -e "install.packages('torch', quiet = TRUE)"
+
+echo "Installing R 'arrow' package"
+export INCLUDE_DIR=/home/edgyr/miniconda3/envs/r-reticulate/include/
+export LIB_DIR=/home/edgyr/miniconda3/envs/r-reticulate/lib/
+Rscript -e "install.packages('arrow', quiet = TRUE)"
+
+echo "Enabling R kernel in JupyterLab"
+source $MINICONDA/etc/profile.d/conda.sh
+conda activate r-reticulate
+Rscript -e "install.packages('IRkernel', quiet = TRUE)"
+Rscript -e "IRkernel::installspec()"

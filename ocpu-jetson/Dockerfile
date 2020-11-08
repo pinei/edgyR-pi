@@ -2,20 +2,9 @@ FROM "docker.io/edgyr/r-jetson"
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ENV SOURCE_DIR=/usr/local/src/
-ENV LOGS=$SOURCE_DIR/logs
-ENV SCRIPTS=$SOURCE_DIR/scripts
-ENV PACKAGES=$SOURCE_DIR/packages
-RUN mkdir --parents $SOURCE_DIR $LOGS $SCRIPTS $PACKAGES
 
 USER root
 WORKDIR $SOURCE_DIR
-
-# Julia
-ENV JULIA_VERSION_MAJOR=1 JULIA_VERSION_MINOR=5 JULIA_VERSION_PATCH=2
-COPY install-julia $SCRIPTS/
-RUN $SCRIPTS/install-julia > $LOGS/install-julia.log 2>&1 \
-  && gzip -9 $LOGS/install-julia.log
 
 # Linux dependencies for R packages
 COPY linux-dependencies $SCRIPTS/

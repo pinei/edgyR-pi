@@ -57,7 +57,7 @@ then
 fi
 
 echo "CMake"
-rm -fr $SOURCE_DIR/rstudio/build/ && mkdir --parents $SOURCE_DIR/rstudio/build/ && cd $SOURCE_DIR/rstudio/build/
+rm -fr $SOURCE_DIR/rstudio/build/ && mkdir --parents $SOURCE_DIR/rstudio/build/ && pushd $SOURCE_DIR/rstudio/build/
 cmake .. \
   -DRSTUDIO_TARGET=Server -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=TGZ -DCPACK_SOURCE_GENERATOR=TGZ
 
@@ -68,37 +68,37 @@ cmake .. \
 
 echo "Building the C/C++ components"
 make --jobs=`nproc` rstudio-core-synctex \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rstudio-core-hunspell \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rstudio-shared-core \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rstudio-shared-core-tests \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rstudio-core \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rstudio-session-workers \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` crash-handler-proxy \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rstudio-monitor \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rstudio-server-core \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rstudio-core-tests \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rstudio-server-core-tests \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rserver-pam \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rpostback \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rstudio-r \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rserver \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 make --jobs=`nproc` rsession \
-  >> $SOURCE_DIR/cpp-compile.log 2>&1
+  >> $LOGS/cpp-compile.log 2>&1
 
 # The Nano only has 4 GB of RAM. As a result, the Java builds swamp the available
 # RAM and multi-job makes are problematic - they swap and the system appears
@@ -117,3 +117,6 @@ echo " -- starting Java builds"
 echo " -- RAM_KILOBYTES = $RAM_KILOBYTES; 'make' will use $JOBS jobs."
 
 make --jobs=$JOBS package
+
+echo "Copying package tarball to $PACKAGES"
+cp $PACKAGE_FILE $PACKAGES/

@@ -2,7 +2,7 @@ FROM "nvcr.io/nvidia/l4t-base:r32.4.4"
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ENV SOURCE_DIR=/usr/local/src/
+ENV SOURCE_DIR=/usr/local/src
 ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
 ENV PACKAGES=$SOURCE_DIR/packages

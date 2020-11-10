@@ -14,7 +14,9 @@ rm -fr $HOME/miniforge* $HOME/miniconda*
 ./Miniforge-pypy3-Linux-aarch64.sh -b -p $HOME/miniconda3 \
   && rm ./Miniforge-pypy3-Linux-aarch64.sh
 
+echo "Initializing conda for 'bash'"
 source $HOME/miniconda3/etc/profile.d/conda.sh
+conda init bash
 conda config --set auto_activate_base false
 
 echo "Creating fresh 'r-reticulate' environment with Python 3.6"

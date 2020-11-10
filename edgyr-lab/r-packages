@@ -13,8 +13,8 @@ install.packages(c(
   "rmarkdown",
   "rprojroot",
   "rTorch",
-  "torch",
-  "unix"
+  "tidyverse",
+  "torch"
 ), quiet = TRUE)
 
 IRkernel::installspec()

@@ -4,13 +4,7 @@ set -e
 
 apt-get install -qqy --no-install-recommends \
   ant \
-  cmake \
-  libpam0g-dev \
-  openjdk-8-jdk-headless \
-  pandoc \
-  pandoc-citeproc \
-  pandoc-citeproc-preamble \
-  uuid-dev
+  cmake
 apt-get clean
 update-alternatives --set java /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
 ls -lAtr /etc/alternatives | grep java

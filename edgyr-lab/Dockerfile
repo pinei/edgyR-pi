@@ -1,4 +1,4 @@
-FROM "docker.io/edgyr/r-jetson"
+FROM "docker.io/edgyr/internal-r4jetson"
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -6,10 +6,9 @@ ARG DEBIAN_FRONTEND=noninteractive
 USER root
 WORKDIR $SOURCE_DIR
 
-# Linux dependencies for R packages
-COPY linux-dependencies $SCRIPTS/
-RUN $SCRIPTS/linux-dependencies > $LOGS/linux-dependencies.log 2>&1 \
-  && gzip -9 $LOGS/linux-dependencies.log
+# install SymPy
+RUN pip3 install sympy > $LOGS/sympy.log 2>&1 \
+  && gzip -9 $LOGS/sympy.log
 
 # create admin user with 'sudo' privilege
 RUN useradd \
@@ -52,8 +51,6 @@ RUN $EDGYR_SCRIPTS/configure-julia > $EDGYR_LOGS/configure-julia.log 2>&1 \
 
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr start-jupyterlab $EDGYR_HOME/
-COPY --chown=edgyr:edgyr start-opencpu $EDGYR_HOME/
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.bash $EDGYR_HOME/
 
-EXPOSE 5656
-CMD [ "/home/edgyr/start-opencpu" ]
+CMD [ "/home/edgyr/start-jupyterlab" ]

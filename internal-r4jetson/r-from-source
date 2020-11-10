@@ -19,17 +19,25 @@ apt-get install -qqy --no-install-recommends \
   libicu-dev  \
   libjpeg-turbo8-dev  \
   libjpeg8-dev  \
+  libpam0g-dev \
   liblzma-dev \
   libpango1.0-dev  \
   libpcre2-dev \
   libprotobuf-dev \
   libreadline-dev \
+  libsodium-dev \
+  libssh2-1-dev \
   libssl-dev \
   libtiff5-dev \
+  libxml2-dev \
   mlocate \
   openjdk-8-jdk-headless \
+  pandoc \
+  pandoc-citeproc \
+  pandoc-citeproc-preamble \
   pkg-config \
   protobuf-compiler \
+  python3-venv \
   software-properties-common \
   sudo \
   texinfo \
@@ -37,11 +45,13 @@ apt-get install -qqy --no-install-recommends \
   tk-dev \
   tree \
   unzip \
+  uuid-dev \
   vim-nox \
   wget \
   zip \
   zlib1g-dev
 apt-get clean
+update-alternatives --set editor /usr/bin/bin
 
 echo "Creating / entering source directory"
 mkdir --parents $SOURCE_DIR && cd $SOURCE_DIR

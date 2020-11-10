@@ -1,4 +1,4 @@
-FROM "docker.io/edgyr/r-jetson"
+FROM "docker.io/edgyr/internal-r4jetson"
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive

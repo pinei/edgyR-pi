@@ -57,8 +57,8 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge > $EDGYR_LOGS/miniforge.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/miniforge.log
 
 COPY --chown=edgyr:edgyr configure-julia $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/configure-julia #> $EDGYR_LOGS/configure-julia.log 2>&1 \
-  #&& gzip -9 $EDGYR_LOGS/configure-julia.log
+RUN /usr/bin/time $EDGYR_SCRIPTS/configure-julia > $EDGYR_LOGS/configure-julia.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/configure-julia.log
 
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr start-jupyterlab $EDGYR_HOME/

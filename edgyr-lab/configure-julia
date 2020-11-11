@@ -2,6 +2,6 @@
 
 set -e
 
-echo "Enabling Julia kernel in JupyterLab and Julia CUDA access"
+echo "Enabling Julia kernel in JupyterLab"
 export JUPYTER=`which jupyter`
-julia -e 'using Pkg; Pkg.add("IJulia"); Pkg.add("CUDA")'
+julia -e 'using Pkg; Pkg.add("IJulia")'

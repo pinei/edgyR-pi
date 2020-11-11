@@ -37,23 +37,23 @@ WORKDIR $EDGYR_HOME
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr Renviron $EDGYR_HOME/.Renviron
 COPY --chown=edgyr:edgyr r-packages $EDGYR_SCRIPTS/
-RUN $EDGYR_SCRIPTS/r-packages > $EDGYR_LOGS/r-packages.log 2>&1 \
+RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
 RUN Rscript -e "tinytex::install_tinytex()" > $EDGYR_LOGS/tinytex.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/tinytex.log
 
 COPY --chown=edgyr:edgyr keras-test $EDGYR_SCRIPTS/
-RUN $EDGYR_SCRIPTS/keras-test > $EDGYR_LOGS/keras-test.log 2>&1 \
+RUN /usr/bin/time $EDGYR_SCRIPTS/keras-test > $EDGYR_LOGS/keras-test.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/keras-test.log \
   && mv Rplots.pdf $EDGYR_PLOTS/keras-test.pdf
 
 COPY --chown=edgyr:edgyr miniforge $EDGYR_SCRIPTS/
-RUN $EDGYR_SCRIPTS/miniforge > $EDGYR_LOGS/miniforge.log 2>&1 \
+RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge > $EDGYR_LOGS/miniforge.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/miniforge.log
 
 COPY --chown=edgyr:edgyr configure-julia $EDGYR_SCRIPTS/
-RUN $EDGYR_SCRIPTS/configure-julia > $EDGYR_LOGS/configure-julia.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/configure-julia.log
+RUN /usr/bin/time $EDGYR_SCRIPTS/configure-julia #> $EDGYR_LOGS/configure-julia.log 2>&1 \
+  #&& gzip -9 $EDGYR_LOGS/configure-julia.log
 
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr start-jupyterlab $EDGYR_HOME/

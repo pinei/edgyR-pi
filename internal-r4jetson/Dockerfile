@@ -21,10 +21,5 @@ WORKDIR $SOURCE_DIR
 
 # R
 COPY r-from-source R.conf $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/r-from-source > $LOGS/r-from-source.log 2>&1 \
+RUN $SCRIPTS/r-from-source > $LOGS/r-from-source.log 2>&1 \
   && gzip -9 $LOGS/r-from-source.log
-
-# Julia
-COPY install-julia $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/install-julia > $LOGS/install-julia.log 2>&1 \
-  && gzip -9 $LOGS/install-julia.log

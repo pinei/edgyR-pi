@@ -6,6 +6,11 @@ ARG DEBIAN_FRONTEND=noninteractive
 USER root
 WORKDIR $SOURCE_DIR
 
+# Julia
+COPY install-julia $SCRIPTS/
+RUN /usr/bin/time $SCRIPTS/install-julia > $LOGS/install-julia.log 2>&1 \
+  && gzip -9 $LOGS/install-julia.log
+
 # install SymPy
 RUN pip3 install sympy > $LOGS/sympy.log 2>&1 \
   && gzip -9 $LOGS/sympy.log

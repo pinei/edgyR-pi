@@ -27,7 +27,8 @@ ENV EDGYR_HOME=/home/edgyr
 ENV PROJECT_HOME=$EDGYR_HOME/Projects
 ENV EDGYR_SCRIPTS=$EDGYR_HOME/scripts
 ENV EDGYR_LOGS=$EDGYR_HOME/logs
-RUN mkdir --parents $PROJECT_HOME $EDGYR_SCRIPTS $EDGYR_LOGS
+ENV EDGYR_PLOTS=$EDGYR_HOME/plots
+RUN mkdir --parents $PROJECT_HOME $EDGYR_SCRIPTS $EDGYR_LOGS $EDGYR_PLOTS
 RUN chown -R edgyr:edgyr $EDGYR_HOME
 
 USER edgyr
@@ -40,6 +41,11 @@ RUN $EDGYR_SCRIPTS/r-packages > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
 RUN Rscript -e "tinytex::install_tinytex()" > $EDGYR_LOGS/tinytex.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/tinytex.log
+
+COPY --chown=edgyr:edgyr keras-test $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/keras-test > $EDGYR_LOGS/keras-test.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/keras-test.log \
+  && mv Rplots.pdf $EDGYR_PLOTS/keras-test.pdf
 
 COPY --chown=edgyr:edgyr miniforge $EDGYR_SCRIPTS/
 RUN $EDGYR_SCRIPTS/miniforge > $EDGYR_LOGS/miniforge.log 2>&1 \

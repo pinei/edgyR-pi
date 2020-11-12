@@ -56,6 +56,6 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/configure-julia > $EDGYR_LOGS/configure-julia.l
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr start-jupyterlab $EDGYR_HOME/
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.bash $EDGYR_HOME/
-COPY --chown=edgyr:edgyr Installers $EDGYR_HOME/
+COPY --chown=edgyr:edgyr Installers $EDGYR_HOME/Installers
 
 CMD [ "/home/edgyr/start-jupyterlab" ]

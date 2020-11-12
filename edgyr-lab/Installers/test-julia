@@ -1,0 +1,11 @@
+#! /bin/bash
+
+set -e
+
+echo ""
+echo "This takes a ***long*** time - about an hour and ten minutes"
+echo "on my AGX-Xavier! I run it every time I update Julia."
+echo "Use Control-C to stop now if you wish."
+sleep 20
+echo "OK - stand by!"
+sudo julia -e 'using Pkg; Pkg.test("CUDA")'

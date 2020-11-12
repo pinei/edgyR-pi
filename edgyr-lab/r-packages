@@ -17,7 +17,9 @@ install.packages(c(
   "rprojroot",
   "rTorch",
   "tidyverse",
+  "tinytex",
   "torch"
 ), quiet = TRUE)
 
 IRkernel::installspec()
+tinytex::install_tinytex()

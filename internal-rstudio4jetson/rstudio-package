@@ -51,9 +51,14 @@ then
 fi
 
 echo "CMake"
-rm -fr $SOURCE_DIR/rstudio/build/ && mkdir --parents $SOURCE_DIR/rstudio/build/ && pushd $SOURCE_DIR/rstudio/build/
+rm -fr $SOURCE_DIR/rstudio/build/ \
+  && mkdir --parents $SOURCE_DIR/rstudio/build/ \
+  && pushd $SOURCE_DIR/rstudio/build/
 cmake .. \
-  -DRSTUDIO_TARGET=Server -DCMAKE_BUILD_TYPE=Release -DCPACK_GENERATOR=TGZ -DCPACK_SOURCE_GENERATOR=TGZ
+  -DRSTUDIO_TARGET=Server \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCPACK_GENERATOR=TGZ \
+  -DCPACK_SOURCE_GENERATOR=TGZ
 
 # The C/C++ builds and the Java "gwt_build" appear to be competing for cores
 # and RAM. And the Java one doesn't seem to remember that it's been done.

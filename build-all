@@ -8,3 +8,5 @@ do
   ../build-and-push $i
   popd
 done
+ps -ef | grep docker
+wait

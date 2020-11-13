@@ -3,4 +3,4 @@
 set -e
 
 sudo docker build --tag $DOCKER_REPO/$1 .
-sudo docker push $DOCKER_REPO/$1
+sudo docker push $DOCKER_REPO/$1 > /dev/null 2>&1 &

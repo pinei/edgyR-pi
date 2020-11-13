@@ -9,6 +9,7 @@ apt-get install -qqy --no-install-recommends \
   ca-certificates \
   curl \
   fakeroot \
+  file \
   flac \
   gfortran \
   git \

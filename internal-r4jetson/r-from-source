@@ -9,6 +9,7 @@ apt-get install -qqy --no-install-recommends \
   ca-certificates \
   curl \
   fakeroot \
+  flac \
   gfortran \
   git \
   git-lfs \
@@ -16,6 +17,7 @@ apt-get install -qqy --no-install-recommends \
   libbz2-dev \
   libcairo2-dev  \
   libcurl4-openssl-dev \
+  libfftw3-dev \
   libicu-dev  \
   libjpeg-turbo8-dev  \
   libjpeg8-dev  \
@@ -25,7 +27,9 @@ apt-get install -qqy --no-install-recommends \
   libpcre2-dev \
   libprotobuf-dev \
   libreadline-dev \
+  libsndfile-dev \
   libsodium-dev \
+  libsox-fmt-all \
   libssh2-1-dev \
   libssl-dev \
   libtiff5-dev \
@@ -37,6 +41,7 @@ apt-get install -qqy --no-install-recommends \
   pandoc-citeproc \
   pandoc-citeproc-preamble \
   pkg-config \
+  portaudio19-dev \
   protobuf-compiler \
   python-dev \
   python-virtualenv \
@@ -44,6 +49,7 @@ apt-get install -qqy --no-install-recommends \
   python3-venv \
   python3-virtualenv \
   software-properties-common \
+  sox \
   sudo \
   texinfo \
   time \
@@ -58,6 +64,7 @@ apt-get install -qqy --no-install-recommends \
   zip \
   zlib1g-dev
 
+echo ""
 echo "Installing spatial dependencies"
 # https://wiki.postgresql.org/wiki/Apt
 curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -

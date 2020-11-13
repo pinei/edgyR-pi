@@ -30,6 +30,7 @@ apt-get install -qqy --no-install-recommends \
   libssl-dev \
   libtiff5-dev \
   libxml2-dev \
+  libzstd-dev \
   mlocate \
   openjdk-8-jdk-headless \
   pandoc \

@@ -35,7 +35,6 @@ USER edgyr
 WORKDIR $EDGYR_HOME
 
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
-COPY --chown=edgyr:edgyr Renviron $EDGYR_HOME/.Renviron
 COPY --chown=edgyr:edgyr r-packages $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log

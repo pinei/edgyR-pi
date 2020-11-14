@@ -1,12 +1,18 @@
-#! /bin/bash
+#! /bin/bash -v
 
 set -e
 
-for i in internal-r4jetson edgyr-lab internal-rstudio4jetson edgyr-studio
-do
-  pushd $i
-  ../build-and-push $i
-  popd
-done
-ps -ef | grep docker
+pushd internal-r4jetson
+../build-and-push internal-r4jetson
+popd
+pushd internal-rstudio4jetson
+../build-and-push internal-rstudio4jetson &
+popd
+pushd edgyr-lab
+../build-and-push edgyr-lab &
+popd
 wait
+pushd edgyr-studio
+../build-and-push edgyr-studio
+popd
+ps -ef | grep docker

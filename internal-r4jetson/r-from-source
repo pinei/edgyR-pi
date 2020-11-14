@@ -19,6 +19,8 @@ apt-get install -qqy --no-install-recommends \
   libcairo2-dev  \
   libcurl4-openssl-dev \
   libfftw3-dev \
+  libfribidi-dev \
+  libharfbuzz-dev \
   libicu-dev  \
   libjpeg-turbo8-dev  \
   libjpeg8-dev  \

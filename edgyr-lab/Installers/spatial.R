@@ -7,6 +7,7 @@ install.packages(c(
   "ggmap",
   "mapdeck",
   "osmdata",
+  "RPostgres",
   "sf",
   "stplanr",
   "tidycensus",

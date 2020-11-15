@@ -7,16 +7,16 @@ USER root
 WORKDIR $SOURCE_DIR
 
 # System-wide installs
-COPY install-julia $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/install-julia > $LOGS/install-julia.log 2>&1 \
+COPY install-julia.sh $SCRIPTS/
+RUN /usr/bin/time $SCRIPTS/install-julia.sh > $LOGS/install-julia.log 2>&1 \
   && gzip -9 $LOGS/install-julia.log
 
-COPY sympy $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/sympy > $LOGS/sympy.log 2>&1 \
+COPY sympy.sh $SCRIPTS/
+RUN /usr/bin/time $SCRIPTS/sympy.sh > $LOGS/sympy.log 2>&1 \
   && gzip -9 $LOGS/sympy.log
 
-COPY edgyr-user $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/edgyr-user > $LOGS/edgyr-user.log 2>&1 \
+COPY edgyr-user.sh $SCRIPTS/
+RUN /usr/bin/time $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1 \
   && gzip -9 $LOGS/edgyr-user.log
 
 # enable passwordless sudo
@@ -44,17 +44,17 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/test-keras.R > $EDGYR_LOGS/test-keras.log 2>&1 
   && gzip -9 $EDGYR_LOGS/test-keras.log \
   && mv Rplots.pdf $EDGYR_PLOTS/test-keras.pdf
 
-COPY --chown=edgyr:edgyr miniforge $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge > $EDGYR_LOGS/miniforge.log 2>&1 \
+COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/miniforge.log
 
-COPY --chown=edgyr:edgyr configure-julia $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/configure-julia > $EDGYR_LOGS/configure-julia.log 2>&1 \
+COPY --chown=edgyr:edgyr configure-julia.sh $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/configure-julia.sh > $EDGYR_LOGS/configure-julia.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/configure-julia.log
 
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
-COPY --chown=edgyr:edgyr start-jupyterlab $EDGYR_HOME/
-COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.bash $EDGYR_HOME/
+COPY --chown=edgyr:edgyr start-jupyterlab.sh $EDGYR_HOME/
+COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/
 COPY --chown=edgyr:edgyr Installers $EDGYR_HOME/Installers
 
-CMD [ "/home/edgyr/start-jupyterlab" ]
+CMD [ "/home/edgyr/start-jupyterlab.sh" ]

@@ -9,13 +9,16 @@ install.packages(c(
   "IRkernel",
   "keras",
   "knitr",
+  "learnr",
   "miniUI",
   "pkgdown",
+  "plumber",
   "remotes",
   "renv",
   "rmarkdown",
   "rprojroot",
   "rTorch",
+  "shiny",
   "tidyverse",
   "tinytex"
 ), quiet = TRUE)

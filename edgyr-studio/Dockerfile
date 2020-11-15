@@ -13,9 +13,9 @@ RUN tar -xf $PACKAGES/$PACKAGE_FILE --strip-components=1 --directory=/
 
 # configure RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started
-COPY rstudio-configure $SCRIPTS/
+COPY rstudio-configure.sh $SCRIPTS/
 COPY rserver.conf /etc/rstudio/
-RUN $SCRIPTS/rstudio-configure
+RUN $SCRIPTS/rstudio-configure.sh
 
 # set entry point
 COPY docker-entrypoint.sh /

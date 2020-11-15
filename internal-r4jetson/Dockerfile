@@ -20,6 +20,6 @@ USER root
 WORKDIR $SOURCE_DIR
 
 # R
-COPY r-from-source R.conf $SCRIPTS/
-RUN $SCRIPTS/r-from-source > $LOGS/r-from-source.log 2>&1 \
+COPY r-from-source.sh R.conf $SCRIPTS/
+RUN $SCRIPTS/r-from-source.sh > $LOGS/r-from-source.log 2>&1 \
   && gzip -9 $LOGS/r-from-source.log

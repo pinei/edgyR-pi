@@ -9,7 +9,7 @@ function install {
   pushd $SOURCE_DIR/$1-build
     apt-get build-dep -y $1 >> $LOGS/$1.log 2>&1
     /usr/bin/time apt-get source --compile $1 >> $LOGS/$1.log 2>&1
-    apt-get install -qqy --no-install-recommends ./$1_*.deb >> $LOGS/$1.log 2>&1
+    apt-get install -qqy --no-install-recommends ./*_*.deb >> $LOGS/$1.log 2>&1
     cp *deb $PACKAGES/
     cp *dsc $PACKAGES/
   popd

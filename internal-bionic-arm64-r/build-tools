@@ -8,7 +8,7 @@ apt-get install -qqy --no-install-recommends \
   apt-file \
   build-essential \
   ca-certificates \
-  fakeroot \
+  file \
   git \
   git-lfs \
   gnupg \
@@ -19,6 +19,7 @@ apt-get install -qqy --no-install-recommends \
   vim-nox
 
 # allow fetching sources and add R Ubuntu repository
+diff $SCRIPTS/sources.list.new /etc/apt/sources.list
 cp $SCRIPTS/sources.list.new /etc/apt/sources.list
 apt-key adv \
   --keyserver keyserver.ubuntu.com \

@@ -17,6 +17,8 @@ RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
   && gzip -9 $LOGS/build-deps.log
 
 # Pandoc
+RUN mkdir --parents /root/.cabal/
+COPY cabal-config /root/.cabal/config
 COPY pandoc.sh $SCRIPTS/
 RUN $SCRIPTS/pandoc.sh > $LOGS/pandoc.log 2>&1 \
   && gzip -9 $LOGS/pandoc.log

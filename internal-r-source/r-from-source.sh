@@ -16,26 +16,22 @@ echo "Using $R_LATEST"
 
 echo "Configuring"
 mkdir --parents build-dir
-cd build-dir
-../$R_LATEST/configure --enable-R-shlib
 
-echo "Compiling"
-make --jobs=`nproc`
+pushd build-dir
+  ../$R_LATEST/configure --enable-R-shlib --prefix=$BINARIES
 
-echo "Making standalone math library"
-pushd src/nmath/standalone
-make --jobs=`nproc`
-make install
+  echo "Compiling"
+  make --jobs=`nproc`
+
+  echo "Making standalone math library"
+  pushd src/nmath/standalone
+    make --jobs=`nproc`
+    make install
+  popd
+
+  echo "Installing"
+  make install
 popd
-
-echo "Installing"
-make install
-cp $SCRIPTS/R.conf /etc/ld.so.conf.d/
-/sbin/ldconfig --verbose
-cd ..
-
-echo "Reconfiguring R Java interface"
-R CMD javareconf
 
 cd $SOURCE_DIR
 zip -9rmyq $R_LATEST.zip $R_LATEST

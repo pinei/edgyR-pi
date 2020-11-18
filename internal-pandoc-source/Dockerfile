@@ -1,4 +1,4 @@
-FROM ubuntu:groovy
+FROM ubuntu:focal
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -11,10 +11,15 @@ RUN mkdir --parents $SOURCE_DIR $LOGS $SCRIPTS $PACKAGES
 USER root
 WORKDIR $SOURCE_DIR
 
+# build dependencies
+COPY build-deps.sh $SCRIPTS/
+RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
+  && gzip -9 $LOGS/build-deps.log
+
 # Pandoc
-COPY pandoc-from-source.sh $SCRIPTS/
-RUN $SCRIPTS/pandoc-from-source.sh > $LOGS/pandoc-from-source.log 2>&1 \
-  && gzip -9 $LOGS/pandoc-from-source.log
+COPY pandoc.sh $SCRIPTS/
+RUN $SCRIPTS/pandoc.sh > $LOGS/pandoc.log 2>&1 \
+  && gzip -9 $LOGS/pandoc.log
 
 COPY publish-pandoc.sh $SCRIPTS/
 RUN $SCRIPTS/publish-pandoc.sh > $LOGS/publish-pandoc.log 2>&1 \

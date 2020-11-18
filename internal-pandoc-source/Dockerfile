@@ -22,7 +22,4 @@ COPY cabal-config /root/.cabal/config
 COPY pandoc.sh $SCRIPTS/
 RUN $SCRIPTS/pandoc.sh > $LOGS/pandoc.log 2>&1 \
   && gzip -9 $LOGS/pandoc.log
-
-COPY publish-pandoc.sh $SCRIPTS/
-RUN $SCRIPTS/publish-pandoc.sh > $LOGS/publish-pandoc.log 2>&1 \
-  && gzip -9 $LOGS/publish-pandoc.log
+ENV PANDOC_EXECUTABLES=/root/.cabal/bin

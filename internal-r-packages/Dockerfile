@@ -16,6 +16,7 @@ RUN $SCRIPTS/build-tools > $LOGS/build-tools.log 2>&1 \
   && gzip -9 $LOGS/build-tools.log
 
 # make and install the packages
+COPY Rprofile /root/.Rprofile
 COPY r-base $SCRIPTS/
 RUN $SCRIPTS/r-base > $LOGS/r-base.log 2>&1 \
   && gzip -9 $LOGS/r-base.log

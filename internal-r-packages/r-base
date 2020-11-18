@@ -9,7 +9,7 @@ mkdir --parents $SOURCE_DIR/r-base-build
 pushd $SOURCE_DIR/r-base-build
 
 apt-get build-dep -qqy r-base
-apt-get source --compile r-base
+/usr/bin/time apt-get source --compile r-base
 apt-get install -qqy --no-install-recommends \
     ./r-base-core_*.deb \
     ./r-base-dev_*.deb \
@@ -18,7 +18,6 @@ apt-get install -qqy --no-install-recommends \
     ./r-mathlib_*.deb
 cp *deb $PACKAGES/
 cp *dsc $PACKAGES/
-apt-get clean
 popd
 
-zip -9rmy $SOURCE_DIR/r-base-build.zip r-base-build
+zip -9rmyq $SOURCE_DIR/r-base-build.zip r-base-build

@@ -25,11 +25,10 @@ do
   mkdir $SOURCE_DIR/$i-build
   pushd $SOURCE_DIR/$i-build
     apt-get build-dep -y $i
-    apt-get source --compile $i
+    /usr/bin/time apt-get source --compile $i
     apt-get install -qqy --no-install-recommends ./$i_*.deb
     cp *deb $PACKAGES/
     cp *dsc $PACKAGES/
   popd
-  zip -9rmy $SOURCE_DIR/$i-build.zip $i-build
+  zip -9rmyq $SOURCE_DIR/$i-build.zip $i-build
 done
-apt-get clean

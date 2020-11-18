@@ -118,5 +118,5 @@ echo "Reconfiguring R Java interface"
 R CMD javareconf
 
 cd $SOURCE_DIR
-zip -9rmy $R_LATEST.zip $R_LATEST
-zip -9rmy build-dir.zip build-dir
+zip -9rmyq $R_LATEST.zip $R_LATEST
+zip -9rmyq build-dir.zip build-dir

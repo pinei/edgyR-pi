@@ -1,4 +1,4 @@
-FROM "docker.io/edgyr/l4t-ml:r32.4.4-tf2.3-py3"
+FROM ubuntu:bionic
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -11,13 +11,13 @@ RUN mkdir --parents $SOURCE_DIR $LOGS $SCRIPTS $PACKAGES
 ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=0 R_VERSION_PATCH=3
 ENV R_LATEST=R-$R_VERSION_MAJOR.$R_VERSION_MINOR.$R_VERSION_PATCH
 
-ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=3 RSTUDIO_VERSION_PATCH=1093
-ENV PACKAGE_FILE=rstudio-server-$RSTUDIO_VERSION_MAJOR.$RSTUDIO_VERSION_MINOR.$RSTUDIO_VERSION_PATCH-arm64.tar.gz
-
-ENV JULIA_VERSION_MAJOR=1 JULIA_VERSION_MINOR=5 JULIA_VERSION_PATCH=3
-
 USER root
 WORKDIR $SOURCE_DIR
+
+# build dependencies
+COPY build-deps.sh R.conf $SCRIPTS/
+RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
+  && gzip -9 $LOGS/build-deps.log
 
 # R
 COPY r-from-source.sh R.conf $SCRIPTS/

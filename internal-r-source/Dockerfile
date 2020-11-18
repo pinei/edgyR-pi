@@ -15,7 +15,7 @@ USER root
 WORKDIR $SOURCE_DIR
 
 # build dependencies
-COPY build-deps.sh R.conf $SCRIPTS/
+COPY build-deps.sh $SCRIPTS/
 RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
   && gzip -9 $LOGS/build-deps.log
 

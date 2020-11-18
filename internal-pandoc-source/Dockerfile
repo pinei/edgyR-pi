@@ -1,4 +1,4 @@
-FROM ubuntu:20.10
+FROM ubuntu:groovy
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive

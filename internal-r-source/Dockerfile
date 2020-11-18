@@ -20,6 +20,6 @@ RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
   && gzip -9 $LOGS/build-deps.log
 
 # R
-COPY r-from-source.sh R.conf $SCRIPTS/
+COPY r-from-source.sh $SCRIPTS/
 RUN $SCRIPTS/r-from-source.sh > $LOGS/r-from-source.log 2>&1 \
   && gzip -9 $LOGS/r-from-source.log

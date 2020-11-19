@@ -2,12 +2,12 @@
 
 set -e
 
-apt-get install -qqy --no-install-recommends \
-  ant \
-  cmake
-apt-get clean
-update-alternatives --set java /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
-ls -lAtr /etc/alternatives | grep java
+#apt-get install -qqy --no-install-recommends \
+  #ant \
+  #cmake
+#apt-get clean
+#update-alternatives --set java /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
+#ls -lAtr /etc/alternatives | grep java
 
 cd $SOURCE_DIR
 rm -fr rstudio*
@@ -16,6 +16,7 @@ curl -Ls \
   https://github.com/rstudio/rstudio/tarball/v$RSTUDIO_VERSION_MAJOR.$RSTUDIO_VERSION_MINOR.$RSTUDIO_VERSION_PATCH \
   | tar xzf -
 mv rstudio-rstudio-* rstudio
+exit
 cd rstudio
 
 pushd dependencies/common

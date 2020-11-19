@@ -1,0 +1,136 @@
+#!/usr/bin/env bash
+
+#
+# install-boost
+#
+# Copyright (C) 2009-12 by RStudio, PBC
+#
+# Unless you have received this program directly from RStudio pursuant
+# to the terms of a commercial license agreement with RStudio, then
+# this program is licensed to you under the terms of version 3 of the
+# GNU Affero General Public License. This program is distributed WITHOUT
+# ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING THOSE OF NON-INFRINGEMENT,
+# MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Please refer to the
+# AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
+#
+#
+
+set -e
+
+# install dir 
+INSTALL_DIR=`pwd`
+
+# determine platform
+PLATFORM=`uname`
+
+# vars
+BOOST_VERSION_NUMBER=1.69.0
+BOOST_VERSION=boost_1_69_0
+BOOST_DIR=/opt/rstudio-tools/boost/$BOOST_VERSION
+BOOST_TAR=$BOOST_VERSION.tar.bz2
+BOOST_BUILD_DIR=boost-build
+BOOST_MODULES="algorithm asio array bind build chrono circular_buffer config context crc
+   date_time filesystem foreach format function interprocess iostreams
+   lambda lexical_cast optional program_options predef property_tree random range ref
+   regex scope_exit signals signals2 smart_ptr spirit string_algo system
+   test thread tokenizer type_traits typeof unordered utility variant"
+
+# install if we aren't already installed
+if ! test -e $BOOST_DIR
+then
+   # download boost
+   BOOST_URL=https://s3.amazonaws.com/rstudio-buildtools/Boost/boost_1_69_0.tar.bz2
+   if [ ! -f "$BOOST_TAR" ]; then
+      if [ "$PLATFORM" == "Darwin" ]
+      then
+         curl -L $BOOST_URL > $BOOST_TAR
+      else
+         # sourceforge uses a certificate that is not compatible with older wget
+         # (which doesn't realize that *.sourceforge.net should match 
+         # sourceforge.net)
+         wget -c --no-check-certificate $BOOST_URL -O $BOOST_TAR
+      fi
+   fi
+   
+   # remove existing boost installation
+   sudo rm -rf $BOOST_DIR
+  
+   # untar source (remove existing)
+   sudo rm -rf $BOOST_BUILD_DIR
+   sudo mkdir -p $BOOST_BUILD_DIR
+   cd $BOOST_BUILD_DIR
+   sudo tar --bzip2 -xf ../$BOOST_TAR
+
+   # change to boost version folder
+   cd $BOOST_VERSION
+
+   # bootstrap boost
+   sudo ./bootstrap.sh
+
+   # build bcp helper
+   sudo ./b2 tools/bcp
+
+   # copy back to root
+   sudo cp dist/bin/bcp bcp
+
+   # use bcp to copy to rstudio folder (use custom namespace)
+   sudo mkdir -p rstudio
+   sudo ./bcp --namespace=rstudio_boost --namespace-alias $BOOST_MODULES config build rstudio
+
+   # move to rstudio folder
+   cd rstudio
+
+   # bootstrap again
+   sudo ./bootstrap.sh
+   
+   # special variation of build for osx
+   if [ "$PLATFORM" == "Darwin" ]
+   then
+
+     BJAM_CXXFLAGS="cxxflags=-fPIC -std=c++11 -mmacosx-version-min=10.12"
+     BJAM_LDFLAGS=""
+
+     sudo ./bjam              \
+        "${BOOST_BJAM_FLAGS}" \
+        --prefix="$BOOST_DIR" \
+        toolset=clang         \
+        "${BJAM_CXXFLAGS}"    \
+        "${BJAM_LDFLAGS}"     \
+        variant=release       \
+        threading=multi       \
+        link=static           \
+        install
+   else
+      # plain old build for other platforms
+     sudo ./bjam                     \
+        "${BOOST_BJAM_FLAGS}"        \
+        --prefix="$BOOST_DIR"        \
+        variant=release              \
+        cxxflags="-fPIC -std=c++11"  \
+        install
+   fi
+
+   # rename libraries in the boost install dir
+   cd $BOOST_DIR/lib
+   for file in librstudio*; do
+      src=$file
+      tgt="$(echo $file | sed 's/rstudio_//')"
+      sudo mv "$src" "$tgt"
+   done
+
+   for file in libboost*.so; do
+      sudo ln -f -s $file.$BOOST_VERSION_NUMBER $file
+   done
+
+   # go back to the original install dir and remove build dir
+   cd $INSTALL_DIR
+   sudo rm -rf $BOOST_BUILD_DIR
+
+else
+
+   echo "$BOOST_VERSION_NUMBER already installed in $BOOST_DIR"
+
+fi
+
+# back to install dir
+cd $INSTALL_DIR

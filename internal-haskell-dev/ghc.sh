@@ -7,5 +7,5 @@ cp $SCRIPTS/build.mk ghc-$GHC_RELEASE/mk/
 pushd ghc-$GHC_RELEASE
   ./boot
   ./configure
-  make  -j 12 install
+  make install
 popd

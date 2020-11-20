@@ -15,19 +15,27 @@ WORKDIR $SOURCE_DIR
 
 # build dependencies
 COPY build-deps.sh $SCRIPTS/
-RUN echo $SCRIPTS $LOGS $PACKAGES $PACKAGE_FILE
 RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
   && gzip -9 $LOGS/build-deps.log
 
 # boost
 COPY install-boost.sh $SCRIPTS/
-RUN echo $SCRIPTS $LOGS $PACKAGES $PACKAGE_FILE
-RUN $SCRIPTS/install-boost.sh > $LOGS/install-boost.log 2>&1 \
+RUN /usr/bin/time $SCRIPTS/install-boost.sh > $LOGS/install-boost.log 2>&1 \
   && gzip -9 $LOGS/install-boost.log
+
+# R and pandoc
+COPY --from="edgyr/internal-r-source:latest" $BINARIES $BINARIES
+
+COPY --from="edgyr/internal-pandoc-source:latest" /root/.cabal/bin $BINARIES/bin
+COPY --from="edgyr/internal-pandoc-source:latest" /root/.cabal/lib $BINARIES/lib
+COPY --from="edgyr/internal-pandoc-source:latest" /root/.cabal/share $BINARIES/share
+
+COPY R.conf configure.sh $SCRIPTS/
+RUN $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1 \
+  && gzip -9 $LOGS/configure.log
 
 # "install" RStudio Server to a "binaries" directory
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/
-COPY rstudio.sh $SCRIPTS/
-RUN echo $SCRIPTS $LOGS $PACKAGES $PACKAGE_FILE
-RUN $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1 \
-  && gzip -9 $LOGS/rstudio.log
+ COPY rstudio.sh $SCRIPTS/
+ RUN /usr/bin/time $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1 \
+   && gzip -9 $LOGS/rstudio.log

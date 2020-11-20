@@ -2,13 +2,6 @@
 
 set -e
 
-#apt-get install -qqy --no-install-recommends \
-  #ant \
-  #cmake
-#apt-get clean
-#update-alternatives --set java /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
-#ls -lAtr /etc/alternatives | grep java
-
 cd $SOURCE_DIR
 rm -fr rstudio*
 echo "Downloading RStudio source tarball"
@@ -16,14 +9,12 @@ curl -Ls \
   https://github.com/rstudio/rstudio/tarball/v$RSTUDIO_VERSION_MAJOR.$RSTUDIO_VERSION_MINOR.$RSTUDIO_VERSION_PATCH \
   | tar xzf -
 mv rstudio-rstudio-* rstudio
-exit
 cd rstudio
 
+# We've already installed the Linux dependencies and built boost
+# and we've loaded R and Pandoc from their images. So we can skip
+# the heavy lifting here
 pushd dependencies/common
-  echo "Installing RStudio boost from source - may take a while"
-  alias make=make --jobs=`nproc`
-  /usr/bin/time ./install-boost
-
   echo "Acuiring Pandoc version"
   export PANDOC_VERSION=`pandoc --version|head -n 1|sed 's/^pandoc //'`
   echo "PANDOC_VERSION=$PANDOC_VERSION"
@@ -34,7 +25,7 @@ pushd dependencies/common
   ./install-mathjax > /dev/null 2>&1
   echo "Copying Pandoc binaries"
   mkdir -p pandoc/$PANDOC_VERSION/
-  cp /usr/bin/pandoc* pandoc/$PANDOC_VERSION/
+  cp /usr/local/bin/pandoc* pandoc/$PANDOC_VERSION/
 popd
 
 cd $SOURCE_DIR/rstudio
@@ -55,11 +46,10 @@ echo "CMake"
 rm -fr $SOURCE_DIR/rstudio/build/ \
   && mkdir --parents $SOURCE_DIR/rstudio/build/ \
   && pushd $SOURCE_DIR/rstudio/build/
+exit
 cmake .. \
   -DRSTUDIO_TARGET=Server \
-  -DCMAKE_BUILD_TYPE=Release \
-  -DCPACK_GENERATOR=TGZ \
-  -DCPACK_SOURCE_GENERATOR=TGZ
+  -DCMAKE_BUILD_TYPE=Release
 
 # The C/C++ builds and the Java "gwt_build" appear to be competing for cores
 # and RAM. And the Java one doesn't seem to remember that it's been done.

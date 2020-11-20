@@ -7,25 +7,20 @@ apt-get install -qqy --no-install-recommends \
   ant \
   apt-file \
   build-essential \
-  ca-certificates \
   clang \
   cmake \
   curl \
   debsigs \
-  default-jdk-headless \
   dpkg-sig \
   expect \
   fakeroot \
   file \
-  gfortran \
   git \
   git-lfs \
-  gnupg \
   gnupg1 \
   libacl1-dev \
   libattr1-dev \
   libbz2-dev \
-  libcairo2-dev \
   libcap-dev \
   libclang-6.0-dev \
   libclang-dev \
@@ -34,16 +29,10 @@ apt-get install -qqy --no-install-recommends \
   libfuse2 \
   libgl1-mesa-dev \
   libgtk-3-0 \
-  libicu-dev \
-  libjpeg8-dev \
-  libjpeg-turbo8-dev \
-  liblzma-dev \
+  libpam0g-dev \
   libpam-dev \
   libpango1.0-dev \
-  libpcre2-dev \
-  libreadline-dev \
   libssl-dev \
-  libtiff5-dev \
   libuser1-dev \
   libxslt1-dev \
   lsof \
@@ -55,9 +44,7 @@ apt-get install -qqy --no-install-recommends \
   rrdtool \
   software-properties-common \
   sudo \
-  texinfo \
   time \
-  tk-dev \
   tree \
   unzip \
   uuid-dev \
@@ -65,4 +52,4 @@ apt-get install -qqy --no-install-recommends \
   wget \
   zip \
   zlib1g-dev
-update-alternatives --set java /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
+sudo update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java

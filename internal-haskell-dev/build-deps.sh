@@ -55,10 +55,6 @@ apt-get install -qqy --no-install-recommends \
   llvm-10-dev \
   llvm-10-runtime \
   llvm-10-tools \
-  llvm-3.7 \
-  llvm-3.7-dev \
-  llvm-3.7-runtime \
-  llvm-3.7-tools \
   llvm-3.9 \
   llvm-3.9-dev \
   llvm-3.9-runtime \

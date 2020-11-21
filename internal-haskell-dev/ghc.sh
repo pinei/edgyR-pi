@@ -12,7 +12,8 @@ pushd ghc-$GHC_RELEASE
 
   ./boot
   ./configure
+
   set -e
-  /usr/bin/time make
+  /usr/bin/time make --jobs=`nproc`
   make install
 popd

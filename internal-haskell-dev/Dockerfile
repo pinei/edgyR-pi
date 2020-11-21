@@ -21,8 +21,13 @@ COPY cabal.sh $SCRIPTS/
 RUN $SCRIPTS/cabal.sh > $LOGS/cabal.log 2>&1 \
   && gzip -9 $LOGS/cabal.log
 
+# stack
+#COPY stack.sh $SCRIPTS/
+#RUN $SCRIPTS/stack.sh > $LOGS/stack.log 2>&1 \
+  #&& gzip -9 $LOGS/stack.log
+
 # newer GHC
-ENV GHC_RELEASE=8.2.2
-COPY ghc.sh build.mk $SCRIPTS/
-RUN $SCRIPTS/ghc.sh > $LOGS/ghc.log 2>&1 \
-  && gzip -9 $LOGS/ghc.log
+#ENV GHC_RELEASE=8.4.4
+#COPY ghc.sh $SCRIPTS/
+#RUN $SCRIPTS/ghc.sh > $LOGS/ghc.log 2>&1 \
+  #&& gzip -9 $LOGS/ghc.log

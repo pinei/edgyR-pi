@@ -4,85 +4,20 @@ echo "Installing build dependencies"
 apt-get update
 apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
-  alex \
   apt-file \
   autoconf \
   automake \
   build-essential \
   ca-certificates \
-  clang-10 \
-  clang-3.9 \
-  clang-4.0 \
-  clang-5.0 \
-  clang-6.0 \
-  clang-7 \
-  clang-8 \
-  clang-9 \
-  clang-format-10 \
-  clang-format-3.9 \
-  clang-format-4.0 \
-  clang-format-5.0 \
-  clang-format-6.0 \
-  clang-format-7 \
-  clang-format-8 \
-  clang-format-9 \
-  clang-tidy-10 \
-  clang-tidy-3.9 \
-  clang-tidy-4.0 \
-  clang-tidy-5.0 \
-  clang-tidy-6.0 \
-  clang-tidy-7 \
-  clang-tidy-8 \
-  clang-tidy-9 \
-  clang-tools-10 \
-  clang-tools-4.0 \
-  clang-tools-5.0 \
-  clang-tools-6.0 \
-  clang-tools-7 \
-  clang-tools-8 \
-  clang-tools-9 \
   curl \
   file \
   git \
   git-lfs \
-  happy \
   haskell-platform \
   haskell-stack \
   libgmp-dev \
   libncurses-dev \
   libnuma-dev \
-  llvm-10 \
-  llvm-10-dev \
-  llvm-10-runtime \
-  llvm-10-tools \
-  llvm-3.9 \
-  llvm-3.9-dev \
-  llvm-3.9-runtime \
-  llvm-3.9-tools \
-  llvm-4.0 \
-  llvm-4.0-dev \
-  llvm-4.0-runtime \
-  llvm-4.0-tools \
-  llvm-5.0 \
-  llvm-5.0-dev \
-  llvm-5.0-runtime \
-  llvm-5.0-tools \
-  llvm-6.0 \
-  llvm-6.0-dev \
-  llvm-6.0-runtime \
-  llvm-6.0-tools \
-  llvm-7 \
-  llvm-7-dev \
-  llvm-7-runtime \
-  llvm-7-tools \
-  llvm-8 \
-  llvm-8-dev \
-  llvm-8-runtime \
-  llvm-8-tools \
-  llvm-9 \
-  llvm-9-dev \
-  llvm-9-runtime \
-  llvm-9-tools \
   mlocate \
   pkg-config \
   python3 \

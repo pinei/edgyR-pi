@@ -5,6 +5,11 @@ wget -q -O - https://downloads.haskell.org/~ghc/$GHC_RELEASE/ghc-$GHC_RELEASE-sr
   | tar xJf -
 cp $SCRIPTS/build.mk ghc-$GHC_RELEASE/mk/
 pushd ghc-$GHC_RELEASE
+  pushd mk
+    cp build.mk.sample build.mk
+    sed --in-place=.bak 's/\#BuildFlavour = quick$/BuildFlavour = quick/' build.mk
+  popd
+
   ./boot
   ./configure
   make install

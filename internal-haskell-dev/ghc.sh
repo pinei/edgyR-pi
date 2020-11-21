@@ -13,6 +13,6 @@ pushd ghc-$GHC_RELEASE
   ./boot
   ./configure
   set -e
-  make
+  /usr/bin/time make
   make install
 popd

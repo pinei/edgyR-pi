@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 cd $SOURCE_DIR
 wget -q -O - https://downloads.haskell.org/~ghc/$GHC_RELEASE/ghc-$GHC_RELEASE-src.tar.xz \
   | tar xJf -

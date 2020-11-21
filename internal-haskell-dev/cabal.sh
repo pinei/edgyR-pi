@@ -1,19 +1,21 @@
 #! /bin/bash
 
-export PATH=/root/.cabal/bin:$PATH
+# we install cabal-install twice
+# the first gets us to 3.0 and the
+# second to 3.2
+export CABAL_HOME=/root/.cabal
+export PATH=$CABAL_HOME/bin:$PATH
 cabal update
 /usr/bin/time cabal install \
-  --jobs=12 \
   --disable-optimization \
-  --overwrite-policy=always \
 cabal-install
-cabal user-config update
 
-cabal update
-/usr/bin/time cabal install \
-  --jobs=12 \
+$CABAL_HOME/bin/cabal v2-update
+/usr/bin/time $CABAL_HOME/bin/cabal v2-install \
+  --installdir=/usr/local/bin \
   --disable-optimization \
   --overwrite-policy=always \
 cabal-install
-cabal user-config update
+
+which cabal
 cabal --version

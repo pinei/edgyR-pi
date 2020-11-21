@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 export CABAL_HOME=/root/.cabal/bin
 export PATH=$CABAL_HOME:$PATH
 $CABAL_HOME/cabal --version

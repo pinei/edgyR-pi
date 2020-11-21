@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 cabal --version
 ghc --version
 echo ""

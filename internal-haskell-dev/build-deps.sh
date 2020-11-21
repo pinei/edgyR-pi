@@ -86,6 +86,7 @@ apt-get install -qqy --no-install-recommends \
   mlocate \
   pkg-config \
   python3 \
+  python3-sphinx \
   software-properties-common \
   sudo \
   time \

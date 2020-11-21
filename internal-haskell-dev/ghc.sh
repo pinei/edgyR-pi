@@ -12,5 +12,6 @@ pushd ghc-$GHC_RELEASE
 
   ./boot
   ./configure
+  make
   make install
 popd

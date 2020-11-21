@@ -5,9 +5,10 @@ ghc --version
 echo ""
 cabal v2-update
 
-echo "Building 'stack' with 'cabal'"
+echo "Building 'pandoc' with 'cabal'"
 /usr/bin/time cabal v2-install \
   --installdir=/usr/local/bin \
   --disable-optimization \
   --overwrite-policy=always \
-stack
+  --flags="embed_data_files https" \
+pandoc

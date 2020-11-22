@@ -20,14 +20,14 @@ apt-get install -qqy --no-install-recommends \
   libgmp-dev \
   libncurses-dev \
   libnuma-dev \
-  llvm-3.9 \
-  llvm-4.0 \
-  llvm-5.0 \
-  llvm-6.0 \
-  llvm-7 \
-  llvm-8 \
-  llvm-9 \
-  llvm-10 \
+  llvm-3.9-dev \
+  llvm-4.0-dev \
+  llvm-5.0-dev \
+  llvm-6.0-dev \
+  llvm-7-dev \
+  llvm-8-dev \
+  llvm-9-dev \
+  llvm-10-dev \
   mlocate \
   pkg-config \
   python3 \

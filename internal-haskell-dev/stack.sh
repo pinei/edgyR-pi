@@ -3,15 +3,16 @@
 set -e
 
 cabal --version
-ghc --version
-echo ""
-cabal v2-update
-
-echo "Building 'stack' with 'cabal'"
-/usr/bin/time cabal v2-install \
-  --jobs=`nproc` \
-  --installdir=/usr/local/bin \
+cabal user-config update
+cabal update
+/usr/bin/time cabal install \
+  --disable-coverage \
+  --disable-documentation \
+  --disable-executable-dynamic \
   --disable-optimization \
-  --overwrite-policy=always \
+  --disable-profiling \
   --ghc-options="-fasm" \
+  --global \
+  --jobs=`nproc` \
+  --overwrite-policy=always \
 stack

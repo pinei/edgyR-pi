@@ -2,14 +2,16 @@
 
 set -e
 
-export CABAL_HOME=/root/.cabal/bin
-export PATH=$CABAL_HOME:$PATH
-$CABAL_HOME/cabal --version
-$CABAL_HOME/cabal v2-update
-/usr/bin/time $CABAL_HOME/cabal v2-install \
-  --jobs=`nproc` \
-  --installdir=/usr/local/bin \
+cabal --version
+cabal user-config update
+cabal update
+/usr/bin/time cabal install \
+  --disable-coverage \
+  --disable-documentation \
+  --disable-executable-dynamic \
   --disable-optimization \
-  --overwrite-policy=always \
+  --disable-profiling \
   --ghc-options="-fasm" \
+  --global \
+  --jobs=`nproc` \
 cabal-install

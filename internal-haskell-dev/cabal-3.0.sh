@@ -3,8 +3,14 @@
 set -e
 
 cabal --version
+cabal user-config update
 cabal update
 /usr/bin/time cabal install \
-  --jobs=`nproc` \
+  --disable-coverage \
+  --disable-documentation \
+  --disable-executable-dynamic \
   --disable-optimization \
+  --disable-profiling \
+  --global \
+  --jobs=`nproc` \
 cabal-install

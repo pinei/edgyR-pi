@@ -14,4 +14,5 @@ echo "Building 'pandoc' with 'cabal'"
   --disable-optimization \
   --overwrite-policy=always \
   --flags="embed_data_files https" \
+  --ghc-options="-fasm" \
 pandoc

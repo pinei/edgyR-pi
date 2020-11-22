@@ -13,4 +13,5 @@ echo "Building 'stack' with 'cabal'"
   --installdir=/usr/local/bin \
   --disable-optimization \
   --overwrite-policy=always \
+  --ghc-options="-fasm" \
 stack

@@ -11,4 +11,5 @@ $CABAL_HOME/cabal v2-update
   --installdir=/usr/local/bin \
   --disable-optimization \
   --overwrite-policy=always \
+  --ghc-options="-fasm" \
 cabal-install

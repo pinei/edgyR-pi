@@ -13,6 +13,5 @@ cabal update
   --disable-profiling \
   --ghc-options="-fasm" \
   --global \
-  --jobs=`nproc` \
   --overwrite-policy=always \
 stack

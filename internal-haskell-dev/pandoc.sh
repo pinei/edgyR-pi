@@ -14,6 +14,5 @@ cabal update
   --flags="embed_data_files https" \
   --ghc-options="-fasm" \
   --global \
-  --jobs=`nproc` \
   --overwrite-policy=always \
 pandoc

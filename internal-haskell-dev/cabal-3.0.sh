@@ -12,5 +12,4 @@ cabal update
   --disable-optimization \
   --disable-profiling \
   --global \
-  --jobs=`nproc` \
 cabal-install

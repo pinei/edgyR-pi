@@ -16,16 +16,16 @@ COPY build-deps.sh $SCRIPTS/
 RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
   && gzip -9 $LOGS/build-deps.log
 
+# GHC 8.2
+ENV GHC_RELEASE=8.2.2
+COPY ghc.sh $SCRIPTS/
+RUN /usr/bin/time $SCRIPTS/ghc.sh > $LOGS/ghc-$GHC_RELEASE.log 2>&1 \
+  && gzip -9 $LOGS/ghc-$GHC_RELEASE.log
+
 # cabal 3.0
 COPY cabal-3.0.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/cabal-3.0.sh > $LOGS/cabal-3.0.log 2>&1 \
   && gzip -9 $LOGS/cabal-3.0.log
-
-# GHC 8.4
-ENV GHC_RELEASE=8.4.4
-COPY ghc.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/ghc.sh > $LOGS/ghc-$GHC_RELEASE.log 2>&1 \
-  && gzip -9 $LOGS/ghc-$GHC_RELEASE.log
 
 # cabal 3.2
 COPY cabal-3.2.sh $SCRIPTS/
@@ -37,17 +37,17 @@ COPY pandoc.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/pandoc.sh > $LOGS/pandoc.log 2>&1 \
   && gzip -9 $LOGS/pandoc.log
 
-# GHC 8.8
-ENV GHC_RELEASE=8.6.5
-RUN /usr/bin/time $SCRIPTS/ghc.sh > $LOGS/ghc-$GHC_RELEASE.log 2>&1 \
-  && gzip -9 $LOGS/ghc-$GHC_RELEASE.log
-
-# GHC 8.10
-ENV GHC_RELEASE=8.10.2
-RUN /usr/bin/time $SCRIPTS/ghc.sh > $LOGS/ghc-$GHC_RELEASE.log 2>&1 \
-  && gzip -9 $LOGS/ghc-$GHC_RELEASE.log
-
 # stack
 COPY stack.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/stack.sh > $LOGS/stack.log 2>&1 \
   && gzip -9 $LOGS/stack.log
+
+# GHC 8.8
+#ENV GHC_RELEASE=8.6.5
+#RUN /usr/bin/time $SCRIPTS/ghc.sh > $LOGS/ghc-$GHC_RELEASE.log 2>&1 \
+  #&& gzip -9 $LOGS/ghc-$GHC_RELEASE.log
+
+# GHC 8.10
+#ENV GHC_RELEASE=8.10.1
+#RUN /usr/bin/time $SCRIPTS/ghc.sh > $LOGS/ghc-$GHC_RELEASE.log 2>&1 \
+  #&& gzip -9 $LOGS/ghc-$GHC_RELEASE.log

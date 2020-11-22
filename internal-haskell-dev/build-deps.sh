@@ -34,6 +34,7 @@ apt-get install -qqy --no-install-recommends \
   python3-sphinx \
   software-properties-common \
   sudo \
+  texlive-xetex \
   time \
   tree \
   unzip \

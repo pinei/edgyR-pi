@@ -41,13 +41,3 @@ RUN /usr/bin/time $SCRIPTS/pandoc.sh > $LOGS/pandoc.log 2>&1 \
 COPY stack.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/stack.sh > $LOGS/stack.log 2>&1 \
   && gzip -9 $LOGS/stack.log
-
-# GHC 8.8
-#ENV GHC_RELEASE=8.6.5
-#RUN /usr/bin/time $SCRIPTS/ghc.sh > $LOGS/ghc-$GHC_RELEASE.log 2>&1 \
-  #&& gzip -9 $LOGS/ghc-$GHC_RELEASE.log
-
-# GHC 8.10
-#ENV GHC_RELEASE=8.10.1
-#RUN /usr/bin/time $SCRIPTS/ghc.sh > $LOGS/ghc-$GHC_RELEASE.log 2>&1 \
-  #&& gzip -9 $LOGS/ghc-$GHC_RELEASE.log

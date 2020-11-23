@@ -4,14 +4,16 @@ set -e
 
 cabal --version
 cabal user-config update
-cabal update
-/usr/bin/time cabal install \
-  --disable-coverage \
-  --disable-documentation \
+cabal new-update
+/usr/bin/time cabal new-install \
   --disable-executable-dynamic \
-  --disable-optimization \
-  --disable-profiling \
   --ghc-options="-fasm" \
   --global \
   --overwrite-policy=always \
 cabal-install
+if [ -f /root/.cabal/bin/cabal ]
+then
+  cp --verbose --dereference /root/.cabal/bin/cabal /usr/local/bin/
+fi
+cabal --version
+cabal user-config update

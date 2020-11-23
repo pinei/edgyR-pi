@@ -22,15 +22,10 @@ COPY ghc.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/ghc.sh > $LOGS/ghc-$GHC_RELEASE.log 2>&1 \
   && gzip -9 $LOGS/ghc-$GHC_RELEASE.log
 
-# cabal 3.0
-COPY cabal-3.0.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/cabal-3.0.sh > $LOGS/cabal-3.0.log 2>&1 \
-  && gzip -9 $LOGS/cabal-3.0.log
-
-# cabal 3.2
-COPY cabal-3.2.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/cabal-3.2.sh > $LOGS/cabal-3.2.log 2>&1 \
-  && gzip -9 $LOGS/cabal-3.2.log
+# cabal
+COPY cabal.sh $SCRIPTS/
+RUN /usr/bin/time $SCRIPTS/cabal.sh > $LOGS/cabal.log 2>&1 \
+  && gzip -9 $LOGS/cabal.log
 
 # pandoc
 COPY pandoc.sh $SCRIPTS/

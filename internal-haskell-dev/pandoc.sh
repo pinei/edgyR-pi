@@ -18,3 +18,11 @@ cabal new-update
   --global \
   --overwrite-policy=always \
 pandoc
+
+if [ ! -e /usr/local/bin/pandoc ]
+then
+  cp --verbose --dereference /root/.pandoc/bin/pandoc /usr/local/bin/pandoc
+fi
+
+which pandoc
+pandoc --help

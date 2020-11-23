@@ -2,6 +2,7 @@
 
 set -e
 
+export PATH=$EDGYR_BIN:$PATH
 which cabal
 cabal --version
 cabal user-config update
@@ -15,14 +16,11 @@ cabal new-update
   --disable-profiling \
   --flags="embed_data_files https" \
   --ghc-options="-fasm" \
-  --global \
   --overwrite-policy=always \
 pandoc
 
 if [ ! -e /usr/local/bin/pandoc ]
 then
-  cp --verbose --dereference /root/.cabal/bin/pandoc /usr/local/bin/pandoc
+  sudo cp --verbose --dereference $EDGYR_BIN/pandoc /usr/local/bin/pandoc
 fi
-
-which pandoc
-pandoc --help
+ldd /usr/local/bin/pandoc

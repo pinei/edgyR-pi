@@ -1,6 +1,6 @@
 #! /bin/bash
 
-cd $SOURCE_DIR
+cd $EDGYR_SRC
 wget -q -O - https://downloads.haskell.org/~ghc/$GHC_RELEASE/ghc-$GHC_RELEASE-src.tar.xz \
   | tar xJf -
 pushd ghc-$GHC_RELEASE
@@ -15,5 +15,5 @@ pushd ghc-$GHC_RELEASE
   ./boot
   ./configure
   /usr/bin/time make --jobs=`nproc`
-  make install
+  sudo make install
 popd

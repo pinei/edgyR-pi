@@ -2,6 +2,7 @@
 
 set -e
 
+export PATH=$EDGYR_BIN:$PATH
 which cabal
 cabal --version
 cabal user-config update
@@ -14,6 +15,5 @@ cabal new-update
   --disable-optimization \
   --disable-profiling \
   --ghc-options="-fasm" \
-  --global \
   --overwrite-policy=always \
 stack

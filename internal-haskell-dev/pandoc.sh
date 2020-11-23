@@ -21,7 +21,7 @@ pandoc
 
 if [ ! -e /usr/local/bin/pandoc ]
 then
-  cp --verbose --dereference /root/.pandoc/bin/pandoc /usr/local/bin/pandoc
+  cp --verbose --dereference /root/.cabal/bin/pandoc /usr/local/bin/pandoc
 fi
 
 which pandoc

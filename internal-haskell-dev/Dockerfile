@@ -20,7 +20,6 @@ RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
 # (per-user) build strategy. Running them as 'root' goes
 # against the grain, so we create a non-root user to 
 # make the code more natural.
-
 COPY edgyr-user.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1 \
   && gzip -9 $LOGS/edgyr-user.log
@@ -45,7 +44,7 @@ WORKDIR $EDGYR_HOME
 # GHC 8.2
 ENV GHC_RELEASE=8.2.2
 COPY --chown=edgyr:edgyr ghc.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/ghc.sh > $EDGYR_LOGS/ghc-$GHC_RELEASE.log 2>&1 \
+RUN /usr/bin/time $EDGYR_SCRIPTS/ghc.sh quick > $EDGYR_LOGS/ghc-$GHC_RELEASE.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/ghc-$GHC_RELEASE.log
 
 # upgrade cabal
@@ -57,13 +56,3 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/cabal.sh > $EDGYR_LOGS/cabal.log 2>&1 \
 COPY --chown=edgyr:edgyr pandoc.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/pandoc.sh > $EDGYR_LOGS/pandoc.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/pandoc.log
-
-# GHC 8.6
-ENV GHC_RELEASE=8.6.5
-RUN /usr/bin/time $EDGYR_SCRIPTS/ghc.sh > $EDGYR_LOGS/ghc-$GHC_RELEASE.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/ghc-$GHC_RELEASE.log
-
-# GHC 8.8
-ENV GHC_RELEASE=8.8.4
-RUN /usr/bin/time $EDGYR_SCRIPTS/ghc.sh > $EDGYR_LOGS/ghc-$GHC_RELEASE.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/ghc-$GHC_RELEASE.log

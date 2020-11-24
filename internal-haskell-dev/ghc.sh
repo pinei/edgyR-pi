@@ -20,3 +20,5 @@ fi
   /usr/bin/time make --jobs=`nproc`
   sudo make install
 popd
+
+zip -9rmyq ghc-$GHC_RELEASE.zip ghc-$GHC_RELEASE

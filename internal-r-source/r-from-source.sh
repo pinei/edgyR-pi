@@ -32,7 +32,3 @@ pushd build-dir
   echo "Installing"
   make install
 popd
-
-cd $SOURCE_DIR
-zip -9rmyq $R_LATEST.zip $R_LATEST
-zip -9rmyq build-dir.zip build-dir

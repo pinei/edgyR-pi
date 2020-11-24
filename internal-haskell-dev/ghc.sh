@@ -21,4 +21,4 @@ fi
   sudo make install
 popd
 
-zip -9rmyq ghc-$GHC_RELEASE.zip ghc-$GHC_RELEASE
+/usr/bin/time zip -9rmyq ghc-$GHC_RELEASE.zip ghc-$GHC_RELEASE

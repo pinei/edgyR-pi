@@ -2,13 +2,28 @@ FROM ubuntu:bionic
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ENV SOURCE_DIR=/usr/local/src
+USER root
+
+# BINARIES is where we put files that could or must be
+# installed into /usr/local on a user-level image
+ENV BINARIES=/binaries
+RUN mkdir --parents \
+  $BINARIES/bin \
+  $BINARIES/etc \
+  $BINARIES/games \
+  $BINARIES/include \
+  $BINARIES/lib \
+  $BINARIES/sbin \
+  $BINARIES/share/man \
+  $BINARIES/src \
+  && ln -s "share/man" $BINARIES/man
+
+ENV SOURCE_DIR=$BINARIES/src
 ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
-ENV BINARIES=$SOURCE_DIR/binaries
-RUN mkdir --parents $SOURCE_DIR $LOGS $SCRIPTS $BINARIES
+RUN mkdir --parents $LOGS $SCRIPTS \
+  && ls -AlR $BINARIES
 
-USER root
 WORKDIR $SOURCE_DIR
 
 # build dependencies

@@ -48,7 +48,7 @@ COPY --chown=edgyr:edgyr ghc.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/ghc.sh > $EDGYR_LOGS/ghc-$GHC_RELEASE.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/ghc-$GHC_RELEASE.log
 
-# cabal
+# upgrade cabal
 COPY --chown=edgyr:edgyr cabal.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/cabal.sh > $EDGYR_LOGS/cabal.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/cabal.log

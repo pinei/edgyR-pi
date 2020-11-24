@@ -17,7 +17,6 @@ apt-get install -qqy --no-install-recommends \
   git-lfs \
   gnupg \
   haskell-platform \
-  haskell-stack \
   libgmp-dev \
   libncurses-dev \
   libnuma-dev \

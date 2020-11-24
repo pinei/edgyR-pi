@@ -4,7 +4,7 @@ cd $EDGYR_SRC
 wget -q -O - https://downloads.haskell.org/~ghc/$GHC_RELEASE/ghc-$GHC_RELEASE-src.tar.xz \
   | tar xJf -
 pushd ghc-$GHC_RELEASE
-if [ "$1" .eq "quick" ]
+if [ "$1" = "quick" ]
 then
   pushd mk
     cp build.mk.sample build.mk
@@ -20,5 +20,3 @@ fi
   /usr/bin/time make --jobs=`nproc`
   sudo make install
 popd
-
-/usr/bin/time zip -9rmyq ghc-$GHC_RELEASE.zip ghc-$GHC_RELEASE

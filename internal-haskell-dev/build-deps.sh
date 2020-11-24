@@ -15,6 +15,7 @@ apt-get install -qqy --no-install-recommends \
   file \
   git \
   git-lfs \
+  gnupg \
   haskell-platform \
   haskell-stack \
   libgmp-dev \
@@ -29,6 +30,7 @@ apt-get install -qqy --no-install-recommends \
   llvm-9-dev \
   llvm-10-dev \
   mlocate \
+  netbase \
   pkg-config \
   python3 \
   python3-sphinx \

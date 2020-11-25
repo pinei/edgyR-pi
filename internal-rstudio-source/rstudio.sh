@@ -46,7 +46,6 @@ echo "CMake"
 rm -fr $SOURCE_DIR/rstudio/build/ \
   && mkdir --parents $SOURCE_DIR/rstudio/build/ \
   && pushd $SOURCE_DIR/rstudio/build/
-exit
 cmake .. \
   -DRSTUDIO_TARGET=Server \
   -DCMAKE_BUILD_TYPE=Release
@@ -106,7 +105,4 @@ echo "Installing"
 echo " -- starting Java builds"
 echo " -- RAM_KILOBYTES = $RAM_KILOBYTES; 'make' will use $JOBS jobs."
 
-make --jobs=$JOBS package
-
-echo "Copying package tarball to $PACKAGES"
-cp $PACKAGE_FILE $PACKAGES/
+make --jobs=$JOBS install

@@ -10,7 +10,6 @@ $EDGYR_BIN/cabal new-update
   --disable-debug-info \
   --disable-documentation \
   --disable-executable-dynamic \
-  --disable-optimization \
   --disable-profiling \
   --flags="embed_data_files https" \
   --ghc-options="-fasm" \

@@ -38,6 +38,7 @@ apt-get install -qqy --no-install-recommends \
   libjpeg8-dev \
   libjpeg-turbo8-dev \
   liblzma-dev \
+  libnuma-dev \
   libpam-dev \
   libpango1.0-dev \
   libpcre2-dev \

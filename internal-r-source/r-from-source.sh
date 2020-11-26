@@ -18,7 +18,7 @@ echo "Configuring"
 mkdir --parents build-dir
 
 pushd build-dir
-  ../$R_LATEST/configure --enable-R-shlib --prefix=$BINARIES
+  ../$R_LATEST/configure --enable-R-shlib
 
   echo "Compiling"
   make --jobs=`nproc`

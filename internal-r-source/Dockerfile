@@ -4,25 +4,11 @@ LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 ARG DEBIAN_FRONTEND=noninteractive
 USER root
 
-# BINARIES is where we put files that could or must be
-# installed into /usr/local on a user-level image
-ENV BINARIES=/binaries
-RUN mkdir --parents \
-  $BINARIES/bin \
-  $BINARIES/etc \
-  $BINARIES/games \
-  $BINARIES/include \
-  $BINARIES/lib \
-  $BINARIES/sbin \
-  $BINARIES/share/man \
-  $BINARIES/src \
-  && ln -s "share/man" $BINARIES/man
-
-ENV SOURCE_DIR=$BINARIES/src
+ENV SOURCE_DIR=/usr/local/src
 ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
 RUN mkdir --parents $LOGS $SCRIPTS \
-  && ls -AlR $BINARIES
+  && ls -AlR /usr/local/
 
 WORKDIR $SOURCE_DIR
 

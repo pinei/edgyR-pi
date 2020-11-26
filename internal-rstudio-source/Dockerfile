@@ -4,25 +4,10 @@ LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 ARG DEBIAN_FRONTEND=noninteractive
 USER root
 
-# BINARIES is where we put files that could or must be
-# installed into /usr/local on a user-level image
-ENV BINARIES=/binaries
-RUN mkdir --parents \
-  $BINARIES/bin \
-  $BINARIES/etc \
-  $BINARIES/games \
-  $BINARIES/include \
-  $BINARIES/lib \
-  $BINARIES/sbin \
-  $BINARIES/share/man \
-  $BINARIES/src \
-  && ln -s "share/man" $BINARIES/man
-
-ENV SOURCE_DIR=$BINARIES/src
+ENV SOURCE_DIR=/usr/local/src
 ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
-RUN mkdir --parents $LOGS $SCRIPTS \
-  && ls -AlR $BINARIES
+RUN mkdir --parents $LOGS $SCRIPTS
 
 WORKDIR $SOURCE_DIR
 
@@ -37,21 +22,22 @@ RUN /usr/bin/time $SCRIPTS/install-boost.sh > $LOGS/install-boost.log 2>&1 \
   && gzip -9 $LOGS/install-boost.log
 
 # R and pandoc
-COPY --from="edgyr/internal-r-source:latest" $BINARIES $BINARIES
-COPY --from="edgyr/internal-pandoc-source:latest" $BINARIES $BINARIES
+COPY --from="edgyr/internal-r-source:latest" /usr/local/bin /usr/local/bin
+COPY --from="edgyr/internal-r-source:latest" /usr/local/lib /usr/local/lib
+COPY --from="edgyr/internal-r-source:latest" /usr/local/include /usr/local/include
+COPY --from="edgyr/internal-r-source:latest" /usr/local/share /usr/local/share
+COPY --from="edgyr/internal-pandoc-source:latest" /usr/local/bin /usr/local/bin
+COPY --from="edgyr/internal-pandoc-source:latest" /usr/local/lib /usr/local/lib
+COPY --from="edgyr/internal-pandoc-source:latest" /usr/local/include /usr/local/include
+COPY --from="edgyr/internal-pandoc-source:latest" /usr/local/share /usr/local/share
 
 COPY R.conf configure.sh $SCRIPTS/
 RUN $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1 \
   && gzip -9 $LOGS/configure.log
 
-# "install" RStudio Server to a "binaries" directory
+# install RStudio Server
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/
 ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=3 RSTUDIO_VERSION_PATCH=1093
 COPY rstudio.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1 \
   && gzip -9 $LOGS/rstudio.log
-
-# copy the goods to $BINARIES
-COPY publish.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/publish.sh > $LOGS/publish.log 2>&1 \
-  && gzip -9 $LOGS/publish.log

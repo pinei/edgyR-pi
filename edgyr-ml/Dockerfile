@@ -27,9 +27,10 @@ RUN mkdir --parents $LOGS $SCRIPTS \
 WORKDIR $SOURCE_DIR
 
 # get R, Pandoc and RStudio Server
-COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/bin /usr/local/bin
-COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/lib /usr/local/lib
-COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/include /usr/local/include
+COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/bin $BINARIES/bin
+COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/lib $BINARIES/lib
+COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/include $BINARIES/include
+COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/share $BINARIES/share
 
 # Linux dependencies
 COPY linux-deps.sh $SCRIPTS/

@@ -19,7 +19,5 @@ pandoc
 if [ ! -e /usr/local/bin/pandoc ]
 then
   sudo cp --verbose --dereference $EDGYR_BIN/pandoc /usr/local/bin/pandoc
-  sudo mkdir --parents $BINARIES/bin
-  sudo cp --verbose --dereference $EDGYR_BIN/pandoc $BINARIES/bin/pandoc
 fi
 ldd /usr/local/bin/pandoc

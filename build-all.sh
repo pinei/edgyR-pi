@@ -2,17 +2,17 @@
 
 set -e
 
-pushd internal-r4jetson
-../build-and-push.sh internal-r4jetson
+pushd internal-pandoc-source
+../build.sh &
 popd
-pushd internal-rstudio4jetson
-../build-and-push.sh internal-rstudio4jetson &
-popd
-pushd edgyr-lab
-../build-and-push.sh edgyr-lab &
+pushd internal-r-source
+../build.sh &
 popd
 wait
-pushd edgyr-studio
-../build-and-push.sh edgyr-studio
+pushd internal-rstudio-source
+../build.sh
 popd
-ps -ef | grep docker
+pushd edgyr-ml
+../build.sh
+popd
+sudo docker images

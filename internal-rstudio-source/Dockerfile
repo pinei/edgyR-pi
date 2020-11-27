@@ -23,13 +23,13 @@ RUN /usr/bin/time $SCRIPTS/install-boost.sh > $LOGS/install-boost.log 2>&1 \
 
 # R and pandoc
 COPY --from="edgyr/internal-r-source:latest" /usr/local/bin /usr/local/bin
-COPY --from="edgyr/internal-r-source:latest" /usr/local/lib /usr/local/lib
+COPY --from="edgyr/internal-r-source:latest" /usr/local/lib/R /usr/local/lib/R
+COPY --from="edgyr/internal-r-source:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
+COPY --from="edgyr/internal-r-source:latest" /usr/local/lib/libRmath.so /usr/local/lib/libRmath.so
+COPY --from="edgyr/internal-r-source:latest" /usr/local/lib/libRmath.a /usr/local/lib/libRmath.a
 COPY --from="edgyr/internal-r-source:latest" /usr/local/include /usr/local/include
-COPY --from="edgyr/internal-r-source:latest" /usr/local/share /usr/local/share
-COPY --from="edgyr/internal-pandoc-source:latest" /usr/local/bin /usr/local/bin
-COPY --from="edgyr/internal-pandoc-source:latest" /usr/local/lib /usr/local/lib
-COPY --from="edgyr/internal-pandoc-source:latest" /usr/local/include /usr/local/include
-COPY --from="edgyr/internal-pandoc-source:latest" /usr/local/share /usr/local/share
+COPY --from="edgyr/internal-r-source:latest" /usr/local/share/man /usr/local/share/man
+COPY --from="edgyr/internal-pandoc-source:latest" /usr/local/bin/pandoc /usr/local/bin/pandoc
 
 COPY R.conf configure.sh $SCRIPTS/
 RUN $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1 \

@@ -4,33 +4,22 @@ LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 ARG DEBIAN_FRONTEND=noninteractive
 USER root
 
-# BINARIES is where we put files that could or must be
-# installed into /usr/local on a user-level image
-ENV BINARIES=/binaries
-RUN mkdir --parents \
-  $BINARIES/bin \
-  $BINARIES/etc \
-  $BINARIES/games \
-  $BINARIES/include \
-  $BINARIES/lib \
-  $BINARIES/sbin \
-  $BINARIES/share/man \
-  $BINARIES/src \
-  && ln -s "share/man" $BINARIES/man
-
-ENV SOURCE_DIR=$BINARIES/src
+ENV SOURCE_DIR=/usr/local/src
 ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
-RUN mkdir --parents $LOGS $SCRIPTS \
-  && ls -AlR $BINARIES
+RUN mkdir --parents $LOGS $SCRIPTS
 
 WORKDIR $SOURCE_DIR
 
 # get R, Pandoc and RStudio Server
-COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/bin $BINARIES/bin
-COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/lib $BINARIES/lib
-COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/include $BINARIES/include
-COPY --from=docker.io/edgyr/internal-rstudio-source $BINARIES/share $BINARIES/share
+COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/bin /usr/local/bin
+COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/lib/R /usr/local/lib/R
+COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
+COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/lib/libRmath.so /usr/local/lib/libRmath.so
+COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/lib/libRmath.a /usr/local/lib/libRmath.a
+COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/lib/rstudio-server /usr/local/lib/rstudio-server
+COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/include /usr/local/include
+COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/share/man /usr/local/share/man
 
 # Linux dependencies
 COPY linux-deps.sh $SCRIPTS/

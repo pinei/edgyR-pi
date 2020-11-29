@@ -3,9 +3,11 @@
 source("~/.Rprofile")
 update.packages(ask = FALSE, instlib = Sys.getenv("R_LIBS_USER"), quiet = TRUE)
 install.packages(c(
+  "bookdown",
   "caracas",
   "data.table",
   "devtools",
+  "distill",
   "IRkernel",
   "keras",
   "knitr",

@@ -43,6 +43,7 @@ apt-get install -qqy --no-install-recommends \
   libzstd-dev \
   lsof \
   mlocate \
+  openssh-client \
   pkg-config \
   portaudio19-dev \
   protobuf-compiler \

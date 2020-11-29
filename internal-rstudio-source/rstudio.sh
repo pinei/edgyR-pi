@@ -93,9 +93,9 @@ make --jobs=`nproc` rsession \
 # RAM and multi-job makes are problematic - they swap and the system appears
 # unresponsive.
 #
-# So we only run two-job makes if we have less than 5 GB of RAM.
+# So we only run two-job makes if we have less than 7 GB of RAM.
 export RAM_KILOBYTES=`grep MemTotal /proc/meminfo | sed 's/^MemTotal:  *//' | sed 's/ .*$//'`
-if [ $RAM_KILOBYTES -ge "5000000" ]
+if [ $RAM_KILOBYTES -ge "7000000" ]
 then
   export JOBS=4
 else

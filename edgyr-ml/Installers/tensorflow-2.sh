@@ -13,9 +13,11 @@ sudo apt-get install -qqy --no-install-recommends \
   liblapack-dev \
   zip \
   zlib1g-dev
-echo "Creating tensorflow-2 virtualenv"
-virtualenv $WORKON_HOME/tensorflow-2 --python=/usr/bin/python3
-source $WORKON_HOME/tensorflow-2/bin/activate
+echo "Creating fresh tensorflow-2 virtualenv"
+export WORKON_HOME=$HOME/.virtualenvs
+rm -fr $WORKON_HOME/tensorflow2
+virtualenv $WORKON_HOME/tensorflow2 --python=/usr/bin/python3
+source $WORKON_HOME/tensorflow2/bin/activate
 echo "Installing Python dependencies"
 pip install -U \
   future==0.18.2 \
@@ -29,10 +31,9 @@ pip install -U \
   protobuf \
   pybind11
 echo "Installing tensorflow 2"
-pip install \
-  --extra-index-url https://developer.download.nvidia.com/compute/redist/jp/v44 
-  tensorflow
+pip install --extra-index-url \
+  https://developer.download.nvidia.com/compute/redist/jp/v44 tensorflow
 echo "Installing R keras package"
 Rscript -e "install.packages('keras', quiet = TRUE)"
 echo "Testing keras on mnist"
-Rscript -e "source('test-keras.R')"
+Rscript -e "source('~/Installers/test-keras.R')"

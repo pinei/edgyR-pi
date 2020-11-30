@@ -15,9 +15,10 @@ sudo apt-get install -qqy --no-install-recommends \
   zlib1g-dev
 echo "Creating fresh tensorflow1 virtualenv"
 export WORKON_HOME=$HOME/.virtualenvs
-rm -fr $WORKON_HOME/tensorflow1
-virtualenv $WORKON_HOME/tensorflow1 --python=/usr/bin/python3
-source $WORKON_HOME/tensorflow1/bin/activate
+export TF_VENV=$WORKON_HOME/tensorflow1
+rm -fr $TF_VENV
+virtualenv $TF_VENV --python=/usr/bin/python3
+source $TF_VENV/bin/activate
 echo "Installing Python dependencies"
 pip install -U \
   future==0.18.2 \

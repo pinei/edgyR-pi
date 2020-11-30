@@ -1,3 +1,4 @@
+reticulate::py_discover_config()
 library(keras)
 mnist <- dataset_mnist()
 x_train <- mnist$train$x

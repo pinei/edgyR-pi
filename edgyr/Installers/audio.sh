@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo "Installing audio dependencies"
+echo "Installing audio Linux dependencies"
 sudo apt-get update
 sudo apt-get install -qqy --no-install-recommends \
   flac \

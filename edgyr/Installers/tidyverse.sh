@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo "Installing tidyverse dependencies"
+echo "Installing tidyverse Linux dependencies"
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -qqy --no-install-recommends \

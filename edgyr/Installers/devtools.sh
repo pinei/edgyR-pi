@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo "Installing devtools dependencies"
+echo "Installing devtools and pkgdown Linux dependencies"
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -qqy --no-install-recommends \
@@ -15,5 +15,5 @@ sudo apt-get install -qqy --no-install-recommends \
   libssl-dev \
   libtiff5-dev \
   libxml2-dev
-echo "Installing devtools dependencies"
+echo "Installing devtools and pkgdown"
 Rscript -e "install.packages(c('devtools', 'pkgdown'), quiet = TRUE)"

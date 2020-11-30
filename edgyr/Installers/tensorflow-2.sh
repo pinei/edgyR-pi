@@ -1,6 +1,6 @@
 #! /bin/bash
 
-echo "Installing tensorflow dependencies"
+echo "Installing TensorFlow Linux dependencies"
 sudo apt-get update
 sudo apt-get upgrade -y
 sudo apt-get install -qqy --no-install-recommends \
@@ -13,7 +13,7 @@ sudo apt-get install -qqy --no-install-recommends \
   liblapack-dev \
   zip \
   zlib1g-dev
-echo "Creating fresh tensorflow-2 virtualenv"
+echo "Creating fresh tensorflow2 virtualenv"
 export WORKON_HOME=$HOME/.virtualenvs
 rm -fr $WORKON_HOME/tensorflow2
 virtualenv $WORKON_HOME/tensorflow2 --python=/usr/bin/python3

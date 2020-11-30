@@ -11,6 +11,7 @@ apt-get install -qqy --no-install-recommends \
   automake \
   build-essential \
   ca-certificates \
+  cabal-install \
   curl \
   file \
   git \
@@ -20,14 +21,6 @@ apt-get install -qqy --no-install-recommends \
   libgmp-dev \
   libncurses-dev \
   libnuma-dev \
-  llvm-3.9-dev \
-  llvm-4.0-dev \
-  llvm-5.0-dev \
-  llvm-6.0-dev \
-  llvm-7-dev \
-  llvm-8-dev \
-  llvm-9-dev \
-  llvm-10-dev \
   mlocate \
   netbase \
   pkg-config \
@@ -40,4 +33,5 @@ apt-get install -qqy --no-install-recommends \
   unzip \
   vim-nox \
   wget \
+  zlib1g-dev \
   zip

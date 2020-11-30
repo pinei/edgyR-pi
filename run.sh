@@ -19,12 +19,12 @@ fi
 echo "Force-removing old 'edgyr' container"
 echo "You can ignore errors if it doesn't exist"
 sudo docker rm -f edgyr
-echo "Running image edgyr/edgyr-ml:latest"
+echo "Running image edgyr/edgyr:latest"
 sudo docker run --detach \
   --env EDGYR_PASSWORD="$EDGYR_PASSWORD" \
   --network host --name edgyr --hostname edgyr \
   --runtime nvidia \
-  "docker.io/edgyr/edgyr-ml:latest"
+  "docker.io/edgyr/edgyr:latest"
 
 sleep 10
 sudo docker logs edgyr

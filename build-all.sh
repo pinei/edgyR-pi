@@ -12,7 +12,7 @@ wait
 pushd internal-rstudio-source
 ../build.sh
 popd
-pushd edgyr-ml
+pushd edgyr
 ../build.sh
 popd
 sudo docker images

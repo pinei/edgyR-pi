@@ -1,5 +1,3 @@
-#! /usr/bin/env Rscript
-
 library(keras)
 mnist <- dataset_mnist()
 x_train <- mnist$train$x

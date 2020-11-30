@@ -27,7 +27,10 @@ cabal update
   --disable-debug-info \
   --disable-documentation \
   --disable-executable-dynamic \
+  --disable-optimization \
   --disable-profiling \
+  --disable-shared \
+  --ghc-options="+RTS -A128m -n2m -RTS" \
   --jobs=$JOBS \
 cabal-install
 $EDGYR_BIN/cabal user-config update

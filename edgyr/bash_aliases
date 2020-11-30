@@ -1,1 +1,4 @@
+export PROJECT_HOME=$HOME/Projects
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/share/virtualenvwrapper/virtualenvwrapper.sh
 export PATH=$PATH:$HOME/miniconda3/condabin

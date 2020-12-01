@@ -34,6 +34,8 @@ pip install -U \
 echo "Installing tensorflow 2"
 pip install --extra-index-url \
   https://developer.download.nvidia.com/compute/redist/jp/v44 tensorflow
+pip list
+
 echo "Installing R keras package"
 Rscript -e "install.packages('keras', quiet = TRUE)"
 echo "Testing keras on mnist"

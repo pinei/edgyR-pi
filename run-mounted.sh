@@ -20,12 +20,16 @@ echo "Force-removing old 'edgyr' container"
 echo "You can ignore errors if it doesn't exist"
 sudo docker rm -f edgyr
 echo "Running image edgyr/edgyr:latest"
+echo "with $HOME mounted into the container's"
+echo "'/home/edgyr'! If this is not what you"
+echo "want, press 'CTL-C' in the next 20"
+echo "seconds."
+sleep 20
 sudo docker run --detach \
   --env EDGYR_PASSWORD="$EDGYR_PASSWORD" \
   --network host --name edgyr --hostname edgyr \
   --runtime nvidia \
-  --volume $HOME/.ssh:/home/edgyr/.ssh \
-  --volume $HOME/Projects:/home/edgyr/Projects \
+  --volume $HOME:/home/edgyr \
   "docker.io/edgyr/edgyr:latest"
 
 sleep 10

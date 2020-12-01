@@ -30,7 +30,6 @@ cabal update
   --disable-optimization \
   --disable-profiling \
   --disable-shared \
-  --ghc-options="-fllvm +RTS -A128m -n2m -RTS" \
   --jobs=$JOBS \
 cabal-install
 $EDGYR_BIN/cabal user-config update

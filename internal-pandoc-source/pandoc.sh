@@ -30,7 +30,6 @@ $EDGYR_BIN/cabal new-update
   --disable-profiling \
   --disable-shared \
   --flags="embed_data_files https" \
-  --ghc-options="-fllvm +RTS -A128m -n2m -RTS" \
   --jobs=$JOBS \
   --overwrite-policy=always \
 pandoc

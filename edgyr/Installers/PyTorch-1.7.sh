@@ -55,3 +55,6 @@ pip list
 
 echo "Installing R rTorch package"
 Rscript -e "install.packages('rTorch', quiet = TRUE)"
+echo "Testing rTorch on mnist"
+rm -fr ./datasets
+Rscript -e "source('~/Installers/test-rTorch.R')"

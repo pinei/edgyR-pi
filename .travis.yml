@@ -1,9 +1,14 @@
-arch: arm64
+arch: arm64-graviton2
+virt: vm
 os: linux
-dist: bionic
+dist: focal
+group: edge
+
 language: bash
+
 env:
   - CI_NAME=travis DOCKER_CLI_EXPERIMENTAL=enabled
+
 before_install:
   - sudo rm -rf /var/lib/apt/lists/*
   - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
@@ -13,11 +18,12 @@ before_install:
   - mkdir -vp ~/.docker/cli-plugins/
   - curl --silent -L "https://github.com/docker/buildx/releases/download/v0.4.2/buildx-v0.4.2.linux-arm64" > ~/.docker/cli-plugins/docker-buildx
   - chmod a+x ~/.docker/cli-plugins/docker-buildx
+
 script:
-  - cat /proc/cpuinfo
-  - cat /proc/meminfo
+  - grep -i -e "BogoMIPS" /proc/cpuinfo
+  - grep -i -e "MemTotal" /proc/meminfo
   - docker buildx version
-  - docker build --tag edgyr/internal-r-source:latest internal-r-source 
-  - docker build --tag edgyr/internal-pandoc-source:latest internal-pandoc-source 
-  - docker build --tag edgyr/internal-rstudio-source:latest internal-rstudio-source 
-  - docker build --tag edgyr/edgyr:latest edgyr 
+  - travis_wait 20 docker build --tag edgyr/internal-r-source:latest internal-r-source 
+  - travis_wait 20 docker build --tag edgyr/internal-pandoc-source:latest internal-pandoc-source 
+  - travis_wait 20 docker build --tag edgyr/internal-rstudio-source:latest internal-rstudio-source 
+  - travis_wait 20 docker build --tag edgyr/edgyr:latest edgyr 

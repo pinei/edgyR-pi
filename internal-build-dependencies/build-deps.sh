@@ -59,7 +59,6 @@ apt-get install -qqy --no-install-recommends \
   libtiff5-dev \
   libuser1-dev \
   libxslt1-dev \
-  llvm-3.7 \
   llvm-3.9 \
   llvm-4.0 \
   llvm-5.0 \

@@ -16,3 +16,25 @@ WORKDIR $SOURCE_DIR
 COPY build-deps.sh $SCRIPTS/
 RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
   && gzip -9 $LOGS/build-deps.log
+
+# The Haskell development tools make heavy use of local
+# (per-user) build strategy. Running them as 'root' goes
+# against the grain, so we create a non-root user to 
+# make the code more natural.
+COPY edgyr-user.sh $SCRIPTS/
+RUN /usr/bin/time $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1 \
+  && gzip -9 $LOGS/edgyr-user.log
+
+# enable passwordless sudo
+COPY passwordless-sudo /etc/sudoers.d/
+
+# set up 'edgyr' account
+ENV EDGYR_HOME=/home/edgyr
+ENV PROJECT_HOME=$EDGYR_HOME/Projects
+ENV EDGYR_SRC=$EDGYR_HOME/src
+ENV EDGYR_SCRIPTS=$EDGYR_HOME/scripts
+ENV EDGYR_LOGS=$EDGYR_HOME/logs
+ENV EDGYR_PLOTS=$EDGYR_HOME/plots
+ENV EDGYR_BIN=$EDGYR_HOME/.cabal/bin
+RUN mkdir --parents $PROJECT_HOME $EDGYR_SRC $EDGYR_SCRIPTS $EDGYR_LOGS $EDGYR_PLOTS $EDGYR_BIN
+RUN chown -R edgyr:edgyr $EDGYR_HOME

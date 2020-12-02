@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM edgyr/internal-build-dependencies:latest
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -11,11 +11,6 @@ RUN mkdir --parents $LOGS $SCRIPTS \
   && ls -AlR /usr/local/
 
 WORKDIR $SOURCE_DIR
-
-# build dependencies
-COPY build-deps.sh $SCRIPTS/
-RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
-  && gzip -9 $LOGS/build-deps.log
 
 # R
 ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=0 R_VERSION_PATCH=3

@@ -1,6 +1,6 @@
 arch: arm64
 os: linux
-dist: bionic
+dist: focal
 language: bash
 env:
   - CI_NAME=travis DOCKER_CLI_EXPERIMENTAL=enabled

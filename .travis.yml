@@ -17,4 +17,5 @@ script:
   - cat /proc/meminfo
   - docker buildx version
   - docker buildx create --use aardvark
-  - docker buildx build --platform linux/arm64/v8 --tag znmeb/test:latest internal-pandoc-source 
+  - docker buildx build --platform linux/arm64/v8 --tag edgyr/internal-r-source:latest internal-r-source 
+  - docker buildx build --platform linux/arm64/v8 --tag edgyr/internal-pandoc-source:latest internal-pandoc-source 

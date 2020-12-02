@@ -21,3 +21,5 @@ script:
   - docker buildx create --use aardvark
   - docker buildx build --tag edgyr/internal-r-source:latest internal-r-source 
   - docker buildx build --tag edgyr/internal-pandoc-source:latest internal-pandoc-source 
+  - docker buildx build --tag edgyr/internal-rstudio-source:latest internal-rstudio-source 
+  - docker buildx build --tag edgyr/edgyr:latest edgyr 

@@ -13,6 +13,8 @@ before_install:
   - chmod a+x ~/.docker/cli-plugins/docker-buildx
   - docker run --rm --privileged multiarch/qemu-user-static:register --reset
 script:
+  - grep "model name" /proc/cpuinfo
+  - cat /proc/meminfo
   - docker buildx version
   - docker buildx create --use aardvark
   - docker buildx build --platform linux/arm64/v8 --tag znmeb/test:latest internal-pandoc-source 

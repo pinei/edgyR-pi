@@ -1,5 +1,7 @@
-language: bash
+arch: arm64
+os: linux
 dist: bionic
+language: bash
 env:
   - CI_NAME=travis DOCKER_CLI_EXPERIMENTAL=enabled
 before_install:
@@ -17,5 +19,5 @@ script:
   - cat /proc/meminfo
   - docker buildx version
   - docker buildx create --use aardvark
-  - docker buildx build --platform linux/arm64/v8 --tag edgyr/internal-r-source:latest internal-r-source 
-  - docker buildx build --platform linux/arm64/v8 --tag edgyr/internal-pandoc-source:latest internal-pandoc-source 
+  - docker buildx build --tag edgyr/internal-r-source:latest internal-r-source 
+  - docker buildx build --tag edgyr/internal-pandoc-source:latest internal-pandoc-source 

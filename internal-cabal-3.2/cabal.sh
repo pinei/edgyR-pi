@@ -33,8 +33,5 @@ cabal update
 cabal-install
 $EDGYR_BIN/cabal user-config update
 
-if [ ! -e /usr/local/bin/cabal ]
-then
-  sudo cp --verbose --dereference $EDGYR_BIN/cabal /usr/local/bin/cabal
-fi
+sudo cp --verbose --dereference $EDGYR_BIN/cabal /usr/local/bin/cabal
 ldd /usr/local/bin/cabal

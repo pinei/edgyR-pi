@@ -2,17 +2,18 @@
 
 set -e
 
-pushd internal-pandoc-source
-../build.sh &
-popd
-pushd internal-r-source
-../build.sh &
-popd
-wait
-pushd internal-rstudio-source
-../build.sh
-popd
-pushd edgyr
-../build.sh
-popd
-sudo docker images
+for i in \
+  internal-build-dependencies \
+  internal-cabal-3.0 \
+  internal-ghc-8.4 \
+  internal-cabal-3.2 \
+  internal-ghc-8.8 \
+  internal-pandoc
+do
+  pushd $i
+  ../build.sh &
+  popd
+done
+  #internal-r-source \
+  #internal-rstudio-source \
+

@@ -15,7 +15,6 @@ else
   export JOBS=2
 fi
 echo "Installing"
-echo " -- starting GHC builds"
 echo " -- RAM_KILOBYTES = $RAM_KILOBYTES; 'make' will use $JOBS jobs."
 
 which cabal
@@ -27,10 +26,10 @@ cabal update
   --disable-debug-info \
   --disable-documentation \
   --disable-executable-dynamic \
-  --disable-optimization \
   --disable-profiling \
   --disable-shared \
   --jobs=$JOBS \
+  --overwrite-policy=always \
 cabal-install
 $EDGYR_BIN/cabal user-config update
 

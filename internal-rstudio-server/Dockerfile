@@ -6,8 +6,7 @@ WORKDIR $SOURCE_DIR
 
 # boost
 COPY install-boost.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/install-boost.sh > $LOGS/install-boost.log 2>&1 \
-  && gzip -9 $LOGS/install-boost.log
+RUN /usr/bin/time $SCRIPTS/install-boost.sh
 
 # R and pandoc
 COPY --from="edgyr/internal-r:latest" /usr/local/bin /usr/local/bin
@@ -20,12 +19,10 @@ COPY --from="edgyr/internal-r:latest" /usr/local/share/man /usr/local/share/man
 COPY --from="edgyr/internal-pandoc:latest" /usr/local/bin/pandoc /usr/local/bin/pandoc
 
 COPY R.conf configure.sh $SCRIPTS/
-RUN $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1 \
-  && gzip -9 $LOGS/configure.log
+RUN $SCRIPTS/configure.sh
 
 # install RStudio Server
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/
 ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=3 RSTUDIO_VERSION_PATCH=1093
 COPY rstudio.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1 \
-  && gzip -9 $LOGS/rstudio.log
+RUN /usr/bin/time $SCRIPTS/rstudio.sh

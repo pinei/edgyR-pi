@@ -14,16 +14,14 @@ WORKDIR $SOURCE_DIR
 
 # build dependencies
 COPY build-deps.sh $SCRIPTS/
-RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1 \
-  && gzip -9 $LOGS/build-deps.log
+RUN $SCRIPTS/build-deps.sh
 
 # The Haskell development tools make heavy use of local
 # (per-user) build strategy. Running them as 'root' goes
 # against the grain, so we create a non-root user to 
 # make the code more natural.
 COPY edgyr-user.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1 \
-  && gzip -9 $LOGS/edgyr-user.log
+RUN $SCRIPTS/edgyr-user.sh
 
 # enable passwordless sudo
 COPY passwordless-sudo /etc/sudoers.d/

@@ -48,7 +48,7 @@ then
          # sourceforge uses a certificate that is not compatible with older wget
          # (which doesn't realize that *.sourceforge.net should match 
          # sourceforge.net)
-         wget -c --no-check-certificate $BOOST_URL -O $BOOST_TAR
+         wget -q -c --no-check-certificate $BOOST_URL -O $BOOST_TAR
       fi
    fi
    

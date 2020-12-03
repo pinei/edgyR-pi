@@ -17,10 +17,9 @@ fi
 echo "Installing"
 echo " -- RAM_KILOBYTES = $RAM_KILOBYTES; 'make' will use $JOBS jobs."
 
-export PATH=$EDGYR_BIN:$PATH
-$EDGYR_BIN/cabal user-config update
-$EDGYR_BIN/cabal new-update
-/usr/bin/time $EDGYR_BIN/cabal new-install \
+cabal user-config update
+cabal new-update
+/usr/bin/time cabal new-install \
   --disable-coverage \
   --disable-debug-info \
   --disable-documentation \

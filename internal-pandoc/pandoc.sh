@@ -32,8 +32,5 @@ $EDGYR_BIN/cabal new-update
   --overwrite-policy=always \
 pandoc
 
-if [ ! -e /usr/local/bin/pandoc ]
-then
-  sudo cp --verbose --dereference $EDGYR_BIN/pandoc /usr/local/bin/pandoc
-fi
+sudo cp --verbose --dereference $EDGYR_BIN/pandoc /usr/local/bin/pandoc
 ldd /usr/local/bin/pandoc

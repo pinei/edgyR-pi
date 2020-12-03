@@ -30,7 +30,6 @@ cabal update
   --disable-shared \
   --jobs=$JOBS \
 cabal-install
-$EDGYR_BIN/cabal user-config update
 
 sudo cp --verbose --dereference $EDGYR_BIN/cabal /usr/local/bin/cabal
 ldd /usr/local/bin/cabal

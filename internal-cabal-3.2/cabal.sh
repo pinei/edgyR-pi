@@ -20,8 +20,8 @@ echo " -- RAM_KILOBYTES = $RAM_KILOBYTES; 'make' will use $JOBS jobs."
 which cabal
 cabal --version
 cabal user-config update
-cabal update
-/usr/bin/time cabal install \
+cabal new-update
+/usr/bin/time cabal new-install \
   --disable-coverage \
   --disable-debug-info \
   --disable-documentation \
@@ -31,7 +31,6 @@ cabal update
   --jobs=$JOBS \
   --overwrite-policy=always \
 cabal-install
-$EDGYR_BIN/cabal user-config update
 
 sudo cp --verbose --dereference $EDGYR_BIN/cabal /usr/local/bin/cabal
 ldd /usr/local/bin/cabal

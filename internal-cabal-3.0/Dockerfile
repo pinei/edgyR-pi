@@ -6,5 +6,5 @@ WORKDIR $EDGYR_HOME
 
 # upgrade cabal
 COPY --chown=edgyr:edgyr cabal.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/cabal.sh > $EDGYR_LOGS/cabal.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/cabal.log
+RUN /usr/bin/time $EDGYR_SCRIPTS/cabal.sh > $EDGYR_LOGS/cabal-3.0.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/cabal-3.0.log

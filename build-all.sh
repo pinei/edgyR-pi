@@ -11,7 +11,7 @@ for i in \
   internal-pandoc
 do
   pushd $i
-  ../build.sh &
+  ../build.sh
   popd
 done
   #internal-r-source \

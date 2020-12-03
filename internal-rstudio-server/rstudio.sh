@@ -27,9 +27,9 @@ pushd dependencies/common
   echo "PANDOC_VERSION=$PANDOC_VERSION"
 
   echo "Installing dictionaries"
-  ./install-dictionaries > /dev/null 2>&1
+  ./install-dictionaries
   echo "Installing MathJax" 
-  ./install-mathjax > /dev/null 2>&1
+  ./install-mathjax
   echo "Copying Pandoc binaries"
   mkdir -p pandoc/$PANDOC_VERSION/
   cp /usr/local/bin/pandoc* pandoc/$PANDOC_VERSION/
@@ -63,38 +63,22 @@ cmake .. \
 # and stragglers and do the "gwt_build".
 
 echo "Building the C/C++ components"
-make --jobs=`nproc` rstudio-core-synctex \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rstudio-core-hunspell \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rstudio-shared-core \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rstudio-shared-core-tests \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rstudio-core \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rstudio-session-workers \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` crash-handler-proxy \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rstudio-monitor \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rstudio-server-core \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rstudio-core-tests \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rstudio-server-core-tests \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rserver-pam \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rpostback \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rstudio-r \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rserver \
-  >> $LOGS/cpp-compile.log 2>&1
-make --jobs=`nproc` rsession \
-  >> $LOGS/cpp-compile.log 2>&1
+make --jobs=`nproc` rstudio-core-synctex
+make --jobs=`nproc` rstudio-core-hunspell
+make --jobs=`nproc` rstudio-shared-core
+make --jobs=`nproc` rstudio-shared-core-tests
+make --jobs=`nproc` rstudio-core
+make --jobs=`nproc` rstudio-session-workers
+make --jobs=`nproc` crash-handler-proxy
+make --jobs=`nproc` rstudio-monitor
+make --jobs=`nproc` rstudio-server-core
+make --jobs=`nproc` rstudio-core-tests
+make --jobs=`nproc` rstudio-server-core-tests
+make --jobs=`nproc` rserver-pam
+make --jobs=`nproc` rpostback
+make --jobs=`nproc` rstudio-r
+make --jobs=`nproc` rserver
+make --jobs=`nproc` rsession
 
 # The Nano only has 4 GB of RAM. As a result, the Java builds swamp the available
 # RAM and multi-job makes are problematic - they swap and the system appears

@@ -1,15 +1,7 @@
 FROM edgyr/internal-build-dependencies:latest
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
-ARG DEBIAN_FRONTEND=noninteractive
 USER root
-
-ENV SOURCE_DIR=/usr/local/src
-ENV LOGS=$SOURCE_DIR/logs
-ENV SCRIPTS=$SOURCE_DIR/scripts
-RUN mkdir --parents $LOGS $SCRIPTS \
-  && ls -AlR /usr/local/
-
 WORKDIR $SOURCE_DIR
 
 # R

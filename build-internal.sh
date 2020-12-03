@@ -8,12 +8,13 @@ for i in \
   internal-ghc-8.4 \
   internal-cabal-3.2 \
   internal-ghc-8.8 \
-  internal-pandoc
+  internal-pandoc \
+  internal-stack \
+  internal-r\
+  internal-rstudio-server
 do
   pushd $i
   ../build.sh
   popd
 done
-  #internal-r-source \
-  #internal-rstudio-source \
 

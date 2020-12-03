@@ -89,3 +89,4 @@ apt-get install -qqy --no-install-recommends \
   wget \
   zip \
   zlib1g-dev
+apt-get clean

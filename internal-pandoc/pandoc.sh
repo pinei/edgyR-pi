@@ -34,3 +34,4 @@ pandoc
 
 sudo cp --verbose --dereference $EDGYR_BIN/pandoc /usr/local/bin/pandoc
 ldd /usr/local/bin/pandoc
+rm -fr $HOME/.cabal

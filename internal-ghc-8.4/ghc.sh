@@ -37,3 +37,4 @@ pushd ghc-$GHC_RELEASE
   /usr/bin/time make --jobs=$JOBS
   sudo make install
 popd
+sudo rm -fr $EDGYR_SRC/ghc-*

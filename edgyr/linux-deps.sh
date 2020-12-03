@@ -41,5 +41,4 @@ apt-get install -qqy --no-install-recommends \
   wget \
   zip
 update-alternatives --set editor /usr/bin/vim.nox
-apt-file update
-updatedb
+apt-get clean

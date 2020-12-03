@@ -113,3 +113,4 @@ echo " -- starting Java builds"
 echo " -- RAM_KILOBYTES = $RAM_KILOBYTES; 'make' will use $JOBS jobs."
 
 make --jobs=$JOBS install
+rm -fr $SOURCE_DIR/*

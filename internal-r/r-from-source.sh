@@ -32,3 +32,4 @@ pushd build-dir
   echo "Installing"
   make install
 popd
+rm -fr $SOURCE_DIR/*

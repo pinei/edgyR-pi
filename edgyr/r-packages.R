@@ -6,6 +6,7 @@ install.packages(c(
   "data.table",
   "reticulate",
   "knitr",
+  "Rcpp",
   "remotes",
   "renv",
   "rmarkdown",

@@ -1,4 +1,4 @@
-#! /bin/bash -v
+#! /bin/bash
 
 set -e
 
@@ -9,8 +9,7 @@ for i in \
   internal-cabal-3.2 \
   internal-ghc-8.8 \
   internal-pandoc \
-  internal-stack \
-  internal-r\
+  internal-r \
   internal-rstudio-server
 do
   pushd $i

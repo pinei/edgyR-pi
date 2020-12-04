@@ -12,14 +12,14 @@ RUN mkdir --parents $LOGS $SCRIPTS
 WORKDIR $SOURCE_DIR
 
 # get R, Pandoc and RStudio Server
-COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/bin /usr/local/bin
-COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/lib/R /usr/local/lib/R
-COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
-COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/lib/libRmath.so /usr/local/lib/libRmath.so
-COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/lib/libRmath.a /usr/local/lib/libRmath.a
-COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/lib/rstudio-server /usr/local/lib/rstudio-server
-COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/include /usr/local/include
-COPY --from="edgyr/internal-rstudio-source:latest" /usr/local/share/man /usr/local/share/man
+COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/bin /usr/local/bin
+COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/R /usr/local/lib/R
+COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
+COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/libRmath.so /usr/local/lib/libRmath.so
+COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/libRmath.a /usr/local/lib/libRmath.a
+COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/rstudio-server /usr/local/lib/rstudio-server
+COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/include /usr/local/include
+COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/share/man /usr/local/share/man
 
 # Linux dependencies
 COPY linux-deps.sh $SCRIPTS/

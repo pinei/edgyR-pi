@@ -10,7 +10,8 @@ for i in \
   internal-ghc-8.6 \
   internal-pandoc \
   internal-r \
-  internal-rstudio-server
+  internal-rstudio-server \
+  edgyr 
 do
   pushd $i
   ../build.sh

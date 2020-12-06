@@ -19,7 +19,7 @@ before_install:
 script:
   - grep -i -e "BogoMIPS" /proc/cpuinfo
   - grep -i -e "MemTotal" /proc/meminfo
-  - docker build --tag edgyr/internal-build-dependencies:latest internal-build-dependencies
+  - travis_wait 30 docker build --tag edgyr/internal-build-dependencies:latest internal-build-dependencies
   - travis_wait 30 docker build --tag edgyr/internal-ghc-8.2:latest internal-ghc-8.2
   - travis_wait 30 docker build --tag edgyr/internal-cabal-3.0:latest internal-cabal-3.0
   - travis_wait 30 docker build --tag edgyr/internal-cabal-3.2:latest internal-cabal-3.2

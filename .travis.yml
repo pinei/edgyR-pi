@@ -15,15 +15,16 @@ before_install:
   - sudo add-apt-repository "deb [arch=arm64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) edge"
   - sudo apt-get update
   - sudo apt-get -y -o Dpkg::Options::="--force-confnew" install docker-ce
-  - mkdir -vp ~/.docker/cli-plugins/
-  - curl --silent -L "https://github.com/docker/buildx/releases/download/v0.4.2/buildx-v0.4.2.linux-arm64" > ~/.docker/cli-plugins/docker-buildx
-  - chmod a+x ~/.docker/cli-plugins/docker-buildx
 
 script:
   - grep -i -e "BogoMIPS" /proc/cpuinfo
   - grep -i -e "MemTotal" /proc/meminfo
-  - docker buildx version
-  - travis_wait 20 docker build --tag edgyr/internal-r-source:latest internal-r-source 
-  - travis_wait 20 docker build --tag edgyr/internal-pandoc-source:latest internal-pandoc-source 
-  - travis_wait 20 docker build --tag edgyr/internal-rstudio-source:latest internal-rstudio-source 
-  - travis_wait 20 docker build --tag edgyr/edgyr:latest edgyr 
+  - docker build --tag edgyr/internal-build-dependencies:latest internal-build-dependencies
+  - docker build --tag edgyr/internal-ghc-8.2:latest internal-ghc-8.2
+  - docker build --tag edgyr/internal-cabal-3.0:latest internal-cabal-3.0
+  - docker build --tag edgyr/internal-cabal-3.2:latest internal-cabal-3.2
+  - docker build --tag edgyr/internal-ghc-8.6:latest internal-ghc-8.6
+  - docker build --tag edgyr/internal-pandoc:latest internal-pandoc
+  - docker build --tag edgyr/internal-r:latest internal-r
+  - docker build --tag edgyr/internal-rstudio-server:latest internal-rstudio-server
+  - docker build --tag edgyr/edgyr:latest edgyr

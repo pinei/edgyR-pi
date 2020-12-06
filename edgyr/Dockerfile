@@ -23,18 +23,21 @@ COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/share/man /usr/loc
 
 # Linux dependencies
 COPY linux-deps.sh $SCRIPTS/
-RUN $SCRIPTS/linux-deps.sh
+RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \
+  && gzip -9 $LOGS/linux-deps.log
 
 # configure R and RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started
 COPY configure-r-rstudio.sh $SCRIPTS/
 COPY R.conf /etc/ld.so.conf.d/
 COPY rserver.conf /etc/rstudio/
-RUN $SCRIPTS/configure-r-rstudio.sh
+RUN $SCRIPTS/configure-r-rstudio.sh > $LOGS/configure-r-rstudio.log 2>&1 \
+  && gzip -9 $LOGS/configure-r-rstudio.log
 
 # Create the default user
 COPY edgyr-user.sh $SCRIPTS/
-RUN $SCRIPTS/edgyr-user.sh
+RUN $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1 \
+  && gzip -9 $LOGS/edgyr-user.log
 
 # enable passwordless sudo
 COPY passwordless-sudo /etc/sudoers.d/
@@ -54,14 +57,17 @@ WORKDIR $EDGYR_HOME
 
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1
+RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/r-packages.log
 
 COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1
+RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/miniforge.log
 
 ENV JULIA_VERSION_MAJOR=1 JULIA_VERSION_MINOR=5 JULIA_VERSION_PATCH=3
 COPY --chown=edgyr:edgyr julia.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/julia.sh > $EDGYR_LOGS/julia.log 2>&1
+RUN /usr/bin/time $EDGYR_SCRIPTS/julia.sh > $EDGYR_LOGS/julia.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/julia.log
 
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/

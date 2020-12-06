@@ -1,4 +1,4 @@
-FROM edgyr/internal-ghc-8.2:latest
+FROM edgyr/internal-build-dependencies:latest
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 USER edgyr

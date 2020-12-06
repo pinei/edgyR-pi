@@ -21,7 +21,7 @@ RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1
 # against the grain, so we create a non-root user to 
 # make the code more natural.
 COPY edgyr-user.sh $SCRIPTS/
-RUN $SCRIPTS/edgyr-user.sh
+RUN $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1
 
 # enable passwordless sudo
 COPY passwordless-sudo /etc/sudoers.d/

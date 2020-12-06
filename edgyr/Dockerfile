@@ -59,6 +59,10 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R
 COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh
 
+ENV JULIA_VERSION_MAJOR=1 JULIA_VERSION_MINOR=5 JULIA_VERSION_PATCH=3
+COPY --chown=edgyr:edgyr julia.sh $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/julia.sh
+
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/
 COPY --chown=edgyr:edgyr Installers $EDGYR_HOME/Installers

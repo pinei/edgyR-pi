@@ -12,7 +12,7 @@ if [ $RAM_KILOBYTES -ge "7000000" ]
 then
   export JOBS=`nproc`
 else
-  export JOBS=2
+  export JOBS=3
 fi
 echo "Installing"
 echo " -- RAM_KILOBYTES = $RAM_KILOBYTES; 'make' will use $JOBS jobs."

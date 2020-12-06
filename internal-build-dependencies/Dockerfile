@@ -14,7 +14,7 @@ WORKDIR $SOURCE_DIR
 
 # build dependencies
 COPY build-deps.sh $SCRIPTS/
-RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log
+RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1
 
 # The Haskell development tools make heavy use of local
 # (per-user) build strategy. Running them as 'root' goes

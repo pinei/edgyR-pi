@@ -6,7 +6,7 @@ WORKDIR $SOURCE_DIR
 
 # boost
 COPY install-boost.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/install-boost.sh
+RUN /usr/bin/time $SCRIPTS/install-boost.sh > $LOGS/install-boost.log 2>&1
 
 # R and pandoc
 COPY --from="edgyr/internal-r:latest" /usr/local/bin /usr/local/bin
@@ -25,4 +25,4 @@ RUN $SCRIPTS/configure.sh
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/
 ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=3 RSTUDIO_VERSION_PATCH=1093
 COPY rstudio.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/rstudio.sh
+RUN /usr/bin/time $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1

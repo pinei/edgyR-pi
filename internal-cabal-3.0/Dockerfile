@@ -6,4 +6,4 @@ WORKDIR $EDGYR_HOME
 
 # upgrade cabal
 COPY --chown=edgyr:edgyr cabal.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/cabal.sh
+RUN /usr/bin/time $EDGYR_SCRIPTS/cabal.sh > $EDGYR_LOGS/cabal-3.0.log 2>&1

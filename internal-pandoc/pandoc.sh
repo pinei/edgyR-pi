@@ -19,6 +19,7 @@ echo " -- RAM_KILOBYTES = $RAM_KILOBYTES; 'make' will use $JOBS jobs."
 
 cabal user-config update
 cabal new-update
+# see https://github.com/jgm/pandoc/blob/2.11.2/linux/make_artifacts.sh
 /usr/bin/time cabal new-install \
   --disable-coverage \
   --disable-debug-info \
@@ -26,7 +27,10 @@ cabal new-update
   --disable-executable-dynamic \
   --disable-profiling \
   --disable-shared \
+  --disable-tests \
+  --enable-executable-static \
   --flags="embed_data_files https" \
+  --ghc-options "-optc-Os -optl=-pthread" \
   --jobs=$JOBS \
   --overwrite-policy=always \
 pandoc

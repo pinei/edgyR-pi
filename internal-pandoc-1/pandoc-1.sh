@@ -14,17 +14,27 @@ cd $PANDOC_VERSION
 cabal user-config update
 cabal v2-update
 cabal v2-clean
-cabal v2-install --only-dependencies
+cabal v2-install \
+  --disable-coverage \
+  --disable-debug-info \
+  --disable-documentation \
+  --disable-executable-dynamic \
+  --disable-optimization \
+  --disable-profiling \
+  --disable-shared \
+  --disable-tests \
+  --ghc-options "-optc-Os -optl=-pthread" \
+  --only-dependencies
+
 cabal v2-configure \
   --disable-coverage \
   --disable-debug-info \
   --disable-documentation \
   --disable-executable-dynamic \
+  --disable-optimization \
   --disable-profiling \
   --disable-shared \
   --disable-tests \
-  --enable-executable-static \
   --flags="embed_data_files https" \
   --ghc-options "-optc-Os -optl=-pthread" \
-  --overwrite-policy=always \
 popd

@@ -7,8 +7,8 @@ USER root
 ENV SOURCE_DIR=/usr/local/src
 ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
-RUN mkdir --parents $LOGS $SCRIPTS \
-  && ls -AlR /usr/local/
+RUN mkdir --parents $LOGS $SCRIPTS
+RUN ls -AFlrt $SOURCE_DIR
 
 WORKDIR $SOURCE_DIR
 

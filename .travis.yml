@@ -21,7 +21,8 @@ script:
   - grep -i -e "MemTotal" /proc/meminfo
   - travis_wait 45 docker build --tag edgyr/internal-build-dependencies:latest internal-build-dependencies
   - travis_wait 45 docker build --tag edgyr/internal-cabal-3.0:latest internal-cabal-3.0
-  - travis_wait 45 docker build --tag edgyr/internal-pandoc:latest internal-pandoc
+  - travis_wait 45 docker build --tag edgyr/internal-pandoc-1:latest internal-pandoc-1
+  - travis_wait 45 docker build --tag edgyr/internal-pandoc-2:latest internal-pandoc-2
   - travis_wait 45 docker build --tag edgyr/internal-r:latest internal-r
   - travis_wait 45 docker build --tag edgyr/internal-rstudio-server:latest internal-rstudio-server
   - travis_wait 45 docker build --tag edgyr/edgyr:latest edgyr

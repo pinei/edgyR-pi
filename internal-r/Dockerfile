@@ -1,4 +1,4 @@
-FROM edgyr/internal-pandoc-2:latest
+FROM edgyr/internal-pandoc:latest
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 USER root

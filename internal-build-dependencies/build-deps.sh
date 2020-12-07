@@ -90,3 +90,10 @@ apt-get install -qqy --no-install-recommends \
   zip \
   zlib1g-dev
 apt-get clean
+
+if [ `uname -m` = "x86_64" ]
+then
+  update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+else
+  update-alternatives --set java /usr/lib/jvm/java-8-openjdk-arm64/jre/bin/java
+fi

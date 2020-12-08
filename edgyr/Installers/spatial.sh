@@ -11,4 +11,4 @@ sudo apt-get install -qqy --no-install-recommends \
   libgdal-dev \
   libudunits2-dev
 echo "Installing spatial R packages"
-Rscript -e "source('~/Installers/spatial.R')"
+Rscript -e "source('~/Installers/R/spatial.R')"

@@ -39,4 +39,4 @@ pip list
 echo "Installing R keras package"
 Rscript -e "install.packages('keras', quiet = TRUE)"
 echo "Testing keras on mnist"
-Rscript -e "source('~/Installers/test-keras.R')"
+Rscript -e "source('~/Installers/R/test-keras.R')"

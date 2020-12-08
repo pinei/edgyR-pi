@@ -2,20 +2,13 @@
 
 set -e
 
-# The Nano only has 4 GB of RAM. As a result, the GHC builds swamp the available
-# RAM and multi-job makes are problematic - they swap and the system appears
-# unresponsive.
-#
-# So we only run two-job makes if we have less than 7 GB of RAM.
-export RAM_KILOBYTES=`grep MemTotal /proc/meminfo | sed 's/^MemTotal:  *//' | sed 's/ .*$//'`
-if [ $RAM_KILOBYTES -ge "7000000" ]
+# for some reason llvm-3.7 only exists in the arm64 Bionic repos
+if [ `uname -m` = "x86_64" ]
 then
-  export JOBS=`nproc`
+  export LLVM=""
 else
-  export JOBS=3
+  export LLVM="-fllvm"
 fi
-echo "Installing"
-echo " -- RAM_KILOBYTES = $RAM_KILOBYTES; 'make' will use $JOBS jobs."
 
 which cabal
 cabal --version
@@ -28,9 +21,8 @@ cabal update
   --disable-executable-dynamic \
   --disable-profiling \
   --disable-shared \
-  --jobs=$JOBS \
+  --ghc-options "$LLVM" \
 cabal-install
 
 sudo cp --verbose --dereference $EDGYR_BIN/cabal /usr/local/bin/cabal
 ldd /usr/local/bin/cabal
-rm -fr $HOME/.cabal

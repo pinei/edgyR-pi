@@ -2,6 +2,14 @@
 
 set -e
 
+# for some reason llvm-3.7 only exists in the arm64 Bionic repos
+if [ `uname -m` = "x86_64" ]
+then
+  export LLVM=""
+else
+  export LLVM="-fllvm"
+fi
+
 cabal user-config update
 cabal v2-update
 cabal v2-install \
@@ -15,7 +23,7 @@ cabal v2-install \
   --disable-shared \
   --disable-tests \
   --flags="embed_data_files https" \
-  --ghc-options "-optc-Os -optl=-pthread" \
+  --ghc-options "$LLVM -optc-Os -optl=-pthread" \
 pandoc
 
 sudo cp --verbose --dereference $EDGYR_BIN/pandoc /usr/local/bin/pandoc

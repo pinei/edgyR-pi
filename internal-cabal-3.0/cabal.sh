@@ -15,12 +15,15 @@ cabal --version
 cabal user-config update
 cabal update
 /usr/bin/time cabal install \
+  --disable-benchmarks \
   --disable-coverage \
   --disable-debug-info \
   --disable-documentation \
   --disable-executable-dynamic \
+  --disable-optimization \
   --disable-profiling \
   --disable-shared \
+  --disable-tests \
   --ghc-options "$LLVM" \
 cabal-install
 

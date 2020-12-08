@@ -23,7 +23,7 @@ cabal v2-install \
   --disable-shared \
   --disable-tests \
   --flags="embed_data_files https" \
-  --ghc-options "$LLVM -optc-Os -optl=-pthread" \
+  --ghc-options "$LLVM" \
 pandoc
 
 sudo cp --verbose --dereference $EDGYR_BIN/pandoc /usr/local/bin/pandoc

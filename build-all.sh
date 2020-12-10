@@ -10,6 +10,7 @@ for i in \
   internal-pandoc \
   internal-r \
   internal-rstudio-server \
+  internal-l4t-pocl \
   edgyr 
 do
   pushd $i

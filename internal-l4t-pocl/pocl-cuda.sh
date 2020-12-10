@@ -3,7 +3,7 @@
 set -e
 
 echo ""
-echo "Downloading pocl source"
+echo "downloading pocl source"
 git clone https://github.com/pocl/pocl.git
 
 pushd "pocl"
@@ -13,16 +13,17 @@ cmake \
   -DLLC_HOST_CPU=generic \
   -DENABLE_CUDA=ON \
   -DINSTALL_OPENCL_HEADERS=1 \
-  -DENABLE_TESTSUITES="conformance" \
 ..
 
-ninja prepare_examples
 ninja
 
+echo "running CUDA tests"
 ../tools/scripts/run_cuda_tests > $LOGS/run_cuda_tests.log 2>&1
-clinfo > $LOGS/clinfo.log 2>&1
-ctest --output-on-failure -L conformance_suite_micro > $LOGS/ctest.log 2>&1
+echo "CUDA tests finished"
 
 ninja install
+cp $SCRIPTS/pocl.conf /etc/ld.so.conf.d/
+/sbin/ldconfig --verbose
 cp -rp /usr/local/etc/OpenCL /etc/
+clinfo > $LOGS/clinfo.log 2>&1
 popd

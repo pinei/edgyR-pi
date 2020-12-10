@@ -14,9 +14,14 @@ WORKDIR $SOURCE_DIR
 
 # build dependencies
 COPY build-deps.sh $SCRIPTS/
-RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1
+RUN $SCRIPTS/build-deps.sh #> $LOGS/build-deps.log 2>&1
 
 # pocl with CUDA back end
 ENV POCL_VERSION=1.6-RC1
 COPY pocl-cuda.sh $SCRIPTS/
-RUN $SCRIPTS/pocl-cuda.sh #> $LOGS/pocl-cuda.log 2>&1
+RUN $SCRIPTS/pocl-cuda.sh > $LOGS/pocl-cuda.log 2>&1
+
+# clpeak from source
+ENV CLPEAK_VERSION=1.1.0
+COPY clpeak.sh $SCRIPTS/
+RUN $SCRIPTS/clpeak.sh > $LOGS/clpeak.log 2>&1

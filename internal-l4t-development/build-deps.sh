@@ -4,22 +4,33 @@ echo "Installing build dependencies"
 apt-get update
 apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
-  apt-utils \
   apt-file \
   build-essential \
   ca-certificates \
   clang-10 \
+  clang-format-10 \
+  clang-tidy-10 \
+  clang-tools-10 \
   clinfo \
   cmake \
   curl \
-  dialog \
   file \
   git \
   git-lfs \
   gnupg \
+  libclang-10-dev \
+  libclang-cpp10-dev \
+  libfuzzer-10-dev \
   libhwloc-dev \
-  llvm-10 \
+  liblld-10-dev \
+  liblldb-10-dev \
+  libomp-10-dev \
+  lld-10 \
+  lldb-10 \
   llvm-10-dev \
+  llvm-10 \
+  llvm-10-runtime \
+  llvm-10-tools \
   lsof \
   mlocate \
   ninja-build \

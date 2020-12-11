@@ -12,10 +12,6 @@ RUN ls -AFlrt $SOURCE_DIR
 
 WORKDIR $SOURCE_DIR
 
-# build dependencies
-COPY build-deps.sh $SCRIPTS/
-RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1
-
 # pocl with CUDA back end
 ENV POCL_VERSION=1.6-RC1
 COPY pocl-cuda.sh pocl.conf $SCRIPTS/

@@ -1,6 +1,7 @@
 FROM edgyr/internal-pandoc:latest
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
+ARG DEBIAN_FRONTEND=noninteractive
 USER root
 WORKDIR $SOURCE_DIR
 

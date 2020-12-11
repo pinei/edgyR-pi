@@ -1,5 +1,47 @@
 #! /bin/bash
 
+echo "Installing build dependencies"
+apt-get update
+apt-get upgrade -y
+apt-get install -qqy --no-install-recommends \
+  apt-file \
+  build-essential \
+  ca-certificates \
+  curl \
+  file \
+  gfortran \
+  git \
+  git-lfs \
+  gnupg \
+  libbz2-dev \
+  libcairo2-dev \
+  libcurl4-openssl-dev \
+  libicu-dev \
+  libjpeg-turbo8-dev \
+  libjpeg8-dev \
+  liblzma-dev \
+  libncurses-dev \
+  libpango1.0-dev \
+  libpcre2-dev \
+  libreadline-dev \
+  libtiff5-dev \
+  lsof \
+  mlocate \
+  openjdk-8-jdk \
+  pkg-config \
+  software-properties-common \
+  sudo \
+  texinfo \
+  time \
+  tk-dev \
+  tree \
+  unzip \
+  vim-nox \
+  wget \
+  zip \
+  zlib1g-dev
+update-alternatives --set editor /usr/bin/vim.nox
+
 echo "Creating / entering source directory"
 mkdir --parents $SOURCE_DIR && cd $SOURCE_DIR
 

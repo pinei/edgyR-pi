@@ -1,9 +1,17 @@
-FROM edgyr/internal-build-dependencies:latest
+FROM ubuntu:bionic
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
-USER edgyr
-WORKDIR $EDGYR_HOME
+ARG DEBIAN_FRONTEND=noninteractive
+USER root
+
+ENV SOURCE_DIR=/usr/local/src
+ENV LOGS=$SOURCE_DIR/logs
+ENV SCRIPTS=$SOURCE_DIR/scripts
+RUN mkdir --parents $LOGS $SCRIPTS
+RUN ls -AFlrt $SOURCE_DIR
+
+WORKDIR $SOURCE_DIR
 
 # upgrade cabal
-COPY --chown=edgyr:edgyr cabal.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/cabal.sh > $EDGYR_LOGS/cabal-3.0.log 2>&1
+COPY cabal.sh $SCRIPTS/
+RUN $SCRIPTS/cabal.sh > $LOGS/cabal-3.0.log 2>&1

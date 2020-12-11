@@ -5,15 +5,18 @@ set -e
 grep -i -e "BogoMIPS" /proc/cpuinfo
 grep -i -e "MemTotal" /proc/meminfo
 for i in \
-  internal-build-dependencies \
   internal-cabal-3.0 \
   internal-pandoc \
   internal-r \
-  internal-rstudio-server \
-  internal-l4t-pocl \
-  edgyr 
+  internal-rstudio-server
 do
   pushd $i
   ../build.sh
   popd
 done
+
+# run the last two only on Jetson
+if [ `uname -m` != "x86_64" ]
+then 
+  pushd internal-l4t-pocl; ../build.sh; popd
+fi

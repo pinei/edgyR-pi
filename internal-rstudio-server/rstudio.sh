@@ -2,6 +2,16 @@
 
 set -e
 
+echo "Installing build dependencies"
+apt-get update
+apt-get upgrade -y
+apt-get install -qqy --no-install-recommends \
+  ant \
+  cmake \
+  libpam-dev \
+  libssl-dev \
+  uuid-dev
+
 if [ `uname -m` = "x86_64" ]
 then
   update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java

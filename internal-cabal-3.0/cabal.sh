@@ -2,13 +2,12 @@
 
 set -e
 
-# for some reason llvm-3.7 only exists in the arm64 Bionic repos
-if [ `uname -m` = "x86_64" ]
-then
-  export LLVM=""
-else
-  export LLVM="-fllvm"
-fi
+echo "Installing Linux dependencies"
+apt-get update
+apt-get upgrade -y
+apt-get install -qqy --no-install-recommends \
+  haskell-platform \
+  time
 
 which cabal
 cabal --version
@@ -24,8 +23,7 @@ cabal update
   --disable-profiling \
   --disable-shared \
   --disable-tests \
-  --ghc-options "$LLVM" \
 cabal-install
 
-sudo cp --verbose --dereference $EDGYR_BIN/cabal /usr/local/bin/cabal
+cp --verbose --dereference $HOME/.cabal/bin/cabal /usr/local/bin/cabal
 ldd /usr/local/bin/cabal

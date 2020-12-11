@@ -18,5 +18,6 @@ done
 # run the last two only on Jetson
 if [ `uname -m` != "x86_64" ]
 then 
+  pushd edgyr; ../build.sh; popd
   pushd internal-l4t-pocl; ../build.sh; popd
 fi

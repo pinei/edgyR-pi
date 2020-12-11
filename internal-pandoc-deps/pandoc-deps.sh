@@ -2,6 +2,8 @@
 
 set -e
 
+cabal user-config update
+cabal v2-update
 cabal v2-install \
   --disable-benchmarks \
   --disable-coverage \
@@ -13,7 +15,5 @@ cabal v2-install \
   --disable-shared \
   --disable-tests \
   --flags="embed_data_files https" \
+  --only-dependencies \
 pandoc
-
-cp --verbose --dereference $HOME/.cabal/bin/pandoc /usr/local/bin/pandoc
-ldd /usr/local/bin/pandoc

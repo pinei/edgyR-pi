@@ -51,12 +51,8 @@ cmake \
 ..
 
 ninja
-
-echo "running CUDA tests"
-../tools/scripts/run_cuda_tests > $LOGS/run_cuda_tests.log 2>&1
-echo "CUDA tests finished"
-
 ninja install
+
 cp $SCRIPTS/pocl.conf /etc/ld.so.conf.d/
 /sbin/ldconfig --verbose
 cp -rp /usr/local/etc/OpenCL /etc/

@@ -23,3 +23,5 @@ then
   pushd internal-jetson-pocl; ../build.sh; popd
   pushd edgyr; ../build.sh; popd
 fi
+
+docker images

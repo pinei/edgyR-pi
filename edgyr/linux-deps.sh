@@ -23,7 +23,6 @@ apt-get install -qqy --no-install-recommends \
   libfontconfig1-dev \
   libfreetype6-dev \
   libfribidi-dev \
-  libgdal-dev \
   libharfbuzz-dev \
   libicu-dev \
   libjpeg8-dev \
@@ -43,8 +42,8 @@ apt-get install -qqy --no-install-recommends \
   libssh2-1-dev \
   libssl-dev \
   libtiff5-dev \
-  libudunits2-dev
-  libxml2-dev
+  libudunits2-dev \
+  libxml2-dev \
   lsof \
   mlocate \
   ninja-build \

@@ -76,7 +76,6 @@ update-alternatives --set editor /usr/bin/vim.nox
 # install libnode-dev and dependencies packages
 pushd /usr/local/src/packages
 apt-get install -qqy --no-install-recommends \
-apt-get install \
   ./libnghttp2-14_*.deb \
   ./libuv1_*.deb \
   ./libuv1-dev_*.deb \

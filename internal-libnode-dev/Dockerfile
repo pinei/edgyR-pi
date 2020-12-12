@@ -17,3 +17,7 @@ RUN apt-get install -qqy --no-install-recommends \
   libcurl4-openssl-dev \
   r-base-dev \
   && Rscript -e "install.packages('V8')"
+
+ENV PACKAGES=$SOURCE_DIR/packages
+RUN mkdir --parents $PACKAGES \
+  && cp $SOURCE_DIR/*/*.deb $PACKAGES/

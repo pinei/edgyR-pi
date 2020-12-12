@@ -11,7 +11,8 @@ install.packages(c(
   "renv",
   "rmarkdown",
   "rprojroot",
-  "tinytex"
+  "tinytex",
+  "V8"
 ), quiet = TRUE)
 
 tinytex::install_tinytex()

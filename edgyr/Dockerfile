@@ -21,6 +21,9 @@ COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/rstudio-server
 COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/include /usr/local/include
 COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/share/man /usr/local/share/man
 
+# libnode-dev / dependencies packages
+COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/src/packages /usr/local/src/packages
+
 # Linux dependencies
 COPY linux-deps.sh $SCRIPTS/
 RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \

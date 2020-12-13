@@ -23,4 +23,4 @@ RUN $SCRIPTS/OpenCL-R-test.R > $LOGS/OpenCL-R-test.log 2>&1
 
 # run 'pocl' CUDA tests
 COPY test-cuda.sh run_cuda_tests $SCRIPTS/
-RUN $SCRIPTS/test-cuda.sh 2>&1 | tee $LOGS/test-cuda.log
+#RUN $SCRIPTS/test-cuda.sh 2>&1 | tee $LOGS/test-cuda.log

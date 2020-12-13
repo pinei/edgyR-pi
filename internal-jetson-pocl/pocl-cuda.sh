@@ -33,7 +33,9 @@ apt-get install -qqy --no-install-recommends \
   ocl-icd-dev \
   ocl-icd-libopencl1 \
   ocl-icd-opencl-dev \
-  pkg-config
+  pkg-config \
+  r-base-dev \
+  vim-nox
 
 echo ""
 echo "downloading pocl source"

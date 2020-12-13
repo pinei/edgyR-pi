@@ -2,7 +2,7 @@
 
 set -e
 
-pushd "pocl-$POCL_VERSION/build"
+pushd pocl*/build
 echo "running CUDA tests"
 cp $SCRIPTS/run_cuda_tests ../tools/scripts/run_cuda_tests
 ../tools/scripts/run_cuda_tests

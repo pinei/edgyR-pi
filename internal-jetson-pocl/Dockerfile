@@ -12,10 +12,19 @@ RUN ls -AFlrt $SOURCE_DIR
 
 WORKDIR $SOURCE_DIR
 
-# pocl with CUDA back end
+# build dependencies
+COPY build-deps.sh $SCRIPTS/
+RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1
+
+# pocl from tarball
 ENV POCL_VERSION=1.6-RC1
-COPY pocl-cuda.sh pocl.conf $SCRIPTS/
-RUN $SCRIPTS/pocl-cuda.sh > $LOGS/pocl-cuda.log 2>&1
+COPY pocl-cuda.sh pocl-cuda-git.sh pocl.conf $SCRIPTS/
+#RUN $SCRIPTS/pocl-cuda.sh > $LOGS/pocl-cuda.log 2>&1
+
+# pocl from git repo
+ENV GIT_REPO="https://github.com/isuruf/pocl.git"
+ENV BRANCH="cuMemHostRegister"
+RUN $SCRIPTS/pocl-cuda-git.sh > $LOGS/pocl-cuda-git.log 2>&1
 
 # test with R OpenCL package
 COPY OpenCL-R-test.R $SCRIPTS/
@@ -23,4 +32,4 @@ RUN $SCRIPTS/OpenCL-R-test.R > $LOGS/OpenCL-R-test.log 2>&1
 
 # run 'pocl' CUDA tests
 COPY test-cuda.sh run_cuda_tests $SCRIPTS/
-#RUN $SCRIPTS/test-cuda.sh 2>&1 | tee $LOGS/test-cuda.log
+RUN $SCRIPTS/test-cuda.sh 2>&1 | tee $LOGS/test-cuda.log

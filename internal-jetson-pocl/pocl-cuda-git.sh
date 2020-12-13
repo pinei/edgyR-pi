@@ -4,10 +4,10 @@ set -e
 
 echo "downloading pocl source"
 rm -fr pocl*
-wget -q -O - https://github.com/pocl/pocl/archive/v$POCL_VERSION.tar.gz \
-  | tar xzf -
+git clone $GIT_REPO
+pushd pocl
+git checkout $BRANCH
 
-pushd "pocl-$POCL_VERSION"
 mkdir --parents build; cd build
 cmake \
   -G Ninja \

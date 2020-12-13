@@ -33,4 +33,4 @@ else
   echo "Using OCL_ICD_VENDORS: $OCL_ICD_VENDORS"
 fi
 
-ctest --verbose -L cuda $@
+POCL_DEBUG=1 ctest --verbose -L cuda $@

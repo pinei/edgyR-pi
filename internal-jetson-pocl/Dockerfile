@@ -20,3 +20,7 @@ RUN $SCRIPTS/pocl-cuda.sh > $LOGS/pocl-cuda.log 2>&1
 # test with R OpenCL package
 COPY OpenCL-R-test.R $SCRIPTS/
 RUN $SCRIPTS/OpenCL-R-test.R > $LOGS/OpenCL-R-test.log 2>&1
+
+# run 'pocl' CUDA tests
+COPY test-cuda.sh $SCRIPTS/
+RUN $SCRIPTS/test-cuda.sh

@@ -14,6 +14,7 @@ apt-get install -qqy --no-install-recommends \
   clang-tools-10 \
   clinfo \
   cmake \
+  gdb \
   git \
   libclang-10-dev \
   libclang-cpp10-dev \

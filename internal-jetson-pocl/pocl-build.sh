@@ -6,7 +6,7 @@ pushd pocl
 mkdir --parents build; cd build
 
 # LLVM 10 doesn't recognize a Xavier so we use "generic"
-if [ `grep -e "atomics fphp asimdhp" | wc -l` -gt "0" ]
+if [ `grep -e "atomics fphp asimdhp" /proc/cpuinfo | wc -l` -gt "0" ]
 then
   cmake \
     -G Ninja \

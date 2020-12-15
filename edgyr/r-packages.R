@@ -15,4 +15,6 @@ install.packages(c(
   "V8"
 ), quiet = TRUE)
 
+source("~/Installers/R/test-V8.R")
+
 tinytex::install_tinytex()

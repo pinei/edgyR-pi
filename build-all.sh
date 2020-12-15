@@ -9,7 +9,8 @@ for i in \
   internal-pandoc-deps \
   internal-pandoc \
   internal-r \
-  internal-rstudio-server
+  internal-rstudio-server \
+  internal-libnode-dev
 do
   pushd $i
   ../build.sh
@@ -19,7 +20,6 @@ done
 # run the rest only on Jetson
 if [ `uname -m` != "x86_64" ]
 then 
-  pushd internal-libnode-dev; ../build.sh; popd
   pushd internal-jetson-pocl; ../build.sh; popd
   pushd edgyr; ../build.sh; popd
 fi

@@ -3,4 +3,5 @@
 set -e
 
 sudo docker push edgyr/edgyr:latest
-sudo docker push edgyr/internal-rstudio-server:latest
+sudo docker push edgyr/internal-libnode-dev:latest
+sudo docker push edgyr/internal-jetson-pocl:latest

@@ -24,6 +24,17 @@ COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/share/man /usr/local/
 # libnode-dev / dependencies packages
 COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/src/packages /usr/local/src/packages
 
+# POCL with CUDA backend
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/bin/poclcc /usr/local/bin/poclcc
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pocl /usr/local/lib/pocl
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2.7.0 /usr/local/lib/libpocl.so.2.7.0
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2 /usr/local/lib/libpocl.so.2
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so /usr/local/lib/libpocl.so
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/include/CL /usr/local/include/CL
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/share/pocl /usr/local/share/pocl
+COPY --from="edgyr/internal-jetson-pocl:latest" /etc/OpenCL/vendors /etc/OpenCL/vendors
+
+
 # Linux dependencies
 COPY linux-deps.sh $SCRIPTS/
 RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \
@@ -31,11 +42,11 @@ RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \
 
 # configure R and RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started
-COPY configure-r-rstudio.sh $SCRIPTS/
-COPY R.conf /etc/ld.so.conf.d/
+COPY configure-r-rstudio-pocl.sh $SCRIPTS/
+COPY R.conf pocl.conf /etc/ld.so.conf.d/
 COPY rserver.conf /etc/rstudio/
-RUN $SCRIPTS/configure-r-rstudio.sh > $LOGS/configure-r-rstudio.log 2>&1 \
-  && gzip -9 $LOGS/configure-r-rstudio.log
+RUN $SCRIPTS/configure-r-rstudio-pocl.sh > $LOGS/configure-r-rstudio-pocl.log 2>&1 \
+  && gzip -9 $LOGS/configure-r-rstudio-pocl.log
 
 # Create the default user
 COPY edgyr-user.sh $SCRIPTS/

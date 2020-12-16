@@ -17,14 +17,14 @@ COPY build-deps.sh $SCRIPTS/
 RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1
 
 # pocl from tarball
-ENV POCL_VERSION=1.6-RC1
+ENV POCL_VERSION=1.6
 COPY pocl-cuda.sh $SCRIPTS/
-#RUN $SCRIPTS/pocl-cuda.sh > $LOGS/pocl-cuda.log 2>&1
+RUN $SCRIPTS/pocl-cuda.sh > $LOGS/pocl-cuda.log 2>&1
 
 # pocl from git repo
-COPY pocl-git-source.sh pocl-build.sh $SCRIPTS/
-RUN $SCRIPTS/pocl-git-source.sh > $LOGS/pocl-git-source.log 2>&1
-RUN $SCRIPTS/pocl-build.sh > $LOGS/pocl-build.log 2>&1
+#COPY pocl-git-source.sh pocl-build.sh $SCRIPTS/
+#RUN $SCRIPTS/pocl-git-source.sh > $LOGS/pocl-git-source.log 2>&1
+#RUN $SCRIPTS/pocl-build.sh > $LOGS/pocl-build.log 2>&1
 
 # test with R OpenCL package
 COPY OpenCL-R-test.R $SCRIPTS/

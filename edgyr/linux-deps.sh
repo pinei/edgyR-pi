@@ -17,8 +17,8 @@ apt-get install -qqy --no-install-recommends \
   default-jdk-headless \
   file \
   flac \
-  gfortran \
   gdb \
+  gfortran \
   git \
   git-lfs \
   gnupg \
@@ -61,15 +61,15 @@ apt-get install -qqy --no-install-recommends \
   libxml2-dev \
   lld-10 \
   lldb-10 \
-  llvm-10-dev \
   llvm-10 \
+  llvm-10-dev \
   llvm-10-runtime \
   llvm-10-tools \
   lsof \
   mlocate \
   ninja-build \
   ocl-icd-dev \
-  ocl-icd-libopencl1  \
+  ocl-icd-libopencl1 \
   ocl-icd-opencl-dev \
   opencl-c-headers\
   opencl-clhpp-headers\

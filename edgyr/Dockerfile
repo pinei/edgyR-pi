@@ -25,14 +25,16 @@ COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/share/man /usr/local/
 COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/src/packages /usr/local/src/packages
 
 # POCL with CUDA backend
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/bin/poclcc /usr/local/bin/poclcc
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/share/pocl /usr/local/share/pocl
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/etc/OpenCL/vendors/pocl.icd /usr/local/etc/OpenCL/vendors/pocl.icd
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pkgconfig/pocl.pc /usr/local/lib/pkgconfig/pocl.pc
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/include/CL /usr/local/include/CL
 COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pocl /usr/local/lib/pocl
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2.7.0 /usr/local/lib/libpocl.so.2.7.0
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2.6.0 /usr/local/lib/libpocl.so.2.6.0
 COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2 /usr/local/lib/libpocl.so.2
 COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so /usr/local/lib/libpocl.so
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/include/CL /usr/local/include/CL
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/share/pocl /usr/local/share/pocl
-COPY --from="edgyr/internal-jetson-pocl:latest" /etc/OpenCL/vendors /etc/OpenCL/vendors
+COPY --from="edgyr/internal-jetson-pocl:latest" /etc/OpenCL/vendors/pocl.icd /etc/OpenCL/vendors/pocl.icd
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/bin/poclcc /usr/local/bin/poclcc
 
 
 # Linux dependencies

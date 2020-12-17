@@ -71,14 +71,16 @@ RUN chown -R edgyr:edgyr $EDGYR_HOME
 USER edgyr
 WORKDIR $EDGYR_HOME
 
-COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
-COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/r-packages.log
-
 COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/miniforge.log
+
+COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
+COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
+ARG PKG_CONFIG_PATH=$EDGYR_HOME/miniconda3/envs/r-reticulate/lib/pkgconfig:$PKG_CONFIG_PATH
+ENV R_LD_LIBRARY_PATH=$EDGYR_HOME/miniconda3/envs/r-reticulate/lib:$R_LD_LIBRARY_PATH
+RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/r-packages.log
 
 ENV JULIA_VERSION_MAJOR=1 JULIA_VERSION_MINOR=5 JULIA_VERSION_PATCH=3
 COPY --chown=edgyr:edgyr julia.sh $EDGYR_SCRIPTS/

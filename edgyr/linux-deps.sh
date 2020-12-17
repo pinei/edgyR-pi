@@ -59,6 +59,7 @@ apt-get install -qqy --no-install-recommends \
   libtiff5-dev \
   libudunits2-dev \
   libxml2-dev \
+  libxmu-dev \
   lld-10 \
   lldb-10 \
   llvm-10 \

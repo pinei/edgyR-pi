@@ -19,7 +19,8 @@ source $HOME/miniconda3/etc/profile.d/conda.sh
 conda init bash
 conda config --set auto_activate_base false
 
-echo "Creating fresh 'r-reticulate' environment with Python 3.6"
+echo "Creating fresh 'r-reticulate' environment with Python 3.6 and PyArrow CPU-only"
 conda env remove --name r-reticulate --yes
 conda create --quiet --name r-reticulate --yes \
+  pyarrow \
   python=3.6

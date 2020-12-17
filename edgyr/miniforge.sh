@@ -4,15 +4,15 @@ set -e
 
 mkdir --parents $HOME/Downloads/Installers
 cd $HOME/Downloads/Installers
-echo "Downloading Miniforge-pypy3 installer"
+echo "Downloading Mambaforge-pypy3 installer"
 wget -q \
-  https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge-pypy3-Linux-aarch64.sh
-chmod +x Miniforge-pypy3-Linux-aarch64.sh
+  https://github.com/conda-forge/miniforge/releases/latest/download/Mambaforge-pypy3-Linux-aarch64.sh
+chmod +x Mambaforge-pypy3-Linux-aarch64.sh
 
 echo "Installing a fresh copy to '$HOME/miniconda3' ..."
 rm -fr $HOME/miniforge* $HOME/miniconda*
-./Miniforge-pypy3-Linux-aarch64.sh -b -p $HOME/miniconda3 \
-  && rm ./Miniforge-pypy3-Linux-aarch64.sh
+./Mambaforge-pypy3-Linux-aarch64.sh -b -p $HOME/miniconda3 \
+  && rm ./Mambaforge-pypy3-Linux-aarch64.sh
 
 echo "Initializing conda for 'bash'"
 source $HOME/miniconda3/etc/profile.d/conda.sh

@@ -10,7 +10,7 @@ wget -q \
 chmod +x Mambaforge-pypy3-Linux-aarch64.sh
 
 echo "Installing a fresh copy to '$HOME/miniconda3' ..."
-rm -fr $HOME/miniforge* $HOME/miniconda*
+rm -fr $HOME/mambaforge* $HOME/miniforge* $HOME/miniconda*
 ./Mambaforge-pypy3-Linux-aarch64.sh -b -p $HOME/miniconda3 \
   && rm ./Mambaforge-pypy3-Linux-aarch64.sh
 

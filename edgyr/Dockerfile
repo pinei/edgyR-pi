@@ -71,9 +71,9 @@ RUN chown -R edgyr:edgyr $EDGYR_HOME
 USER edgyr
 WORKDIR $EDGYR_HOME
 
-COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/miniforge.log
+COPY --chown=edgyr:edgyr mambaforge.sh $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/mambaforge.sh > $EDGYR_LOGS/mambaforge.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/mambaforge.log
 
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/

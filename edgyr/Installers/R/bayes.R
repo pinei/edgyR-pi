@@ -1,7 +1,3 @@
-install.packages(c(
-  "brms",
-  "rstanarm"
-), quiet = TRUE)
 remotes::install_github("rmcelreath/rethinking", quiet = TRUE)
 
 ## ----setup, include=FALSE-----------------------------------------------------
@@ -15,7 +11,7 @@ knitr::opts_chunk$set(
 )
 
 ## ---- echo=FALSE, comment=""--------------------------------------------------
-cat(readLines("schools.stan"), sep = "\n")
+cat(readLines("~/Installers/R/schools.stan"), sep = "\n")
 
 ## ---- lookup------------------------------------------------------------------
 lookup("dnorm")

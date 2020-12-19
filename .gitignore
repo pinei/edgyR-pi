@@ -1,4 +1,4 @@
 *.log
 .R*
 .Rproj.user
-logs/*
+logs

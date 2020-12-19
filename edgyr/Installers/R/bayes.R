@@ -1,3 +1,9 @@
+install.packages(c(
+  "brms",
+  "coda",
+  "dagitty",
+  "mvtnorm"
+), quiet = TRUE)
 remotes::install_github("rmcelreath/rethinking", quiet = TRUE)
 
 ## ----setup, include=FALSE-----------------------------------------------------

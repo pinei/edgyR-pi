@@ -1,6 +1,7 @@
 remotes::install_github("rmcelreath/rethinking", quiet = TRUE)
 
 ## ----setup, include=FALSE-----------------------------------------------------
+setwd("~/Installers/R")
 library(rstan)
 knitr::opts_chunk$set(
   echo = TRUE, error = TRUE,
@@ -11,7 +12,7 @@ knitr::opts_chunk$set(
 )
 
 ## ---- echo=FALSE, comment=""--------------------------------------------------
-cat(readLines("~/Installers/R/schools.stan"), sep = "\n")
+cat(readLines("schools.stan"), sep = "\n")
 
 ## ---- lookup------------------------------------------------------------------
 lookup("dnorm")

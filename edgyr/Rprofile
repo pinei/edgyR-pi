@@ -36,3 +36,4 @@ ram_job_limit <- ram_kilobytes %/% 2^21
 
 # set the make job limit
 Sys.setenv(MAKE = paste0("make --jobs=", min(ram_job_limit, parallel::detectCores())))
+rm("ram_kilobytes", "ram_job_limit")

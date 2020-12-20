@@ -1,4 +1,4 @@
 #! /bin/bash
 
 echo "Installing Bayesian analysis R packages"
-Rscript -e "source('~/Installers/R/bayes.R')"
+/usr/bin/time Rscript -e "source('~/Installers/R/bayes.R')"

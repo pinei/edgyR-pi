@@ -11,4 +11,4 @@ sudo apt-get install -qqy --no-install-recommends \
   portaudio19-dev \
   sox
 echo "Installing audio R packages"
-Rscript -e "source('~/Installers/R/audio.R')"
+/usr/bin/time Rscript -e "source('~/Installers/R/audio.R')"

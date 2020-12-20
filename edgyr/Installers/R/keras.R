@@ -1,3 +1,6 @@
+Sys.setenv(MAKE = "make --jobs=4")
+install.packages("keras", quiet = TRUE)
+
 reticulate::py_discover_config()
 library(keras)
 mnist <- dataset_mnist()

@@ -8,4 +8,4 @@ sudo apt-get install -qqy --no-install-recommends \
   libssl-dev \
   libxml2-dev
 echo "Installing tidyverse"
-Rscript -e "install.packages('tidyverse', quiet = TRUE)"
+/usr/bin/time Rscript -e "source('~/Installers/R/tidyverse.R')"

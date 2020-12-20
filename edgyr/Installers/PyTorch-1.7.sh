@@ -54,7 +54,5 @@ popd
 pip list
 
 echo "Installing R rTorch package"
-Rscript -e "install.packages('rTorch', quiet = TRUE)"
-echo "Testing rTorch on mnist"
-rm -fr ./datasets
-Rscript -e "source('~/Installers/R/test-rTorch.R')"
+rm -fr $HOME/Installers/R/datasets
+/usr/bin/time Rscript -e "source('~/Installers/R/rTorch.R')"

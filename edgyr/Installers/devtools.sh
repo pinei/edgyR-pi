@@ -16,4 +16,4 @@ sudo apt-get install -qqy --no-install-recommends \
   libtiff5-dev \
   libxml2-dev
 echo "Installing devtools and pkgdown"
-Rscript -e "install.packages(c('devtools', 'pkgdown'), quiet = TRUE)"
+/usr/bin/time Rscript -e "~/Installers/R/devtools.R"

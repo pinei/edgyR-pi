@@ -37,6 +37,4 @@ pip install --extra-index-url \
 pip list
 
 echo "Installing R keras package"
-Rscript -e "install.packages('keras', quiet = TRUE)"
-echo "Testing keras on mnist"
-Rscript -e "source('~/Installers/R/test-keras.R')"
+/usr/bin/time Rscript -e "source('~/Installers/R/keras.R')"

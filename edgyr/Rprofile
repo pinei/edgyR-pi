@@ -28,12 +28,11 @@ local({
 options(bitmapType='cairo')
 grDevices::X11.options(type='cairo')
 
-# we want at least 2 GB of RAM per make job
-ram_kilobytes <- system('grep MemTotal /proc/meminfo', intern = TRUE)
-ram_kilobytes <- sub(pattern = "MemTotal:", replacement = "", ram_kilobytes)
-ram_kilobytes <- as.numeric(sub(pattern = "kB", replacement = "", ram_kilobytes))
-ram_job_limit <- ram_kilobytes %/% 2^21
-
-# set the make job limit
-Sys.setenv(MAKE = paste0("make --jobs=", min(ram_job_limit, parallel::detectCores())))
-rm("ram_kilobytes", "ram_job_limit")
+# define a RAM query function
+ram_kilobytes <- function() {
+  as.numeric(
+    sub(pattern = "kB", replacement = "", sub(pattern = "MemTotal:", replacement = "",
+      system('grep MemTotal /proc/meminfo', intern = TRUE)
+    ))
+  )
+}

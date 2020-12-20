@@ -1,3 +1,4 @@
+Sys.setenv(MAKE = "make --jobs=1")
 install.packages(c(
   "coda",
   "dagitty",

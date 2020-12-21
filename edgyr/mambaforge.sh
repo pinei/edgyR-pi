@@ -24,3 +24,6 @@ conda env remove --name r-reticulate --yes
 conda create --quiet --name r-reticulate --yes \
   pyarrow \
   python=3.6
+export PKG_CONFIG_PATH=$EDGYR_HOME/miniconda3/envs/r-reticulate/lib/pkgconfig:$PKG_CONFIG_PATH
+export R_LD_LIBRARY_PATH=$EDGYR_HOME/miniconda3/envs/r-reticulate/lib:$R_LD_LIBRARY_PATH
+/usr/bin/time Rscript -e "source('~/scripts/install-arrow.R')"

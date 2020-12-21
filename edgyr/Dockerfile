@@ -71,14 +71,12 @@ RUN chown -R edgyr:edgyr $EDGYR_HOME
 USER edgyr
 WORKDIR $EDGYR_HOME
 
-COPY --chown=edgyr:edgyr mambaforge.sh $EDGYR_SCRIPTS/
+COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
+COPY --chown=edgyr:edgyr mambaforge.sh install-arrow.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/mambaforge.sh > $EDGYR_LOGS/mambaforge.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/mambaforge.log
 
-COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
-ARG PKG_CONFIG_PATH=$EDGYR_HOME/miniconda3/envs/r-reticulate/lib/pkgconfig:$PKG_CONFIG_PATH
-ENV R_LD_LIBRARY_PATH=$EDGYR_HOME/miniconda3/envs/r-reticulate/lib:$R_LD_LIBRARY_PATH
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
 

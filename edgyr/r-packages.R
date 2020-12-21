@@ -3,12 +3,9 @@
 source("~/.Rprofile")
 update.packages(ask = FALSE, instlib = Sys.getenv("R_LIBS_USER"), quiet = TRUE)
 install.packages(c(
-  "arrow",
   "data.table",
   "devtools",
-  "reticulate",
   "knitr",
-  "learnr",
   "miniUI",
   "OpenCL",
   "pkgdown",
@@ -97,19 +94,6 @@ for (device_type in c("cpu", "gpu")) {
   }
 }
 cat("\n\n")
-
-# test arrow
-cat("\ntesting arrow\n")
-library(arrow)
-library(reticulate)
-use_condaenv("r-reticulate")
-pa <- import("pyarrow")
-a <- pa$array(c(1, 2, 3))
-print(a)
-print(a[a > 1])
-b <- Array$create(c(5, 6, 7, 8, 9))
-a_and_b <- pa$concat_arrays(list(a, b))
-print(a_and_b)
 
 # install TinyTeX
 tinytex::install_tinytex()

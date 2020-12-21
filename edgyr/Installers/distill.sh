@@ -2,7 +2,6 @@
 
 echo "Installing distill Linux dependencies"
 sudo apt-get update
-sudo apt-get upgrade -y
 sudo apt-get install -qqy --no-install-recommends \
   libpng-dev \
   libssl-dev \

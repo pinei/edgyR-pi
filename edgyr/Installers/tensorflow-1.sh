@@ -2,7 +2,6 @@
 
 echo "Installing TensorFlow Linux dependencies"
 sudo apt-get update
-sudo apt-get upgrade -y
 sudo apt-get install -qqy --no-install-recommends \
   gfortran \
   hdf5-tools \
@@ -32,7 +31,7 @@ pip install -U \
   protobuf \
   pybind11
 echo "Installing tensorflow 1"
-pip install --extra-index-url \
+/usr/bin/time pip install --extra-index-url \
   https://developer.download.nvidia.com/compute/redist/jp/v44 'tensorflow<2.0'
 pip list
 

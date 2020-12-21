@@ -1,6 +1,6 @@
 Sys.setenv(MAKE = "make --jobs=4")
 install.packages(c(
   "devtools",
-  "miniUi",
+  "miniUI",
   "pkgdown"
 ), quiet = TRUE)

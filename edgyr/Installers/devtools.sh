@@ -2,7 +2,6 @@
 
 echo "Installing devtools and pkgdown Linux dependencies"
 sudo apt-get update
-sudo apt-get upgrade -y
 sudo apt-get install -qqy --no-install-recommends \
   libcurl4-openssl-dev \
   libfontconfig1-dev \
@@ -16,4 +15,4 @@ sudo apt-get install -qqy --no-install-recommends \
   libtiff5-dev \
   libxml2-dev
 echo "Installing devtools and pkgdown"
-/usr/bin/time Rscript -e "~/Installers/R/devtools.R"
+/usr/bin/time Rscript -e "source('~/Installers/R/devtools.R')"

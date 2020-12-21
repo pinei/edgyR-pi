@@ -4,7 +4,6 @@ set -e
 
 echo "Installing PyTorch Linux dependencies"
 sudo apt-get update
-sudo apt-get upgrade -y
 sudo apt-get install -qqy --no-install-recommends \
   libjpeg-dev \
   libopenblas-base \
@@ -35,7 +34,7 @@ curl -Ls \
   > torch-1.7.0-cp36-cp36m-linux_aarch64.whl
 
 echo "Installing PyTorch 1.7"
-pip install torch-1.7.0-cp36-cp36m-linux_aarch64.whl
+/usr/bin/time pip install torch-1.7.0-cp36-cp36m-linux_aarch64.whl
 
 echo "Installing torchvision"
 git clone -b v0.8.1 https://github.com/pytorch/vision.git torchvision

@@ -5,14 +5,19 @@ update.packages(ask = FALSE, instlib = Sys.getenv("R_LIBS_USER"), quiet = TRUE)
 install.packages(c(
   "arrow",
   "data.table",
+  "devtools",
   "reticulate",
   "knitr",
+  "learnr",
+  "miniUI",
   "OpenCL",
+  "pkgdown",
   "Rcpp",
   "remotes",
   "renv",
   "rmarkdown",
   "rprojroot",
+  "tidyverse",
   "tinytex",
   "V8"
 ), quiet = TRUE)

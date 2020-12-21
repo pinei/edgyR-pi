@@ -27,12 +27,12 @@ apt-get install -qqy --no-install-recommends \
   libclang-10-dev \
   libclang-cpp10-dev \
   libclc-dev\
-  libcurl4-openssl-dev \
   libfftw3-dev \
   libfontconfig1-dev \
   libfreetype6-dev \
   libfribidi-dev \
   libfuzzer-10-dev \
+  libgit2-dev \
   libharfbuzz-dev \
   libhwloc-dev \
   libicu-dev \

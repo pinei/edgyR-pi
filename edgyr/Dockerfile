@@ -36,7 +36,6 @@ COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so /usr/l
 COPY --from="edgyr/internal-jetson-pocl:latest" /etc/OpenCL/vendors/pocl.icd /etc/OpenCL/vendors/pocl.icd
 COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/bin/poclcc /usr/local/bin/poclcc
 
-
 # Linux dependencies
 COPY linux-deps.sh $SCRIPTS/
 RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \
@@ -57,6 +56,9 @@ RUN $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1 \
 
 # enable passwordless sudo
 COPY passwordless-sudo /etc/sudoers.d/
+
+# install RAM query script globally
+COPY ram_kilobytes.sh /usr/local/bin/
 
 # set up 'edgyr' account
 ENV EDGYR_HOME=/home/edgyr

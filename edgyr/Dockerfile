@@ -89,18 +89,6 @@ COPY --chown=edgyr:edgyr julia.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/julia.sh > $EDGYR_LOGS/julia.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/julia.log
 
-COPY --chown=edgyr:edgyr PyTorch-1.7.sh rTorch.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/PyTorch-1.7.sh > $EDGYR_LOGS/PyTorch-1.7.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/PyTorch-1.7.log
-
-COPY --chown=edgyr:edgyr tensorflow-1.sh keras.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/tensorflow-1.sh > $EDGYR_LOGS/tensorflow-1.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/tensorflow-1.log
-
-COPY --chown=edgyr:edgyr tensorflow-2.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/tensorflow-2.sh > $EDGYR_LOGS/tensorflow-2.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/tensorflow-2.log
-
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/
 COPY --chown=edgyr:edgyr Installers $EDGYR_HOME/Installers

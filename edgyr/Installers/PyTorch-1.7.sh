@@ -54,4 +54,4 @@ pip list
 
 echo "Installing R rTorch package"
 rm -fr $HOME/Installers/R/datasets
-/usr/bin/time Rscript -e "source('~/scripts/rTorch.R')"
+/usr/bin/time Rscript -e "source('~/Installers/R/rTorch.R')"

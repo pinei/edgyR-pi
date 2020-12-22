@@ -26,5 +26,5 @@ sudo docker run --detach \
   --runtime nvidia \
   "docker.io/edgyr/edgyr:latest"
 
-sleep 10
+sleep 5
 sudo docker logs edgyr

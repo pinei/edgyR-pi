@@ -36,4 +36,4 @@ echo "Installing tensorflow 1"
 pip list
 
 echo "Installing R keras package"
-/usr/bin/time Rscript -e "source('~/Installers/R/keras.R')"
+/usr/bin/time Rscript -e "source('~/scripts/keras.R')"

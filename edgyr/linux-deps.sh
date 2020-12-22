@@ -22,11 +22,13 @@ apt-get install -qqy --no-install-recommends \
   git \
   git-lfs \
   gnupg \
+  hdf5-tools \
+  libblas-dev \
   libbz2-dev \
   libcairo2-dev \
   libclang-10-dev \
   libclang-cpp10-dev \
-  libclc-dev\
+  libclc-dev \
   libfftw3-dev \
   libfontconfig1-dev \
   libfreetype6-dev \
@@ -34,11 +36,14 @@ apt-get install -qqy --no-install-recommends \
   libfuzzer-10-dev \
   libgit2-dev \
   libharfbuzz-dev \
+  libhdf5-dev \
+  libhdf5-serial-dev \
   libhwloc-dev \
   libicu-dev \
   libjpeg8-dev \
   libjpeg-dev \
   libjpeg-turbo8-dev \
+  liblapack-dev \
   liblld-10-dev \
   liblldb-10-dev \
   liblttng-ust-dev \
@@ -46,6 +51,8 @@ apt-get install -qqy --no-install-recommends \
   libncurses-dev \
   libnuma-dev \
   libomp-10-dev \
+  libopenblas-base \
+  libopenmpi-dev \
   libpango1.0-dev \
   libpcre2-dev \
   libpng-dev \

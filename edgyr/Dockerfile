@@ -80,6 +80,10 @@ COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
 
+COPY --chown=edgyr:edgyr bayes.R $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/bayes.R > $EDGYR_LOGS/bayes.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/bayes.log
+
 ENV JULIA_VERSION_MAJOR=1 JULIA_VERSION_MINOR=5 JULIA_VERSION_PATCH=3
 COPY --chown=edgyr:edgyr julia.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/julia.sh > $EDGYR_LOGS/julia.log 2>&1 \

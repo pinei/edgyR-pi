@@ -27,12 +27,3 @@ local({
 # Get rid of png X11 errors when headless
 options(bitmapType='cairo')
 grDevices::X11.options(type='cairo')
-
-# define a RAM query function
-ram_kilobytes <- function() {
-  as.numeric(
-    sub(pattern = "kB", replacement = "", sub(pattern = "MemTotal:", replacement = "",
-      system('grep MemTotal /proc/meminfo', intern = TRUE)
-    ))
-  )
-}

@@ -1,4 +1,4 @@
-FROM edgyr/internal-pandoc-deps:latest
+FROM edgyr/internal-cabal-3.0:latest
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive

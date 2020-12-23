@@ -6,7 +6,6 @@ grep -i -e "BogoMIPS" /proc/cpuinfo
 grep -i -e "MemTotal" /proc/meminfo
 for i in \
   internal-cabal-3.0 \
-  internal-pandoc-deps \
   internal-pandoc \
   internal-r \
   internal-rstudio-server \

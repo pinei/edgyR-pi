@@ -6,5 +6,6 @@ USER root
 WORKDIR $SOURCE_DIR
 
 # pandoc dependencies only
+COPY ram_kilobytes.sh /usr/local/bin/
 COPY pandoc-deps.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/pandoc-deps.sh > $LOGS/pandoc-deps.log 2>&1

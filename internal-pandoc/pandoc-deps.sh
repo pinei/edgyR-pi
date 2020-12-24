@@ -2,16 +2,30 @@
 
 set -e
 
+apt-get update
+apt-get install -qqy --no-install-recommends \
+  apt-file \
+  curl \
+  mlocate \
+  vim-nox \
+  wget
+
 if [ `ram_kilobytes.sh` -lt 7000000 ]
 then
-  export JOBS=1
+  export JOBS=2
 else
   export JOBS=`nproc`
 fi
 echo "JOBS = $JOBS"
 
-cd $SOURCE_DIR/pandoc-$PANDOC_VERSION
-cabal v2-install \
+cabal user-config update
+cabal v2-update
+
+cd $SOURCE_DIR
+wget -q -O - https://hackage.haskell.org/package/pandoc-$PANDOC_VERSION/pandoc-$PANDOC_VERSION.tar.gz \
+  | tar xzf -
+cd pandoc-$PANDOC_VERSION
+cabal v2-build \
   --disable-benchmarks \
   --disable-coverage \
   --disable-debug-info \
@@ -23,7 +37,5 @@ cabal v2-install \
   --disable-tests \
   --flags="embed_data_files https" \
   --ghc-options="-fllvm" \
-  --jobs=$JOBS
-
-cp --verbose --dereference $HOME/.cabal/bin/pandoc /usr/local/bin/pandoc
-ldd /usr/local/bin/pandoc
+  --jobs=$JOBS \
+  --only-dependencies

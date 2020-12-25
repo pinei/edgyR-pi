@@ -14,6 +14,7 @@ cd $SOURCE_DIR
 curl -Ls https://downloads.haskell.org/~ghc/$GHC_VERSION/ghc-$GHC_VERSION-src.tar.xz \
   | tar xJf -
 cd ghc-$GHC_VERSION
+./boot
 ./configure
 make --jobs=$JOBS
-make install
+#make install

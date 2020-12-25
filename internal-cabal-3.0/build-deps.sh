@@ -5,12 +5,14 @@ apt-get update
 apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
   apt-file \
+  autoconf \
+  automake \
+  build-essential \
   curl \
   file \
+  ghc \
   git \
   git-lfs \
-  haskell-platform \
-  haskell-stack \
   libgmp-dev \
   libnuma-dev \
   llvm-3.9-dev \

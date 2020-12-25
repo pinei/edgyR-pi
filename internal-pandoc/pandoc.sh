@@ -11,7 +11,7 @@ fi
 echo "JOBS = $JOBS"
 
 cd $SOURCE_DIR/pandoc-$PANDOC_VERSION
-cabal install \
+cabal v2-install \
   --disable-benchmarks \
   --disable-coverage \
   --disable-debug-info \

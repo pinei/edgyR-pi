@@ -11,13 +11,13 @@ fi
 echo "JOBS = $JOBS"
 
 cabal user-config update
-cabal update
+cabal v2-update
 
 cd $SOURCE_DIR
 curl -Ls https://hackage.haskell.org/package/pandoc-$PANDOC_VERSION/pandoc-$PANDOC_VERSION.tar.gz \
   | tar xzf -
 cd pandoc-$PANDOC_VERSION
-cabal build \
+cabal v2-build \
   --disable-benchmarks \
   --disable-coverage \
   --disable-debug-info \
@@ -28,5 +28,4 @@ cabal build \
   --disable-tests \
   --flags="embed_data_files https" \
   --jobs=$JOBS \
-  --only-dependencies \
-  --overwrite-policy=always
+  --only-dependencies

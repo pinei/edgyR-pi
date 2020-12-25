@@ -19,6 +19,9 @@ apt-get install -qqy --no-install-recommends \
   llvm-3.9-dev \
   llvm-3.9-runtime \
   llvm-3.9-tools \
+  llvm-6.0-dev \
+  llvm-6.0-runtime \
+  llvm-6.0-tools \
   mlocate \
   python3 \
   sudo \

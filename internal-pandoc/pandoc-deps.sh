@@ -23,7 +23,6 @@ cabal build \
   --disable-debug-info \
   --disable-documentation \
   --disable-executable-dynamic \
-  --disable-optimization \
   --disable-profiling \
   --disable-shared \
   --disable-tests \

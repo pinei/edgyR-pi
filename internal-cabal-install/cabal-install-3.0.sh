@@ -4,20 +4,17 @@ set -e
 
 if [ `ram_kilobytes.sh` -lt 7000000 ]
 then
-  export JOBS=2
+  export JOBS=3
 else
   export JOBS=`nproc`
 fi
 echo "JOBS = $JOBS"
 
+which cabal
+cabal --version
 cabal user-config update
 cabal update
-
-cd $SOURCE_DIR
-curl -Ls https://hackage.haskell.org/package/pandoc-$PANDOC_VERSION/pandoc-$PANDOC_VERSION.tar.gz \
-  | tar xzf -
-cd pandoc-$PANDOC_VERSION
-cabal build \
+/usr/bin/time cabal install \
   --disable-benchmarks \
   --disable-coverage \
   --disable-debug-info \
@@ -27,7 +24,8 @@ cabal build \
   --disable-profiling \
   --disable-shared \
   --disable-tests \
-  --flags="embed_data_files https" \
   --jobs=$JOBS \
-  --only-dependencies \
-  --overwrite-policy=always
+cabal-install
+
+cp --verbose --dereference $HOME/.cabal/bin/cabal /usr/local/bin/cabal
+ldd /usr/local/bin/cabal

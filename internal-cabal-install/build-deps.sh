@@ -8,6 +8,7 @@ apt-get install -qqy --no-install-recommends \
   autoconf \
   automake \
   build-essential \
+  cabal-install \
   curl \
   file \
   ghc \
@@ -19,12 +20,12 @@ apt-get install -qqy --no-install-recommends \
   llvm-3.9-runtime \
   llvm-3.9-tools \
   mlocate \
-  python3-sphinx \
+  python3 \
   sudo \
-  texlive-xetex \
   time \
   tree \
   unzip \
   vim-nox \
   wget \
-  zip
+  zip \
+  zlib1g-dev

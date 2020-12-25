@@ -17,4 +17,4 @@ cd ghc-$GHC_VERSION
 ./boot
 ./configure
 make --jobs=$JOBS
-#make install
+make install

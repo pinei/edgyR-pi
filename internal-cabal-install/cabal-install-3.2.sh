@@ -2,13 +2,6 @@
 
 set -e
 
-echo "Installing Linux dependencies"
-apt-get update
-apt-get upgrade -y
-apt-get install -qqy --no-install-recommends \
-  haskell-platform \
-  time
-
 if [ `ram_kilobytes.sh` -lt 7000000 ]
 then
   export JOBS=3
@@ -31,8 +24,8 @@ cabal update
   --disable-profiling \
   --disable-shared \
   --disable-tests \
-  --ghc-options="-fllvm" \
   --jobs=$JOBS \
+  --overwrite-policy=always \
 cabal-install
 
 cp --verbose --dereference $HOME/.cabal/bin/cabal /usr/local/bin/cabal

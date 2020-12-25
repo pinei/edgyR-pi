@@ -12,17 +12,29 @@ RUN mkdir --parents $LOGS $SCRIPTS
 WORKDIR $SOURCE_DIR
 
 # get R, Pandoc and RStudio Server
-COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/bin /usr/local/bin
-COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/R /usr/local/lib/R
-COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
-COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/libRmath.so /usr/local/lib/libRmath.so
-COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/libRmath.a /usr/local/lib/libRmath.a
-COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/lib/rstudio-server /usr/local/lib/rstudio-server
-COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/include /usr/local/include
-COPY --from="edgyr/internal-rstudio-server:latest" /usr/local/share/man /usr/local/share/man
+COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/bin /usr/local/bin
+COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/lib/R /usr/local/lib/R
+COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
+COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/lib/libRmath.so /usr/local/lib/libRmath.so
+COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/lib/libRmath.a /usr/local/lib/libRmath.a
+COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/lib/rstudio-server /usr/local/lib/rstudio-server
+COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/include /usr/local/include
+COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/share/man /usr/local/share/man
 
 # libnode-dev / dependencies packages
 COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/src/packages /usr/local/src/packages
+
+# POCL with CUDA backend
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/share/pocl /usr/local/share/pocl
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/etc/OpenCL/vendors/pocl.icd /usr/local/etc/OpenCL/vendors/pocl.icd
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pkgconfig/pocl.pc /usr/local/lib/pkgconfig/pocl.pc
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/include/CL /usr/local/include/CL
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pocl /usr/local/lib/pocl
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2.6.0 /usr/local/lib/libpocl.so.2.6.0
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2 /usr/local/lib/libpocl.so.2
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so /usr/local/lib/libpocl.so
+COPY --from="edgyr/internal-jetson-pocl:latest" /etc/OpenCL/vendors/pocl.icd /etc/OpenCL/vendors/pocl.icd
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/bin/poclcc /usr/local/bin/poclcc
 
 # Linux dependencies
 COPY linux-deps.sh $SCRIPTS/
@@ -31,11 +43,11 @@ RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \
 
 # configure R and RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started
-COPY configure-r-rstudio.sh $SCRIPTS/
-COPY R.conf /etc/ld.so.conf.d/
+COPY configure-r-rstudio-pocl.sh $SCRIPTS/
+COPY R.conf pocl.conf /etc/ld.so.conf.d/
 COPY rserver.conf /etc/rstudio/
-RUN $SCRIPTS/configure-r-rstudio.sh > $LOGS/configure-r-rstudio.log 2>&1 \
-  && gzip -9 $LOGS/configure-r-rstudio.log
+RUN $SCRIPTS/configure-r-rstudio-pocl.sh > $LOGS/configure-r-rstudio-pocl.log 2>&1 \
+  && gzip -9 $LOGS/configure-r-rstudio-pocl.log
 
 # Create the default user
 COPY edgyr-user.sh $SCRIPTS/
@@ -44,6 +56,9 @@ RUN $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1 \
 
 # enable passwordless sudo
 COPY passwordless-sudo /etc/sudoers.d/
+
+# install RAM query script globally
+COPY ram_kilobytes.sh /usr/local/bin/
 
 # set up 'edgyr' account
 ENV EDGYR_HOME=/home/edgyr
@@ -59,13 +74,17 @@ USER edgyr
 WORKDIR $EDGYR_HOME
 
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
+COPY --chown=edgyr:edgyr mambaforge.sh install-arrow.R $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/mambaforge.sh > $EDGYR_LOGS/mambaforge.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/mambaforge.log
+
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
 
-COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/miniforge.log
+COPY --chown=edgyr:edgyr bayes.R $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/bayes.R > $EDGYR_LOGS/bayes.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/bayes.log
 
 ENV JULIA_VERSION_MAJOR=1 JULIA_VERSION_MINOR=5 JULIA_VERSION_PATCH=3
 COPY --chown=edgyr:edgyr julia.sh $EDGYR_SCRIPTS/

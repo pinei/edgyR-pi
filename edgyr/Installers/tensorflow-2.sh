@@ -2,7 +2,6 @@
 
 echo "Installing TensorFlow Linux dependencies"
 sudo apt-get update
-sudo apt-get upgrade -y
 sudo apt-get install -qqy --no-install-recommends \
   gfortran \
   hdf5-tools \
@@ -32,11 +31,9 @@ pip install -U \
   protobuf \
   pybind11
 echo "Installing tensorflow 2"
-pip install --extra-index-url \
+/usr/bin/time pip install --extra-index-url \
   https://developer.download.nvidia.com/compute/redist/jp/v44 tensorflow
 pip list
 
 echo "Installing R keras package"
-Rscript -e "install.packages('keras', quiet = TRUE)"
-echo "Testing keras on mnist"
-Rscript -e "source('~/Installers/R/test-keras.R')"
+/usr/bin/time Rscript -e "source('~/Installers/R/keras.R')"

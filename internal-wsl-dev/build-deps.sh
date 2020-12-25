@@ -7,44 +7,39 @@ apt-get install -qqy --no-install-recommends \
   apt-file \
   build-essential \
   ca-certificates \
-  clang-10 \
-  clang-format-10 \
-  clang-tidy-10 \
-  clang-tools-10 \
   clinfo \
   cmake \
   curl \
   default-jdk-headless \
   file \
   flac \
-  gdb \
   gfortran \
   git \
   git-lfs \
   gnupg \
+  libarrayfire-opencl-dev \
   libbz2-dev \
   libcairo2-dev \
-  libclang-10-dev \
-  libclang-cpp10-dev \
+  libclc-dev \
   libcurl4-openssl-dev \
   libfftw3-dev \
   libfontconfig1-dev \
   libfreetype6-dev \
   libfribidi-dev \
-  libfuzzer-10-dev \
   libharfbuzz-dev \
-  libhwloc-dev \
   libicu-dev \
+  libigc-dev \
+  libigdfcl-dev \
   libjpeg-dev \
   libjpeg-turbo8-dev \
   libjpeg8-dev \
   liblld-10-dev \
   liblldb-10-dev \
-  liblttng-ust-dev \
   liblzma-dev \
   libncurses-dev \
   libnuma-dev \
-  libomp-10-dev \
+  libopencl-clang-dev \
+  libopentk-cil-dev \
   libpango1.0-dev \
   libpcre2-dev \
   libpng-dev \
@@ -57,16 +52,12 @@ apt-get install -qqy --no-install-recommends \
   libssl-dev \
   libtiff5-dev \
   libudunits2-dev \
+  libviennacl-dev \
   libxml2-dev \
-  lld-10 \
-  lldb-10 \
-  llvm-10 \
-  llvm-10-dev \
-  llvm-10-runtime \
-  llvm-10-tools \
   lsof \
   mlocate \
   ninja-build \
+  nvidia-opencl-dev \
   ocl-icd-dev \
   ocl-icd-libopencl1 \
   ocl-icd-opencl-dev \
@@ -110,3 +101,21 @@ rm -f ./rstudio-server*.deb
 wget -q $RSTUDIO_PACKAGE
 apt-get install -qqy --no-install-recommends ./rstudio-server*.deb
 popd
+
+echo "installing Intel GPU OpenCL"
+# https://dgpu-docs.intel.com/installation-guides/ubuntu/ubuntu-focal.html
+wget -qO - https://repositories.intel.com/graphics/intel-graphics.key \
+  | apt-key add -
+apt-add-repository \
+  'deb [arch=amd64] https://repositories.intel.com/graphics/ubuntu focal main'
+apt-get update
+apt-get install -qqy --no-install-recommends \
+  intel-opencl-icd \
+  intel-level-zero-gpu level-zero \
+  intel-media-va-driver-non-free libmfx1
+  libigc-dev \
+  libigdfcl-dev \
+  libigfxcmrt-dev \
+  intel-igc-opencl-devel \
+  level-zero-devel level-zero-dev
+clinfo

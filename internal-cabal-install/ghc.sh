@@ -18,3 +18,6 @@ cd ghc-$GHC_VERSION
 ./configure
 make --jobs=$JOBS
 make install
+cd ..
+
+rm -fr ghc-$GHC_VERSION

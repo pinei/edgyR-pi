@@ -16,12 +16,9 @@ apt-get install -qqy --no-install-recommends \
   git-lfs \
   libgmp-dev \
   libnuma-dev \
-  llvm-3.9-dev \
-  llvm-3.9-runtime \
-  llvm-3.9-tools \
-  llvm-6.0-dev \
-  llvm-6.0-runtime \
-  llvm-6.0-tools \
+  llvm-5.0-dev \
+  llvm-5.0-runtime \
+  llvm-5.0-tools \
   mlocate \
   python3 \
   sudo \
@@ -32,3 +29,4 @@ apt-get install -qqy --no-install-recommends \
   wget \
   zip \
   zlib1g-dev
+apt-get clean

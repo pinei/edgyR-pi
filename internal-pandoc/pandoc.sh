@@ -33,5 +33,5 @@ cabal v2-install \
 cp --verbose --dereference $HOME/.cabal/bin/pandoc /usr/local/bin/pandoc
 ldd /usr/local/bin/pandoc
 
-cd ..
-rm -fr pandoc-$PANDOC_VERSION
+cd $SOURCE_DIR
+zip -rmyq pandoc-$PANDOC_VERSION.zip pandoc-$PANDOC_VERSION

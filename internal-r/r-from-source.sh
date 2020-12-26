@@ -2,7 +2,6 @@
 
 echo "Installing build dependencies"
 apt-get update
-apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
   apt-file \
   build-essential \
@@ -40,6 +39,7 @@ apt-get install -qqy --no-install-recommends \
   wget \
   zip \
   zlib1g-dev
+apt-get clean
 update-alternatives --set editor /usr/bin/vim.nox
 
 echo "Creating / entering source directory"
@@ -74,3 +74,7 @@ pushd build-dir
   echo "Installing"
   make install
 popd
+
+cd $SOURCE_DIR
+zip -rmyq $R_LATEST.zip $R_LATEST
+rm -fr build_dir

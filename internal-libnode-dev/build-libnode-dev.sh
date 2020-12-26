@@ -8,6 +8,7 @@ apt-get update
 if [ `uname -m` = "x86_64" ]
 then
   apt-get install -qqy --no-install-recommends libnode-dev
+  apt-get clean
 else
 
   # enable source repositories
@@ -29,6 +30,7 @@ else
     apt-get install -qqy --no-install-recommends ./*.deb >> $LOGS/$package.log 2>&1
     cp ./*.deb $PACKAGES/
     popd
+    zip -rmyq $package.zip $package
   done
 
 fi

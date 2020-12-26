@@ -4,13 +4,13 @@ set -e
 
 echo "Installing build dependencies"
 apt-get update
-apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
   ant \
   cmake \
   libpam-dev \
   libssl-dev \
   uuid-dev
+apt-get clean
 
 if [ `uname -m` = "x86_64" ]
 then
@@ -107,3 +107,7 @@ echo " -- starting Java builds"
 echo " -- RAM_KILOBYTES = $RAM_KILOBYTES; 'make' will use $JOBS jobs."
 
 make --jobs=$JOBS install
+
+cd $SOURCE_DIR
+rm -fr rstudio/build
+zip -rmqy rstudio.zip rstudio

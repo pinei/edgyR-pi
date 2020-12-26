@@ -18,6 +18,6 @@ cd ghc-$GHC_VERSION
 ./configure
 make --jobs=$JOBS
 make install
-cd ..
 
-rm -fr ghc-$GHC_VERSION
+cd $SOURCE_DIR
+zip -rmyq ghc-$GHC_VERSION.zip ghc-$GHC_VERSION

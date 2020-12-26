@@ -16,9 +16,9 @@ apt-get install -qqy --no-install-recommends \
   git-lfs \
   libgmp-dev \
   libnuma-dev \
-  llvm-5.0-dev \
-  llvm-5.0-runtime \
-  llvm-5.0-tools \
+  llvm-3.9-dev \
+  llvm-3.9-runtime \
+  llvm-3.9-tools \
   mlocate \
   python3 \
   sudo \

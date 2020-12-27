@@ -10,14 +10,11 @@ else
 fi
 echo "JOBS = $JOBS"
 
-cabal user-config update
-cabal v2-update
+$HOME/.cabal/bin/cabal --version
+$HOME/.cabal/bin/cabal user-config update
+$HOME/.cabal/bin/cabal v2-update
 
-cd $SOURCE_DIR
-curl -Ls https://hackage.haskell.org/package/pandoc-$PANDOC_VERSION/pandoc-$PANDOC_VERSION.tar.gz \
-  | tar xzf -
-cd pandoc-$PANDOC_VERSION
-cabal v2-install \
+$HOME/.cabal/bin/cabal v2-install \
   --disable-benchmarks \
   --disable-coverage \
   --disable-debug-info \
@@ -27,11 +24,10 @@ cabal v2-install \
   --disable-shared \
   --disable-tests \
   --flags="embed_data_files https" \
+  --ghc-options="-fllvm" \
   --jobs=$JOBS \
-  --overwrite-policy=always
+  --overwrite-policy=always \
+pandoc
 
 cp --verbose --dereference $HOME/.cabal/bin/pandoc /usr/local/bin/pandoc
 ldd /usr/local/bin/pandoc
-
-cd $SOURCE_DIR
-zip -rmyq pandoc-$PANDOC_VERSION.zip pandoc-$PANDOC_VERSION

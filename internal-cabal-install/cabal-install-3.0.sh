@@ -23,8 +23,6 @@ cabal install \
   --disable-profiling \
   --disable-shared \
   --disable-tests \
+  --ghc-options="-fllvm" \
   --jobs=$JOBS \
 cabal-install
-
-cp --verbose --dereference $HOME/.cabal/bin/cabal /usr/local/bin/cabal
-ldd /usr/local/bin/cabal

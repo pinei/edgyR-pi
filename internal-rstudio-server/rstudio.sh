@@ -110,4 +110,4 @@ make --jobs=$JOBS install
 
 cd $SOURCE_DIR
 rm -fr rstudio/build
-zip -rmqy rstudio.zip rstudio
+zip -9rmqy rstudio.zip rstudio

@@ -3,7 +3,6 @@
 echo "Installing build dependencies"
 apt-get update
 apt-get install -qqy --no-install-recommends \
-  apt-file \
   build-essential \
   ca-certificates \
   curl \
@@ -14,7 +13,7 @@ apt-get install -qqy --no-install-recommends \
   gnupg \
   libbz2-dev \
   libcairo2-dev \
-  libcurl4-openssl-dev \
+  libgit2-dev \
   libicu-dev \
   libjpeg-turbo8-dev \
   libjpeg8-dev \
@@ -24,8 +23,6 @@ apt-get install -qqy --no-install-recommends \
   libpcre2-dev \
   libreadline-dev \
   libtiff5-dev \
-  lsof \
-  mlocate \
   openjdk-8-jdk \
   pkg-config \
   software-properties-common \
@@ -33,9 +30,7 @@ apt-get install -qqy --no-install-recommends \
   texinfo \
   time \
   tk-dev \
-  tree \
   unzip \
-  vim-nox \
   wget \
   zip \
   zlib1g-dev
@@ -76,5 +71,5 @@ pushd build-dir
 popd
 
 cd $SOURCE_DIR
-zip -rmyq $R_LATEST.zip $R_LATEST
+zip -9rmyq $R_LATEST.zip $R_LATEST
 rm -fr build_dir

@@ -3,24 +3,15 @@
 set -e
 
 pushd pocl
-mkdir --parents build; cd build
+rm -fr build; mkdir --parents build; cd build
 
 # LLVM 10 doesn't recognize a Xavier so we use "generic"
-if [ `grep -e "atomics fphp asimdhp" /proc/cpuinfo | wc -l` -gt "0" ]
-then
-  cmake \
-    -G Ninja \
-    -DLLC_HOST_CPU=generic \
-    -DENABLE_CUDA=ON \
-    -DINSTALL_OPENCL_HEADERS=1 \
-  ..
-else
-  cmake \
-    -G Ninja \
-    -DENABLE_CUDA=ON \
-    -DINSTALL_OPENCL_HEADERS=1 \
-  ..
-fi
+cmake \
+  -G Ninja \
+  -DLLC_HOST_CPU=generic \
+  -DENABLE_CUDA=ON \
+  -DINSTALL_OPENCL_HEADERS=1 \
+..
 
 ninja
 ninja install

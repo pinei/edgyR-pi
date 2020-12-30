@@ -28,3 +28,8 @@ RUN $SCRIPTS/OpenCL-R-test.R > $LOGS/OpenCL-R-test.log 2>&1
 # run 'pocl' CUDA tests
 COPY test-cuda.sh $SCRIPTS/
 RUN $SCRIPTS/test-cuda.sh 2>&1 | tee $LOGS/test-cuda.log
+
+# CSound
+ENV CSOUND_VERSION=6.15.0
+COPY csound.sh $SCRIPTS/
+RUN $SCRIPTS/csound.sh > $LOGS/csound.log 2>&1

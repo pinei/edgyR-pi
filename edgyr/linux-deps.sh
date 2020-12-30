@@ -1,10 +1,13 @@
 #! /bin/bash
 
+set -e
+
 echo "Installing Linux dependencies"
 apt-get update
 apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
   apt-file \
+  bison \
   build-essential \
   ca-certificates \
   clang-10 \
@@ -13,20 +16,28 @@ apt-get install -qqy --no-install-recommends \
   clang-tools-10 \
   clinfo \
   cmake \
+  csound \
+  csound-doc \
+  csound-utils \
   curl \
   default-jdk-headless \
   file \
   flac \
+  flex \
   gdb \
   gfortran \
   git \
   git-lfs \
   gnupg \
+  libasound2-dev \
   libbz2-dev \
   libcairo2-dev \
   libclang-10-dev \
   libclang-cpp10-dev \
   libclc-dev\
+  libcsnd-dev \
+  libcsound64-dev \
+  libcsound64-doc \
   libfftw3-dev \
   libfontconfig1-dev \
   libfreetype6-dev \
@@ -41,14 +52,18 @@ apt-get install -qqy --no-install-recommends \
   libjpeg-turbo8-dev \
   liblld-10-dev \
   liblldb-10-dev \
+  liblo-dev \
   liblttng-ust-dev \
   liblzma-dev \
   libncurses-dev \
   libnuma-dev \
   libomp-10-dev \
+  libopenblas-dev \
+  libopenmpi-dev \
   libpango1.0-dev \
   libpcre2-dev \
   libpng-dev \
+  libpulse-dev \
   libreadline-dev \
   libsndfile-dev \
   libsodium-dev \
@@ -56,6 +71,7 @@ apt-get install -qqy --no-install-recommends \
   libsox-fmt-all \
   libssh2-1-dev \
   libssl-dev \
+  libstk0-dev \
   libtiff5-dev \
   libudunits2-dev \
   libxml2-dev \
@@ -87,6 +103,7 @@ apt-get install -qqy --no-install-recommends \
   python-virtualenv \
   software-properties-common \
   sox \
+  stk \
   sudo \
   texinfo \
   time \

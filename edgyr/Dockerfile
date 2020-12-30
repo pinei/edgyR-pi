@@ -49,6 +49,12 @@ COPY rserver.conf /etc/rstudio/
 RUN $SCRIPTS/configure-r-rstudio-pocl.sh > $LOGS/configure-r-rstudio-pocl.log 2>&1 \
   && gzip -9 $LOGS/configure-r-rstudio-pocl.log
 
+# ChucK
+COPY chuck.sh $SCRIPTS/
+ENV CHUCK_VERSION="1.4.0.1"
+RUN $SCRIPTS/chuck.sh > $LOGS/chuck.log 2>&1 \
+  && gzip -9 $LOGS/chuck.log
+
 # Create the default user
 COPY edgyr-user.sh $SCRIPTS/
 RUN $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1 \
@@ -77,6 +83,10 @@ COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr mambaforge.sh install-arrow.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/mambaforge.sh > $EDGYR_LOGS/mambaforge.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/mambaforge.log
+
+COPY --chown=edgyr:edgyr PyTorch-1.7.sh $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/PyTorch-1.7.sh > $EDGYR_LOGS/PyTorch-1.7.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/PyTorch-1.7.log
 
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \

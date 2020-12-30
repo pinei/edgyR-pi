@@ -2,19 +2,6 @@
 
 set -e
 
-echo "Installing PyTorch Linux dependencies"
-sudo apt-get update
-sudo apt-get install -qqy --no-install-recommends \
-  libjpeg-dev \
-  libopenblas-base \
-  libopenmpi-dev \
-  libpng-dev \
-  libsox-dev \
-  libsox-fmt-all \
-  ninja-build \
-  sox \
-  zlib1g-dev
-  
 echo "Creating fresh pytorch1.7 virtualenv"
 export WORKON_HOME=$HOME/.virtualenvs
 export PYTORCH_VENV=$WORKON_HOME/pytorch1.7
@@ -51,7 +38,3 @@ cd ..
 popd
 
 pip list
-
-echo "Installing R rTorch package"
-rm -fr $HOME/Installers/R/datasets
-/usr/bin/time Rscript -e "source('~/Installers/R/rTorch.R')"

@@ -4,20 +4,30 @@ source("~/.Rprofile")
 Sys.setenv(MAKE = "make --jobs=4")
 update.packages(ask = FALSE, instlib = Sys.getenv("R_LIBS_USER"), quiet = TRUE)
 install.packages(c(
+  "audio",
   "data.table",
   "devtools",
   "knitr",
   "miniUI",
+  "monitoR",
   "OpenCL",
+  "phonTools",
   "pkgdown",
   "Rcpp",
   "remotes",
   "renv",
   "rmarkdown",
   "rprojroot",
+  "rTorch",
+  "seewave",
+  "signal",
+  "soundecology",
+  "soundgen",
   "tidyverse",
   "tinytex",
-  "V8"
+  "tuneR",
+  "V8",
+  "warbleR"
 ), quiet = TRUE)
 
 # test V8

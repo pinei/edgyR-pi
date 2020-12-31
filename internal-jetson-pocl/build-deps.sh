@@ -27,6 +27,8 @@ apt-get install -qqy --no-install-recommends \
   libfluidsynth-dev \
   libfuzzer-10-dev \
   libgmm++-dev \
+  libhdf5-dev \
+  libhdf5-serial-dev \
   libhwloc-dev \
   liblld-10-dev \
   liblldb-10-dev \

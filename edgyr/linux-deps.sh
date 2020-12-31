@@ -7,7 +7,6 @@ apt-get update
 apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
   apt-file \
-  bison \
   build-essential \
   ca-certificates \
   clang-10 \
@@ -16,35 +15,35 @@ apt-get install -qqy --no-install-recommends \
   clang-tools-10 \
   clinfo \
   cmake \
-  csound \
-  csound-doc \
-  csound-utils \
   curl \
   default-jdk-headless \
   file \
   flac \
-  flex \
   gdb \
   gfortran \
   git \
   git-lfs \
   gnupg \
+  ladspa-sdk \
   libasound2-dev \
   libbz2-dev \
   libcairo2-dev \
   libclang-10-dev \
   libclang-cpp10-dev \
   libclc-dev\
-  libcsnd-dev \
-  libcsound64-dev \
-  libcsound64-doc \
+  libcurl4-gnutls-dev \
+  libeigen3-dev \
   libfftw3-dev \
+  libfluidsynth-dev \
   libfontconfig1-dev \
   libfreetype6-dev \
   libfribidi-dev \
   libfuzzer-10-dev \
   libgit2-dev \
+  libgmm++-dev \
   libharfbuzz-dev \
+  libhdf5-dev \
+  libhdf5-serial-dev \
   libhwloc-dev \
   libicu-dev \
   libjpeg8-dev \
@@ -55,6 +54,7 @@ apt-get install -qqy --no-install-recommends \
   liblo-dev \
   liblttng-ust-dev \
   liblzma-dev \
+  libmp3lame-dev \
   libncurses-dev \
   libnuma-dev \
   libomp-10-dev \
@@ -65,6 +65,7 @@ apt-get install -qqy --no-install-recommends \
   libpng-dev \
   libpulse-dev \
   libreadline-dev \
+  libsamplerate0-dev \
   libsndfile-dev \
   libsodium-dev \
   libsox-dev \
@@ -74,6 +75,7 @@ apt-get install -qqy --no-install-recommends \
   libstk0-dev \
   libtiff5-dev \
   libudunits2-dev \
+  libwebsockets-dev \
   libxml2-dev \
   libxmu-dev \
   lld-10 \

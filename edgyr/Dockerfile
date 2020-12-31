@@ -24,17 +24,27 @@ COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/share/man /usr/local/
 # libnode-dev / dependencies packages
 COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/src/packages /usr/local/src/packages
 
-# POCL with CUDA backend
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/share/pocl /usr/local/share/pocl
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/etc/OpenCL/vendors/pocl.icd /usr/local/etc/OpenCL/vendors/pocl.icd
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pkgconfig/pocl.pc /usr/local/lib/pkgconfig/pocl.pc
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/include/CL /usr/local/include/CL
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pocl /usr/local/lib/pocl
+# POCL with CUDA backend and CSound with CUDA opcodes
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/bin /usr/local/bin
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/etc /usr/local/etc
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/include /usr/local/include
+
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libcsnd6.so /usr/local/lib/libcsnd6.so
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libcsnd6.so.6.0 /usr/local/lib/libcsnd6.so.6.0
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libcsound64.a /usr/local/lib/libcsound64.a
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libcsound64.so /usr/local/lib/libcsound64.so
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libcsound64.so.6.0 /usr/local/lib/libcsound64.so.6.0
 COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2.7.0 /usr/local/lib/libpocl.so.2.7.0
 COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2 /usr/local/lib/libpocl.so.2
 COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so /usr/local/lib/libpocl.so
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/csound /usr/local/lib/csound
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pocl /usr/local/lib/pocl
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/python2.7 /usr/local/lib/python2.7
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/python3.6 /usr/local/lib/python3.6
+
+COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/share /usr/local/share
 COPY --from="edgyr/internal-jetson-pocl:latest" /etc/OpenCL/vendors/pocl.icd /etc/OpenCL/vendors/pocl.icd
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/bin/poclcc /usr/local/bin/poclcc
 
 # Linux dependencies
 COPY linux-deps.sh $SCRIPTS/
@@ -48,12 +58,6 @@ COPY R.conf pocl.conf /etc/ld.so.conf.d/
 COPY rserver.conf /etc/rstudio/
 RUN $SCRIPTS/configure-r-rstudio-pocl.sh > $LOGS/configure-r-rstudio-pocl.log 2>&1 \
   && gzip -9 $LOGS/configure-r-rstudio-pocl.log
-
-# ChucK
-COPY chuck.sh $SCRIPTS/
-ENV CHUCK_VERSION="1.4.0.1"
-RUN $SCRIPTS/chuck.sh > $LOGS/chuck.log 2>&1 \
-  && gzip -9 $LOGS/chuck.log
 
 # Create the default user
 COPY edgyr-user.sh $SCRIPTS/
@@ -80,9 +84,9 @@ USER edgyr
 WORKDIR $EDGYR_HOME
 
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
-COPY --chown=edgyr:edgyr mambaforge.sh install-arrow.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/mambaforge.sh > $EDGYR_LOGS/mambaforge.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/mambaforge.log
+COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1 \
+  && gzip -9 $EDGYR_LOGS/miniforge.log
 
 COPY --chown=edgyr:edgyr PyTorch-1.7.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/PyTorch-1.7.sh > $EDGYR_LOGS/PyTorch-1.7.log 2>&1 \
@@ -91,10 +95,6 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/PyTorch-1.7.sh > $EDGYR_LOGS/PyTorch-1.7.log 2>
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
-
-COPY --chown=edgyr:edgyr bayes.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/bayes.R > $EDGYR_LOGS/bayes.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/bayes.log
 
 ENV JULIA_VERSION_MAJOR=1 JULIA_VERSION_MINOR=5 JULIA_VERSION_PATCH=3
 COPY --chown=edgyr:edgyr julia.sh $EDGYR_SCRIPTS/

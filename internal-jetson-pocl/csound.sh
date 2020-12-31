@@ -16,3 +16,6 @@ cmake \
   ..
 make --jobs=`nproc`
 make install
+
+mkdir --parents /usr/local/share/csound
+mv /usr/local/share/samples /usr/local/share/csound/samples

@@ -33,3 +33,8 @@ RUN $SCRIPTS/test-cuda.sh 2>&1 | tee $LOGS/test-cuda.log
 ENV CSOUND_VERSION=6.15.0
 COPY csound.sh $SCRIPTS/
 RUN $SCRIPTS/csound.sh > $LOGS/csound.log 2>&1
+
+# ChucK
+ENV CHUCK_VERSION=1.4.0.1
+COPY chuck.sh $SCRIPTS/
+RUN $SCRIPTS/chuck.sh > $LOGS/chuck.log 2>&1

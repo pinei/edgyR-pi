@@ -1,3 +1,6 @@
 export PROJECT_HOME=$HOME/Projects
 export WORKON_HOME=$HOME/.virtualenvs
 export PATH=$PATH:$HOME/miniconda3/condabin
+
+# https://stackoverflow.com/questions/61065541/importerror-usr-lib-aarch64-linux-gnu-libgomp-so-1-cannot-allocate-memory-in
+export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1:$LD_PRELOAD

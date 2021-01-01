@@ -19,7 +19,16 @@ source $HOME/miniconda3/etc/profile.d/conda.sh
 conda init bash
 conda config --set auto_activate_base false
 
-echo "Creating fresh 'r-reticulate' environment with Python 3.6"
-conda env remove --name r-reticulate --yes
-conda create --quiet --name r-reticulate --yes \
-  python=3.6
+echo "Creating fresh 'r-reticulate' environment with JupyterLab and cuSignal dependencies"
+/usr/bin/time conda env create --quiet --force --file $EDGYR_SCRIPTS/cusignal_jetson_base.yml
+conda activate r-reticulate
+/usr/bin/time pip install --verbose 'cupy>=8.0.0'
+
+echo "Installing 'cusignal'"
+cd $CONDA_PREFIX
+mkdir src; cd src
+export CUSIGNAL_HOME=$(pwd)/cusignal
+git clone https://github.com/rapidsai/cusignal.git $CUSIGNAL_HOME
+cd $CUSIGNAL_HOME
+./build.sh --allgpuarch
+cp -rp $CUSIGNAL_HOME/notebooks $HOME/cusignal-notebooks

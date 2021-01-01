@@ -17,6 +17,7 @@ apt-get install -qqy --no-install-recommends \
   cmake \
   curl \
   default-jdk-headless \
+  ffmpeg \
   file \
   flac \
   gdb \
@@ -24,8 +25,21 @@ apt-get install -qqy --no-install-recommends \
   git \
   git-lfs \
   gnupg \
+  gstreamer1.0-alsa \
+  gstreamer1.0-libav \
+  gstreamer1.0-plugins-base \
+  gstreamer1.0-plugins-good \
+  gstreamer1.0-plugins-bad \
+  gstreamer1.0-plugins-ugly \
+  gstreamer1.0-tools \
   ladspa-sdk \
   libasound2-dev \
+  libavcodec-dev \
+  libavdevice-dev \
+  libavfilter-dev \
+  libavformat-dev \
+  libavresample-dev \
+  libavutil-dev \
   libbz2-dev \
   libcairo2-dev \
   libclang-10-dev \
@@ -33,6 +47,7 @@ apt-get install -qqy --no-install-recommends \
   libclc-dev\
   libcurl4-gnutls-dev \
   libeigen3-dev \
+  libffmpegthumbnailer-dev \
   libfftw3-dev \
   libfluidsynth-dev \
   libfontconfig1-dev \
@@ -41,6 +56,10 @@ apt-get install -qqy --no-install-recommends \
   libfuzzer-10-dev \
   libgit2-dev \
   libgmm++-dev \
+  libgstreamer1.0-dev \
+  libgstreamer-plugins-bad1.0-dev \
+  libgstreamer-plugins-base1.0-dev \
+  libgstreamer-plugins-good1.0-dev \
   libharfbuzz-dev \
   libhdf5-dev \
   libhdf5-serial-dev \
@@ -63,9 +82,11 @@ apt-get install -qqy --no-install-recommends \
   libpango1.0-dev \
   libpcre2-dev \
   libpng-dev \
+  libpostproc-dev \
   libpulse-dev \
   libreadline-dev \
   libsamplerate0-dev \
+  libsdl-kitchensink-dev \
   libsndfile-dev \
   libsodium-dev \
   libsox-dev \
@@ -73,6 +94,8 @@ apt-get install -qqy --no-install-recommends \
   libssh2-1-dev \
   libssl-dev \
   libstk0-dev \
+  libswresample-dev \
+  libswscale-dev \
   libtiff5-dev \
   libudunits2-dev \
   libwebsockets-dev \

@@ -22,7 +22,7 @@ conda config --set auto_activate_base false
 echo "Creating fresh 'r-reticulate' environment with JupyterLab and cuSignal dependencies"
 /usr/bin/time conda env create --quiet --force --file $EDGYR_SCRIPTS/cusignal_jetson_base.yml
 conda activate r-reticulate
-/usr/bin/time pip install --verbose 'cupy>=8.0.0'
+/usr/bin/time pip install 'cupy>=8.0.0'
 
 echo "Installing 'cusignal'"
 cd $CONDA_PREFIX

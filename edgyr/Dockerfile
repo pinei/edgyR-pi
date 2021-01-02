@@ -1,4 +1,4 @@
-FROM "nvcr.io/nvidia/l4t-base:r32.4.4"
+FROM "nvcr.io/nvidia/l4t-pytorch:r32.4.4-pth1.6-py3"
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -87,10 +87,6 @@ COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr miniforge.sh cusignal_jetson_base.yml $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/miniforge.log
-
-COPY --chown=edgyr:edgyr PyTorch-1.7.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/PyTorch-1.7.sh > $EDGYR_LOGS/PyTorch-1.7.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/PyTorch-1.7.log
 
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \

@@ -2,6 +2,8 @@
 
 set -e
 
+echo "Adding 'ffmpeg-4' PPA"
+add-apt-repository ppa:jonathonf/ffmpeg-4
 echo "Installing Linux dependencies"
 apt-get update
 apt-get upgrade -y

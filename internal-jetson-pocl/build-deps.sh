@@ -2,7 +2,7 @@
 
 set -e
 
-echo "Installing build dependencies"
+echo "Installing Linux dependencies"
 apt-get update
 apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
@@ -27,9 +27,9 @@ apt-get install -qqy --no-install-recommends \
   gnupg \
   gstreamer1.0-alsa \
   gstreamer1.0-libav \
-  gstreamer1.0-plugins-bad \
   gstreamer1.0-plugins-base \
   gstreamer1.0-plugins-good \
+  gstreamer1.0-plugins-bad \
   gstreamer1.0-plugins-ugly \
   gstreamer1.0-tools \
   ladspa-sdk \
@@ -141,3 +141,12 @@ apt-get install -qqy --no-install-recommends \
   wget \
   zip \
   zlib1g-dev
+update-alternatives --set editor /usr/bin/vim.nox
+
+echo "Adding 'ffmpeg-4' PPA"
+add-apt-repository ppa:jonathonf/ffmpeg-4
+echo "Updating to 'ffmpeg-4'"
+apt-get update
+apt-get -qqy --no-install-recommends dist-upgrade
+
+apt-get clean

@@ -53,6 +53,12 @@ COPY sources.list /etc/apt/sources.list
 COPY linux-deps.sh $SCRIPTS/
 RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \
   && gzip -9 $LOGS/linux-deps.log
+COPY libnode-dev.sh $SCRIPTS/
+RUN $SCRIPTS/libnode-dev.sh > $LOGS/libnode-dev.log 2>&1 \
+  && gzip -9 $LOGS/libnode-dev.log
+COPY youtube-dl.sh $SCRIPTS/
+RUN $SCRIPTS/youtube-dl.sh > $LOGS/youtube-dl.log 2>&1 \
+  && gzip -9 $LOGS/youtube-dl.log
 
 # configure R and RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started

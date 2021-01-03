@@ -149,20 +149,4 @@ echo "Updating to 'ffmpeg-4'"
 apt-get update
 apt-get -qqy --no-install-recommends dist-upgrade
 
-echo "Installng 'libnode-dev' and dependencies packages"
-pushd /usr/local/src/packages
-apt-get install -qqy --no-install-recommends \
-  ./libnghttp2-14_*.deb \
-  ./libuv1_*.deb \
-  ./libuv1-dev_*.deb \
-  ./libnode64_*.deb \
-  ./libnode-dev_*.deb
-popd
-
-# https://ytdl-org.github.io/youtube-dl/download.html
-# https://github.blog/2020-11-16-standing-up-for-developers-youtube-dl-is-back/
-echo "Installing 'youtube-dl' from upstream binary"
-wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
-chmod +x /usr/local/bin/youtube-dl
-
 apt-get clean

@@ -21,10 +21,6 @@ COPY pocl-git-source.sh pocl-build.sh $SCRIPTS/
 RUN $SCRIPTS/pocl-git-source.sh > $LOGS/pocl-git-source.log 2>&1
 RUN $SCRIPTS/pocl-build.sh > $LOGS/pocl-build.log 2>&1
 
-# test with R OpenCL package
-COPY OpenCL-R-test.R $SCRIPTS/
-RUN $SCRIPTS/OpenCL-R-test.R > $LOGS/OpenCL-R-test.log 2>&1
-
 # run 'pocl' CUDA tests
 COPY test-cuda.sh $SCRIPTS/
 RUN $SCRIPTS/test-cuda.sh 2>&1 | tee $LOGS/test-cuda.log
@@ -38,3 +34,8 @@ RUN $SCRIPTS/csound.sh > $LOGS/csound.log 2>&1
 ENV CHUCK_VERSION=1.4.0.1
 COPY chuck.sh $SCRIPTS/
 RUN $SCRIPTS/chuck.sh > $LOGS/chuck.log 2>&1
+
+# test with R OpenCL package
+COPY r-base-dev.sh OpenCL-R-test.R $SCRIPTS/
+RUN $SCRIPTS/r-base-dev.sh > $LOGS/r-base-dev.log 2>&1
+RUN $SCRIPTS/OpenCL-R-test.R > $LOGS/OpenCL-R-test.log 2>&1

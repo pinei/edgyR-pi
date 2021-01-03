@@ -46,6 +46,9 @@ COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/python3.6 /usr/lo
 COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/share /usr/local/share
 COPY --from="edgyr/internal-jetson-pocl:latest" /etc/OpenCL/vendors/pocl.icd /etc/OpenCL/vendors/pocl.icd
 
+# enable fetching package sources
+COPY sources.list /etc/apt/sources.list
+
 # Linux dependencies
 COPY linux-deps.sh $SCRIPTS/
 RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \

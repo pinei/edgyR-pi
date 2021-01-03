@@ -2,8 +2,6 @@
 
 set -e
 
-echo "Adding 'ffmpeg-4' PPA"
-add-apt-repository ppa:jonathonf/ffmpeg-4
 echo "Installing Linux dependencies"
 apt-get update
 apt-get upgrade -y
@@ -144,6 +142,12 @@ apt-get install -qqy --no-install-recommends \
   zip \
   zlib1g-dev
 update-alternatives --set editor /usr/bin/vim.nox
+
+echo "Adding 'ffmpeg-4' PPA"
+add-apt-repository ppa:jonathonf/ffmpeg-4
+echo "Updating to 'ffmpeg-4'"
+apt-get update
+apt-get -qqy --no-install-recommends dist-upgrade
 
 # install libnode-dev and dependencies packages
 pushd /usr/local/src/packages

@@ -2,7 +2,12 @@
 
 set -e
 
-sudo docker push edgyr/internal-jetson-pocl:latest
-sudo docker push edgyr/internal-libnode-dev:latest
-sudo docker push edgyr/l4t-pytorch:r32.4.4-pth1.7-py3
-sudo docker push edgyr/edgyr:latest
+export EDGYR_RELEASE=0.7.4.9999
+for image in \
+  internal-ubuntu-builder \
+  internal-l4t-builder \
+  edgyr
+do
+  sudo docker tag "edgyr/$image:latest" "edgyr/$image:$EDGYR_RELEASE"
+  sudo docker push "edgyr/$image:$EDGYR_RELEASE"
+done

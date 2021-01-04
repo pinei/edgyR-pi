@@ -12,39 +12,39 @@ RUN mkdir --parents $LOGS $SCRIPTS
 WORKDIR $SOURCE_DIR
 
 # get R, Pandoc and RStudio Server
-COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/bin /usr/local/bin
-COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/lib/R /usr/local/lib/R
-COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
-COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/lib/libRmath.so /usr/local/lib/libRmath.so
-COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/lib/libRmath.a /usr/local/lib/libRmath.a
-COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/lib/rstudio-server /usr/local/lib/rstudio-server
-COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/include /usr/local/include
-COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/share/man /usr/local/share/man
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/bin /usr/local/bin
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/R /usr/local/lib/R
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/libRmath.so /usr/local/lib/libRmath.so
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/libRmath.a /usr/local/lib/libRmath.a
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/rstudio-server /usr/local/lib/rstudio-server
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/include /usr/local/include
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/share/man /usr/local/share/man
 
-# libnode-dev / dependencies packages
-COPY --from="edgyr/internal-libnode-dev:latest" /usr/local/src/packages /usr/local/src/packages
+# libnode-dev and dependencies packages
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/src/packages /usr/local/src/packages
 
 # POCL with CUDA backend and CSound with CUDA opcodes
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/bin /usr/local/bin
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/etc /usr/local/etc
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/include /usr/local/include
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/bin /usr/local/bin
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/etc /usr/local/etc
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/include /usr/local/include
 
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libcsnd6.so /usr/local/lib/libcsnd6.so
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libcsnd6.so.6.0 /usr/local/lib/libcsnd6.so.6.0
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libcsound64.a /usr/local/lib/libcsound64.a
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libcsound64.so /usr/local/lib/libcsound64.so
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libcsound64.so.6.0 /usr/local/lib/libcsound64.so.6.0
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2.7.0 /usr/local/lib/libpocl.so.2.7.0
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so.2 /usr/local/lib/libpocl.so.2
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/libpocl.so /usr/local/lib/libpocl.so
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/csound /usr/local/lib/csound
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/pocl /usr/local/lib/pocl
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/python2.7 /usr/local/lib/python2.7
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/lib/python3.6 /usr/local/lib/python3.6
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/libcsnd6.so /usr/local/lib/libcsnd6.so
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/libcsnd6.so.6.0 /usr/local/lib/libcsnd6.so.6.0
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/libcsound64.a /usr/local/lib/libcsound64.a
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/libcsound64.so /usr/local/lib/libcsound64.so
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/libcsound64.so.6.0 /usr/local/lib/libcsound64.so.6.0
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/libpocl.so.2.7.0 /usr/local/lib/libpocl.so.2.7.0
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/libpocl.so.2 /usr/local/lib/libpocl.so.2
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/libpocl.so /usr/local/lib/libpocl.so
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/csound /usr/local/lib/csound
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/pocl /usr/local/lib/pocl
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/python2.7 /usr/local/lib/python2.7
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/lib/python3.6 /usr/local/lib/python3.6
 
-COPY --from="edgyr/internal-jetson-pocl:latest" /usr/local/share /usr/local/share
-COPY --from="edgyr/internal-jetson-pocl:latest" /etc/OpenCL/vendors/pocl.icd /etc/OpenCL/vendors/pocl.icd
+COPY --from="edgyr/internal-l4t-builder:latest" /usr/local/share /usr/local/share
+COPY --from="edgyr/internal-l4t-builder:latest" /etc/OpenCL/vendors/pocl.icd /etc/OpenCL/vendors/pocl.icd
 
 # enable fetching package sources
 COPY sources.list /etc/apt/sources.list

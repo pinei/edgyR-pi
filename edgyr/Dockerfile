@@ -1,4 +1,4 @@
-FROM "nvcr.io/nvidia/l4t-pytorch:r32.4.4-pth1.6-py3"
+FROM "nvcr.io/nvidia/l4t-base:r32.4.4"
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -59,6 +59,11 @@ RUN $SCRIPTS/libnode-dev.sh > $LOGS/libnode-dev.log 2>&1 \
 COPY youtube-dl.sh $SCRIPTS/
 RUN $SCRIPTS/youtube-dl.sh > $LOGS/youtube-dl.log 2>&1 \
   && gzip -9 $LOGS/youtube-dl.log
+
+# PyTorch-1.7
+COPY PyTorch-1.7.sh test-pytorch.py $SCRIPTS/
+RUN $SCRIPTS/PyTorch-1.7.sh > $LOGS/PyTorch-1.7.log 2>&1 \
+  && gzip -9 $LOGS/PyTorch-1.7.log
 
 # configure R and RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started

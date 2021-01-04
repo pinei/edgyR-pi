@@ -116,16 +116,20 @@ apt-get install -qqy --no-install-recommends \
   opencl-c-headers\
   opencl-clhpp-headers\
   opencl-headers \
+  openmpi-bin \
+  openmpi-common \
   openssh-client \
   pkg-config \
   portaudio19-dev \
   python \
   python3 \
-  python3-dev \
-  python3-venv \
-  python3-virtualenv \
   python-dev \
+  python3-dev \
+  python-pip \
+  python3-pip \
   python-virtualenv \
+  python3-virtualenv \
+  python3-venv \
   software-properties-common \
   sox \
   stk \

@@ -42,7 +42,10 @@ apt-get install -qqy --no-install-recommends \
   libavutil-dev \
   libbz2-dev \
   libcairo2-dev \
+  libc++-10-dev \
+  libc++abi-10-dev \
   libclang-10-dev \
+  libclang-common-10-dev \
   libclang-cpp10-dev \
   libclc-dev\
   libcurl4-gnutls-dev \

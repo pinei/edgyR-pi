@@ -2,7 +2,7 @@
 
 set -e
 
-echo "Configuring R and pocl"
+echo "Configuring R"
 /sbin/ldconfig --verbose
 R CMD javareconf
 
@@ -14,5 +14,3 @@ mkdir -p /var/lock/rstudio-server
 mkdir -p /var/log/rstudio-server
 mkdir -p /var/lib/rstudio-server
 mkdir -p /etc/rstudio
-
-clinfo

@@ -45,11 +45,11 @@ RUN $SCRIPTS/PyTorch-1.7.sh > $LOGS/PyTorch-1.7.log 2>&1 \
 
 # configure R and RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started
-COPY configure-r-rstudio-pocl.sh $SCRIPTS/
-COPY R.conf pocl.conf /etc/ld.so.conf.d/
+COPY configure.sh $SCRIPTS/
+COPY R.conf /etc/ld.so.conf.d/
 COPY rserver.conf /etc/rstudio/
-RUN $SCRIPTS/configure-r-rstudio-pocl.sh > $LOGS/configure-r-rstudio-pocl.log 2>&1 \
-  && gzip -9 $LOGS/configure-r-rstudio-pocl.log
+RUN $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1 \
+  && gzip -9 $LOGS/configure.log
 
 # Create the default user
 COPY edgyr-user.sh $SCRIPTS/

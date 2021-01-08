@@ -34,7 +34,7 @@ echo "CUDA tests finished"
 popd
 
 sudo cp $HOME/Installers/pocl.conf /etc/ld.so.conf.d/
-sudo /sbin/ldconfig --verbose
+sudo /sbin/ldconfig --verbose >> $EDGYR_LOGS/pocl.log 2>&1
 
 echo "Installing / testing R 'OpenCL' package"
 Rscript -e "source('~/Installers/R/OpenCL.R')" >> $EDGYR_LOGS/pocl.log 2>&1

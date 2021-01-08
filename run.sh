@@ -22,7 +22,7 @@ sudo docker rm -f edgyr
 echo "Running image edgyr/edgyr:latest"
 sudo docker run --detach \
   --env EDGYR_PASSWORD="$EDGYR_PASSWORD" \
-  --network host --name edgyr --hostname edgyr \
+  --network host --name edgyr \
   --runtime nvidia \
   "docker.io/edgyr/edgyr:latest"
 

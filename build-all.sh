@@ -2,11 +2,12 @@
 
 set -e
 
-grep -i -e "BogoMIPS" /proc/cpuinfo
-grep -i -e "MemTotal" /proc/meminfo
-pushd internal-ubuntu-builder; ../build.sh &; popd
-pushd internal-jetson-pocl; ../build.sh &; popd
-wait
-pushd edgyr; ../build.sh; popd
+for image in \
+  internal-pandoc \
+  internal-ubuntu-builder \
+  edgyr
+do
+  pushd $image; ../build.sh ; popd
+done
 
 docker images

@@ -37,6 +37,9 @@ RUN $SCRIPTS/libnode-dev.sh > $LOGS/libnode-dev.log 2>&1 \
 COPY youtube-dl.sh $SCRIPTS/
 RUN $SCRIPTS/youtube-dl.sh > $LOGS/youtube-dl.log 2>&1 \
   && gzip -9 $LOGS/youtube-dl.log
+COPY deviceQuery.sh $SCRIPTS/
+RUN $SCRIPTS/deviceQuery.sh > $LOGS/deviceQuery.log 2>&1 \
+  && gzip -9 $LOGS/deviceQuery.log
 
 # PyTorch-1.7
 COPY PyTorch-1.7.sh test-pytorch.py $SCRIPTS/

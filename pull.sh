@@ -2,7 +2,11 @@
 
 set -e
 
-sudo docker pull edgyr/internal-jetson-pocl:latest
-sudo docker pull edgyr/internal-libnode-dev:latest
-sudo docker pull edgyr/l4t-pytorch:r32.4.4-pth1.7-py3
-sudo docker pull edgyr/edgyr:latest
+export EDGYR_RELEASE=0.7.4.9999
+for image in \
+  internal-pandoc \
+  internal-ubuntu-builder \
+  edgyr
+do
+  sudo docker pull "edgyr/$image:$EDGYR_RELEASE"
+done

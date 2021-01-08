@@ -1,6 +1,7 @@
 install.packages(c(
   "audio",
   "monitoR",
+  "NatureSounds",
   "phonTools",
   "seewave",
   "signal",

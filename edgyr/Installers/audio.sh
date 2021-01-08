@@ -38,7 +38,7 @@ cmake \
   -DPULSEAUDIO_HEADER="/usr/include/pulse/simple.h" \
   ..  >> $EDGYR_LOGS 2>&1
 echo "Compiling CSound"
-make --jobs=`nproc` >> $EDGYR_LOGS 2>&1
+/usr/bin/time make --jobs=`nproc` >> $EDGYR_LOGS 2>&1
 echo "Installing CSound"
 sudo make install >> $EDGYR_LOGS 2>&1
 cd ..
@@ -57,7 +57,7 @@ cd chuck-$CHUCK_VERSION/src
 
 # the Jetson "native" sound infrastructure is ALSA
 echo "Compiling ChucK"
-make linux-alsa >> $EDGYR_LOGS 2>&1
+/usr/bin/time make linux-alsa >> $EDGYR_LOGS 2>&1
 echo "Installing ChucK"
 sudo make install >> $EDGYR_LOGS 2>&1
 

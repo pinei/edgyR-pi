@@ -11,7 +11,7 @@ RUN mkdir --parents $LOGS $SCRIPTS
 
 WORKDIR $SOURCE_DIR
 
-# get R, Pandoc and RStudio Server
+# get R, Pandoc,RStudio Server, and Hugo
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/bin /usr/local/bin
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/R /usr/local/lib/R
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
@@ -40,11 +40,6 @@ RUN $SCRIPTS/youtube-dl.sh > $LOGS/youtube-dl.log 2>&1 \
 COPY deviceQuery.sh $SCRIPTS/
 RUN $SCRIPTS/deviceQuery.sh > $LOGS/deviceQuery.log 2>&1 \
   && gzip -9 $LOGS/deviceQuery.log
-
-# PyTorch-1.7
-COPY PyTorch-1.7.sh test-pytorch.py $SCRIPTS/
-RUN $SCRIPTS/PyTorch-1.7.sh > $LOGS/PyTorch-1.7.log 2>&1 \
-  && gzip -9 $LOGS/PyTorch-1.7.log
 
 # configure R and RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started

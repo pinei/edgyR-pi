@@ -27,5 +27,5 @@ conda activate r-reticulate
 /usr/bin/time pip install 'cupy>=8.0.0'
 
 echo "Cleaning up"
-conda clean --tarballs --index-cache
+conda clean --tarballs --index-cache --quiet --yes
 conda list

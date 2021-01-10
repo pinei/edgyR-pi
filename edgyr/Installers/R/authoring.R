@@ -6,6 +6,7 @@ install.packages(c(
   "flexdashboard",
   "learnr",
   "revealjs",
+  "rticles",
   "tufte",
   "xaringan"
 ), quiet = TRUE)

@@ -26,9 +26,6 @@ curl -Ls \
 echo "Installing PyTorch 1.7"
 /usr/bin/time pip install --no-cache-dir torch-1.7.0-cp36-cp36m-linux_aarch64.whl >> $EDGYR_LOGS/pytorch-1.7.log 2>&1
 
-echo "Testing PyTorch with Python"
-/usr/bin/time python $EDGYR_HOME/Installers/test-pytorch.py >> $EDGYR_LOGS/pytorch-1.7.log 2>&1
-
 echo "Installing torchvision"
 git clone -b v0.8.1 https://github.com/pytorch/vision.git torchvision
 cd torchvision
@@ -44,6 +41,9 @@ cd ..
 popd
 
 pip list --format=columns >> $EDGYR_LOGS/pytorch-1.7.log 2>&1
+
+echo "Testing PyTorch with Python"
+/usr/bin/time python $EDGYR_HOME/Installers/test-pytorch.py >> $EDGYR_LOGS/pytorch-1.7.log 2>&1
 
 echo "Installing R package 'rTorch'"
 /usr/bin/time Rscript -e "install.packages('rTorch', quiet = TRUE)" >> $EDGYR_LOGS/pytorch-1.7.log 2>&1

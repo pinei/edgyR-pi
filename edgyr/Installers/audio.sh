@@ -10,7 +10,7 @@ sudo apt-get install -qqy --no-install-recommends \
   flex \
   gettext \
   swig3.0 \
-> $EDGYR_LOGS/audio.log 2>&1
+> $HOME/logs/audio.log 2>&1
 
 mkdir --parents $HOME/src
 cd $HOME/src
@@ -27,12 +27,12 @@ cmake \
   -DBUILD_STATIC_LIBRARY=ON \
   -DLAME_HEADER="/usr/include/lame/lame.h" \
   -DPULSEAUDIO_HEADER="/usr/include/pulse/simple.h" \
-  ..  >> $EDGYR_LOGS/audio.log 2>&1
+  ..  >> $HOME/logs/audio.log 2>&1
 echo "Compiling CSound"
-/usr/bin/time make --jobs=`nproc` >> $EDGYR_LOGS/audio.log 2>&1
+/usr/bin/time make --jobs=`nproc` >> $HOME/logs/audio.log 2>&1
 echo "Installing CSound"
-sudo make install >> $EDGYR_LOGS/audio.log 2>&1
-sudo /sbin/ldconfig --verbose >> $EDGYR_LOGS/audio.log 2>&1
+sudo make install >> $HOME/logs/audio.log 2>&1
+sudo /sbin/ldconfig --verbose >> $HOME/logs/audio.log 2>&1
 cd ..
 rm -fr cs6make
 
@@ -49,13 +49,13 @@ cd chuck-$CHUCK_VERSION/src
 
 # the Jetson "native" sound infrastructure is ALSA
 echo "Compiling ChucK"
-/usr/bin/time make linux-alsa >> $EDGYR_LOGS/audio.log 2>&1
+/usr/bin/time make linux-alsa >> $HOME/logs/audio.log 2>&1
 echo "Installing ChucK"
-sudo make install >> $EDGYR_LOGS/audio.log 2>&1
+sudo make install >> $HOME/logs/audio.log 2>&1
 
 sudo rm -fr /usr/local/share/chuck
 sudo mkdir --parents /usr/local/share/chuck
 sudo mv ../examples /usr/local/share/chuck/examples
 
 echo "Installing R audio packages"
-Rscript -e "source('~/Installers/R/audio.R')" >> $EDGYR_LOGS/audio.log 2>&1
+Rscript -e "source('~/Installers/R/audio.R')" >> $HOME/logs/audio.log 2>&1

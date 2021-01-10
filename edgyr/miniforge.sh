@@ -20,15 +20,4 @@ conda init bash
 conda config --set auto_activate_base false
 
 echo "Creating fresh 'r-reticulate' environment with JupyterLab and cuSignal dependencies"
-/usr/bin/time conda env create --quiet --force --file $EDGYR_SCRIPTS/cusignal_jetson_base.yml
-conda activate r-reticulate
-/usr/bin/time pip install 'cupy>=8.0.0'
-
-echo "Installing 'cusignal'"
-cd $CONDA_PREFIX
-mkdir src; cd src
-export CUSIGNAL_HOME=$(pwd)/cusignal
-git clone https://github.com/rapidsai/cusignal.git $CUSIGNAL_HOME
-cd $CUSIGNAL_HOME
-./build.sh --allgpuarch
-cp -rp $CUSIGNAL_HOME/notebooks $HOME/cusignal-notebooks
+/usr/bin/time conda env create --quiet --force --file $EDGYR_SCRIPTS/r-reticulate.yml

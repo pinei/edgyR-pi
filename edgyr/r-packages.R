@@ -15,7 +15,6 @@ install.packages(c(
   "renv",
   "rmarkdown",
   "rprojroot",
-  "rTorch",
   "tidyverse",
   "tinytex",
   "V8"

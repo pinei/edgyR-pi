@@ -41,11 +41,6 @@ COPY deviceQuery.sh $SCRIPTS/
 RUN $SCRIPTS/deviceQuery.sh > $LOGS/deviceQuery.log 2>&1 \
   && gzip -9 $LOGS/deviceQuery.log
 
-# PyTorch-1.7
-COPY PyTorch-1.7.sh test-pytorch.py $SCRIPTS/
-RUN $SCRIPTS/PyTorch-1.7.sh > $LOGS/PyTorch-1.7.log 2>&1 \
-  && gzip -9 $LOGS/PyTorch-1.7.log
-
 # configure R and RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started
 COPY configure.sh $SCRIPTS/
@@ -79,18 +74,13 @@ USER edgyr
 WORKDIR $EDGYR_HOME
 
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
-COPY --chown=edgyr:edgyr miniforge.sh cusignal_jetson_base.yml $EDGYR_SCRIPTS/
+COPY --chown=edgyr:edgyr miniforge.sh r-reticulate.yml $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/miniforge.log
 
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
-
-ENV JULIA_VERSION_MAJOR=1 JULIA_VERSION_MINOR=5 JULIA_VERSION_PATCH=3
-COPY --chown=edgyr:edgyr julia.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/julia.sh > $EDGYR_LOGS/julia.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/julia.log
 
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/

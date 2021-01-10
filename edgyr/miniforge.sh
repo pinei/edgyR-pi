@@ -21,3 +21,9 @@ conda config --set auto_activate_base false
 
 echo "Creating fresh 'r-reticulate' environment with JupyterLab and cuSignal dependencies"
 /usr/bin/time conda env create --quiet --force --file $EDGYR_SCRIPTS/r-reticulate.yml
+
+echo "Installing 'cupy' - takes about 50 minutes on AGX Xavier"
+/usr/bin/time pip install 'cupy>=8.0.0'
+
+echo "Cleaning up"
+conda clean --tarballs --index-cache

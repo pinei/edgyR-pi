@@ -23,7 +23,9 @@ echo "Creating fresh 'r-reticulate' environment with JupyterLab and cuSignal dep
 /usr/bin/time conda env create --quiet --force --file $EDGYR_SCRIPTS/r-reticulate.yml
 
 echo "Installing 'cupy' - takes about 50 minutes on AGX Xavier"
+conda activate r-reticulate
 /usr/bin/time pip install 'cupy>=8.0.0'
 
 echo "Cleaning up"
 conda clean --tarballs --index-cache
+conda list

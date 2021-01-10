@@ -2,7 +2,7 @@
 
 echo "Installing TensorFlow Linux dependencies"
 sudo apt-get update
-sudo apt-get install -qqy --no-install-recommends \
+/usr/bin/time sudo apt-get install -qqy --no-install-recommends \
   gfortran \
   hdf5-tools \
   libblas-dev \
@@ -11,15 +11,16 @@ sudo apt-get install -qqy --no-install-recommends \
   libjpeg8-dev \
   liblapack-dev \
   zip \
-  zlib1g-dev
-echo "Creating fresh tensorflow2 virtualenv"
+  zlib1g-dev >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+echo "Creating fresh tensorflow-2 virtualenv"
 export WORKON_HOME=$HOME/.virtualenvs
-export TF_VENV=$WORKON_HOME/tensorflow2
+export TF_VENV=$WORKON_HOME/tensorflow-2
 rm -fr $TF_VENV
 virtualenv $TF_VENV --python=/usr/bin/python3
 source $TF_VENV/bin/activate
 echo "Installing Python dependencies"
-pip install -U \
+/usr/bin/time pip install Cython >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+/usr/bin/time pip install -U \
   future==0.18.2 \
   futures \
   gast==0.2.2 \
@@ -29,11 +30,11 @@ pip install -U \
   mock==3.0.5 \
   numpy==1.16.1 \
   protobuf \
-  pybind11
+  pybind11 >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 echo "Installing tensorflow 2"
 /usr/bin/time pip install --extra-index-url \
-  https://developer.download.nvidia.com/compute/redist/jp/v44 tensorflow
-pip list
+  https://developer.download.nvidia.com/compute/redist/jp/v44 tensorflow  >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+pip list --format=columns >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 
 echo "Installing R keras package"
-/usr/bin/time Rscript -e "source('~/Installers/R/keras.R')"
+/usr/bin/time Rscript -e "source('~/Installers/R/keras.R')" >> $EDGYR_LOGS/tensorflow-2.log 2>&1

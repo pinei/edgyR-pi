@@ -10,6 +10,7 @@ echo "Installing 'cusignal'"
 cd $CONDA_PREFIX
 mkdir --parents src; cd src
 export CUSIGNAL_HOME=$(pwd)/cusignal
+rm -fr $CUSIGNAL_HOME
 git clone https://github.com/rapidsai/cusignal.git $CUSIGNAL_HOME
 cd $CUSIGNAL_HOME
 /usr/bin/time ./build.sh --allgpuarch >> $EDGYR_LOGS/cusignal.log 2>&1

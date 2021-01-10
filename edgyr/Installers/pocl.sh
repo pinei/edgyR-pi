@@ -18,7 +18,7 @@ cmake \
   -DLLC_HOST_CPU=generic \
   -DENABLE_CUDA=ON \
   -DINSTALL_OPENCL_HEADERS=1 \
-.. > $HOME/logs/pocl.log 2>&1
+.. >> $HOME/logs/pocl.log 2>&1
 
 echo "Compiling POCL"
 /usr/bin/time ninja >> $HOME/logs/pocl.log 2>&1

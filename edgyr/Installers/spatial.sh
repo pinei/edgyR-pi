@@ -8,6 +8,6 @@ echo "Installing spatial Linux dependencies"
 sudo apt-get update
 sudo apt-get install -qqy --no-install-recommends \
   libgdal-dev \
-  libudunits2-dev
+  libudunits2-dev >> $HOME/logs/spatial.log
 echo "Installing spatial R packages"
-/usr/bin/time Rscript -e "source('~/Installers/R/spatial.R')"
+/usr/bin/time Rscript -e "source('~/Installers/R/spatial.R')" >> $HOME/logs/spatial.log

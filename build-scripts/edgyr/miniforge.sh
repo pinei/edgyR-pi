@@ -24,6 +24,11 @@ echo "Creating fresh 'r-reticulate' environment with JupyterLab and cuSignal dep
 
 echo "Installing 'cupy' - takes about 50 minutes on AGX Xavier"
 conda activate r-reticulate
+
+# see https://github.com/edgyR/edgyR-containers/issues/31,
+# https://docs.cupy.dev/en/stable/reference/environment.html#for-installation,
+# and https://developer.nvidia.com/cuda-gpus
+export CUPY_NVCC_GENERATE_CODE="arch=compute_53,code=sm_53;arch=compute_62,code=sm_62;arch=compute_72,code=sm_72"
 /usr/bin/time pip install 'cupy>=8.0.0'
 
 echo "Installing 'cusignal'"

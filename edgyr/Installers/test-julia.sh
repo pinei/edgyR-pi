@@ -9,4 +9,4 @@ echo "don't have to."
 echo "Use Control-C to stop in the next 20 seconds if you wish."
 sleep 20
 echo "OK - stand by!"
-sudo julia -e 'using Pkg; Pkg.test("CUDA")' >> $HOME/logs/test-julia.log 2>&1
+sudo julia -e 'using Pkg; Pkg.test("CUDA")' >> $EDGYR_LOGS/test-julia.log 2>&1

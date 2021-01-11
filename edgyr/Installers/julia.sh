@@ -13,4 +13,4 @@ export JULIA_TARBALL="julia-$RELEASE_DIR.$JULIA_VERSION_PATCH-linux-aarch64.tar.
 curl -Ls "$WHERE/$RELEASE_DIR/$JULIA_TARBALL" \
   | sudo tar --strip-components=1 --directory=/usr/local -xzf -
 echo "Installing 'CUDA.jl' for 'edgyr' user"
-/usr/bin/time julia -e 'using Pkg; Pkg.add("CUDA")' >> $HOME/logs/julia.log 2>&1
+/usr/bin/time julia -e 'using Pkg; Pkg.add("CUDA")' >> $EDGYR_LOGS/julia.log 2>&1

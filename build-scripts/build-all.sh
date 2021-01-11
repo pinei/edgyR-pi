@@ -2,12 +2,14 @@
 
 set -e
 
-for image in \
+export REGISTRY="docker.io"
+export ACCOUNT="edgyr"
+for repo in \
   internal-pandoc \
   internal-ubuntu-builder \
   edgyr
 do
-  pushd $image; ../build.sh ; popd
+  pushd $repo; ../build.sh ; popd
 done
 
 docker images

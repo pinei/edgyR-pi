@@ -20,3 +20,14 @@ dependencies:
   - pandas
   - sympy
   - pip
+  - boost-cpp>=1.68.0
+  - brotli
+  - bzip2
+  - cython
+  - hypothesis
+  - libutf8proc
+  - pytest-lazy-fixture
+  - rapidjson
+  - re2
+  - snappy
+  - thrift-cpp>=0.11.0

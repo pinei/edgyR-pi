@@ -2,32 +2,46 @@
 
 set -e
 
-sudo apt-get update
-sudo apt-get upgrade -y
-export ARROW_VERSION=3.0.0
-cd $PROJECT_HOME
+echo "Activating conda env 'r-reticulate'"
+source $HOME/miniconda3/etc/profile.d/conda.sh
+conda activate r-reticulate
+echo "Installing arrow dependencies"
+conda install --quiet --yes \
+  boost-cpp>=1.68.0 \
+  brotli \
+  bzip2 \
+  cython \
+  hypothesis \
+  libutf8proc \
+  pytest-lazy-fixture \
+  rapidjson \
+  re2 \
+  snappy \
+  thrift-cpp>=0.11.0
+    #--file arrow/ci/conda_env_unix.yml \
+    #--file arrow/ci/conda_env_cpp.yml \
+    #--file arrow/ci/conda_env_python.yml \
+    #--file arrow/ci/conda_env_gandiva.yml > $EDGYR_LOGS/pyarrow.log 2>&1
+export ARROW_HOME=$CONDA_PREFIX
+
+echo "Cloning 'arrow' repository"
+mkdir --parents $CONDA_PREFIX/src
+cd $CONDA_PREFIX/src
 rm -fr arrow*
-echo "Fetching source tarball 'apache-arrow-$ARROW_VERSION.tar.gz'"
-curl -Ls https://github.com/apache/arrow/archive/apache-arrow-$ARROW_VERSION.tar.gz \
-  | tar xzf -
-mv arrow-apache-arrow-$ARROW_VERSION arrow
+git clone https://github.com/apache/arrow.git
+
+pushd arrow
+git submodule init
+git submodule update
+export PARQUET_TEST_DATA="${PWD}/cpp/submodules/parquet-testing/data"
+export ARROW_TEST_DATA="${PWD}/testing/data"
+popd
 
 echo "Patching arrow-cpp"
+# see https://github.com/awthomp/rapids-jetson/blob/master/arrow.patch
 diff $HOME/Installers/etc/CMakeLists.txt-cuda-patch arrow/cpp/src/arrow/gpu/CMakeLists.txt || true
 cp $HOME/Installers/etc/CMakeLists.txt-cuda-patch arrow/cpp/src/arrow/gpu/CMakeLists.txt
 diff $HOME/Installers/etc/CMakeLists.txt-cuda-patch arrow/cpp/src/arrow/gpu/CMakeLists.txt
-
-echo "Creating conda env 'pyarrow-cuda'"
-source $HOME/miniconda3/etc/profile.d/conda.sh
-conda create --quiet --force --yes --name pyarrow-cuda --channel conda-forge \
-    --file arrow/ci/conda_env_unix.yml \
-    --file arrow/ci/conda_env_cpp.yml \
-    --file arrow/ci/conda_env_python.yml \
-    --file arrow/ci/conda_env_gandiva.yml \
-    python=3.6 \
-    pandas >> $EDGYR_LOGS/pyarrow.log 2>&1
-conda activate pyarrow-cuda
-export ARROW_HOME=$CONDA_PREFIX
 
 echo "Configuring arrow-cpp"
 mkdir --parents arrow/cpp/build
@@ -44,7 +58,7 @@ cmake -DCMAKE_INSTALL_PREFIX=$ARROW_HOME \
       -DARROW_PARQUET=ON \
       -DARROW_PYTHON=ON \
       -GNinja \
-      .. >> $EDGYR_LOGS/pyarrow.log 2>&1
+      .. #>> $EDGYR_LOGS/pyarrow.log 2>&1
 
 echo "Installing arrow-cpp"
 ninja -j `nproc` >> $EDGYR_LOGS/pyarrow.log 2>&1
@@ -55,12 +69,7 @@ echo "Installing pyarrow"
 pushd arrow/python
 export PYARROW_WITH_CUDA=1
 export PYARROW_WITH_PARQUET=1
-python setup.py build_ext --inplace >> $EDGYR_LOGS/pyarrow.log 2>&1
-popd
-
-echo "Installing R package 'arrow'"
-export PKG_CONFIG_PATH=$CONDA_PREFIX/lib/pkgconfig
-export R_LD_LIBRARY_PATH=$R_LD_LIBRARY_PATH:$CONDA_PREFIX/lib
-pushd arrow/r
-R CMD INSTALL . >> $EDGYR_LOGS/pyarrow.log 2>&1
+python setup.py build_ext --inplace #>> $EDGYR_LOGS/pyarrow.log 2>&1
+echo "Testing pyarrow"
+pytest pyarrow >> $EDGYR_LOGS/pyarrow.log 2>&1
 popd

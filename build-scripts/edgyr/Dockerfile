@@ -79,7 +79,7 @@ COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
 
-COPY --chown=edgyr:edgyr miniforge.sh r-reticulate.yml $EDGYR_SCRIPTS/
+COPY --chown=edgyr:edgyr miniforge.sh r-reticulate.yml CMakeLists.txt-cuda-patch $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/miniforge.log
 

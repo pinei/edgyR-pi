@@ -29,7 +29,8 @@ conda activate r-reticulate
 # https://docs.cupy.dev/en/stable/reference/environment.html#for-installation,
 # and https://developer.nvidia.com/cuda-gpus
 export CUPY_NVCC_GENERATE_CODE="arch=compute_53,code=sm_53;arch=compute_62,code=sm_62;arch=compute_72,code=sm_72"
-/usr/bin/time pip install 'cupy>=8.0.0'
+export CUPY_NUM_BUILD_JOBS=`nproc`
+/usr/bin/time pip install -v 'cupy>=8.0.0'
 
 echo "Installing 'cusignal'"
 cd $CONDA_PREFIX

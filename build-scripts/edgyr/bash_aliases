@@ -2,7 +2,6 @@ export EDGYR_HOME=$HOME
 export EDGYR_LOGS=$HOME/logs
 export EDGYR_PLOTS=$HOME/plots
 export EDGYR_SCRIPTS=$HOME/scripts
-export LD_LIBRARY_PATH=/usr/local/cuda-10.2/targets/aarch64-linux/lib:$LD_LIBRARY_PATH
 export PROJECT_HOME=$HOME/Projects
 export WORKON_HOME=$HOME/.virtualenvs
 

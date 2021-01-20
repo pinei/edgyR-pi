@@ -2,7 +2,7 @@
 
 set -e
 
-rm -f $EDGYR_LOGS/pyarrow.log
+rm -f $EDGYR_LOGS/pyarrow-cuda-git.log
 
 echo "Cloning arrow repository"
 cd $PROJECT_HOME
@@ -27,17 +27,17 @@ diff \
   cpp/src/arrow/gpu/CMakeLists.txt
 popd
 
-echo "Creating conda env 'pyarrow-cuda'"
+echo "Creating conda env 'pyarrow-cuda-git'"
 source $HOME/miniconda3/etc/profile.d/conda.sh
-/usr/bin/time conda create --quiet --force --yes --name pyarrow-cuda \
+/usr/bin/time conda create --quiet --force --yes --name pyarrow-cuda-git \
   --channel conda-forge \
   --file arrow/ci/conda_env_unix.yml \
   --file arrow/ci/conda_env_cpp.yml \
   --file arrow/ci/conda_env_python.yml \
   python=3.7 \
   pandas \
-  >> $EDGYR_LOGS/pyarrow.log 2>&1
-conda activate pyarrow-cuda
+  >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
+conda activate pyarrow-cuda-git
 export ARROW_HOME=$CONDA_PREFIX
 
 echo "Configuring arrow-cpp"
@@ -56,13 +56,13 @@ cmake -DCMAKE_INSTALL_PREFIX=$ARROW_HOME \
       -DARROW_PYTHON=ON \
       -GNinja \
       .. \
-  >> $EDGYR_LOGS/pyarrow.log 2>&1
+  >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 
 echo "Installing arrow-cpp"
 /usr/bin/time ninja -j `nproc` \
-  >> $EDGYR_LOGS/pyarrow.log 2>&1
+  >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 ninja install \
-  >> $EDGYR_LOGS/pyarrow.log 2>&1
+  >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 popd
 
 echo "Installing pyarrow"
@@ -70,16 +70,17 @@ pushd arrow/python
 export PYARROW_WITH_CUDA=1
 export PYARROW_WITH_PARQUET=1
 /usr/bin/time python setup.py build_ext --inplace \
-  >> $EDGYR_LOGS/pyarrow.log 2>&1
+  >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 echo "Testing pyarrow"
 /usr/bin/time pytest --quiet pyarrow \
-  >> $EDGYR_LOGS/pyarrow.log 2>&1
+  >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 popd
 
 echo "Installing R package 'arrow'"
+conda deactivate
 export PKG_CONFIG_PATH=$CONDA_PREFIX/lib/pkgconfig
 export R_LD_LIBRARY_PATH=$R_LD_LIBRARY_PATH:$CONDA_PREFIX/lib
 pushd arrow/r
 /usr/bin/time Rscript -e "devtools::install('.', build_vignettes = TRUE)" \
-  >> $EDGYR_LOGS/pyarrow.log 2>&1
+  >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 popd

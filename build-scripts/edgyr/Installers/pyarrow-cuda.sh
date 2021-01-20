@@ -29,12 +29,14 @@ popd
 
 echo "Creating conda env 'pyarrow-cuda'"
 source $HOME/miniconda3/etc/profile.d/conda.sh
-conda create --quiet --force --yes --name pyarrow-cuda --channel conda-forge \
-    --file arrow/ci/conda_env_unix.yml \
-    --file arrow/ci/conda_env_cpp.yml \
-    --file arrow/ci/conda_env_python.yml \
-    python=3.7 \
-    pandas >> $EDGYR_LOGS/pyarrow.log 2>&1
+/usr/bin/time conda create --quiet --force --yes --name pyarrow-cuda \
+  --channel conda-forge \
+  --file arrow/ci/conda_env_unix.yml \
+  --file arrow/ci/conda_env_cpp.yml \
+  --file arrow/ci/conda_env_python.yml \
+  python=3.7 \
+  pandas \
+  >> $EDGYR_LOGS/pyarrow.log 2>&1
 conda activate pyarrow-cuda
 export ARROW_HOME=$CONDA_PREFIX
 
@@ -53,25 +55,31 @@ cmake -DCMAKE_INSTALL_PREFIX=$ARROW_HOME \
       -DARROW_PARQUET=ON \
       -DARROW_PYTHON=ON \
       -GNinja \
-      .. >> $EDGYR_LOGS/pyarrow.log 2>&1
+      .. \
+  >> $EDGYR_LOGS/pyarrow.log 2>&1
 
 echo "Installing arrow-cpp"
-ninja -j `nproc` >> $EDGYR_LOGS/pyarrow.log 2>&1
-ninja install >> $EDGYR_LOGS/pyarrow.log 2>&1
+/usr/bin/time ninja -j `nproc` \
+  >> $EDGYR_LOGS/pyarrow.log 2>&1
+ninja install \
+  >> $EDGYR_LOGS/pyarrow.log 2>&1
 popd
 
 echo "Installing pyarrow"
 pushd arrow/python
 export PYARROW_WITH_CUDA=1
 export PYARROW_WITH_PARQUET=1
-python setup.py build_ext --inplace >> $EDGYR_LOGS/pyarrow.log 2>&1
+/usr/bin/time python setup.py build_ext --inplace \
+  >> $EDGYR_LOGS/pyarrow.log 2>&1
 echo "Testing pyarrow"
-pytest --quiet pyarrow >> $EDGYR_LOGS/pyarrow.log 2>&1
+/usr/bin/time pytest --quiet pyarrow \
+  >> $EDGYR_LOGS/pyarrow.log 2>&1
 popd
 
 echo "Installing R package 'arrow'"
 export PKG_CONFIG_PATH=$CONDA_PREFIX/lib/pkgconfig
 export R_LD_LIBRARY_PATH=$R_LD_LIBRARY_PATH:$CONDA_PREFIX/lib
 pushd arrow/r
-Rscript -e "devtools::install('.', build_vignettes = TRUE)" >> $EDGYR_LOGS/pyarrow.log 2>&1
+/usr/bin/time Rscript -e "devtools::install('.', build_vignettes = TRUE)" \
+  >> $EDGYR_LOGS/pyarrow.log 2>&1
 popd

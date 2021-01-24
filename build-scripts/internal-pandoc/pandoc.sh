@@ -27,7 +27,7 @@ $HOME/.cabal/bin/cabal v2-install \
   --ghc-options="-fllvm" \
   --jobs=$JOBS \
   --overwrite-policy=always \
-pandoc
+pandoc-$PANDOC_VERSION
 
 cp --verbose --dereference $HOME/.cabal/bin/pandoc /usr/local/bin/pandoc
 ldd /usr/local/bin/pandoc

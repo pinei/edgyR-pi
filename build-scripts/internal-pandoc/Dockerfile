@@ -24,6 +24,7 @@ RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1
 COPY cabal-install-3.0.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/cabal-install-3.0.sh > $LOGS/cabal-install-3.0.log 2>&1
 
-# pandoc
+# pandoc - version 2.11.2 is hard-coded dependency in RStudio 1.4 source
+ENV PANDOC_VERSION=2.11.2
 COPY pandoc.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/pandoc.sh > $LOGS/pandoc.log 2>&1

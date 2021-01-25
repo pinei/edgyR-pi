@@ -3,6 +3,7 @@
 echo "Installing build dependencies"
 apt-get update
 apt-get install -qqy --no-install-recommends \
+  apt-file \
   build-essential \
   ca-certificates \
   curl \
@@ -23,6 +24,8 @@ apt-get install -qqy --no-install-recommends \
   libpcre2-dev \
   libreadline-dev \
   libtiff5-dev \
+  lsb-release \
+  mlocate \
   openjdk-8-jdk \
   pkg-config \
   software-properties-common \
@@ -31,10 +34,11 @@ apt-get install -qqy --no-install-recommends \
   time \
   tk-dev \
   unzip \
+  vim-nox \
   wget \
   zip \
   zlib1g-dev
-apt-get clean
+apt-file update
 update-alternatives --set editor /usr/bin/vim.nox
 
 echo "Creating / entering source directory"

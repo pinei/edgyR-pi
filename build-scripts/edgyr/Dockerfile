@@ -28,7 +28,7 @@ COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/src/packages /usr/
 COPY sources.list /etc/apt/sources.list
 
 # Linux dependencies
-COPY linux-deps.sh $SCRIPTS/
+COPY linux-deps.sh pgdg.list $SCRIPTS/
 RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \
   && gzip -9 $LOGS/linux-deps.log
 COPY libnode-dev.sh $SCRIPTS/

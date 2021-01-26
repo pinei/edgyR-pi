@@ -86,6 +86,7 @@ apt-get install -qqy --no-install-recommends \
   libpcre2-dev \
   libpng-dev \
   libpostproc-dev \
+  libpq-dev \
   libpulse-dev \
   libreadline-dev \
   libsamplerate0-dev \
@@ -94,6 +95,7 @@ apt-get install -qqy --no-install-recommends \
   libsodium-dev \
   libsox-dev \
   libsox-fmt-all \
+  libsqlite3-dev \
   libssh2-1-dev \
   libssl-dev \
   libstk0-dev \
@@ -149,6 +151,18 @@ apt-get install -qqy --no-install-recommends \
   zip \
   zlib1g-dev
 update-alternatives --set editor /usr/bin/vim.nox
+
+# RStudio uses 'soci' to connect to PostgreSQL and SQLite.
+# However, the PostgreSQL client libraries in Bionic / L4t
+# are for PostgreSQL 10, and won't work with newer versions.
+# So we install the PostgreSQL Global Development Group
+# (PGDG) repository.
+echo "Installing PGDG Linux repository"
+# https://wiki.postgresql.org/wiki/Apt
+curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
+sudo cp $SCRIPTS/pgdg.list /etc/apt/sources.list.d/pgdg.list
+sudo apt-get update
+sudo apt-get upgrade -y
 
 echo "Adding 'ffmpeg-4' PPA"
 add-apt-repository ppa:jonathonf/ffmpeg-4

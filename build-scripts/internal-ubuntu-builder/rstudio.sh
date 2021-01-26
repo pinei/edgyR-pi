@@ -1,4 +1,4 @@
-#! /bin/bash -v
+#! /bin/bash
 
 set -e
 
@@ -28,7 +28,15 @@ cmake .. \
   -DCMAKE_BUILD_TYPE=Release
 
 echo "Installing"
-make --jobs=`nproc` install
+export RAM_KILOBYTES=`ram_kilobytes.sh`
+if [ "$RAM_KILOBYTES" -lt "6000000" ]
+then
+  export JOBS=2
+else
+  export JOBS=`nproc`
+fi
+
+make --jobs=$JOBS install
 popd
 
 cd $SOURCE_DIR

@@ -118,6 +118,7 @@ apt-get install -qqy --no-install-recommends \
   ocl-icd-dev \
   ocl-icd-libopencl1 \
   ocl-icd-opencl-dev \
+  odbc-postgresql \
   opencl-c-headers\
   opencl-clhpp-headers\
   opencl-headers \
@@ -143,6 +144,7 @@ apt-get install -qqy --no-install-recommends \
   time \
   tk-dev \
   tree \
+  unixodbc-dev \
   unzip \
   vim-nox \
   virtualenv \

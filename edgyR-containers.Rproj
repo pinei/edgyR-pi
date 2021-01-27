@@ -14,5 +14,6 @@ LaTeX: XeLaTeX
 
 AutoAppendNewline: Yes
 StripTrailingWhitespace: Yes
+LineEndingConversion: Posix
 
 QuitChildProcessesOnExit: Yes

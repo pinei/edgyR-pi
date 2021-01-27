@@ -9,7 +9,7 @@ sudo apt-get install -qqy --no-install-recommends \
   libudunits2-dev \
   rasterlite2-bin \
   spatialite-bin \
-  >> $EDGYR_LOGS/spatial.log
+  >> $EDGYR_LOGS/spatial.log 2>&1
 echo "Installing spatial R packages"
 /usr/bin/time Rscript -e "source('~/Installers/R/spatial.R')" \
-  >> $EDGYR_LOGS/spatial.log
+  >> $EDGYR_LOGS/spatial.log 2>&1

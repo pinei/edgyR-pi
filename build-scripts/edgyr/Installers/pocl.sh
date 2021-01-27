@@ -18,23 +18,29 @@ cmake \
   -DLLC_HOST_CPU=generic \
   -DENABLE_CUDA=ON \
   -DINSTALL_OPENCL_HEADERS=1 \
-.. >> $EDGYR_LOGS/pocl.log 2>&1
+  .. \
+  >> $EDGYR_LOGS/pocl.log 2>&1
 
 echo "Compiling POCL"
-/usr/bin/time ninja >> $EDGYR_LOGS/pocl.log 2>&1
+/usr/bin/time ninja \
+  >> $EDGYR_LOGS/pocl.log 2>&1
 echo "Installing POCL"
-sudo ninja install >> $EDGYR_LOGS/pocl.log 2>&1
+sudo ninja install \
+  >> $EDGYR_LOGS/pocl.log 2>&1
 
 sudo cp -rp /usr/local/etc/OpenCL /etc/
 clinfo > $EDGYR_LOGS/clinfo.log 2>&1
 
 echo "Running CUDA tests"
-/usr/bin/time ../tools/scripts/run_cuda_tests >> $EDGYR_LOGS/pocl.log 2>&1 || true
+/usr/bin/time ../tools/scripts/run_cuda_tests \
+  >> $EDGYR_LOGS/pocl.log 2>&1 || true
 echo "CUDA tests finished"
 popd
 
 sudo cp $HOME/Installers/etc/pocl.conf /etc/ld.so.conf.d/
-sudo /sbin/ldconfig --verbose >> $EDGYR_LOGS/pocl.log 2>&1
+sudo /sbin/ldconfig --verbose \
+  >> $EDGYR_LOGS/pocl.log 2>&1
 
 echo "Installing / testing R 'OpenCL' package"
-Rscript -e "source('~/Installers/R/OpenCL.R')" >> $EDGYR_LOGS/pocl.log 2>&1
+Rscript -e "source('~/Installers/R/OpenCL.R')" \
+  >> $EDGYR_LOGS/pocl.log 2>&1

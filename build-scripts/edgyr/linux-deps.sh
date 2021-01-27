@@ -96,6 +96,7 @@ apt-get install -qqy --no-install-recommends \
   libsox-dev \
   libsox-fmt-all \
   libsqlite3-dev \
+  libsqliteodbc \
   libssh2-1-dev \
   libssl-dev \
   libstk0-dev \

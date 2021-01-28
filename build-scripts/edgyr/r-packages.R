@@ -18,6 +18,7 @@ install.packages(c(
   "rmarkdown",
   "rprojroot",
   "RSQLite",
+  "servr",
   "testthat",
   "tidyverse",
   "tinytex",

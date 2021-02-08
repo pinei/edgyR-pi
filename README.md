@@ -1,5 +1,41 @@
 # edgyR-containers: Docker Images for NVIDIAⓇ Jetson™ R Developers
 
+## Introduction
+
+The `edgyR` project is designed to make R a first-class language for
+edge computing developers. My initial motivation was to build a Jetson
+Nano cluster and use it for digital audio synthesis. Since R is my
+strongest language - I haven't used Fortran since 1990, I don't know
+*any* C++ and can barely copy-and-paste Python in Jupyter notebooks, the
+initial step was to buy a Jetson and set about making the tools in
+[*Sound Analysis and Synthesis with
+R*](https://www.springer.com/us/book/9783319776453 "Springer Sound Analysis and Synthesis with R page")
+work on it.
+
+That was February 2020 - since then, there's been a few things going on
+in the outside world, and I discovered just how powerful the Jetson
+platform is. And [I wanted
+more!](https://media.giphy.com/media/D3OdaKTGlpTBC/giphy.gif) So I built
+this thing called [edgyR: R on the
+Edge](https://github.com/edgyR "edgyR: R on the Edge GitHub organization").
+
+## How is `edgyR` pronounced?
+
+There are (at least) five options:
+
+1.  ED-grrr
+
+2.  ED-gyre
+
+3.  EDGE-er
+
+4.  Edgier
+
+5.  Edgy R
+
+It is ***not*** pronounced like any brand of peanut butter. Otherwise,
+it's your choice!
+
 ## Getting set up
 
 1.  Buy a [Jetson Developer
@@ -46,8 +82,9 @@
 
 2.  Set up the Jetson. The [NVIDIA
     documentation](https://developer.nvidia.com/embedded/learn/getting-started-jetson "NVIDIA Jetson getting started")
-    is first-class, and the developer support forum will fill in the
-    blanks. For hardware hacking, the
+    is first-class, and the [NVIDIA Jetson developer support
+    forum](https://forums.developer.nvidia.com/c/agx-autonomous-machines/jetson-embedded-systems/70 "NVIDIA Jetson developer support forum")
+    will fill in the blanks. For hardware hacking, the
     [JetsonHacks](https://www.jetsonhacks.com/ "JetsonHacks website")
     website is the place to go.
 
@@ -72,10 +109,11 @@
     -   NVIDIA drivers, compilers, libraries, and applications that can
         use the Jetson hardware.
 
-    Because JetPack includes the NVIDIA Docker runtime, it can run all
-    of the images in the [NVIDIA NGC L4T container
+    Because JetPack includes the NVIDIA Docker runtime, it can run any
+    image in the [NVIDIA NGC L4T container
     catalog](https://ngc.nvidia.com/catalog/containers?orderBy=scoreDESC&pageNumber=0&query=L4T&quickFilter=containers&filters= "NVIDIA NGC container catalog")
-    (for security, link opens in a new window).
+    (link may open in a new window for security) that is compatible with
+    your Jetson.
 
 3.  ***If you're a Python programmer, or an R programmer that can live
     with `R version 3.4.4 (2018-03-15) -- "Someone to Lean On"` and
@@ -87,9 +125,9 @@
     If you want more - `arm64` binaries downloaded from upstream
     projects or built from upstream source for
 
-    -   newer `pandoc`,
+    -   `pandoc` 2.11.2,
 
-    -   newer R with `tidyverse`, `devtools`, R Markdown, ShinyⓇ, and
+    -   R 4.0.3 with `tidyverse`, `devtools`, R Markdown, ShinyⓇ, and
         `reticulate`,
 
     -   [RStudioⓇ Server
@@ -110,7 +148,27 @@
         Language](http://portablecl.org/docs/html/ "Portable Computing Language documentation"),
         and Julia,
 
-    -   R audio, authoring, Bayesian statistics, and spatial / civic
-        software development,
+    -   R audio, authoring, [Bayesian
+        statistics](https://github.com/rmcelreath/rethinking), and
+        [spatial / civic software
+        development](https://geocompr.robinlovelace.net/ "Geocomputation with R"),
 
     all on a Docker image, then read on!
+
+## Licensing
+
+Because the `edgyR` Docker image redistributes RStudio Server in binary
+form, it uses the same license as RStudio - the [GNU Affero General
+Public
+License](https://www.gnu.org/licenses/agpl-3.0.en.html "GNU Affero General Public License").
+This essentially means I have to make all the source code I've modified
+to anyone who wants it.
+
+For `edgyR`, that comprises two places:
+
+-   the code in this repository, mostly Dockerfiles and `bash` scripts,
+    and
+
+-   some directories on the internal builder images in my build process,
+    which reside in the [Docker Hub `edgyr`
+    organization](https://hub.docker.com/orgs/edgyr/repositories "Docker Hub edgyr organization").

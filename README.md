@@ -2,6 +2,10 @@
 
 ## Introduction
 
+
+> “And though she be but little, she is fierce.” – Shakespeare, on
+> receiving an NVIDIA Jetson Nano for his birthday
+
 The `edgyR` project is designed to make R a first-class language for
 edge computing developers. My initial motivation was to build a Jetson
 Nano cluster and use it for digital audio synthesis. Since R is my

@@ -23,7 +23,8 @@ install.packages(c(
   "tidyverse",
   "tinytex",
   "tufte",
-  "V8"
+  "V8",
+  "webshot"
 ), quiet = TRUE)
 
 # test V8

@@ -126,6 +126,7 @@ apt-get install -qqy --no-install-recommends \
   openmpi-bin \
   openmpi-common \
   openssh-client \
+  phantomjs \
   pkg-config \
   portaudio19-dev \
   python \

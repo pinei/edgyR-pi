@@ -1,5 +1,18 @@
 # edgyR-containers: Docker Images for NVIDIAⓇ Jetson™ R Developers
 
+## Update -- 2021-02-12
+I'm pausing enhancements on this project for a while. I will continue to update
+versions for R, RStudio Server, Miniforge and all the other components on the
+`edgyr` image and the installers, but I won't be adding new functionality.
+
+There are two reasons:
+1. I've been unable to find a readily-available CI/CD service for Ubuntu 18.04
+`arm64` Docker builds. So whenever something changes, I have to do a build
+on my AGX Xavier, which is a single point of failure.
+2. I want to spend more time on digital music synthesis with the Jetson Nano.
+While that can be done within this project, `edgyR` is overkill for what I
+want to do.
+
 ## Introduction
 
 

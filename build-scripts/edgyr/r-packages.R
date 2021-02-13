@@ -4,27 +4,35 @@ source("~/.Rprofile")
 Sys.setenv(MAKE = "make --jobs=4")
 update.packages(ask = FALSE, instlib = Sys.getenv("R_LIBS_USER"), quiet = TRUE)
 install.packages(c(
+  "blogdown",
   "bookdown",
   "caracas",
   "data.table",
   "devtools",
+  "DiagrammeR",
+  "distill",
+  "flexdashboard",
   "knitr",
+  "learnr",
   "miniUI",
   "odbc",
   "pkgdown",
   "Rcpp",
   "remotes",
   "renv",
+  "revealjs",
   "rmarkdown",
   "rprojroot",
   "RSQLite",
+  "rticles",
   "servr",
   "testthat",
   "tidyverse",
   "tinytex",
   "tufte",
   "V8",
-  "webshot"
+  "webshot",
+  "xaringan"
 ), quiet = TRUE)
 
 # test V8

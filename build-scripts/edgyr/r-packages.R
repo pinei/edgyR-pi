@@ -4,6 +4,7 @@ source("~/.Rprofile")
 Sys.setenv(MAKE = "make --jobs=4")
 update.packages(ask = FALSE, instlib = Sys.getenv("R_LIBS_USER"), quiet = TRUE)
 install.packages(c(
+  "audio",
   "blogdown",
   "bookdown",
   "caracas",
@@ -15,7 +16,10 @@ install.packages(c(
   "knitr",
   "learnr",
   "miniUI",
+  "monitoR",
+  "NatureSounds",
   "odbc",
+  "phonTools",
   "pkgdown",
   "Rcpp",
   "remotes",
@@ -25,11 +29,16 @@ install.packages(c(
   "rprojroot",
   "RSQLite",
   "rticles",
+  "seewave",
   "servr",
+  "signal",
+  "soundecology",
+  "soundgen",
   "testthat",
   "tidyverse",
   "tinytex",
   "tufte",
+  "tuneR",
   "V8",
   "webshot",
   "xaringan"

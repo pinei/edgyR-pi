@@ -61,7 +61,3 @@ sudo make install \
 sudo rm -fr /usr/local/share/chuck
 sudo mkdir --parents /usr/local/share/chuck
 sudo mv ../examples /usr/local/share/chuck/examples
-
-echo "Installing R audio packages"
-Rscript -e "source('~/Installers/R/audio.R')" \
-  >> $EDGYR_LOGS/audio.log 2>&1

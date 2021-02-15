@@ -7,7 +7,7 @@ USER root
 WORKDIR $SOURCE_DIR
 
 # R
-ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=0 R_VERSION_PATCH=3
+ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=0 R_VERSION_PATCH=4
 ENV R_LATEST=R-$R_VERSION_MAJOR.$R_VERSION_MINOR.$R_VERSION_PATCH
 COPY r-from-source.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/r-from-source.sh > $LOGS/r-from-source.log 2>&1
@@ -31,6 +31,6 @@ COPY build-libnode-dev.sh cran-ubuntu-v8-bionic.list sources.list $SCRIPTS/
 RUN $SCRIPTS/build-libnode-dev.sh > $LOGS/build-libnode-dev.log 2>&1
 
 # hugo
-ENV GOLANG_VERSION="1.15.6"
+ENV GOLANG_VERSION="1.15.8"
 COPY hugo.sh $SCRIPTS/
 RUN $SCRIPTS/hugo.sh > $LOGS/hugo.log 2>&1

@@ -19,7 +19,7 @@ fi
 echo "Force-removing old 'edgyr' container"
 echo "You can ignore errors if it doesn't exist"
 sudo docker rm -f edgyr
-echo "Running image edgyr/edgyr:latest"
+echo "Running image 'edgyr/edgyr:latest' in container 'edgyr'"
 sudo docker run --detach \
   --env EDGYR_PASSWORD="$EDGYR_PASSWORD" \
   --network host --name edgyr \

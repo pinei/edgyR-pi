@@ -72,7 +72,7 @@ curl -Ls https://github.com/grame-cncm/faust/releases/download/$FAUST_VERSION/fa
 cd faust-$FAUST_VERSION
 
 echo "Symlinking llvm-10-config"
-sudo ln -s /usr/lib/llvm-10/bin/llvm-config /usr/bin/lvm-config
+sudo ln -s /usr/lib/llvm-10/bin/llvm-config /usr/bin/llvm-config
 echo "Compiling faust"
 /usr/bin/time make --jobs=`nproc` world \
   >> $EDGYR_LOGS/synths.log 2>&1

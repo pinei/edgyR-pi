@@ -8,6 +8,8 @@ install.packages(c(
   "blogdown",
   "bookdown",
   "caracas",
+  "coda",
+  "dagitty",
   "data.table",
   "devtools",
   "DiagrammeR",
@@ -17,6 +19,7 @@ install.packages(c(
   "learnr",
   "miniUI",
   "monitoR",
+  "mvtnorm",
   "NatureSounds",
   "odbc",
   "phonTools",
@@ -46,6 +49,11 @@ install.packages(c(
   "webshot",
   "xaringan"
 ), quiet = TRUE)
+install.packages("rstan", dependencies = TRUE, quiet = TRUE)
+remotes::install_github("rmcelreath/rethinking", quiet = TRUE)
+
+# test rstan
+example(stan_model, package = "rstan", run.dontrun = TRUE)
 
 # test V8
 cat("\ntesting V8\n")

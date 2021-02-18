@@ -1,4 +1,4 @@
-Sys.setenv(MAKE = "make --jobs=4")
+Sys.setenv(MAKE = paste0("make --jobs=", parallel::detectCores()))
 install.packages("keras", quiet = TRUE)
 
 reticulate::py_discover_config()

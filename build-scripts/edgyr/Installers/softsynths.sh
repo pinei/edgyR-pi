@@ -35,7 +35,7 @@ sudo apt-get install -qqy --no-install-recommends \
   llvm-10-runtime \
   llvm-10-tools \
   swig3.0 \
-  >> $EDGYR_LOGS/synths.log 2>&1
+  >> $EDGYR_LOGS/softsynths.log 2>&1
 mkdir --parents $HOME/src
 
 cd $HOME/src
@@ -49,12 +49,12 @@ cd fluidsynth-$FLUIDSYNTH_VERSION
 echo "Compiling FluidSynth"
 mkdir --parents build; cd build
 cmake -DLIB_SUFFIX="" .. \
-  >> $EDGYR_LOGS/synths.log 2>&1
+  >> $EDGYR_LOGS/softsynths.log 2>&1
 /usr/bin/time make --jobs=`nproc` \
-  >> $EDGYR_LOGS/synths.log 2>&1
+  >> $EDGYR_LOGS/softsynths.log 2>&1
 echo "Installing FluidSynth"
 sudo make install \
-  >> $EDGYR_LOGS/synths.log 2>&1
+  >> $EDGYR_LOGS/softsynths.log 2>&1
 
 cd $HOME/src
 rm -fr faust*
@@ -67,10 +67,10 @@ echo "Symlinking llvm-10-config"
 sudo ln -s /usr/lib/llvm-10/bin/llvm-config /usr/bin/llvm-config
 echo "Compiling faust"
 /usr/bin/time make --jobs=`nproc` world \
-  >> $EDGYR_LOGS/synths.log 2>&1
+  >> $EDGYR_LOGS/softsynths.log 2>&1
 echo "Installing faust"
 sudo make install \
-  >> $EDGYR_LOGS/synths.log 2>&1
+  >> $EDGYR_LOGS/softsynths.log 2>&1
 echo "Removing llvm-10 symlink"
 sudo rm /usr/bin/llvm-config
 
@@ -90,13 +90,13 @@ cmake \
   -DBUILD_STATIC_LIBRARY=ON \
   -DLAME_HEADER="/usr/include/lame/lame.h" \
   -DPULSEAUDIO_HEADER="/usr/include/pulse/simple.h" \
-  ..  >> $EDGYR_LOGS/synths.log 2>&1
+  ..  >> $EDGYR_LOGS/softsynths.log 2>&1
 /usr/bin/time make --jobs=`nproc` \
-  >> $EDGYR_LOGS/synths.log 2>&1
+  >> $EDGYR_LOGS/softsynths.log 2>&1
 echo "Installing CSound"
-sudo make install >> $EDGYR_LOGS/synths.log 2>&1
+sudo make install >> $EDGYR_LOGS/softsynths.log 2>&1
 sudo /sbin/ldconfig --verbose \
-  >> $EDGYR_LOGS/synths.log 2>&1
+  >> $EDGYR_LOGS/softsynths.log 2>&1
 cd ..
 rm -fr cs6make
 
@@ -114,10 +114,10 @@ cd chuck-$CHUCK_VERSION/src
 # the Jetson "native" sound infrastructure is ALSA
 echo "Compiling ChucK for ALSA"
 /usr/bin/time make linux-alsa \
-  >> $EDGYR_LOGS/synths.log 2>&1
+  >> $EDGYR_LOGS/softsynths.log 2>&1
 echo "Installing ChucK"
 sudo make install \
-  >> $EDGYR_LOGS/synths.log 2>&1
+  >> $EDGYR_LOGS/softsynths.log 2>&1
 
 sudo rm -fr /usr/local/share/chuck
 sudo mkdir --parents /usr/local/share/chuck

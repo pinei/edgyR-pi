@@ -34,12 +34,6 @@ RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \
 COPY libnode-dev.sh $SCRIPTS/
 RUN $SCRIPTS/libnode-dev.sh > $LOGS/libnode-dev.log 2>&1 \
   && gzip -9 $LOGS/libnode-dev.log
-COPY youtube-dl.sh $SCRIPTS/
-RUN $SCRIPTS/youtube-dl.sh > $LOGS/youtube-dl.log 2>&1 \
-  && gzip -9 $LOGS/youtube-dl.log
-COPY deviceQuery.sh $SCRIPTS/
-RUN $SCRIPTS/deviceQuery.sh > $LOGS/deviceQuery.log 2>&1 \
-  && gzip -9 $LOGS/deviceQuery.log
 
 # configure R and RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started
@@ -75,8 +69,8 @@ WORKDIR $EDGYR_HOME
 
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr Renviron $EDGYR_HOME/.Renviron
-COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1 \
+COPY --chown=edgyr:edgyr r-packages.sh r-packages.R $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.sh > $EDGYR_LOGS/r-packages.log 2>&1 \
   && gzip -9 $EDGYR_LOGS/r-packages.log
 
 COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/

@@ -4,24 +4,30 @@ source("~/.Rprofile")
 Sys.setenv(MAKE = "make --jobs=4")
 update.packages(ask = FALSE, instlib = Sys.getenv("R_LIBS_USER"), quiet = TRUE)
 install.packages(c(
+  "acs",
   "audio",
   "blogdown",
   "bookdown",
-  "caracas",
+  "censusapi",
   "coda",
   "dagitty",
   "data.table",
   "devtools",
   "DiagrammeR",
   "distill",
+  "dodgr",
   "flexdashboard",
+  "ggmap",
   "knitr",
   "learnr",
+  "mapdeck",
+  "maps",
   "miniUI",
   "monitoR",
   "mvtnorm",
   "NatureSounds",
   "odbc",
+  "osmdata",
   "phonTools",
   "pkgdown",
   "Rcpp",
@@ -37,18 +43,27 @@ install.packages(c(
   "servr",
   "sf",
   "signal",
+  "sodium",
   "soundecology",
   "soundgen",
   "sp",
+  "stplanr",
   "testthat",
+  "tidycensus",
+  "tidytransit",
   "tidyverse",
+  "tigris",
   "tinytex",
+  "tmap",
   "tufte",
   "tuneR",
   "V8",
   "webshot",
   "xaringan"
 ), quiet = TRUE)
+warnings()
+remotes::install_github("maRce10/warbleR")
+warnings()
 install.packages("rstan", dependencies = TRUE, quiet = TRUE)
 remotes::install_github("rmcelreath/rethinking", quiet = TRUE)
 

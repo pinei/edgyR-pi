@@ -6,6 +6,7 @@ export CHUCK_VERSION=1.4.0.1
 export CSOUND_VERSION=6.15.0
 export FAUST_VERSION=2.30.5
 export FLUIDSYNTH_VERSION=2.1.7
+export LIBMUSICXML_VERSION=3.18
 echo "Installing build dependencies"
 sudo apt-get install -qqy --no-install-recommends \
   bison \
@@ -57,6 +58,20 @@ sudo make install \
   >> $EDGYR_LOGS/softsynths.log 2>&1
 
 cd $HOME/src
+rm -fr libmusicxml*
+echo "Downloading libmusicxml $LIBMUSICXML_VERSION source"
+curl -Ls https://codeload.github.com/grame-cncm/libmusicxml/tar.gz/v3.18 \
+  | tar xzf -
+cd libmusicxml-$LIBMUSICXML_VERSION/build
+
+echo "Compiling libmusicxml"
+/usr/bin/time make --jobs=`nproc` \
+  >> $EDGYR_LOGS/softsynths.log 2>&1
+echo "Installing libmusicxml"
+sudo make install \
+  >> $EDGYR_LOGS/softsynths.log 2>&1
+
+cd $HOME/src
 rm -fr faust*
 echo "Downloading faust $FAUST_VERSION source"
 curl -Ls https://github.com/grame-cncm/faust/releases/download/$FAUST_VERSION/faust-$FAUST_VERSION.tar.gz \
@@ -66,7 +81,7 @@ cd faust-$FAUST_VERSION
 echo "Symlinking llvm-10-config"
 sudo ln -s /usr/lib/llvm-10/bin/llvm-config /usr/bin/llvm-config
 echo "Compiling faust"
-/usr/bin/time make --jobs=`nproc` world \
+/usr/bin/time make --jobs=`nproc` most \
   >> $EDGYR_LOGS/softsynths.log 2>&1
 echo "Installing faust"
 sudo make install \

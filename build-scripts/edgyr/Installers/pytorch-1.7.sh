@@ -2,6 +2,13 @@
 
 set -e
 
+echo "Installing PyTorch Linux dependencies"
+sudo apt-get update
+/usr/bin/time sudo apt-get install -qqy --no-install-recommends \
+  libopenblas-base \
+  libopenmpi-dev \
+  >> $EDGYR_LOGS/pytorch-1.7.log 2>&1
+
 echo "Creating fresh pytorch-1.7 virtualenv"
 export PT_VENV=$WORKON_HOME/pytorch-1.7
 rm -fr $PT_VENV

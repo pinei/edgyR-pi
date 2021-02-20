@@ -9,6 +9,7 @@ cd $PROJECT_HOME
 rm -fr arrow
 git clone https://github.com/apache/arrow.git
 pushd arrow
+git checkout apache-arrow-3.0.0
 git submodule init
 git submodule update
 export PARQUET_TEST_DATA="${PWD}/cpp/submodules/parquet-testing/data"

@@ -28,8 +28,9 @@ echo "Checking out version '$CUSIGNAL_VERSION'"
 git checkout $CUSIGNAL_VERSION
 
 echo "Creating fresh 'cusignal-dev' environment"
+echo "This takes about 10 minutes on an AGX Xavier"
 source $HOME/miniconda3/etc/profile.d/conda.sh
-/usr/bin/time conda env create --force --file \
+/usr/bin/time conda env create --quiet --force --file \
   conda/environments/cusignal_jetson_base.yml \
   >> $EDGYR_LOGS/cusignal-dev.log 2>&1
 

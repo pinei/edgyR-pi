@@ -30,6 +30,7 @@ popd
 
 echo "Creating conda env 'pyarrow-cuda-git'"
 echo "This takes about 4 minutes on a 4GB Nano"
+echo "and 2 minutes on an AGX-Xavier"
 source $HOME/miniconda3/etc/profile.d/conda.sh
 /usr/bin/time conda create --quiet --force --yes --name pyarrow-cuda-git \
   --channel conda-forge \
@@ -62,6 +63,7 @@ cmake -DCMAKE_INSTALL_PREFIX=$ARROW_HOME \
 
 echo "Installing arrow-cpp"
 echo "This takes about 13 minutes on a 4GB Nano"
+echo "and 5 minutes on an AGX Xavier"
 /usr/bin/time ninja -j `nproc` \
   >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 ninja install \
@@ -70,6 +72,7 @@ popd
 
 echo "Installing pyarrow"
 echo "This takes about 7 minutes on a 4GB Nano"
+echo "and 5 minutes on an AGX Xavier"
 pushd arrow/python
 export PYARROW_WITH_CUDA=1
 export PYARROW_WITH_PARQUET=1
@@ -83,7 +86,8 @@ popd
 
 echo "Installing R package 'arrow'"
 conda deactivate
-export PKG_CONFIG_PATH=$CONDA_PREFIX/lib/pkgconfig
+export INCLUDE_DIR=$CONDA_PREFIX/include
+export LIB_DIR=$CONDA_PREFIX/lib
 export R_LD_LIBRARY_PATH=$R_LD_LIBRARY_PATH:$CONDA_PREFIX/lib
 pushd arrow/r
 /usr/bin/time Rscript -e \

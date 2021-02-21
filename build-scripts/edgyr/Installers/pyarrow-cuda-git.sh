@@ -29,6 +29,7 @@ diff \
 popd
 
 echo "Creating conda env 'pyarrow-cuda-git'"
+echo "This takes about 4 minutes on a 4GB Nano"
 source $HOME/miniconda3/etc/profile.d/conda.sh
 /usr/bin/time conda create --quiet --force --yes --name pyarrow-cuda-git \
   --channel conda-forge \
@@ -60,6 +61,7 @@ cmake -DCMAKE_INSTALL_PREFIX=$ARROW_HOME \
   >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 
 echo "Installing arrow-cpp"
+echo "This takes about 13 minutes on a 4GB Nano"
 /usr/bin/time ninja -j `nproc` \
   >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 ninja install \
@@ -67,12 +69,14 @@ ninja install \
 popd
 
 echo "Installing pyarrow"
+echo "This takes about 7 minutes on a 4GB Nano"
 pushd arrow/python
 export PYARROW_WITH_CUDA=1
 export PYARROW_WITH_PARQUET=1
 /usr/bin/time python setup.py build_ext --inplace \
   >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 echo "Testing pyarrow"
+echo "This takes about 3 minutes on a 4GB Nano"
 /usr/bin/time pytest --quiet pyarrow \
   >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 popd
@@ -82,6 +86,12 @@ conda deactivate
 export PKG_CONFIG_PATH=$CONDA_PREFIX/lib/pkgconfig
 export R_LD_LIBRARY_PATH=$R_LD_LIBRARY_PATH:$CONDA_PREFIX/lib
 pushd arrow/r
-/usr/bin/time Rscript -e "devtools::install('.', build_vignettes = TRUE)" \
+/usr/bin/time Rscript -e \
+  "devtools::install('.', build_vignettes = TRUE, quiet = TRUE)" \
   >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 popd
+
+echo "Cleaning up"
+gzip -9 $EDGYR_LOGS/pyarrow-cuda-git.log
+conda clean --tarballs --index-cache --quiet --yes
+conda list

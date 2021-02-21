@@ -44,3 +44,5 @@ sudo /sbin/ldconfig --verbose \
 echo "Installing / testing R 'OpenCL' package"
 Rscript -e "source('~/Installers/R/OpenCL.R')" \
   >> $EDGYR_LOGS/pocl.log 2>&1
+
+gzip -9 $EDGYR_LOGS/pocl.log

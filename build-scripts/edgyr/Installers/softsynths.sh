@@ -137,3 +137,5 @@ sudo make install \
 sudo rm -fr /usr/local/share/chuck
 sudo mkdir --parents /usr/local/share/chuck
 sudo mv ../examples /usr/local/share/chuck/examples
+
+gzip -9 $EDGYR_LOGS/softsynths.log

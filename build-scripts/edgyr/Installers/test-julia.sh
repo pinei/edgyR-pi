@@ -11,3 +11,5 @@ sleep 20
 echo "OK - stand by!"
 sudo /usr/bin/time julia -e 'using Pkg; Pkg.test("CUDA")' \
   >> $EDGYR_LOGS/test-julia.log 2>&1
+
+gzip -9 $EDGYR_LOGS/test-julia.log 2>&1

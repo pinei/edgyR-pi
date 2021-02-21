@@ -43,3 +43,5 @@ pip list --format=columns > $EDGYR_LOGS/tensorflow-2-pip-list.log
 echo "Installing R keras package"
 /usr/bin/time Rscript -e "source('~/Installers/R/keras.R')" \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+
+gzip -9 $EDGYR_LOGS/tensorflow-2.log

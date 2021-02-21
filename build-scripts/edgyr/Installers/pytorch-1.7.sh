@@ -62,3 +62,5 @@ echo "Installing R package 'rTorch'"
 export MAKE="make --jobs=`nproc`"
 /usr/bin/time Rscript -e "install.packages('rTorch', quiet = TRUE)" \
   >> $EDGYR_LOGS/pytorch-1.7.log 2>&1
+
+gzip -9$EDGYR_LOGS/pytorch-1.7.log

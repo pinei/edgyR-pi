@@ -86,6 +86,7 @@ popd
 
 echo "Installing R package 'arrow'"
 echo "This takes about 11 minutes on a 4GB Nano"
+echo "and 6 minutes on an AGX-Xavier"
 conda deactivate
 export INCLUDE_DIR=$CONDA_PREFIX/include
 export LIB_DIR=$CONDA_PREFIX/lib

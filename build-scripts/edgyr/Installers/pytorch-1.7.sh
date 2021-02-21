@@ -52,8 +52,7 @@ cd ..
 
 popd
 
-pip list --format=columns \
-  >> $EDGYR_LOGS/pytorch-1.7.log 2>&1
+pip list --format=columns > $EDGYR_LOGS/pytorch-1.7-pip-list.log
 
 echo "Testing PyTorch with Python"
 /usr/bin/time python $EDGYR_HOME/Installers/etc/test-pytorch.py \

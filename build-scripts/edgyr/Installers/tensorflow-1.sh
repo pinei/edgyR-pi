@@ -36,8 +36,7 @@ echo "Installing tensorflow 1"
 /usr/bin/time pip install --extra-index-url \
   https://developer.download.nvidia.com/compute/redist/jp/v44 'tensorflow<2.0'  \
   >> $EDGYR_LOGS/tensorflow-1.log 2>&1
-pip list --format=columns \
-  >> $EDGYR_LOGS/tensorflow-1.log 2>&1
+pip list --format=columns > $EDGYR_LOGS/tensorflow-1-pip-list.log
 
 echo "Installing R keras package"
 /usr/bin/time Rscript -e "source('~/Installers/R/keras.R')" \

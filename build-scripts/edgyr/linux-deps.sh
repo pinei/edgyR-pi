@@ -47,7 +47,6 @@ apt-get install -qqy --no-install-recommends \
   zlib1g-dev
 update-alternatives --set editor /usr/bin/vim.nox
 
-
 # RStudio uses 'soci' to connect to PostgreSQL and SQLite.
 # However, the PostgreSQL client libraries in Bionic / L4t
 # are for PostgreSQL 10, and won't work with newer versions.
@@ -68,4 +67,7 @@ sudo apt-get upgrade -y
 echo "Installing ffmpeg-4"
 apt-get install -qqy --no-install-recommends \
   ffmpeg
+
+echo "Cleanup"
+apt-get autoremove -y
 apt-get clean

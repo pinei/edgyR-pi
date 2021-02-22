@@ -2,7 +2,7 @@
 
 set -e
 
-export EDGYR_RELEASE=0.7.4.9999
+export EDGYR_RELEASE=0.9.4.9999
 for image in \
   internal-pandoc \
   internal-ubuntu-builder \

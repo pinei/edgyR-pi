@@ -3,8 +3,6 @@
 set -e
 
 cd $HOME
-source $HOME/miniconda3/etc/profile.d/conda.sh
-conda activate cusignal-dev
 echo ""
 echo "Generating Jupyter configuration file"
 jupyter notebook --generate-config

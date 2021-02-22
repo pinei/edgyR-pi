@@ -1,4 +1,4 @@
-FROM "nvcr.io/nvidia/l4t-base:r32.5.0"
+FROM "nvcr.io/nvidia/l4t-ml:r32.5.0-py3"
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -81,6 +81,7 @@ COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/
 COPY --chown=edgyr:edgyr Installers $EDGYR_HOME/Installers
 COPY --chown=edgyr:edgyr vimrc-* $EDGYR_HOME/
+COPY --chown=edgyr:edgyr start-jupyter-lab.sh $EDGYR_HOME/
 RUN apt list --installed > $EDGYR_LOGS/installed-packages.log
 
 # switch back to 'root' for wrap-up

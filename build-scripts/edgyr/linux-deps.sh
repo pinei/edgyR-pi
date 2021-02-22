@@ -18,6 +18,8 @@ apt-get install -qqy --no-install-recommends \
   git \
   git-lfs \
   gnupg \
+  libpcre2-8-0 \
+  libpq5 \
   lsof \
   mlocate \
   ninja-build \

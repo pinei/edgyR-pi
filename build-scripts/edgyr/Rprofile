@@ -29,4 +29,4 @@ options(bitmapType='cairo')
 grDevices::X11.options(type='cairo')
 
 # Define SYSTEM_RAM_KILOBYTES
-Sys.setenv("SYSTEM_RAM_KILOBYTES", system("ram_kilobytes.sh", intern = TRUE))
+Sys.setenv(SYSTEM_RAM_KILOBYTES, system("ram_kilobytes.sh", intern = TRUE))

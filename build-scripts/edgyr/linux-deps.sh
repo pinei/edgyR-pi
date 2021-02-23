@@ -67,6 +67,8 @@ sudo apt-get upgrade -y
 echo "Installing ffmpeg-4"
 apt-get install -qqy --no-install-recommends \
   ffmpeg
+echo "Installing SymPY"
+pip3 install sympy
 
 echo "Cleanup"
 apt-get autoremove -y

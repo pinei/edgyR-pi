@@ -24,9 +24,6 @@ COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/share/man /usr/loc
 # libnode-dev and dependencies packages
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/src/packages /usr/local/src/packages
 
-# enable fetching package sources
-COPY sources.list /etc/apt/sources.list
-
 # Linux dependencies
 COPY linux-deps.sh pgdg.list $SCRIPTS/
 RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \

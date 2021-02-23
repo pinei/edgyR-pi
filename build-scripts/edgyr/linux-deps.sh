@@ -57,16 +57,10 @@ echo "Installing PGDG Linux repository"
 curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo cp $SCRIPTS/pgdg.list /etc/apt/sources.list.d/pgdg.list
 
-echo "Adding 'ffmpeg-4' PPA"
-add-apt-repository ppa:jonathonf/ffmpeg-4
-
 echo "Upgrading"
 sudo apt-get update
 sudo apt-get upgrade -y
 
-echo "Installing ffmpeg-4"
-apt-get install -qqy --no-install-recommends \
-  ffmpeg
 echo "Installing SymPY"
 pip3 install sympy
 

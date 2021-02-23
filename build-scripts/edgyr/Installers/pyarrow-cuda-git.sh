@@ -30,7 +30,7 @@ popd
 
 echo "Creating conda env 'pyarrow-cuda-git'"
 echo "This takes about 4 minutes on a 4GB Nano"
-echo "and 2 minutes on an AGX-Xavier"
+echo "and 2 minutes on an AGX Xavier"
 source $HOME/miniconda3/etc/profile.d/conda.sh
 /usr/bin/time conda create --quiet --force --yes --name pyarrow-cuda-git \
   --channel conda-forge \
@@ -80,13 +80,14 @@ export PYARROW_WITH_PARQUET=1
   >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 echo "Testing pyarrow"
 echo "This takes about 3 minutes on a 4GB Nano"
+echo "and 1.3 minutes on an AGX Xavier"
 /usr/bin/time pytest --quiet pyarrow \
   >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 popd
 
 echo "Installing R package 'arrow'"
 echo "This takes about 11 minutes on a 4GB Nano"
-echo "and 6 minutes on an AGX-Xavier"
+echo "and 6 minutes on an AGX Xavier"
 conda deactivate
 export INCLUDE_DIR=$CONDA_PREFIX/include
 export LIB_DIR=$CONDA_PREFIX/lib

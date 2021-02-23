@@ -29,7 +29,7 @@ git checkout $CUSIGNAL_VERSION
 
 echo "Creating fresh 'cusignal-dev' environment"
 echo "This takes about 25 minutes on a 4 GB Nano"
-echo "and about 10 minutes on an AGX Xavier"
+echo "and 10 minutes on an AGX Xavier"
 source $HOME/miniconda3/etc/profile.d/conda.sh
 /usr/bin/time conda env create --quiet --force --file \
   conda/environments/cusignal_jetson_base.yml \

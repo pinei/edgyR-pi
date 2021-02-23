@@ -14,6 +14,6 @@ sudo apt-get install -qqy --no-install-recommends \
   libtiff5-dev \
   >> $EDGYR_LOGS/devtools.log
 echo "Installing R packages"
-Rscript -e "source('~/Installers/R/devtools.R')" \
+/usr/bin/time Rscript -e "source('~/Installers/R/devtools.R')" \
   >> $EDGYR_LOGS/devtools.log
 gzip -9 $EDGYR_LOGS/devtools.log

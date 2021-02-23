@@ -1,5 +1,13 @@
 # edgyR-containers: Docker Images for NVIDIAⓇ Jetson™ R Developers
 
+## Update -- 2021-02-23
+I've finished the "de-enhancement" process and will be releasing
+v0.9.5 in the very near future. The biggest change is that I've removed some
+features that are problematic on the 4 GB Nano. The image is larger than I'd
+like - 7.75 gigabytes - but it is packed to the brim with goodies via the
+latest release of 
+[NVIDIA L4T ML](https://ngc.nvidia.com/catalog/containers/nvidia:l4t-ml).
+
 ## Update -- 2021-02-12
 I'm pausing enhancements on this project for a while. I will continue to update
 versions for R, RStudio Server, Miniforge and all the other components on the
@@ -11,10 +19,9 @@ There are two reasons:
 on my AGX Xavier, which is a single point of failure.
 2. I want to spend more time on digital music synthesis with the Jetson Nano.
 While that can be done within this project, `edgyR` is overkill for what I
-want to do.
+want to do there.
 
 ## Introduction
-
 
 > “And though she be but little, she is fierce.” – Shakespeare, on
 > receiving an NVIDIA Jetson Nano for his birthday
@@ -119,7 +126,7 @@ it's your choice!
     -   [Linux for Tegra
         (L4T)](https://developer.nvidia.com/embedded/linux-tegra "L4T website"):
         This is Ubuntu 18.04 LTS "Bionic Beaver" for the
-        `arm64`architecure,
+        `arm64`architecure plus NVIDIA extensions,
 
     -   the NVIDIA Docker runtime, and
 
@@ -144,8 +151,7 @@ it's your choice!
 
     -   `pandoc` 2.11.2,
 
-    -   R 4.0.3 with `tidyverse`, `devtools`, R Markdown, ShinyⓇ, and
-        `reticulate`,
+    -   R 4.0.4 with `tidyverse`, R Markdown, ShinyⓇ, and  `reticulate`,
 
     -   [RStudioⓇ Server
         1.4](https://rstudio.com/products/rstudio/download-server/other-platforms/ "Download RStudio Server for other platforms"),
@@ -154,18 +160,15 @@ it's your choice!
         for the `V8` R package,
 
     -   [`conda-forge`](https://github.com/conda-forge/miniforge "conda-forge/miniforge GitHub repository"),
-        Jupyter Lab, [CuPy](https://cupy.dev/ "CuPy website") and
-        [`cuSignal`](https://github.com/rapidsai/cusignal "cusignal GitHub repository"),
 
     plus install scripts for
 
-    -   CUDA-aware PyTorch, TensorFlow, [Apache Arrow
+    -   CUDA-aware [Apache Arrow
         3.0.0](https://arrow.apache.org/docs/ "Apache Arrow documentation")
-        (C++, Python and R), [Portable Computing
-        Language](http://portablecl.org/docs/html/ "Portable Computing Language documentation"),
-        and Julia,
-
-    -   R audio, authoring, [Bayesian
+        (C++, Python and R),
+    -   [cuSignal](https://github.com/rapidsai/cusignal),
+    -   Julia plus `CUDA.jl`,
+    -   R audio, authoring, package development tools, [Bayesian
         statistics](https://github.com/rmcelreath/rethinking), and
         [spatial / civic software
         development](https://geocompr.robinlovelace.net/ "Geocomputation with R"),
@@ -212,40 +215,4 @@ Contributing to the project is really quite simple:
 for trivial typo changes without filing an issue. [File an
 issue](https://github.com/edgyR/edgyR-containers/issues/new).*
 
-## Getting started
-
-1.  Open a command line terminal on the Jetson. Clone this repository:
-    `git clone https://github.com/edgyR/edgyR-containers.git`. `cd` into
-    `edgyR-containers`.
-
-2.  `./pull.sh`. This will download the [edgyR
-    image](https://hub.docker.com/r/edgyr/edgyr "edgyR image on Docker Hub")
-    from Docker Hub.
-
-3.  The `edgyR` image ships with an administrative user named `edgyr`.
-    This user has *passwordless* `sudo` privileges. So you should
-    *never* host the image on the public internet. *Never, ever, ever,
-    ever! Don't do that! Really!*
-
-    On your home / lab LAN, you'll need to define a strong password for
-    this user. To do that, type
-
-        export EDGYR_PASSWORD="at-least-twelve-characters-easy-to-remember-and-hard-to-guess"
-
-4.  Type `./run.sh`. This will remove any existing `edgyr` container and
-    start a new one using the `edgyr` image. Notes:
-
-    -   The container connects to the Docker `host` network. This means
-        it has the same internet connectivity as your Jetson. That
-        should be OK in a home environment, but in a lab setting, make
-        sure you clear it with your LAN administrator.
-    -   The RStudio server listens on IP address:port `0.0.0.0:7878`.
-        This means you can browse to it on the Jetson as
-        `localhost:7878` and from any other system on the LAN as
-        `<Jetson IP address>:7878`. Note that this is a different port
-        than the RStudio Server default, 8787.
-
-5.  Browse to the server, either on the Jetson as `localhost` or from
-    another machine on the LAN. Log in as `edgyr` with the password you
-    set in step 3 above. You will be in the RStudio Server desktop.
-    Enjoy!
+## [Yes! I want more!](I-want-mode.md)

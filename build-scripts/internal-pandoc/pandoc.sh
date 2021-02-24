@@ -24,7 +24,7 @@ $HOME/.cabal/bin/cabal v2-install \
   --disable-shared \
   --disable-tests \
   --flags="embed_data_files https" \
-  --ghc-options="-fllvm" \
+  --ghc-options="-fasm" \
   --jobs=$JOBS \
   --overwrite-policy=always \
 pandoc-$PANDOC_VERSION

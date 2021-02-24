@@ -215,4 +215,4 @@ Contributing to the project is really quite simple:
 for trivial typo changes without filing an issue. [File an
 issue](https://github.com/edgyR/edgyR-containers/issues/new).*
 
-## [Yes! I want more!](I-want-mode.md)
+# [***Yes! I want more!***](https://github.com/edgyR/edgyR-containers/blob/main/I-want-more.md)

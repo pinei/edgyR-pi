@@ -20,7 +20,7 @@ RUN $SCRIPTS/pgdg.sh > $LOGS/pgdg.log 2>&1
 
 # install RStudio Server
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/
-ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=4 RSTUDIO_VERSION_PATCH=1103
+ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=4 RSTUDIO_VERSION_PATCH=1106
 COPY rstudio.sh $SCRIPTS/
 COPY dependencies/linux $SCRIPTS/dependencies/linux
 COPY dependencies/common $SCRIPTS/dependencies/common
@@ -31,6 +31,6 @@ COPY build-libnode-dev.sh cran-ubuntu-v8-bionic.list sources.list $SCRIPTS/
 RUN $SCRIPTS/build-libnode-dev.sh > $LOGS/build-libnode-dev.log 2>&1
 
 # hugo
-ENV GOLANG_VERSION="1.15.8"
+ENV GOLANG_VERSION="1.16"
 COPY hugo.sh $SCRIPTS/
 RUN $SCRIPTS/hugo.sh > $LOGS/hugo.log 2>&1

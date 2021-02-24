@@ -2,7 +2,7 @@
 
 echo "Installing golang binary"
 cd $SOURCE_DIR
-curl -Ls https://golang.org/dl/go1.15.6.linux-arm64.tar.gz \
+curl -Ls https://golang.org/dl/go$GOLANG_VERSION.linux-arm64.tar.gz \
   | tar --directory /usr/local -xzf -
 export PATH=$PATH:/usr/local/go/bin
 

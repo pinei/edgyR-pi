@@ -4,7 +4,7 @@ set -e
 
 if [ `ram_kilobytes.sh` -lt 7000000 ]
 then
-  export JOBS=3
+  export JOBS=1
 else
   export JOBS=`nproc`
 fi

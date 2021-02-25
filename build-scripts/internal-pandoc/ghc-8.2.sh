@@ -15,6 +15,7 @@ curl -Ls \
   https://downloads.haskell.org/~ghc/8.2.2/ghc-8.2.2-src.tar.xz \
   | tar xJf -
 cd ghc-8.2.2
+./boot
 ./configure
 make --jobs=$JOBS
 make install

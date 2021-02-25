@@ -12,7 +12,6 @@ echo "JOBS = $JOBS"
 
 which cabal
 cabal --version
-cabal user-config update
 cabal update
 cabal install \
   --disable-benchmarks \

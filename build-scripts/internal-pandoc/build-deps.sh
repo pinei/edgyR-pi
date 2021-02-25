@@ -6,8 +6,8 @@ apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
   build-essential \
   ca-certificates \
-  cabal-install \
   curl \
+  haskell-platform \
   libgmp-dev \
   libnuma-dev \
   llvm-3.9 \

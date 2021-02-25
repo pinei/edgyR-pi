@@ -11,10 +11,9 @@ fi
 echo "JOBS = $JOBS"
 
 $HOME/.cabal/bin/cabal --version
-$HOME/.cabal/bin/cabal user-config update
-$HOME/.cabal/bin/cabal v2-update
+$HOME/.cabal/bin/cabal update
 
-$HOME/.cabal/bin/cabal v2-install \
+$HOME/.cabal/bin/cabal install \
   --disable-benchmarks \
   --disable-coverage \
   --disable-debug-info \
@@ -29,5 +28,6 @@ $HOME/.cabal/bin/cabal v2-install \
   --overwrite-policy=always \
 pandoc-$PANDOC_VERSION
 
+echo "Copying new 'pandoc' to '/usr/local/bin'"
 cp --verbose --dereference $HOME/.cabal/bin/pandoc /usr/local/bin/pandoc
 ldd /usr/local/bin/pandoc

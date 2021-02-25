@@ -20,6 +20,7 @@ rm -fr $TF_VENV
 virtualenv $TF_VENV --python=/usr/bin/python3
 source $TF_VENV/bin/activate
 echo "Installing Python dependencies"
+echo "This takes about 7 minutes on an AGX Xavier"
 /usr/bin/time pip install Cython \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 /usr/bin/time pip install -U \
@@ -35,6 +36,7 @@ echo "Installing Python dependencies"
   pybind11 \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 echo "Installing tensorflow 2"
+echo "This takes about 6 minutes on an AGX Xavier"
 /usr/bin/time pip install --extra-index-url \
   https://developer.download.nvidia.com/compute/redist/jp/v44 tensorflow  \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1

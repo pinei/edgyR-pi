@@ -60,6 +60,3 @@ echo "Cleaning up"
 gzip -9 $EDGYR_LOGS/cusignal-dev.log
 conda clean --tarballs --index-cache --quiet --yes
 conda list > $EDGYR_LOGS/cusignal-dev-conda-list.log
-
-echo "Enabling JupyterLab start"
-cp $HOME/Installers/etc/start-jupyter-lab.sh $HOME

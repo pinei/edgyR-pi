@@ -48,9 +48,6 @@ RUN $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1 \
 # enable passwordless sudo
 COPY passwordless-sudo /etc/sudoers.d/
 
-# install RAM query script globally
-COPY ram_kilobytes.sh /usr/local/bin/
-
 # set up 'edgyr' account
 ENV EDGYR_HOME=/home/edgyr
 ENV PROJECT_HOME=$EDGYR_HOME/Projects

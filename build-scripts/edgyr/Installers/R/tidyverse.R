@@ -6,6 +6,6 @@ install.packages(c(
   "odbc",
   "RPostgres",
   "RSQLite",
-  "tidyerse"
+  "tidyverse"
 ), quiet = TRUE)
 warnings()

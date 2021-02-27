@@ -44,5 +44,5 @@ curl -Ls \
 cd ghc-8.2.2
 ./boot
 ./configure
-make --jobs=$JOBS
+/usr/bin/time make --jobs=$JOBS
 make install

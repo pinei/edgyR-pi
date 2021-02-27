@@ -18,7 +18,7 @@ COPY ram_kilobytes.sh /usr/local/bin/
 
 # ghc 8.2
 COPY ghc-8.2.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/ghc-8.2.sh > $LOGS/ghc-8.2.log 2>&1
+RUN $SCRIPTS/ghc-8.2.sh > $LOGS/ghc-8.2.log 2>&1
 
 # cabal-install-3.0
 COPY cabal-config-1 cabal-install-3.0.sh $SCRIPTS/

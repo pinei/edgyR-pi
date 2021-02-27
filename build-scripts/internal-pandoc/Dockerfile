@@ -16,25 +16,21 @@ WORKDIR $SOURCE_DIR
 # RAM query script
 COPY ram_kilobytes.sh /usr/local/bin/
 
-# build dependencies
-COPY build-deps.sh $SCRIPTS/
-RUN $SCRIPTS/build-deps.sh > $LOGS/build-deps.log 2>&1
-
 # ghc 8.2
 COPY ghc-8.2.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/ghc-8.2.sh > $LOGS/ghc-8.2.log 2>&1
 
 # cabal-install-3.0
-COPY cabal-install-3.0.sh $SCRIPTS/
+COPY cabal-config-1 cabal-install-3.0.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/cabal-install-3.0.sh > $LOGS/cabal-install-3.0.log 2>&1
 
 # ghc 8.6
 COPY ghc-8.6.sh $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/ghc-8.6.sh > $LOGS/ghc-8.6.log 2>&1
 
-# cabal-install-3.2
-COPY cabal-install-3.2.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/cabal-install-3.2.sh > $LOGS/cabal-install-3.2.log 2>&1
+# cabal-install-3.4
+COPY cabal-config-2 cabal-install-3.4.sh $SCRIPTS/
+RUN /usr/bin/time $SCRIPTS/cabal-install-3.4.sh > $LOGS/cabal-install-3.4.log 2>&1
 
 # pandoc - version 2.11.2 is hard-coded dependency in RStudio 1.4 source
 ENV PANDOC_VERSION=2.11.2

@@ -62,11 +62,11 @@ pushd build-dir
   ../$R_LATEST/configure --enable-R-shlib
 
   echo "Compiling"
-  make --jobs=`nproc`
+  /usr/bin/time make --jobs=`nproc`
 
   echo "Making standalone math library"
   pushd src/nmath/standalone
-    make --jobs=`nproc`
+    /usr/bin/time make --jobs=`nproc`
     make install
   popd
 

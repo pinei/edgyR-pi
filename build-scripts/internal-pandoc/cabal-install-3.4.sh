@@ -10,12 +10,16 @@ else
 fi
 echo "JOBS = $JOBS"
 
+which cabal
 cabal --version
+cabal user-config init --force
+diff $SCRIPTS/cabal-config-2 /root/.cabal/config || true
+cp $SCRIPTS/cabal-config-2 /root/.cabal/config
 cabal update
 
+echo "Upgrading cabal-install"
 cabal install \
-  --flags="embed_data_files https" \
   --jobs=$JOBS \
   --overwrite-policy=always \
-pandoc-$PANDOC_VERSION
-ldd /usr/local/bin/pandoc
+cabal-install
+ldd /usr/local/bin/cabal

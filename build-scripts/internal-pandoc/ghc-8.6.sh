@@ -5,10 +5,16 @@ set -e
 echo "Installing LLVM 6.0"
 apt-get update
 apt-get install -qqy --no-install-recommends \
+  clang-6.0 \
+  clang-format-6.0 \
+  clang-tidy-6.0 \
+  clang-tools-6.0 \
+  libclang-6.0-dev \
   llvm-6.0 \
   llvm-6.0-dev \
   llvm-6.0-runtime \
-  llvm-6.0-tools
+  llvm-6.0-tools \
+  python3
 
 if [ `ram_kilobytes.sh` -lt 7000000 ]
 then

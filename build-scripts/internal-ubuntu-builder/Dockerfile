@@ -1,16 +1,27 @@
-FROM edgyr/internal-pandoc:latest
+FROM ubuntu:bionic
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 USER root
 
+ENV SOURCE_DIR=/usr/local/src
+ENV LOGS=$SOURCE_DIR/logs
+ENV SCRIPTS=$SOURCE_DIR/scripts
+ENV PACKAGES=$SOURCE_DIR/packages
+RUN mkdir --parents $LOGS $SCRIPTS $PACKAGES
+RUN ls -AFlrt $SOURCE_DIR
+
 WORKDIR $SOURCE_DIR
+
+# get Pandoc and 'ram_kilobytes.sh'
+COPY --from="edgyr/internal-pandoc:latest" /usr/local/bin/pandoc /usr/local/bin/pandoc
+COPY --from="edgyr/internal-pandoc:latest" /usr/local/bin/ram_kilobytes.sh /usr/local/bin/ram_kilobytes.sh
 
 # R
 ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=0 R_VERSION_PATCH=4
 ENV R_LATEST=R-$R_VERSION_MAJOR.$R_VERSION_MINOR.$R_VERSION_PATCH
 COPY r-from-source.sh $SCRIPTS/
-RUN /usr/bin/time $SCRIPTS/r-from-source.sh > $LOGS/r-from-source.log 2>&1
+RUN $SCRIPTS/r-from-source.sh > $LOGS/r-from-source.log 2>&1
 COPY configure.sh R.conf $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1
 

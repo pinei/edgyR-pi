@@ -14,3 +14,5 @@ echo "Updating 'mlocate' database"
 sudo updatedb
 echo "Updating 'apt-file search' database"
 sudo apt-file update
+echo "Adding '${USER}' to the 'docker' group"
+sudo usermod -aG docker ${USER}

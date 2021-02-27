@@ -12,21 +12,13 @@ echo "JOBS = $JOBS"
 
 which cabal
 cabal --version
-cabal user-config update
+cabal user-config init --force
+diff $SCRIPTS/cabal-config-1 /root/.cabal/config || true
+cp $SCRIPTS/cabal-config-1 /root/.cabal/config
 cabal update
+
+echo "Upgrading cabal-install"
 cabal install \
-  --disable-benchmarks \
-  --disable-coverage \
-  --disable-debug-info \
-  --disable-documentation \
-  --disable-executable-dynamic \
-  --disable-profiling \
-  --disable-shared \
-  --disable-tests \
-  --ghc-options="-fasm" \
   --jobs=$JOBS \
 cabal-install
-
-echo "Copying new 'cabal' to '/usr/local/bin'
-cp --verbose --dereference $HOME/.cabal/bin/cabal /usr/local/bin/cabal
 ldd /usr/local/bin/cabal

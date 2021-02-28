@@ -4,8 +4,8 @@ set -e
 
 echo ""
 echo "This takes a ***long*** time - about an hour and ten minutes"
-echo "on my AGX-Xavier! I run it every time I update Julia, so you"
-echo "don't have to."
+echo "on my AGX Xavier and nearly two hours on my 4 GB Nano! I run"
+echo "it every time I update Julia, so you don't have to."
 echo "Use Control-C to stop in the next 20 seconds if you wish."
 sleep 20
 echo "OK - stand by!"

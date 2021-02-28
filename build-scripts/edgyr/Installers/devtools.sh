@@ -14,7 +14,7 @@ sudo apt-get install -qqy --no-install-recommends \
   libtiff5-dev \
   >> $EDGYR_LOGS/devtools.log
 echo "Installing R packages"
-echo "This takes about 7 minutes on a 4 GB Nano"
+echo "This takes about 10 minutes on a 4 GB Nano"
 echo "and 3 minutes on an AGX Xavier"
 /usr/bin/time Rscript -e "source('~/Installers/R/devtools.R')" \
   >> $EDGYR_LOGS/devtools.log

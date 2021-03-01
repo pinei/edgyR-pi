@@ -1,7 +1,8 @@
 #! /bin/bash
 
 echo "Installing TensorFlow Linux dependencies"
-sudo apt-get update
+export DEBIAN_FRONTEND=noninteractive
+sudo apt-get update && sudo apt-get upgrade -y
 /usr/bin/time sudo apt-get install -qqy --no-install-recommends \
   gfortran \
   hdf5-tools \

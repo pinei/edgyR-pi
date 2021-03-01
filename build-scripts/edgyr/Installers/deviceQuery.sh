@@ -13,7 +13,7 @@ if [ ! -x $EDGYR_HOME/bin/deviceQuery ]
 then
   echo "Compiling 'deviceQuery"
   pushd $PROJECT_HOME/samples/1_Utilities/deviceQuery
-  make >> $EDGYR_LOGS/deviceQuery.log
+  make >> $EDGYR_LOGS/deviceQuery.log 2>&1
   echo "Installing 'deviceQuery' in '$HOME/bin'"
   cp deviceQuery $HOME/bin/
   popd

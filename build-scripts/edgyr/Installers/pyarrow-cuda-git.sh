@@ -99,6 +99,5 @@ pushd arrow/r
 popd
 
 echo "Cleaning up"
-gzip -9 $EDGYR_LOGS/pyarrow-cuda-git.log
 conda clean --tarballs --index-cache --quiet --yes
 conda list > $EDGYR_LOGS/pyarrow-cuda-git-conda-list.log

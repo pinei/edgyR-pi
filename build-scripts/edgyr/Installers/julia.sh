@@ -15,5 +15,3 @@ curl -Ls "$WHERE/$RELEASE_DIR/$JULIA_TARBALL" \
 echo "Installing 'CUDA.jl' for 'edgyr' user"
 /usr/bin/time julia -e 'using Pkg; Pkg.add("CUDA")' \
   >> $EDGYR_LOGS/julia.log 2>&1
-
-gzip -9 $EDGYR_LOGS/julia.log

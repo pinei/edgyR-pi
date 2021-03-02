@@ -2,7 +2,8 @@
 
 echo "Installing TensorFlow Linux dependencies"
 export DEBIAN_FRONTEND=noninteractive
-sudo apt-get update && sudo apt-get upgrade -y
+sudo apt-get update > $EDGYR_LOGS/tensorflow-2.log 2>&1
+sudo apt-get upgrade -y >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 /usr/bin/time sudo apt-get install -qqy --no-install-recommends \
   gfortran \
   hdf5-tools \
@@ -42,5 +43,3 @@ echo "This takes about 6 minutes on an AGX Xavier"
   https://developer.download.nvidia.com/compute/redist/jp/v44 tensorflow  \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 pip list --format=columns > $EDGYR_LOGS/tensorflow-2-pip-list.log
-
-gzip -9 $EDGYR_LOGS/tensorflow-2.log

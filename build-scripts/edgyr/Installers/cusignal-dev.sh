@@ -57,6 +57,5 @@ Rscript -e "install.packages('caracas', quiet = TRUE)" \
   >> $EDGYR_LOGS/cusignal-dev.log 2>&1
 
 echo "Cleaning up"
-gzip -9 $EDGYR_LOGS/cusignal-dev.log
 conda clean --tarballs --index-cache --quiet --yes
 conda list > $EDGYR_LOGS/cusignal-dev-conda-list.log

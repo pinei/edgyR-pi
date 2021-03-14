@@ -13,6 +13,8 @@ cd rstudio
 
 echo "Patching dependency install scripts"
 cp -rp $SCRIPTS/dependencies/* dependencies/
+echo "Patching hard-coded PANDOC_VERSION"
+sed --in-place=.bak --expression="s/2\.11\.2/$PANDOC_VERSION/" $SOURCE_DIR/rstudio/src/cpp/session/CMakeLists.txt
 
 echo "Installing dependencies - will take a while"
 pushd dependencies/linux

@@ -13,9 +13,13 @@ RUN ls -AFlrt $SOURCE_DIR
 
 WORKDIR $SOURCE_DIR
 
-# get Pandoc and 'ram_kilobytes.sh'
-COPY --from="edgyr/internal-pandoc:latest" /usr/local/bin/pandoc /usr/local/bin/pandoc
-COPY --from="edgyr/internal-pandoc:latest" /usr/local/bin/ram_kilobytes.sh /usr/local/bin/ram_kilobytes.sh
+# RAM query script
+COPY ram_kilobytes.sh /usr/local/bin/
+
+# Pandoc
+ENV PANDOC_VERSION="2.12"
+COPY upstream-pandoc.sh $SCRIPTS/
+RUN $SCRIPTS/upstream-pandoc.sh > $LOGS/upstream-pandoc.log 2>&1
 
 # R
 ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=0 R_VERSION_PATCH=4
@@ -32,11 +36,11 @@ RUN $SCRIPTS/pgdg.sh > $LOGS/pgdg.log 2>&1
 # install RStudio Server
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/
 ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=4 RSTUDIO_VERSION_PATCH=1103
+COPY vim-dark /root/.vimrc
 COPY rstudio.sh $SCRIPTS/
 COPY dependencies/linux $SCRIPTS/dependencies/linux
 COPY dependencies/common $SCRIPTS/dependencies/common
 RUN /usr/bin/time $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1
-COPY vim-dark /root/.vimrc
 
 COPY build-libnode-dev.sh cran-ubuntu-v8-bionic.list sources.list $SCRIPTS/
 RUN $SCRIPTS/build-libnode-dev.sh > $LOGS/build-libnode-dev.log 2>&1

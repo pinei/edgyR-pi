@@ -4,7 +4,6 @@ set -e
 
 echo "pulling edgyR images"
 for image in \
-  internal-pandoc \
   internal-ubuntu-builder \
   edgyr
 do

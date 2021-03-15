@@ -85,14 +85,18 @@ echo "and 1.3 minutes on an AGX Xavier"
   >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1
 popd
 
+conda deactivate
+
+echo "Installing R package 'devtools'"
+$HOME/Installers/devtools.sh
+
 echo "Installing R package 'arrow'"
 echo "This takes about 11 minutes on a 4GB Nano"
 echo "and 6 minutes on an AGX Xavier"
-conda deactivate
+pushd arrow/r
 export INCLUDE_DIR=$CONDA_PREFIX/include
 export LIB_DIR=$CONDA_PREFIX/lib
 export R_LD_LIBRARY_PATH=$R_LD_LIBRARY_PATH:$CONDA_PREFIX/lib
-pushd arrow/r
 /usr/bin/time Rscript -e \
   "devtools::install('.', build_vignettes = TRUE, quiet = TRUE)" \
   >> $EDGYR_LOGS/pyarrow-cuda-git.log 2>&1

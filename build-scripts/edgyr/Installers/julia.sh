@@ -4,7 +4,7 @@ set -e
 
 export JULIA_VERSION_MAJOR=1
 export JULIA_VERSION_MINOR=5
-export JULIA_VERSION_PATCH=3
+export JULIA_VERSION_PATCH=4
 echo ""
 echo "Installing 'julia' in '/usr/local'"
 export WHERE="https://julialang-s3.julialang.org/bin/linux/aarch64"

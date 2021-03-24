@@ -15,3 +15,6 @@ do
     sudo docker push "edgyr/$image:$EDGYR_RELEASE"
   fi
 done
+
+echo "Fixing up permissions"
+sudo chown -R $USER:$USER $HOME/.docker

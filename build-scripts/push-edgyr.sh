@@ -10,3 +10,6 @@ then
   sudo docker tag "edgyr/edgyr:latest" "edgyr/edgyr:$EDGYR_RELEASE"
   sudo docker push "edgyr/edgyr:$EDGYR_RELEASE"
 fi
+
+echo "Fixing up permissions"
+sudo chown -R $USER:$USER $HOME/.docker

@@ -36,7 +36,6 @@ RUN $SCRIPTS/pgdg.sh > $LOGS/pgdg.log 2>&1
 # install RStudio Server
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/
 ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=4 RSTUDIO_VERSION_PATCH=1106
-COPY vim-dark /root/.vimrc
 COPY rstudio.sh $SCRIPTS/
 COPY dependencies/linux $SCRIPTS/dependencies/linux
 COPY dependencies/common $SCRIPTS/dependencies/common

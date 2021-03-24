@@ -6,6 +6,7 @@ update.packages(ask = FALSE, instlib = Sys.getenv("R_LIBS_USER"), quiet = TRUE)
 install.packages(c(
   "caracas",
   "data.table",
+  "IRkernel",
   "keras",
   "remotes",
   "renv",
@@ -16,6 +17,9 @@ install.packages(c(
   "webshot"
 ), quiet = TRUE)
 warnings()
+
+# enable R kernel in Jupyter
+IRkernel::installspec()
 
 # test V8
 cat("\ntesting V8\n")

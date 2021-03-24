@@ -28,6 +28,9 @@ COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/src/packages /usr/
 COPY linux-deps.sh pgdg.list $SCRIPTS/
 RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \
   && gzip -9 $LOGS/linux-deps.log
+COPY cusignal.sh $SCRIPTS/
+RUN $SCRIPTS/cusignal.sh > $LOGS/cusignal.log 2>&1 \
+  && gzip -9 $LOGS/cusignal.log
 COPY libnode-dev.sh $SCRIPTS/
 RUN $SCRIPTS/libnode-dev.sh > $LOGS/libnode-dev.log 2>&1 \
   && gzip -9 $LOGS/libnode-dev.log
@@ -55,7 +58,9 @@ ENV WORKON_HOME=$EDGYR_HOME/.virtualenvs
 ENV EDGYR_SCRIPTS=$EDGYR_HOME/scripts
 ENV EDGYR_LOGS=$EDGYR_HOME/logs
 ENV EDGYR_PLOTS=$EDGYR_HOME/plots
-RUN mkdir --parents $PROJECT_HOME $WORKON_HOME $EDGYR_SCRIPTS $EDGYR_LOGS $EDGYR_PLOTS
+ENV EDGYR_NOTEBOOKS=$EDGYR_HOME/notebooks
+RUN mkdir --parents $PROJECT_HOME $WORKON_HOME $EDGYR_SCRIPTS $EDGYR_LOGS $EDGYR_PLOTS $EDGYR_NOTEBOOKS
+RUN cp -rp /usr/local/share/cusignal-notebooks $EDGYR_NOTEBOOKS/
 RUN chown -R edgyr:edgyr $EDGYR_HOME
 
 USER edgyr

@@ -13,16 +13,19 @@ RUN ls -AFlrt $SOURCE_DIR
 
 WORKDIR $SOURCE_DIR
 
+# assume dark background for vim
+RUN echo "set bg=dark" >> /root/.vimrc
+
 # RAM query script
 COPY ram_kilobytes.sh /usr/local/bin/
 
 # Pandoc
-ENV PANDOC_VERSION="2.12"
+ENV PANDOC_VERSION="2.13"
 COPY upstream-pandoc.sh $SCRIPTS/
 RUN $SCRIPTS/upstream-pandoc.sh > $LOGS/upstream-pandoc.log 2>&1
 
 # R
-ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=0 R_VERSION_PATCH=4
+ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=0 R_VERSION_PATCH=5
 ENV R_LATEST=R-$R_VERSION_MAJOR.$R_VERSION_MINOR.$R_VERSION_PATCH
 COPY r-from-source.sh $SCRIPTS/
 RUN $SCRIPTS/r-from-source.sh > $LOGS/r-from-source.log 2>&1
@@ -45,6 +48,6 @@ COPY build-libnode-dev.sh cran-ubuntu-v8-bionic.list sources.list $SCRIPTS/
 RUN $SCRIPTS/build-libnode-dev.sh > $LOGS/build-libnode-dev.log 2>&1
 
 # hugo
-ENV GOLANG_VERSION="1.16"
+ENV GOLANG_VERSION="1.16.3"
 COPY hugo.sh $SCRIPTS/
 RUN $SCRIPTS/hugo.sh > $LOGS/hugo.log 2>&1

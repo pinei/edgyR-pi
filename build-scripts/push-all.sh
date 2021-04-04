@@ -3,7 +3,7 @@
 set -e
 
 sudo docker login
-export EDGYR_RELEASE=0.9.4.9999
+export EDGYR_RELEASE=0.9.5
 for image in \
   internal-ubuntu-builder \
   edgyr

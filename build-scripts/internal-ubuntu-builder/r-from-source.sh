@@ -75,5 +75,4 @@ pushd build-dir
 popd
 
 cd $SOURCE_DIR
-zip -9rmyq $R_LATEST.zip $R_LATEST
-rm -fr build_dir
+rm -fr $R_LATEST build-dir

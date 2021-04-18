@@ -7,9 +7,11 @@ curl -Ls https://golang.org/dl/go$GOLANG_VERSION.linux-arm64.tar.gz \
 export PATH=$PATH:/usr/local/go/bin
 
 echo "Installing Hugo"
+rm -fr hugo*
 git clone https://github.com/gohugoio/hugo.git
 cd hugo
 /usr/bin/time go install --tags extended
 cp /root/go/bin/hugo /usr/local/bin/
 ldd /usr/local/bin/hugo
 hugo version
+rm -fr hugo

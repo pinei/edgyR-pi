@@ -48,4 +48,4 @@ make --jobs=$JOBS install
 popd
 
 cd $SOURCE_DIR
-rm -fr rstudio/build
+rm -fr rstudio

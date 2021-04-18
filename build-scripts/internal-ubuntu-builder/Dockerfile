@@ -9,7 +9,7 @@ ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
 ENV PACKAGES=$SOURCE_DIR/packages
 RUN mkdir --parents $LOGS $SCRIPTS $PACKAGES
-RUN ls -AFlrt $SOURCE_DIR
+RUN ls -Flart /usr/local > $LOGS/before.log
 
 WORKDIR $SOURCE_DIR
 
@@ -51,3 +51,5 @@ RUN $SCRIPTS/build-libnode-dev.sh > $LOGS/build-libnode-dev.log 2>&1
 ENV GOLANG_VERSION="1.16.3"
 COPY hugo.sh $SCRIPTS/
 RUN $SCRIPTS/hugo.sh > $LOGS/hugo.log 2>&1
+
+RUN ls -Flart /usr/local > $LOGS/after.log

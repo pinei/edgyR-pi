@@ -23,6 +23,9 @@ echo "Installing dependencies"
 apt-get install -y --no-install-recommends \
   bison \
   flex \
+  libasound2-dev \
+  libjack-jackd2-dev \
+  libsndfile1-dev \
   >> $LOGS/chuck.log 2>&1
 
 rm -fr chuck*

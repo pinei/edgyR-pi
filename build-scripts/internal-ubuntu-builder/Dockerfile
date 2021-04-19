@@ -9,7 +9,7 @@ ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
 ENV PACKAGES=$SOURCE_DIR/packages
 RUN mkdir --parents $LOGS $SCRIPTS $PACKAGES
-RUN ls -Flart /usr/local > $LOGS/before.log
+RUN ls -FlarRt /usr/local > $LOGS/before.log
 
 WORKDIR $SOURCE_DIR
 
@@ -61,4 +61,4 @@ ENV GOLANG_VERSION="1.16.3"
 COPY hugo.sh $SCRIPTS/
 RUN $SCRIPTS/hugo.sh > $LOGS/hugo.log 2>&1
 
-RUN ls -Flart /usr/local > $LOGS/after.log
+RUN ls -FlarRt /usr/local > $LOGS/after.log

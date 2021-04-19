@@ -12,5 +12,5 @@ install.packages(c(
   "shiny",
   "sodium",
   "tinytex"
-), quiet = TRUE)
+), repos = "https://cloud.r-project.org/", quiet = TRUE)
 warnings()

@@ -25,6 +25,7 @@ apt-get install -y --no-install-recommends \
   flex \
   libasound2-dev \
   libjack-jackd2-dev \
+  libpulse-dev \
   libsndfile1-dev \
   >> $LOGS/chuck.log 2>&1
 

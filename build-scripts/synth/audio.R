@@ -16,25 +16,9 @@
 Sys.setenv(MAKE = paste0("make --jobs=", parallel::detectCores()))
 install.packages(c(
   "audio",
-  "data.table",
-  "DiagrammeR",
-  "flexdashboard",
-  "IRkernel",
-  "knitr",
-  "monitoR",
-  "NatureSounds",
   "phonTools",
-  "reticulate",
-  "remotes",
-  "renv",
-  "rmarkdown",
   "seewave",
-  "signal",
-  "shiny",
-  "soundecology",
-  "soundgen",
-  "tinytex",
   "tuneR",
-  "warbleR"
+  "soundgen"
 ), quiet = TRUE, repos = "https://cloud.r-project.org/")
 warnings()

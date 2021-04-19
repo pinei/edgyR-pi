@@ -20,7 +20,7 @@ rm -f $LOGS/chuck.log
 cd $SOURCE_DIR
 
 echo "Installing dependencies"
-apt-get install -y --no-install-recommends \
+apt-get install -qqy --no-install-recommends \
   bison \
   flex \
   libasound2-dev \
@@ -28,6 +28,7 @@ apt-get install -y --no-install-recommends \
   libpulse-dev \
   libsndfile1-dev \
   >> $LOGS/chuck.log 2>&1
+apt-get clean
 
 rm -fr chuck*
 echo "Downloading ChucK $CHUCK_VERSION source"
@@ -59,16 +60,6 @@ pushd chugins
   make install \
     >> $LOGS/chuck.log 2>&1
   ldconfig
-  pushd Faust
-
-    echo "Installing Fauck"
-    make linux \
-      >> $LOGS/chuck.log 2>&1
-    make install \
-      >> $LOGS/chuck.log 2>&1
-    ldconfig
-    popd
-
   popd
 
 echo "Cleanup"

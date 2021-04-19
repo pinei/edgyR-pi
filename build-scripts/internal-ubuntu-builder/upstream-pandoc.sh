@@ -2,6 +2,8 @@
 
 set -e
 
+apt-get update
+apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
   ca-certificates \
   curl \

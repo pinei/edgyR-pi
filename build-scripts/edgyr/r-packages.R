@@ -5,14 +5,9 @@ Sys.setenv(MAKE = paste0("make --jobs=", parallel::detectCores()))
 update.packages(ask = FALSE, instlib = Sys.getenv("R_LIBS_USER"), quiet = TRUE)
 install.packages(c(
   "caracas",
-  "data.table",
   "IRkernel",
   "keras",
-  "remotes",
-  "renv",
   "rTorch",
-  "sodium",
-  "tinytex",
   "V8",
   "webshot"
 ), quiet = TRUE)

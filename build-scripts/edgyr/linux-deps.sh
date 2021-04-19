@@ -9,7 +9,6 @@ apt-get install -qqy --no-install-recommends \
   apt-file \
   build-essential \
   ca-certificates \
-  cmake \
   curl \
   default-jdk-headless \
   file \
@@ -58,8 +57,8 @@ curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 sudo cp $SCRIPTS/pgdg.list /etc/apt/sources.list.d/pgdg.list
 
 echo "Upgrading"
-sudo apt-get update
-sudo apt-get upgrade -y
+apt-get update
+apt-get upgrade -y
 
 echo "Installing SymPY"
 pip3 install sympy

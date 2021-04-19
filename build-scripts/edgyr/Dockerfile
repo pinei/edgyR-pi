@@ -17,17 +17,16 @@ WORKDIR $SOURCE_DIR
 RUN echo "set bg=dark" >> /root/.vimrc
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
-# get R, Pandoc and RStudio Server
+# get packages from builder image
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/bin /usr/local/bin
-COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/R /usr/local/lib/R
-COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/pkgconfig /usr/local/lib/pkgconfig
-COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/libRmath.so /usr/local/lib/libRmath.so
-COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/libRmath.a /usr/local/lib/libRmath.a
-COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib/rstudio-server /usr/local/lib/rstudio-server
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/doc /usr/local/doc
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/etc /usr/local/etc
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/games /usr/local/games
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/include /usr/local/include
-COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/share/man /usr/local/share/man
-
-# libnode-dev and dependencies packages
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/lib /usr/local/lib
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/man /usr/local/man
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/sbin /usr/local/sbin
+COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/share /usr/local/share
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/src/packages /usr/local/src/packages
 
 # Linux dependencies

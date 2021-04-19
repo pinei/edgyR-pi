@@ -5,6 +5,7 @@ install.packages(c(
   "data.table",
   "devtools",
   "flexdashboard",
+  "learnr",
   "miniUI",
   "pkgdown",
   "renv",

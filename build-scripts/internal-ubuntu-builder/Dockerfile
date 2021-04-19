@@ -56,9 +56,4 @@ RUN /usr/bin/time $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1
 COPY build-libnode-dev.sh cran-ubuntu-v8-bionic.list sources.list $SCRIPTS/
 RUN $SCRIPTS/build-libnode-dev.sh > $LOGS/build-libnode-dev.log 2>&1
 
-# hugo
-ENV GOLANG_VERSION="1.16.3"
-COPY hugo.sh $SCRIPTS/
-RUN $SCRIPTS/hugo.sh > $LOGS/hugo.log 2>&1
-
 RUN ls -FlarRt /usr/local > $LOGS/after.log

@@ -7,9 +7,15 @@ USER root
 ENV SOURCE_DIR=/usr/local/src
 ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
-RUN mkdir --parents $LOGS $SCRIPTS
+ENV PACKAGES=$SOURCE_DIR/packages
+RUN mkdir --parents $LOGS $SCRIPTS $PACKAGES
+RUN ls -FlarRt /usr/local > $LOGS/before.log
 
 WORKDIR $SOURCE_DIR
+
+# assume dark background for vim
+RUN echo "set bg=dark" >> /root/.vimrc
+LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 # get R, Pandoc and RStudio Server
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/bin /usr/local/bin
@@ -86,6 +92,7 @@ RUN apt list --installed > $EDGYR_LOGS/installed-packages.log
 # switch back to 'root' for wrap-up
 USER root
 WORKDIR $SOURCE_DIR/
+RUN ls -FlarRt /usr/local > $LOGS/after.log
 
 # set entry point
 COPY docker-entrypoint.sh /

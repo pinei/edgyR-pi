@@ -41,9 +41,9 @@ RUN $SCRIPTS/cmake.sh
 COPY pgdg.sh pgdg.list $SCRIPTS/
 RUN $SCRIPTS/pgdg.sh > $LOGS/pgdg.log 2>&1
 
-# devtools
-COPY devtools.sh devtools.R $SCRIPTS/
-RUN $SCRIPTS/devtools.sh > $LOGS/devtools.log 2>&1
+# utilities
+COPY utilities.sh utilities.R $SCRIPTS/
+RUN $SCRIPTS/utilities.sh > $LOGS/utilities.log 2>&1
 
 # install RStudio Server
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/

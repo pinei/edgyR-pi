@@ -12,4 +12,4 @@ apt-get install -qqy --no-install-recommends \
   libssl-dev \
   libxml2-dev
 echo "Installing R packages"
-/usr/bin/time $SCRIPTS/devtools.R
+/usr/bin/time $SCRIPTS/utilities.R

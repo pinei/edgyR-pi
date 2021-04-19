@@ -3,11 +3,10 @@
 Sys.setenv(MAKE = paste0("make --jobs=", parallel::detectCores()))
 install.packages(c(
   "data.table",
-  "devtools",
   "flexdashboard",
   "learnr",
   "miniUI",
-  "pkgdown",
+  "remotes",
   "renv",
   "reticulate",
   "shiny",

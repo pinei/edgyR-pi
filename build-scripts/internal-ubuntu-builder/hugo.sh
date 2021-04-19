@@ -4,7 +4,7 @@ echo "Installing golang binary"
 cd $SOURCE_DIR
 curl -Ls https://golang.org/dl/go$GOLANG_VERSION.linux-arm64.tar.gz \
   | tar --directory /usr/local -xzf -
-export PATH=$PATH:/usr/local/go/bin
+ln -sf /usr/local/go/bin/* /usr/local/bin/
 
 echo "Installing Hugo"
 rm -fr hugo*
@@ -14,4 +14,5 @@ cd hugo
 cp /root/go/bin/hugo /usr/local/bin/
 ldd /usr/local/bin/hugo
 hugo version
+cd ..
 rm -fr hugo

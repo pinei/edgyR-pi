@@ -14,6 +14,7 @@ apt-get install -qqy --no-install-recommends \
   libncurses-dev \
   libpango1.0-dev \
   libpcre2-dev \
+  libpq-dev \
   libreadline-dev \
   libtiff5-dev \
   lsb-release \

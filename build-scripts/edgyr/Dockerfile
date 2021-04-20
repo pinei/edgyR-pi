@@ -30,28 +30,28 @@ COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/share /usr/local/s
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/src/packages /usr/local/src/packages
 
 # Linux dependencies
-COPY linux-deps.sh pgdg.list $SCRIPTS/
-RUN $SCRIPTS/linux-deps.sh > $LOGS/linux-deps.log 2>&1 \
-  && gzip -9 $LOGS/linux-deps.log
+COPY command-line.sh pgdg.list $SCRIPTS/
+RUN $SCRIPTS/command-line.sh > $LOGS/command-line.log 2>&1
+
+COPY libraries.sh $SCRIPTS/
+RUN $SCRIPTS/libraries.sh > $LOGS/libraries.log 2>&1
+
 COPY cusignal.sh $SCRIPTS/
-RUN $SCRIPTS/cusignal.sh > $LOGS/cusignal.log 2>&1 \
-  && gzip -9 $LOGS/cusignal.log
+RUN $SCRIPTS/cusignal.sh > $LOGS/cusignal.log 2>&1
+
 COPY libnode-dev.sh $SCRIPTS/
-RUN $SCRIPTS/libnode-dev.sh > $LOGS/libnode-dev.log 2>&1 \
-  && gzip -9 $LOGS/libnode-dev.log
+RUN $SCRIPTS/libnode-dev.sh > $LOGS/libnode-dev.log 2>&1
 
 # configure R and RStudio Server
 # see https://support.rstudio.com/hc/en-us/articles/200552306-Getting-Started
 COPY configure.sh $SCRIPTS/
 COPY R.conf /etc/ld.so.conf.d/
 COPY rserver.conf /etc/rstudio/
-RUN $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1 \
-  && gzip -9 $LOGS/configure.log
+RUN $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1
 
 # Create the default user
 COPY edgyr-user.sh $SCRIPTS/
-RUN $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1 \
-  && gzip -9 $LOGS/edgyr-user.log
+RUN $SCRIPTS/edgyr-user.sh > $LOGS/edgyr-user.log 2>&1
 
 # enable passwordless sudo
 COPY passwordless-sudo /etc/sudoers.d/
@@ -64,7 +64,13 @@ ENV EDGYR_SCRIPTS=$EDGYR_HOME/scripts
 ENV EDGYR_LOGS=$EDGYR_HOME/logs
 ENV EDGYR_PLOTS=$EDGYR_HOME/plots
 ENV EDGYR_NOTEBOOKS=$EDGYR_HOME/notebooks
-RUN mkdir --parents $PROJECT_HOME $WORKON_HOME $EDGYR_SCRIPTS $EDGYR_LOGS $EDGYR_PLOTS $EDGYR_NOTEBOOKS
+RUN mkdir --parents \
+  $PROJECT_HOME \
+  $WORKON_HOME \
+  $EDGYR_SCRIPTS \
+  $EDGYR_LOGS \
+  $EDGYR_PLOTS \
+  $EDGYR_NOTEBOOKS
 RUN cp -rp /usr/local/share/cusignal-notebooks $EDGYR_NOTEBOOKS/
 RUN chown -R edgyr:edgyr $EDGYR_HOME
 
@@ -74,12 +80,10 @@ WORKDIR $EDGYR_HOME
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr Renviron $EDGYR_HOME/.Renviron
 COPY --chown=edgyr:edgyr r-packages.sh r-packages.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.sh > $EDGYR_LOGS/r-packages.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/r-packages.log
+RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.sh > $EDGYR_LOGS/r-packages.log 2>&1
 
 COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1 \
-  && gzip -9 $EDGYR_LOGS/miniforge.log
+RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1
 
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/

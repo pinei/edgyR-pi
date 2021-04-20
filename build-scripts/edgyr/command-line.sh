@@ -2,7 +2,7 @@
 
 set -e
 
-echo "Installing Linux dependencies"
+echo "Installing command line tools"
 apt-get update
 apt-get upgrade -y
 apt-get install -qqy --no-install-recommends \
@@ -17,8 +17,6 @@ apt-get install -qqy --no-install-recommends \
   git \
   git-lfs \
   gnupg \
-  libpcre2-8-0 \
-  libpq5 \
   lsof \
   mlocate \
   ninja-build \
@@ -42,8 +40,7 @@ apt-get install -qqy --no-install-recommends \
   virtualenv \
   virtualenvwrapper \
   wget \
-  zip \
-  zlib1g-dev
+  zip
 update-alternatives --set editor /usr/bin/vim.nox
 
 # RStudio uses 'soci' to connect to PostgreSQL and SQLite.

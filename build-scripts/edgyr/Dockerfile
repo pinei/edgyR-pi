@@ -19,7 +19,6 @@ LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 # get packages from builder image
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/bin /usr/local/bin
-COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/doc /usr/local/doc
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/etc /usr/local/etc
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/games /usr/local/games
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/include /usr/local/include

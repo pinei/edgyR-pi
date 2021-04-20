@@ -6,6 +6,7 @@ apt-get install -qqy --no-install-recommends \
   apt-file \
   build-essential \
   ca-certificates \
+  cmake \
   curl \
   file \
   gfortran \
@@ -59,6 +60,7 @@ echo "Configuring"
 mkdir --parents build-dir
 
 pushd build-dir
+
   ../$R_LATEST/configure --enable-R-shlib
 
   echo "Compiling"
@@ -68,11 +70,11 @@ pushd build-dir
   pushd src/nmath/standalone
     /usr/bin/time make --jobs=`nproc`
     make install
-  popd
+    popd
 
   echo "Installing"
   make install
-popd
+  popd
 
 cd $SOURCE_DIR
 rm -fr $R_LATEST build-dir

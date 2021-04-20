@@ -32,11 +32,6 @@ RUN $SCRIPTS/r-from-source.sh > $LOGS/r-from-source.log 2>&1
 COPY configure.sh R.conf $SCRIPTS/
 RUN /usr/bin/time $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1
 
-# CMake
-COPY cmake.sh $SCRIPTS/
-ENV CMAKE_VERSION="3.20.0"
-RUN $SCRIPTS/cmake.sh
-
 # PGDG repository
 COPY pgdg.sh pgdg.list $SCRIPTS/
 RUN $SCRIPTS/pgdg.sh > $LOGS/pgdg.log 2>&1

@@ -10,7 +10,6 @@ install.packages(c(
   "renv",
   "reticulate",
   "shiny",
-  "sodium",
   "tinytex"
 ), repos = "https://cloud.r-project.org/", quiet = TRUE)
 warnings()

@@ -36,10 +36,6 @@ RUN /usr/bin/time $SCRIPTS/configure.sh > $LOGS/configure.log 2>&1
 COPY pgdg.sh pgdg.list $SCRIPTS/
 RUN $SCRIPTS/pgdg.sh > $LOGS/pgdg.log 2>&1
 
-# utilities
-COPY utilities.sh utilities.R $SCRIPTS/
-RUN $SCRIPTS/utilities.sh > $LOGS/utilities.log 2>&1
-
 # install RStudio Server
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/
 ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=4 RSTUDIO_VERSION_PATCH=1106
@@ -50,5 +46,9 @@ RUN /usr/bin/time $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1
 
 COPY build-libnode-dev.sh cran-ubuntu-v8-bionic.list sources.list $SCRIPTS/
 RUN $SCRIPTS/build-libnode-dev.sh > $LOGS/build-libnode-dev.log 2>&1
+
+# utilities
+COPY utilities.sh utilities.R $SCRIPTS/
+RUN $SCRIPTS/utilities.sh > $LOGS/utilities.log 2>&1
 
 RUN ls -FlarRt /usr/local > $LOGS/after.log

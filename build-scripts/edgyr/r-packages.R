@@ -2,7 +2,6 @@
 
 source("~/.Rprofile")
 Sys.setenv(MAKE = paste0("make --jobs=", parallel::detectCores()))
-update.packages(ask = FALSE, instlib = Sys.getenv("R_LIBS_USER"), quiet = TRUE)
 install.packages(c(
   "caracas",
   "IRkernel",
@@ -27,7 +26,3 @@ if (ct$eval("foo + bar") != 579) {
 } else {
   cat("\nV8 is working\n\n")
 }
-
-# install TinyTeX
-tinytex::install_tinytex()
-tinytex::tlmgr_conf()

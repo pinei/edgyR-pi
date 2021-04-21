@@ -22,9 +22,13 @@ cd $PROJECT_HOME
 echo "Checking for faust"
 if [ ! -d /usr/local/include/faust ]
 then
-  echo "Faust includes missing - will install"
+  echo "Faust missing - will install"
   echo "This takes a while"
+  echo ""
   $HOME/Softsynths/faust.sh
+else
+  echo "Faust present - proceeding"
+  echo ""
 fi
 
 echo "Installing dependencies"

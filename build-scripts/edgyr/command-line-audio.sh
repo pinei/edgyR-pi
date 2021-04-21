@@ -11,36 +11,22 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
-#
+# 
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 set -e
-rm -f $EDGYR_LOGS/faust.log
-cd $PROJECT_HOME
 
-echo "Installing dependencies"
-apt-get install -y --no-install-recommends \
-  libmicrohttpd-dev \
-  libssl-dev \
-  libtinfo-dev \
-  >> $EDGYR_LOGS/faust.log 2>&1
-
-echo "Downloading faust source"
-rm -fr faust*
-curl -Ls \
-  https://github.com/grame-cncm/faust/releases/download/$FAUST_VERSION/faust-$FAUST_VERSION.tar.gz \
-  | tar --extract --gunzip --file=-
-
-echo "Compiling faust"
-cd faust-$FAUST_VERSION/build
-export CMAKEOPT="-Wno-dev"
-make TARGETS=all.cmake BACKENDS=all.cmake \
-  >> $EDGYR_LOGS/faust.log 2>&1
-echo "Installing faust"
-make install \
-  >> $EDGYR_LOGS/faust.log 2>&1
-ldconfig
-
-echo "Cleanup"
-rm -fr $PROJECT_HOME/faust*
+echo "Installing Linux dependencies"
+sudo apt-get install -qqy --no-install-recommends \
+  alsa-tools \
+  alsa-utils \
+  flac \
+  fluid-soundfont-gm \
+  fluid-soundfont-gs \
+  libsox-dev \
+  libsox-fmt-all \
+  mp3splt \
+  sox \
+  timidity
+sudo apt-get clean

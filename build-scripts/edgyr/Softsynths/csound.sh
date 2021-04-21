@@ -20,7 +20,7 @@ rm -f $EDGYR_LOGS/csound.log
 cd $PROJECT_HOME
 
 echo "Installing dependencies"
-apt-get install -y --no-install-recommends \
+sudo apt-get install -y --no-install-recommends \
   bison \
   dssi-dev \
   flex \
@@ -43,9 +43,10 @@ apt-get install -y --no-install-recommends \
   python3-dev \
   swig3.0 \
   >> $EDGYR_LOGS/csound.log 2>&1
-apt-get clean
+sudo apt-get clean
 
 echo "Downloading csound source"
+export CSOUND_VERSION="6.15.0"
 rm -fr csound*
 curl -Ls \
   https://github.com/csound/csound/archive/refs/tags/$CSOUND_VERSION.tar.gz \
@@ -77,10 +78,10 @@ pushd cs6make
   make --jobs=`nproc` \
     >> $EDGYR_LOGS/csound.log 2>&1
   echo "Installing CSound"
-  make install \
+  sudo make install \
     >> $EDGYR_LOGS/csound.log 2>&1
-  ldconfig
+  sudo ldconfig
   popd
 
 echo "Cleanup"
-rm -fr $PROJECT_HOME/cs6make $SOURCE_DIR/csound*
+rm -fr $PROJECT_HOME/cs6make $PROJECT_HOME/csound*

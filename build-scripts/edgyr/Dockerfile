@@ -41,14 +41,6 @@ RUN $SCRIPTS/libraries.sh > $LOGS/libraries.log 2>&1
 COPY cusignal.sh $SCRIPTS/
 RUN $SCRIPTS/cusignal.sh > $LOGS/cusignal.log 2>&1
 
-COPY cmake.sh $SCRIPTS/
-ENV CMAKE_VERSION="3.20.0"
-RUN $SCRIPTS/cmake.sh > $LOGS/cmake.log 2>&1
-
-COPY llvm.sh $SCRIPTS/
-ENV LLVM_VERSION="11.0.1"
-RUN $SCRIPTS/llvm.sh > $LOGS/llvm.log 2>&1
-
 COPY libnode-dev.sh $SCRIPTS/
 RUN $SCRIPTS/libnode-dev.sh > $LOGS/libnode-dev.log 2>&1
 
@@ -106,8 +98,8 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.R.log 2>&
 COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1
 
-COPY --chown=edgyr:edgyr audio.sh audio.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/audio.sh > $EDGYR_LOGS/audio.log 2>&1
+COPY --chown=edgyr:edgyr command-line-audio.sh $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/command-line-audio.sh > $EDGYR_LOGS/command-line-audio.log 2>&1
 
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/

@@ -11,30 +11,38 @@
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU Affero General Public License for more details.
-# 
+#
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 set -e
-rm -f $EDGYR_LOGS/audio.log
+rm -f $EDGYR_LOGS/faust.log
+cd $PROJECT_HOME
 
-echo "Installing Linux dependencies"
-sudo apt-get install -qqy --no-install-recommends \
-  alsa-tools \
-  alsa-utils \
-  flac \
-  fluid-soundfont-gm \
-  fluid-soundfont-gs \
-  libfftw3-dev \
-  libfftw3-mpi-dev \
-  libgdal-dev \
-  libsox-dev \
-  libsox-fmt-all \
-  libudunits2-dev \
-  mp3splt \
-  sox \
-  timidity
+echo "Installing dependencies"
+sudo apt-get install -y --no-install-recommends \
+  libmicrohttpd-dev \
+  libssl-dev \
+  libtinfo-dev \
+  >> $EDGYR_LOGS/faust.log 2>&1
 sudo apt-get clean
 
-echo "Installing R packages"
-Rscript -e "source('$EDGYR_SCRIPTS/audio.R')"
+echo "Downloading faust source"
+export FAUST_VERSION="2.30.5"
+rm -fr faust*
+curl -Ls \
+  https://github.com/grame-cncm/faust/releases/download/$FAUST_VERSION/faust-$FAUST_VERSION.tar.gz \
+  | tar --extract --gunzip --file=-
+
+echo "Compiling faust"
+cd faust-$FAUST_VERSION/build
+export CMAKEOPT="-Wno-dev"
+make TARGETS=all.cmake BACKENDS=light.cmake \
+  >> $EDGYR_LOGS/faust.log 2>&1
+echo "Installing faust"
+sudo make install \
+  >> $EDGYR_LOGS/faust.log 2>&1
+sudo ldconfig
+
+echo "Cleanup"
+rm -fr $PROJECT_HOME/faust*

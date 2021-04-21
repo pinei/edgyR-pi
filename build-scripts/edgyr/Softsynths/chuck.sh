@@ -20,13 +20,19 @@ rm -f $EDGYR_LOGS/chuck.log
 cd $PROJECT_HOME
 
 echo "Installing dependencies"
-apt-get install -y --no-install-recommends \
+sudo apt-get install -y --no-install-recommends \
   bison \
   flex \
+  libasound2-dev \
+  libjack-jackd2-dev \
+  libpulse-dev \
+  libsndfile1-dev \
   >> $EDGYR_LOGS/chuck.log 2>&1
+sudo apt clean
 
+echo "Downloading ChucK source"
+export CHUCK_VERSION="1.4.0.1"
 rm -fr chuck*
-echo "Downloading ChucK $CHUCK_VERSION source"
 curl -Ls https://chuck.cs.princeton.edu/release/files/chuck-$CHUCK_VERSION.tgz \
   | tar --extract --gunzip --file=-
 pushd chuck-$CHUCK_VERSION/src
@@ -35,14 +41,14 @@ pushd chuck-$CHUCK_VERSION/src
   make --jobs=`nproc` linux-jack \
     >> $EDGYR_LOGS/chuck.log 2>&1
   echo "Installing ChucK"
-  make install \
+  sudo make install \
     >> $EDGYR_LOGS/chuck.log 2>&1
-  ldconfig
+  sudo ldconfig
 
   echo "Relocating ChucK examples"
-  rm -fr /usr/local/share/chuck
-  mkdir --parents /usr/local/share/chuck
-  mv ../examples /usr/local/share/chuck/examples
+  sudo rm -fr /usr/local/share/chuck
+  sudo mkdir --parents /usr/local/share/chuck
+  sudo mv ../examples /usr/local/share/chuck/examples
   popd
 
 echo "Installing Chugins"
@@ -52,17 +58,17 @@ pushd chugins
 
   make linux \
     >> $EDGYR_LOGS/chuck.log 2>&1
-  make install \
+  sudo make install \
     >> $EDGYR_LOGS/chuck.log 2>&1
-  ldconfig
+  sudo ldconfig
   pushd Faust
 
     echo "Installing Fauck"
     make linux \
       >> $EDGYR_LOGS/chuck.log 2>&1
-    make install \
+    sudo make install \
       >> $EDGYR_LOGS/chuck.log 2>&1
-    ldconfig
+    sudo ldconfig
     popd
 
   popd

@@ -1,3 +1,5 @@
+#! /usr/bin/env Rscript
+
 # Copyright (C) 2021 M. Edward (Ed) Borasky <mailto:znmeb@algocompsynth.com>
 #
 # This program is free software: you can redistribute it and/or modify

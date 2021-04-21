@@ -16,17 +16,25 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 set -e
-rm -f $LOGS/audio.log
-cd $SOURCE_DIR
+rm -f $EDGYR_LOGS/audio.log
 
 echo "Installing Linux dependencies"
-apt-get install -qqy --no-install-recommends \
+sudo apt-get install -qqy --no-install-recommends \
+  alsa-tools \
+  alsa-utils \
+  flac \
+  fluid-soundfont-gm \
+  fluid-soundfont-gs \
   libfftw3-dev \
   libfftw3-mpi-dev \
   libgdal-dev \
+  libsox-dev \
+  libsox-fmt-all \
   libudunits2-dev \
-  >> $LOGS/audio.log 2>&1
-apt-get clean
+  mp3splt \
+  sox \
+  timidity
+sudo apt-get clean
 
-/usr/bin/time Rscript -e "source('$SCRIPTS/audio.R')" \
-  >> $LOGS/audio.log 2>&1
+echo "Installing R packages"
+Rscript -e "source('$EDGYR_SCRIPTS/audio.R')"

@@ -4,6 +4,10 @@ LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 ARG DEBIAN_FRONTEND=noninteractive
 USER root
 
+# reset entry point
+COPY docker-entrypoint.sh /
+CMD [ "/docker-entrypoint.sh" ]
+
 ENV SOURCE_DIR=/usr/local/src
 ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
@@ -15,7 +19,6 @@ WORKDIR $SOURCE_DIR
 
 # assume dark background for vim
 RUN echo "set bg=dark" >> /root/.vimrc
-LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 # get packages from builder image
 COPY --from="edgyr/internal-ubuntu-builder:latest" /usr/local/bin /usr/local/bin
@@ -70,6 +73,10 @@ RUN mkdir --parents \
   $EDGYR_LOGS \
   $EDGYR_PLOTS \
   $EDGYR_NOTEBOOKS
+
+# assume dark background for vim
+RUN echo "set bg=dark" >> $EDGYR_HOME/.vimrc
+
 RUN cp -rp /usr/local/share/cusignal-notebooks $EDGYR_NOTEBOOKS/
 RUN chown -R edgyr:edgyr $EDGYR_HOME
 
@@ -91,6 +98,9 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.R.log 2>&
 COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1
 
+COPY --chown=edgyr:edgyr audio.sh audio.R $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/audio.sh > $EDGYR_LOGS/audio.log 2>&1
+
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/
 COPY --chown=edgyr:edgyr Installers $EDGYR_HOME/Installers
@@ -102,7 +112,3 @@ RUN apt list --installed > $EDGYR_LOGS/installed-packages.log
 USER root
 WORKDIR $SOURCE_DIR/
 RUN ls -FlarRt /usr/local > $LOGS/after.log
-
-# set entry point
-COPY docker-entrypoint.sh /
-CMD [ "/docker-entrypoint.sh" ]

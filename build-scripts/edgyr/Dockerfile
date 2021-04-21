@@ -39,6 +39,7 @@ COPY libraries.sh $SCRIPTS/
 RUN $SCRIPTS/libraries.sh > $LOGS/libraries.log 2>&1
 
 COPY cusignal.sh $SCRIPTS/
+ENV CUSIGNAL_VERSION="0.19.0"
 RUN $SCRIPTS/cusignal.sh > $LOGS/cusignal.log 2>&1
 
 COPY libnode-dev.sh $SCRIPTS/

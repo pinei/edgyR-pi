@@ -4,14 +4,13 @@ set -e
 
 echo "Cloning cusignal"
 cd $SOURCE_DIR
-export CUSIGNAL_VERSION=v0.18.0
 export CUSIGNAL_HOME=$(pwd)/cusignal
 rm -fr $CUSIGNAL_HOME
 git clone https://github.com/rapidsai/cusignal.git $CUSIGNAL_HOME
 cd $CUSIGNAL_HOME
 
 echo "Checking out version $CUSIGNAL_VERSION"
-git checkout $CUSIGNAL_VERSION
+git checkout v$CUSIGNAL_VERSION
 
 echo "Building cusignal"
 sed --in-place=.bak --expression='s;python setup.py;python3 setup.py;' ./build.sh

@@ -2,9 +2,9 @@
 
 set -e
 
-mkdir --parents $HOME/Downloads/Installers
-cd $HOME/Downloads/Installers
-echo "Downloading Miniforge-pypy3 installer"
+mkdir --parents /tmp/Installers
+cd /tmp/Installers
+echo "Downloading Miniforge installer"
 wget -q \
   https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh
 chmod +x Miniforge3-Linux-aarch64.sh
@@ -21,6 +21,7 @@ conda config --set auto_activate_base false
 
 echo "Creating fresh 'r-reticulate' environment"
 /usr/bin/time conda create --name r-reticulate --quiet --force --yes \
+  python==3 \
   numpy
 
 echo "Cleaning up"

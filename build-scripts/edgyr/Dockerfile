@@ -41,6 +41,14 @@ RUN $SCRIPTS/libraries.sh > $LOGS/libraries.log 2>&1
 COPY cusignal.sh $SCRIPTS/
 RUN $SCRIPTS/cusignal.sh > $LOGS/cusignal.log 2>&1
 
+COPY cmake.sh $SCRIPTS/
+ENV CMAKE_VERSION="3.20.0"
+RUN $SCRIPTS/cmake.sh > $LOGS/cmake.log 2>&1
+
+COPY llvm.sh $SCRIPTS/
+ENV LLVM_VERSION="11.0.1"
+RUN $SCRIPTS/llvm.sh > $LOGS/llvm.log 2>&1
+
 COPY libnode-dev.sh $SCRIPTS/
 RUN $SCRIPTS/libnode-dev.sh > $LOGS/libnode-dev.log 2>&1
 

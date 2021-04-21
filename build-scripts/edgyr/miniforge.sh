@@ -21,7 +21,6 @@ conda config --set auto_activate_base false
 
 echo "Creating fresh 'r-reticulate' environment"
 /usr/bin/time conda create --name r-reticulate --quiet --force --yes \
-  python==3 \
   numpy
 
 echo "Cleaning up"

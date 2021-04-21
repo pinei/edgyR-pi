@@ -104,6 +104,7 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/audio.sh > $EDGYR_LOGS/audio.log 2>&1
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/
 COPY --chown=edgyr:edgyr Installers $EDGYR_HOME/Installers
+COPY --chown=edgyr:edgyr Softsynths $EDGYR_HOME/Softsynths
 COPY --chown=edgyr:edgyr vimrc-* $EDGYR_HOME/
 COPY --chown=edgyr:edgyr start-jupyter-lab.sh $EDGYR_HOME/
 RUN apt list --installed > $EDGYR_LOGS/installed-packages.log

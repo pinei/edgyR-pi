@@ -17,8 +17,8 @@
 
 set -e
 
-# 1. We've already installed pandoc in /usr/local/bin
+# 1. We've already installed pandoc in /opt
 # 2. PANDOC_VERSION is defined in the Dockerfile
 PANDOC_SUBDIR="pandoc/${PANDOC_VERSION}"
 mkdir --parents $PANDOC_SUBDIR
-cp /usr/local/bin/pandoc $PANDOC_SUBDIR
+cp /opt/pandoc-$PANDOC_VERSION/bin/pandoc $PANDOC_SUBDIR

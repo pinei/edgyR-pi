@@ -19,6 +19,14 @@ set -e
 rm -f $EDGYR_LOGS/chuck.log
 cd $PROJECT_HOME
 
+echo "Checking for faust"
+if [ ! -d /usr/local/include/faust ]
+then
+  echo "Faust includes missing - will install"
+  echo "This takes a while"
+  $HOME/Softsynths/faust.sh
+fi
+
 echo "Installing dependencies"
 sudo apt-get install -y --no-install-recommends \
   bison \
@@ -52,6 +60,7 @@ pushd chuck-$CHUCK_VERSION/src
   popd
 
 echo "Installing Chugins"
+rm -fr chugins*
 git clone https://github.com/ccrma/chugins.git \
   >> $EDGYR_LOGS/chuck.log 2>&1
 pushd chugins

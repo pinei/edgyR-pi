@@ -4,9 +4,17 @@ source("~/.Rprofile")
 Sys.setenv(MAKE = paste0("make --jobs=", parallel::detectCores()))
 install.packages(c(
   "caracas",
+  "data.table",
+  "flexdashboard",
   "IRkernel",
   "keras",
+  "learnr",
+  "miniUI",
+  "remotes",
+  "renv",
+  "reticulate",
   "rTorch",
+  "shiny",
   "V8",
   "webshot"
 ), quiet = TRUE)

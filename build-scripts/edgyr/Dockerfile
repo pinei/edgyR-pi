@@ -87,11 +87,11 @@ WORKDIR $EDGYR_HOME
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr Renviron $EDGYR_HOME/.Renviron
 
-COPY --chown=edgyr:edgyr install-tinytex.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/install-tinytex.R > $EDGYR_LOGS/install-tinytex.R.log 2>&1
+COPY --chown=edgyr:edgyr tinytex.R $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/tinytex.R > $EDGYR_LOGS/tinytex.log 2>&1
 
 COPY --chown=edgyr:edgyr r-depends.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/r-depends.sh > $EDGYR_LOGS/r-depends.sh.log 2>&1
+RUN /usr/bin/time $EDGYR_SCRIPTS/r-depends.sh > $EDGYR_LOGS/r-depends.log 2>&1
 
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.R.log 2>&1

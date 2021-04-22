@@ -47,8 +47,4 @@ RUN /usr/bin/time $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1
 COPY build-libnode-dev.sh cran-ubuntu-v8-bionic.list sources.list $SCRIPTS/
 RUN $SCRIPTS/build-libnode-dev.sh > $LOGS/build-libnode-dev.log 2>&1
 
-# utilities
-COPY utilities.sh utilities.R $SCRIPTS/
-RUN $SCRIPTS/utilities.sh > $LOGS/utilities.log 2>&1
-
 RUN ls -FlarRt /usr/local > $LOGS/after.log

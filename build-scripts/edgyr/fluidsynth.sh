@@ -39,7 +39,6 @@ sudo apt-get install -y --no-install-recommends \
 sudo apt-get clean
 
 echo "Downloading libinstpatch"
-export LIBINSTPATCH_VERSION="1.1.6"
 rm -fr libinstpatch*
 curl -Ls \
   https://github.com/swami/libinstpatch/archive/refs/tags/v$LIBINSTPATCH_VERSION.tar.gz \
@@ -68,7 +67,6 @@ echo "Cleanup"
 rm -fr $PROJECT_HOME/libinstpatch*
 
 echo "Downloading fluidsynth"
-export FLUIDSYNTH_VERSION="2.2.0"
 rm -fr fluidsynth*
 curl -Ls \
   https://github.com/FluidSynth/fluidsynth/archive/refs/tags/v$FLUIDSYNTH_VERSION.tar.gz \

@@ -26,5 +26,9 @@ sudo apt-get install -qqy --no-install-recommends \
   libudunits2-dev \
   >> $EDGYR_LOGS/R-audio.log 2>&1
 sudo apt-get clean
-R/audio.R \
+
+echo "Installing R packages"
+$HOME/Softsynths/R/audio.R \
   >> $EDGYR_LOGS/R-audio.log 2>&1
+
+echo "Finished"

@@ -1,4 +1,4 @@
-FROM "nvcr.io/nvidia/l4t-ml:r32.5.0-py3"
+FROM "nvcr.io/nvidia/l4t-base:r32.5.0"
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -37,10 +37,6 @@ RUN $SCRIPTS/command-line.sh > $LOGS/command-line.log 2>&1
 
 COPY libraries.sh $SCRIPTS/
 RUN $SCRIPTS/libraries.sh > $LOGS/libraries.log 2>&1
-
-COPY cusignal.sh $SCRIPTS/
-ENV CUSIGNAL_VERSION="0.19.0"
-RUN $SCRIPTS/cusignal.sh > $LOGS/cusignal.log 2>&1
 
 COPY libnode-dev.sh $SCRIPTS/
 RUN $SCRIPTS/libnode-dev.sh > $LOGS/libnode-dev.log 2>&1
@@ -84,6 +80,13 @@ RUN chown -R edgyr:edgyr $EDGYR_HOME
 USER edgyr
 WORKDIR $EDGYR_HOME
 
+COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1
+
+COPY --chown=edgyr:edgyr cusignal.sh $EDGYR_SCRIPTS/
+ENV CUSIGNAL_VERSION="0.19.0"
+RUN /usr/bin/time $EDGYR_SCRIPTS/cusignal.sh > $EDGYR_LOGS/cusignal.log 2>&1
+
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr Renviron $EDGYR_HOME/.Renviron
 
@@ -95,9 +98,6 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/r-depends.sh > $EDGYR_LOGS/r-depends.log 2>&1
 
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.R.log 2>&1
-
-COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1
 
 COPY --chown=edgyr:edgyr command-line-audio.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/command-line-audio.sh > $EDGYR_LOGS/command-line-audio.log 2>&1

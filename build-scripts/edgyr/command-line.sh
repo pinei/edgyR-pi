@@ -57,9 +57,6 @@ echo "Upgrading"
 apt-get update
 apt-get upgrade -y
 
-echo "Installing SymPY"
-pip3 install sympy
-
 echo "Cleanup"
 apt-get autoremove -y
 apt-get clean

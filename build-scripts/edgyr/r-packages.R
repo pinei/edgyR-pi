@@ -7,13 +7,11 @@ install.packages(c(
   "data.table",
   "flexdashboard",
   "IRkernel",
-  "keras",
   "learnr",
   "miniUI",
   "remotes",
   "renv",
   "reticulate",
-  "rTorch",
   "shiny",
   "V8",
   "webshot"

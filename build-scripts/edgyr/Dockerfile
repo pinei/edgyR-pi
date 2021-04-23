@@ -74,7 +74,6 @@ RUN mkdir --parents \
 # assume dark background for vim
 RUN echo "set bg=dark" >> $EDGYR_HOME/.vimrc
 
-RUN cp -rp /usr/local/share/cusignal-notebooks $EDGYR_NOTEBOOKS/
 RUN chown -R edgyr:edgyr $EDGYR_HOME
 
 USER edgyr

@@ -20,7 +20,7 @@ wget --quiet \
   -O torch-1.8.0-cp36-cp36m-linux_aarch64.whl \
   https://nvidia.box.com/shared/static/p57jwntv436lfrd78inwl7iml6p13fzh.whl
 /usr/bin/time pip install -U \
-  numpy \
+  numpy==1.19.4 \
   torch-1.8.0-cp36-cp36m-linux_aarch64.whl \
   >> $EDGYR_LOGS/pytorch-1.8.0.log 2>&1
 pushd $PROJECT_HOME

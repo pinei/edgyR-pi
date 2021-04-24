@@ -19,7 +19,7 @@ set -e
 rm -f $EDGYR_LOGS/faust.log
 cd $PROJECT_HOME
 
-echo "Installing dependencies"
+echo "Installing Faust Linux dependencies"
 sudo apt-get install -y --no-install-recommends \
   libmicrohttpd-dev \
   libssl-dev \

@@ -31,7 +31,7 @@ else
   echo ""
 fi
 
-echo "Installing dependencies"
+echo "Installing ChucK Linux dependencies"
 sudo apt-get install -y --no-install-recommends \
   bison \
   flex \

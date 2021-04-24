@@ -31,7 +31,7 @@ else
   echo ""
 fi
 
-echo "Installing dependencies"
+echo "Installing CSound Linux dependencies"
 sudo apt-get install -y --no-install-recommends \
   bison \
   dssi-dev \

@@ -18,7 +18,19 @@
 set -e
 rm -f $EDGYR_LOGS/tidal.log
 
-echo "Installing dependencies"
+echo "Checking for supercollider"
+if [ ! -f /usr/local/bin/scsynth ]
+then
+  echo "supercollider missing - will install"
+  echo "This takes a while"
+  echo ""
+  $HOME/Softsynths/supercollider.sh
+else
+  echo "supercollider present - proceeding"
+  echo ""
+fi
+
+echo "Installing TidalCycles Linux dependencies"
 sudo apt-get install -qqy --no-install-recommends \
   cabal-install \
   >> $EDGYR_LOGS/tidal.log 2>&1

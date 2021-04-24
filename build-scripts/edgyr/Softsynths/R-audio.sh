@@ -18,7 +18,7 @@
 set -e
 rm -f $EDGYR_LOGS/R-audio.log
 
-echo "Installing Linux dependencies"
+echo "Installing R-audio Linux dependencies"
 sudo apt-get install -qqy --no-install-recommends \
   libfftw3-dev \
   libfftw3-mpi-dev \

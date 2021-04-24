@@ -21,7 +21,7 @@ set -e
 rm -f $EDGYR_LOGS/supercollider.log
 cd $PROJECT_HOME
 
-echo "Installing Linux dependencies"
+echo "Installing SuperCollider Linux dependencies"
 sudo apt-get install -y --no-install-recommends \
   emacs-nox \
   libavahi-client-dev \

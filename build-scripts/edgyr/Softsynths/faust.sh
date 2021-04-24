@@ -37,6 +37,10 @@ curl -Ls \
 echo "Compiling faust"
 cd faust-$FAUST_VERSION/build
 export CMAKEOPT="-Wno-dev"
+cat targets/all.cmake \
+  >> $EDGYR_LOGS/faust.log 2>&1
+cat backends/light.cmake \
+  >> $EDGYR_LOGS/faust.log 2>&1
 make TARGETS=all.cmake BACKENDS=light.cmake \
   >> $EDGYR_LOGS/faust.log 2>&1
 echo "Installing faust"

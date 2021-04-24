@@ -7,8 +7,7 @@ export ACCOUNT="edgyr"
 
 for repo in \
   internal-ubuntu-builder \
-  edgyr \
-  synth
+  edgyr
 do
   pushd $repo; ../build.sh ; popd
 done

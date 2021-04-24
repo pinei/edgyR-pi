@@ -26,16 +26,26 @@ echo "This takes about 7 minutes on an AGX Xavier"
 /usr/bin/time pip install Cython \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 /usr/bin/time pip install -U \
-  future==0.18.2 \
-  futures \
-  gast==0.2.2 \
-  h5py==2.10.0 \
-  keras_applications==1.0.8 \
-  keras_preprocessing==1.1.1 \
-  mock==3.0.5 \
-  numpy==1.19.4 \
+  absl-py \
+  astor \
+  gast \
+  google-pasta \
+  grpcio \
+  h5py \
+  keras-applications \
+  keras-preprocessing \
+  mock \
+  numpy \
+  portpicker \
   protobuf \
-  pybind11 \
+  psutil \
+  py-cpuinfo \
+  requests \
+  setuptools \
+  six \
+  termcolor \
+  testresources \
+  wrapt \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 echo "Installing tensorflow 2"
 echo "This takes about 6 minutes on an AGX Xavier"

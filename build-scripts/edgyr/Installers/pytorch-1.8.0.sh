@@ -23,4 +23,15 @@ wget --quiet \
   numpy \
   torch-1.8.0-cp36-cp36m-linux_aarch64.whl \
   >> $EDGYR_LOGS/pytorch-1.8.0.log 2>&1
+pushd $PROJECT_HOME
+
+  git clone https://github.com/pytorch/audio.git \
+    >> $EDGYR_LOGS/pytorch-1.8.0.log 2>&1
+  cd audio
+  git checkout v0.8.0 \
+    >> $EDGYR_LOGS/pytorch-1.8.0.log 2>&1
+  BUILD_SOX=1 python setup.py install \
+    >> $EDGYR_LOGS/pytorch-1.8.0.log 2>&1
+  popd
+
 pip list --format=columns > $EDGYR_LOGS/pytorch-1.8.0-pip-list.log

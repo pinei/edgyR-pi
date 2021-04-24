@@ -33,7 +33,7 @@ echo "This takes about 7 minutes on an AGX Xavier"
   keras_applications==1.0.8 \
   keras_preprocessing==1.1.1 \
   mock==3.0.5 \
-  numpy==1.16.1 \
+  numpy==1.19.4 \
   protobuf \
   pybind11 \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1

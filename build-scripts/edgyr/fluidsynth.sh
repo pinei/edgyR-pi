@@ -19,8 +19,9 @@ set -e
 rm -f $EDGYR_LOGS/fluidsynth.log
 cd $PROJECT_HOME
 
-echo "Installing Linux dependencies"
+echo "Installing FluidSynth Linux dependencies"
 sudo apt-get install -y --no-install-recommends \
+  cmake \
   libglib2.0-dev \
   libsndfile1-dev \
   libpulse-dev \

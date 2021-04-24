@@ -6,7 +6,6 @@ install.packages(c(
   "caracas",
   "data.table",
   "flexdashboard",
-  "IRkernel",
   "learnr",
   "miniUI",
   "remotes",
@@ -17,9 +16,6 @@ install.packages(c(
   "webshot"
 ), quiet = TRUE)
 warnings()
-
-# enable R kernel in Jupyter
-IRkernel::installspec()
 
 # test V8
 cat("\ntesting V8\n")

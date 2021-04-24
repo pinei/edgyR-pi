@@ -4,10 +4,6 @@ LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 ARG DEBIAN_FRONTEND=noninteractive
 USER root
 
-# reset entry point
-COPY docker-entrypoint.sh /
-CMD [ "/docker-entrypoint.sh" ]
-
 ENV SOURCE_DIR=/usr/local/src
 ENV LOGS=$SOURCE_DIR/logs
 ENV SCRIPTS=$SOURCE_DIR/scripts
@@ -96,7 +92,10 @@ COPY --chown=edgyr:edgyr r-depends.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-depends.sh > $EDGYR_LOGS/r-depends.log 2>&1
 
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.R.log 2>&1
+RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1
+
+COPY --chown=edgyr:edgyr r-kernel.sh $EDGYR_SCRIPTS/
+RUN /usr/bin/time $EDGYR_SCRIPTS/r-kernel.sh > $EDGYR_LOGS/r-kernel.log 2>&1
 
 COPY --chown=edgyr:edgyr command-line-audio.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/command-line-audio.sh > $EDGYR_LOGS/command-line-audio.log 2>&1
@@ -118,3 +117,7 @@ RUN apt list --installed > $EDGYR_LOGS/installed-packages.log
 USER root
 WORKDIR $SOURCE_DIR/
 RUN ls -FlarRt /usr/local > $LOGS/after.log
+
+# reset entry point
+COPY docker-entrypoint.sh /
+CMD [ "/docker-entrypoint.sh" ]

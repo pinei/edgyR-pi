@@ -24,7 +24,7 @@ rm -fr $CUSIGNAL_HOME
 git clone https://github.com/rapidsai/cusignal.git $CUSIGNAL_HOME
 cd $CUSIGNAL_HOME
 echo "Checking out version '$CUSIGNAL_VERSION'"
-git checkout $CUSIGNAL_VERSION
+git checkout v$CUSIGNAL_VERSION
 
 echo "Creating 'r-reticulate' conda environment"
 source $HOME/miniconda3/etc/profile.d/conda.sh
@@ -42,7 +42,7 @@ echo "Building 'cusignal'"
 /usr/bin/time ./build.sh --allgpuarch
 
 echo "Installing 'JupyterLab'"
-/usr/bin/time conda install --quiet --yes \
+/usr/bin/time mamba install --quiet --yes \
   jupyterlab \
   sympy
 

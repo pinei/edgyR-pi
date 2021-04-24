@@ -52,4 +52,9 @@ echo "This takes about 6 minutes on an AGX Xavier"
 /usr/bin/time pip install --extra-index-url \
   https://developer.download.nvidia.com/compute/redist/jp/v44 'tensorflow<2.0'  \
   >> $EDGYR_LOGS/tensorflow-1.log 2>&1
+
+echo "Installing ipykernel"
+pip install --user ipykernel
+python -m ipykernel install --user --name="tensorflow-1"
+
 pip list --format=columns > $EDGYR_LOGS/tensorflow-1-pip-list.log

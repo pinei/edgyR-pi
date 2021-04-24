@@ -34,4 +34,8 @@ pushd $PROJECT_HOME
     >> $EDGYR_LOGS/pytorch-1.8.0.log 2>&1
   popd
 
+echo "Installing ipykernel"
+pip install --user ipykernel
+python -m ipykernel install --user --name="pytorch-1.8.0"
+
 pip list --format=columns > $EDGYR_LOGS/pytorch-1.8.0-pip-list.log

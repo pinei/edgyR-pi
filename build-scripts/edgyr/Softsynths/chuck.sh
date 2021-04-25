@@ -88,3 +88,5 @@ pushd chugins
 
 echo "Cleanup"
 rm -fr $PROJECT_HOME/chuck $SOURCE_DIR/chugins
+
+echo "Finished"

@@ -100,3 +100,5 @@ pushd sc3-plugins*
 echo "Cleanup"
 rm -fr $PROJECT_HOME/SuperCollider*
 rm -fr $PROJECT_HOME/sc3-plugins*
+
+echo "Finished"

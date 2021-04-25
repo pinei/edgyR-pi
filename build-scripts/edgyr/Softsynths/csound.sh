@@ -97,3 +97,5 @@ pushd cs6make
 
 echo "Cleanup"
 rm -fr $PROJECT_HOME/cs6make $PROJECT_HOME/csound*
+
+echo "Finished"

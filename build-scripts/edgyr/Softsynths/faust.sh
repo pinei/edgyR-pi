@@ -50,3 +50,5 @@ sudo ldconfig
 
 echo "Cleanup"
 rm -fr $PROJECT_HOME/faust*
+
+echo "Finished"

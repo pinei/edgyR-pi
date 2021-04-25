@@ -45,3 +45,5 @@ echo "Installing tidal"
   --jobs=`nproc` \
   tidal \
   >> $EDGYR_LOGS/tidal.log 2>&1
+
+echo "Finished"

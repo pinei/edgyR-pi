@@ -1,5 +1,20 @@
 #! /bin/bash
 
+# Copyright (C) 2021 M. Edward (Ed) Borasky <mailto:znmeb@algocompsynth.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+# 
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 set -e
 
 rm -f $EDGYR_LOGS/pyarrow-cuda-git.log
@@ -105,3 +120,5 @@ popd
 echo "Cleaning up"
 conda clean --tarballs --index-cache --quiet --yes
 conda list > $EDGYR_LOGS/pyarrow-cuda-git-conda-list.log
+
+echo "Finished"

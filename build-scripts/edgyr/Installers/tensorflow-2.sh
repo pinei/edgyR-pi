@@ -20,8 +20,6 @@ rm -f $EDGYR_LOGS/tensorflow-2.log 2>&1
 
 echo "Installing TensorFlow Linux dependencies"
 export DEBIAN_FRONTEND=noninteractive
-sudo apt-get update > $EDGYR_LOGS/tensorflow-2.log 2>&1
-sudo apt-get upgrade -y >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 /usr/bin/time sudo apt-get install -qqy --no-install-recommends \
   gfortran \
   hdf5-tools \
@@ -30,6 +28,7 @@ sudo apt-get upgrade -y >> $EDGYR_LOGS/tensorflow-2.log 2>&1
   libhdf5-serial-dev \
   libjpeg8-dev \
   liblapack-dev \
+  protobuf-compiler \
   zip \
   zlib1g-dev \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
@@ -38,44 +37,65 @@ echo "Creating fresh tensorflow-2 virtualenv"
 export WORKON_HOME=$HOME/.virtualenvs
 export TF_VENV=$WORKON_HOME/tensorflow-2
 rm -fr $TF_VENV
-virtualenv $TF_VENV --python=/usr/bin/python3
+virtualenv $TF_VENV --python=/usr/bin/python3 \
+  >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 source $TF_VENV/bin/activate
 
 echo "Installing Python dependencies"
-/usr/bin/time pip install Cython \
-  >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 /usr/bin/time pip install -U \
-  absl-py \
-  astor \
-  gast \
-  google-pasta \
-  grpcio \
-  h5py \
-  keras-applications \
-  keras-preprocessing \
-  mock \
   numpy==1.19.4 \
-  portpicker \
+  future==0.18.2 \
+  mock==3.0.5 \
+  h5py==2.10.0 \
+  keras_preprocessing==1.1.1 \
+  keras_applications==1.0.8 \
+  gast==0.2.2 \
+  futures \
   protobuf \
-  psutil \
-  py-cpuinfo \
-  requests \
-  setuptools \
-  six \
-  termcolor \
-  testresources \
-  wrapt \
+  pybind11 \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 
 echo "Installing tensorflow 2"
 /usr/bin/time pip install --extra-index-url \
-  https://developer.download.nvidia.com/compute/redist/jp/v44 'tensorflow>1.99'  \
+  https://developer.download.nvidia.com/compute/redist/jp/v45 'tensorflow>1.99'  \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+
+pushd $PROJECT_HOME
+
+  echo "Cloning onnx"
+  rm -fr onnx*
+  git clone https://github.com/onnx/onnx.git \
+    >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+  cd onnx
+  git submodule update --init --recursive \
+    >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+  git checkout v1.9.0 \
+    >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+
+  echo "Installing onnx"
+  python setup.py install \
+    >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+  cd ..
+
+  echo "Cloning tensorflow-onnx"
+  rm -fr tensorflow-onnx*
+  git clone https://github.com/onnx/tensorflow-onnx.git \
+    >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+  cd tensorflow-onnx
+  git checkout v1.8.4 \
+    >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+
+  echo "Installing tensorflow-onnx"
+  python setup.py install \
+    >> $EDGYR_LOGS/tensorflow-2.log 2>&1
+  cd ..
+
+  popd
 
 echo "Installing ipykernel"
 pip install ipykernel \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
-python -m ipykernel install --name="tensorflow-2" \
+python -m ipykernel install --user --name="tensorflow-2" \
   >> $EDGYR_LOGS/tensorflow-2.log 2>&1
 
 pip list --format=columns > $EDGYR_LOGS/tensorflow-2-pip-list.log

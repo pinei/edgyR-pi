@@ -36,5 +36,4 @@ echo "JUPYTER=$JUPYTER"
 /usr/bin/time julia -e 'using Pkg; Pkg.add("IJulia")' \
   >> $EDGYR_LOGS/julia.log 2>&1
 
-
 echo "Finished"

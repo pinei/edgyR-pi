@@ -28,8 +28,6 @@ sudo apt-get install -qqy --no-install-recommends \
   unixodbc-dev \
   >> $EDGYR_LOGS/tidyverse.log 2>&1
 echo "Installing R packages"
-echo "This takes about 21 minutes on a 4 GB Nano"
-echo "and 11 minutes on an AGX Xavier"
 /usr/bin/time Rscript -e "source('~/Installers/R/tidyverse.R')" \
   >> $EDGYR_LOGS/tidyverse.log 2>&1
 

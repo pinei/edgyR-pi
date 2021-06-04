@@ -20,12 +20,12 @@ RUN echo "set bg=dark" >> /root/.vimrc
 COPY ram_kilobytes.sh /usr/local/bin/
 
 # Pandoc
-ENV PANDOC_VERSION="2.13"
+ENV PANDOC_VERSION="2.14.0.1"
 COPY upstream-pandoc.sh $SCRIPTS/
 RUN $SCRIPTS/upstream-pandoc.sh > $LOGS/upstream-pandoc.log 2>&1
 
 # R
-ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=0 R_VERSION_PATCH=5
+ENV R_VERSION_MAJOR=4 R_VERSION_MINOR=1 R_VERSION_PATCH=0
 ENV R_LATEST=R-$R_VERSION_MAJOR.$R_VERSION_MINOR.$R_VERSION_PATCH
 COPY r-from-source.sh $SCRIPTS/
 RUN $SCRIPTS/r-from-source.sh > $LOGS/r-from-source.log 2>&1
@@ -38,7 +38,7 @@ RUN $SCRIPTS/pgdg.sh > $LOGS/pgdg.log 2>&1
 
 # install RStudio Server
 # see https://rstudio.com/products/rstudio/download-server/other-platforms/
-ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=4 RSTUDIO_VERSION_PATCH=1106
+ENV RSTUDIO_VERSION_MAJOR=1 RSTUDIO_VERSION_MINOR=4 RSTUDIO_VERSION_PATCH=1717
 COPY rstudio.sh $SCRIPTS/
 COPY dependencies/linux $SCRIPTS/dependencies/linux
 COPY dependencies/common $SCRIPTS/dependencies/common

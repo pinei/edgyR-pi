@@ -17,8 +17,19 @@
 
 set -e
 
+source "$(dirname "${BASH_SOURCE[0]}")/../tools/rstudio-tools.sh"
+section "Installing Pandoc"
+echo "RSTUDIO_TOOLS_ROOT = ${RSTUDIO_TOOLS_ROOT}"
+
 # 1. We've already installed pandoc in /opt
 # 2. PANDOC_VERSION is defined in the Dockerfile
 PANDOC_SUBDIR="pandoc/${PANDOC_VERSION}"
+
+# move to tools root
+cd "${RSTUDIO_TOOLS_ROOT}"
+
+# create pandoc subdirectory
 mkdir --parents $PANDOC_SUBDIR
+
+# copy the binary
 cp /opt/pandoc-$PANDOC_VERSION/bin/pandoc $PANDOC_SUBDIR

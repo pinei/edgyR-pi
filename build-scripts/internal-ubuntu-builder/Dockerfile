@@ -47,4 +47,9 @@ RUN /usr/bin/time $SCRIPTS/rstudio.sh > $LOGS/rstudio.log 2>&1
 COPY build-libnode-dev.sh cran-ubuntu-v8-bionic.list sources.list $SCRIPTS/
 RUN $SCRIPTS/build-libnode-dev.sh > $LOGS/build-libnode-dev.log 2>&1
 
+# gforth
+ENV GFORTH_VERSION="0.7.3"
+COPY gforth.sh $SCRIPTS/
+RUN $SCRIPTS/gforth.sh > $LOGS/gforth.log 2>&1
+
 RUN ls -FlarRt /usr/local > $LOGS/after.log

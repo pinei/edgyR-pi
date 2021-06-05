@@ -26,8 +26,6 @@ NODE_ROOT="node"
 NODE_SUBDIR="${NODE_ROOT}/${NODE_VERSION}"
 NODE_BASE_URL="https://nodejs.org/dist/v${NODE_VERSION}/"
 
-# force a fresh install!
-rm -fr /root/.yarn "${NODE_SUBDIR}"
 
 # install node if we need it
 if [ ! -d "${NODE_SUBDIR}" ]; then
@@ -41,11 +39,10 @@ if [ ! -d "${NODE_SUBDIR}" ]; then
     ;;
 
   "Linux-64")
+    NODE_FILE="node-v${NODE_VERSION}-linux-x64"
     if [ "$(uname -m)" = "aarch64" ]
     then
       NODE_FILE="node-v${NODE_VERSION}-linux-arm64"
-    else
-      NODE_FILE="node-v${NODE_VERSION}-linux-x64"
     fi
     ;;
 
@@ -104,6 +101,11 @@ else
   # otherwise, use source tree
   pushd ../../src/gwt/panmirror/src/editor
 fi
+
 PATH=${INSTALL_PATH} yarn config set ignore-engines true
 PATH=${INSTALL_PATH} yarn install
+
 popd
+
+
+

@@ -74,5 +74,8 @@ ENV CSOUND_VERSION="6.16.0"
 COPY --chown=edgyr:edgyr Softsynths/csound.sh $EDGYR_SCRIPTS/
 RUN $EDGYR_SCRIPTS/csound.sh > $EDGYR_LOGS/csound.log 2>&1
 
+COPY --chown=edgyr:edgyr Softsynths/tidal.sh $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/tidal.sh > $EDGYR_LOGS/tidal.log 2>&1
+
 # list installed Apt packages
 RUN dpkg --list > $EDGYR_LOGS/installed-packages.log

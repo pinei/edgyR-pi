@@ -53,5 +53,18 @@ ENV FLUIDSYNTH_VERSION="2.2.1"
 COPY --chown=edgyr:edgyr Softsynths/fluidsynth.sh $EDGYR_SCRIPTS/
 RUN $EDGYR_SCRIPTS/fluidsynth.sh > $EDGYR_LOGS/fluidsynth.log 2>&1
 
+ENV PURE_DATA_VERSION="0.51-4"
+COPY --chown=edgyr:edgyr Softsynths/pure-data.sh $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/pure-data.sh > $EDGYR_LOGS/pure-data.log 2>&1
+
+ENV FAUST_VERSION="2.30.5"
+COPY --chown=edgyr:edgyr Softsynths/faust.sh $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/faust.sh > $EDGYR_LOGS/faust.log 2>&1
+
+ENV SUPERCOLLIDER_VERSION="3.11.2"
+ENV SC3_PLUGINS_VERSION="3.11.1"
+COPY --chown=edgyr:edgyr Softsynths/supercollider.sh $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/supercollider.sh > $EDGYR_LOGS/supercollider.log 2>&1
+
 # list installed Apt packages
 RUN apt list --installed > $EDGYR_LOGS/installed-packages.log

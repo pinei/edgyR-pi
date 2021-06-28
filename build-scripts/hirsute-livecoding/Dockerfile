@@ -66,5 +66,9 @@ ENV SC3_PLUGINS_VERSION="3.11.1"
 COPY --chown=edgyr:edgyr Softsynths/supercollider.sh $EDGYR_SCRIPTS/
 RUN $EDGYR_SCRIPTS/supercollider.sh > $EDGYR_LOGS/supercollider.log 2>&1
 
+ENV CHUCK_VERSION="1.4.1.0"
+COPY --chown=edgyr:edgyr Softsynths/chuck.sh $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/chuck.sh > $EDGYR_LOGS/chuck.log 2>&1
+
 # list installed Apt packages
-RUN apt list --installed > $EDGYR_LOGS/installed-packages.log
+RUN dpkg --list > $EDGYR_LOGS/installed-packages.log

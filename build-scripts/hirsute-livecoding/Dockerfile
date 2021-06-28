@@ -70,5 +70,9 @@ ENV CHUCK_VERSION="1.4.1.0"
 COPY --chown=edgyr:edgyr Softsynths/chuck.sh $EDGYR_SCRIPTS/
 RUN $EDGYR_SCRIPTS/chuck.sh > $EDGYR_LOGS/chuck.log 2>&1
 
+ENV CSOUND_VERSION="6.16.0"
+COPY --chown=edgyr:edgyr Softsynths/csound.sh $EDGYR_SCRIPTS/
+RUN $EDGYR_SCRIPTS/csound.sh > $EDGYR_LOGS/csound.log 2>&1
+
 # list installed Apt packages
 RUN dpkg --list > $EDGYR_LOGS/installed-packages.log

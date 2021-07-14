@@ -22,10 +22,12 @@ cd $PROJECT_HOME
 
 echo "Installing SuperCollider Linux dependencies"
 sudo apt-get install -y --no-install-recommends \
+  emacs-nox \
   libavahi-client-dev \
   libfftw3-dev \
   libfftw3-mpi-dev \
-  libncurses5-dev
+  libncurses5-dev \
+  vim-nox
 sudo apt-get clean
 
 echo "Downloading supercollider source"

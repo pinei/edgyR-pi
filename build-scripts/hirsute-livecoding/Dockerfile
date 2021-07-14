@@ -12,10 +12,6 @@ RUN ls -FlarRt /usr/local > $LOGS/before.log
 
 WORKDIR $SOURCE_DIR
 
-# command line requirements
-COPY command-line.sh $SCRIPTS/
-RUN $SCRIPTS/command-line.sh > $LOGS/command-line.log 2>&1
-
 # assume dark background for vim
 RUN echo "set bg=dark" >> /root/.vimrc
 
@@ -79,3 +75,10 @@ RUN $EDGYR_SCRIPTS/tidal.sh > $EDGYR_LOGS/tidal.log 2>&1
 
 # list installed Apt packages
 RUN dpkg --list > $EDGYR_LOGS/installed-packages.log
+
+USER root
+WORKDIR $SOURCE_DIR
+RUN ls -FlarRt /usr/local > $LOGS/after.log
+
+USER edgyr
+WORKDIR $EDGYR_HOME

@@ -20,9 +20,12 @@ cd $PROJECT_HOME
 
 echo "Installing Linux dependencies"
 sudo apt-get install -qqy --no-install-recommends \
+  autoconf \
+  automake \
   libfftw3-dev \
   libfftw3-mpi-dev \
   libportmidi-dev \
+  libtool \
   tk-dev
 sudo apt-get clean
 

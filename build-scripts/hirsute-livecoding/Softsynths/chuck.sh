@@ -34,6 +34,7 @@ echo "Installing ChucK Linux dependencies"
 sudo apt-get install -y --no-install-recommends \
   bison \
   flex \
+  git \
   libasound2-dev \
   libjack-jackd2-dev \
   libpulse-dev \

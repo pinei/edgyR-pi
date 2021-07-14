@@ -20,19 +20,24 @@ cd $PROJECT_HOME
 
 echo "Installing FluidSynth Linux dependencies"
 sudo apt-get install -y --no-install-recommends \
-  libglib2.0-dev \
-  libsndfile1-dev \
-  libpulse-dev \
-  libasound2-dev \
-  portaudio19-dev \
-  libjack-jackd2-dev \
-  libsystemd-dev \
-  libdbus-1-dev \
-  ladspa-sdk \
-  libsdl2-dev \
-  libreadline-dev \
+  build-essential \
+  ca-certificates \
+  cmake \
+  curl \
   fluid-soundfont-gm \
-  fluid-soundfont-gs 
+  fluid-soundfont-gs  \
+  ladspa-sdk \
+  libasound2-dev \
+  libdbus-1-dev \
+  libglib2.0-dev \
+  libjack-jackd2-dev \
+  libpulse-dev \
+  libreadline-dev \
+  libsdl2-dev \
+  libsndfile1-dev \
+  libsystemd-dev \
+  portaudio19-dev \
+  time
 sudo apt-get clean
 
 echo "Downloading libinstpatch"

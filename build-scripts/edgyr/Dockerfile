@@ -79,7 +79,7 @@ COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1
 
 COPY --chown=edgyr:edgyr cusignal.sh $EDGYR_SCRIPTS/
-ENV CUSIGNAL_VERSION="0.19.0"
+ENV CUSIGNAL_VERSION="21.06.00"
 RUN /usr/bin/time $EDGYR_SCRIPTS/cusignal.sh > $EDGYR_LOGS/cusignal.log 2>&1
 
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
@@ -102,7 +102,7 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/command-line-audio.sh > $EDGYR_LOGS/command-lin
 
 COPY --chown=edgyr:edgyr fluidsynth.sh $EDGYR_SCRIPTS/
 ENV LIBINSTPATCH_VERSION="1.1.6"
-ENV FLUIDSYNTH_VERSION="2.2.0"
+ENV FLUIDSYNTH_VERSION="2.2.2"
 RUN /usr/bin/time $EDGYR_SCRIPTS/fluidsynth.sh > $EDGYR_LOGS/fluidsynth.log 2>&1
 
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases

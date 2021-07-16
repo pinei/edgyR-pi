@@ -43,7 +43,6 @@ sudo apt-get install -y --no-install-recommends \
 sudo apt clean
 
 echo "Downloading ChucK source"
-export CHUCK_VERSION="1.4.0.1"
 rm -fr chuck*
 curl -Ls https://chuck.cs.princeton.edu/release/files/chuck-$CHUCK_VERSION.tgz \
   | tar --extract --gunzip --file=-

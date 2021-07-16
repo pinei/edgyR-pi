@@ -58,7 +58,6 @@ sudo apt-get install -y --no-install-recommends \
 sudo apt-get clean
 
 echo "Downloading csound source"
-export CSOUND_VERSION="6.15.0"
 rm -fr csound*
 curl -Ls \
   https://github.com/csound/csound/archive/refs/tags/$CSOUND_VERSION.tar.gz \

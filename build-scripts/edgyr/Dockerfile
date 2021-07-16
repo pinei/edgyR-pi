@@ -121,3 +121,14 @@ RUN ls -FlarRt /usr/local > $LOGS/after.log
 # reset entry point
 COPY docker-entrypoint.sh /
 CMD [ "/docker-entrypoint.sh" ]
+
+# versions of optional components
+ENV JULIA_VERSION_MAJOR=1
+ENV JULIA_VERSION_MINOR=6
+ENV JULIA_VERSION_PATCH=2
+ENV CSOUND_VERSION="6.16.1"
+ENV FAUST_VERSION="2.30.5"
+ENV CHUCK_VERSION="1.4.1.0"
+ENV SUPERCOLLIDER_VERSION="3.11.2"
+ENV SC3_PLUGINS_VERSION="3.11.1"
+ENV GOLANG_VERSION="1.16.6"

@@ -32,7 +32,6 @@ sudo apt-get install -y --no-install-recommends \
 sudo apt-get clean
 
 echo "Downloading supercollider source"
-export SUPERCOLLIDER_VERSION="3.11.2"
 rm -fr SuperCollider*
 export SUPERCOLLIDER_REPO="https://github.com/supercollider/supercollider/releases/download/Version-$SUPERCOLLIDER_VERSION"
 export SUPERCOLLIDER_FILE="SuperCollider-$SUPERCOLLIDER_VERSION-Source.tar.bz2"
@@ -71,7 +70,6 @@ pushd SuperCollider*
   popd
 
 echo "Downloading sc3-plugins source"
-export SC3_PLUGINS_VERSION="3.11.1"
 rm -fr sc3-plugins*
 export SC3_PLUGINS_REPO="https://github.com/supercollider/sc3-plugins/releases/download/Version-$SC3_PLUGINS_VERSION"
 export SC3_PLUGINS_FILE="sc3-plugins-$SC3_PLUGINS_VERSION-Source.tar.bz2"

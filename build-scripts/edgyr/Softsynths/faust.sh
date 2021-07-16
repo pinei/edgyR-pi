@@ -28,7 +28,6 @@ sudo apt-get install -y --no-install-recommends \
 sudo apt-get clean
 
 echo "Downloading faust source"
-export FAUST_VERSION="2.30.5"
 rm -fr faust*
 curl -Ls \
   https://github.com/grame-cncm/faust/releases/download/$FAUST_VERSION/faust-$FAUST_VERSION.tar.gz \

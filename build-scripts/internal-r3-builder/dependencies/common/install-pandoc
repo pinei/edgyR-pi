@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+#
+# install-pandoc
+#
+# Copyright (C) 2021 by RStudio, PBC
+#
+# Unless you have received this program directly from RStudio pursuant
+# to the terms of a commercial license agreement with RStudio, then
+# this program is licensed to you under the terms of version 3 of the
+# GNU Affero General Public License. This program is distributed WITHOUT
+# ANY EXPRESS OR IMPLIED WARRANTY, INCLUDING THOSE OF NON-INFRINGEMENT,
+# MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. Please refer to the
+# AGPL (http://www.gnu.org/licenses/agpl-3.0.txt) for more details.
+#
+#
+
+set -e
+
+source "$(dirname "${BASH_SOURCE[0]}")/../tools/rstudio-tools.sh"
+section "Installing Pandoc"
+echo "RSTUDIO_TOOLS_ROOT = ${RSTUDIO_TOOLS_ROOT}"
+
+# 1. We've already installed pandoc in /opt
+# 2. PANDOC_VERSION is defined in the Dockerfile
+PANDOC_SUBDIR="pandoc/${PANDOC_VERSION}"
+
+# move to tools root
+cd "${RSTUDIO_TOOLS_ROOT}"
+
+# create pandoc subdirectory
+mkdir --parents $PANDOC_SUBDIR
+
+# copy the binary
+cp /opt/pandoc-$PANDOC_VERSION/bin/pandoc $PANDOC_SUBDIR

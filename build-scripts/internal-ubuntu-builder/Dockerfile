@@ -20,7 +20,7 @@ RUN echo "set bg=dark" >> /root/.vimrc
 COPY ram_kilobytes.sh /usr/local/bin/
 
 # Pandoc
-ENV PANDOC_VERSION="2.14.0.3"
+ENV PANDOC_VERSION="2.14.1"
 COPY upstream-pandoc.sh $SCRIPTS/
 RUN $SCRIPTS/upstream-pandoc.sh > $LOGS/upstream-pandoc.log 2>&1
 

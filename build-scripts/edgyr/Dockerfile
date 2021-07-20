@@ -97,9 +97,6 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1
 COPY --chown=edgyr:edgyr r-kernel.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-kernel.sh > $EDGYR_LOGS/r-kernel.log 2>&1
 
-COPY --chown=edgyr:edgyr command-line-audio.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/command-line-audio.sh > $EDGYR_LOGS/command-line-audio.log 2>&1
-
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/
 COPY --chown=edgyr:edgyr Installers $EDGYR_HOME/Installers

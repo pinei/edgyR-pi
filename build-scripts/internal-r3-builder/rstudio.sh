@@ -10,6 +10,7 @@ curl -Ls \
   | tar xzf -
 mv rstudio-rstudio-* rstudio
 cd rstudio
+cp INSTALL $LOGS/rstudio-install.txt
 
 echo "Patching dependency install scripts"
 cp -rp $SCRIPTS/dependencies/* dependencies/

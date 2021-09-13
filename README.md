@@ -116,7 +116,7 @@ s
 Contributing to the project is really quite simple:
 
 1.  Read the code of conduct at
-    <https://github.com/edgyR/edgyR-containers/blob/master/CODE_OF_CONDUCT.md>.
+    <https://github.com/pinei/edgyR-pi/blob/master/CODE_OF_CONDUCT.md>.
 
 2.  Everything starts with an issue. See [Always start with an
     issue](https://about.gitlab.com/2016/03/03/start-with-an-issue/) for
@@ -131,6 +131,6 @@ Contributing to the project is really quite simple:
 
 *Please, don't go through the mechanics of forking / pull requests even
 for trivial typo changes without filing an issue. [File an
-issue](https://github.com/edgyR/edgyR-containers/issues/new).*
+issue](https://github.com/pinei/edgyR-pi/issues/new).*
 
 # [***Yes! I want more!***](https://github.com/pinei/edgyR-pi/blob/main/I-want-more.md)

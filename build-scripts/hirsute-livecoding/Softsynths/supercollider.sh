@@ -18,7 +18,6 @@
 # https://github.com/supercollider/supercollider/wiki/Installing-supercollider-from-source-on-Ubuntu
 
 set -e
-rm -f $EDGYR_LOGS/supercollider.log
 cd $PROJECT_HOME
 
 echo "Installing SuperCollider Linux dependencies"
@@ -28,7 +27,7 @@ sudo apt-get install -y --no-install-recommends \
   libfftw3-dev \
   libfftw3-mpi-dev \
   libncurses5-dev \
-  >> $EDGYR_LOGS/supercollider.log 2>&1
+  vim-nox
 sudo apt-get clean
 
 echo "Downloading supercollider source"
@@ -36,8 +35,7 @@ rm -fr SuperCollider*
 export SUPERCOLLIDER_REPO="https://github.com/supercollider/supercollider/releases/download/Version-$SUPERCOLLIDER_VERSION"
 export SUPERCOLLIDER_FILE="SuperCollider-$SUPERCOLLIDER_VERSION-Source.tar.bz2"
 curl -Ls $SUPERCOLLIDER_REPO/$SUPERCOLLIDER_FILE \
-  | tar --extract --bzip2 --file=- \
-  >> $EDGYR_LOGS/supercollider.log 2>&1
+  | tar --extract --bzip2 --file=-
 pushd SuperCollider*
   export SC_PATH=$PWD
 
@@ -57,15 +55,12 @@ pushd SuperCollider*
     -DSC_QT=OFF \
     -DSC_ED=OFF \
     .. \
-    >> $EDGYR_LOGS/supercollider.log 2>&1
 
   echo "Compiling supercollider"
-  make --jobs=`nproc` \
-    >> $EDGYR_LOGS/supercollider.log 2>&1
+  make --jobs=`nproc`
 
   echo "Installing supercollider"
-  sudo make install \
-    >> $EDGYR_LOGS/supercollider.log 2>&1
+  sudo make install
   sudo ldconfig
   popd
 
@@ -74,8 +69,7 @@ rm -fr sc3-plugins*
 export SC3_PLUGINS_REPO="https://github.com/supercollider/sc3-plugins/releases/download/Version-$SC3_PLUGINS_VERSION"
 export SC3_PLUGINS_FILE="sc3-plugins-$SC3_PLUGINS_VERSION-Source.tar.bz2"
 curl -Ls $SC3_PLUGINS_REPO/$SC3_PLUGINS_FILE \
-  | tar --extract --bzip2 --file=- \
-  >> $EDGYR_LOGS/supercollider.log 2>&1
+  | tar --extract --bzip2 --file=-
 pushd sc3-plugins*
 
   echo "Building sc3-plugins"
@@ -85,13 +79,10 @@ pushd sc3-plugins*
     -DCMAKE_BUILD_TYPE=Release \
     -DNATIVE=ON \
     -DQUARKS=ON \
-    .. \
-    >> $EDGYR_LOGS/supercollider.log 2>&1
-  make --jobs=`nproc` \
-    >> $EDGYR_LOGS/supercollider.log 2>&1
+    ..
+  make --jobs=`nproc`
   echo "Installing sc3-plugins"
-  sudo make install \
-    >> $EDGYR_LOGS/supercollider.log 2>&1
+  sudo make install
   sudo ldconfig
   popd
 

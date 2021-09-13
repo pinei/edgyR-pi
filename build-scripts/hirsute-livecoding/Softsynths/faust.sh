@@ -16,16 +16,14 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 set -e
-rm -f $EDGYR_LOGS/faust.log
 cd $PROJECT_HOME
 
 echo "Installing Faust Linux dependencies"
 sudo apt-get install -y --no-install-recommends \
   libmicrohttpd-dev \
   libssl-dev \
-  libtinfo-dev \
-  >> $EDGYR_LOGS/faust.log 2>&1
-sudo apt-get clean
+  libtinfo-dev
+sudo apt-get clean -y
 
 echo "Downloading faust source"
 rm -fr faust*
@@ -36,15 +34,11 @@ curl -Ls \
 echo "Compiling faust"
 cd faust-$FAUST_VERSION/build
 export CMAKEOPT="-Wno-dev"
-cat targets/all.cmake \
-  >> $EDGYR_LOGS/faust.log 2>&1
-cat backends/light.cmake \
-  >> $EDGYR_LOGS/faust.log 2>&1
-make TARGETS=all.cmake BACKENDS=light.cmake \
-  >> $EDGYR_LOGS/faust.log 2>&1
+cat targets/all.cmake
+cat backends/light.cmake
+make TARGETS=all.cmake BACKENDS=light.cmake
 echo "Installing faust"
-sudo make install \
-  >> $EDGYR_LOGS/faust.log 2>&1
+sudo make install
 sudo ldconfig
 
 echo "Cleanup"

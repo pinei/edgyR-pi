@@ -1,0 +1,4 @@
+export EDGYR_HOME=$HOME
+export EDGYR_LOGS=$HOME/logs
+export EDGYR_SCRIPTS=$HOME/scripts
+export PROJECT_HOME=$HOME/Projects

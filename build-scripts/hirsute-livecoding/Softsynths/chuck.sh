@@ -16,7 +16,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 set -e
-rm -f $EDGYR_LOGS/chuck.log
 cd $PROJECT_HOME
 
 echo "Checking for faust"
@@ -35,25 +34,23 @@ echo "Installing ChucK Linux dependencies"
 sudo apt-get install -y --no-install-recommends \
   bison \
   flex \
+  git \
   libasound2-dev \
   libjack-jackd2-dev \
   libpulse-dev \
-  libsndfile1-dev \
-  >> $EDGYR_LOGS/chuck.log 2>&1
-sudo apt clean
+  libsndfile1-dev
+sudo apt-get clean
 
 echo "Downloading ChucK source"
 rm -fr chuck*
-curl -Ls https://chuck.cs.princeton.edu/release/files/chuck-$CHUCK_VERSION.tgz \
+curl -Ls https://github.com/ccrma/chuck/archive/refs/tags/chuck-$CHUCK_VERSION.tar.gz \
   | tar --extract --gunzip --file=-
-pushd chuck-$CHUCK_VERSION/src
+pushd chuck-chuck-$CHUCK_VERSION/src
 
   echo "Compiling ChucK for jack"
-  make --jobs=`nproc` linux-jack \
-    >> $EDGYR_LOGS/chuck.log 2>&1
+  make --jobs=`nproc` linux-jack
   echo "Installing ChucK"
-  sudo make install \
-    >> $EDGYR_LOGS/chuck.log 2>&1
+  sudo make install
   sudo ldconfig
 
   echo "Relocating ChucK examples"
@@ -64,22 +61,17 @@ pushd chuck-$CHUCK_VERSION/src
 
 echo "Installing Chugins"
 rm -fr chugins*
-git clone https://github.com/ccrma/chugins.git \
-  >> $EDGYR_LOGS/chuck.log 2>&1
+git clone https://github.com/ccrma/chugins.git
 pushd chugins
 
-  make linux \
-    >> $EDGYR_LOGS/chuck.log 2>&1
-  sudo make install \
-    >> $EDGYR_LOGS/chuck.log 2>&1
+  make linux
+  sudo make install
   sudo ldconfig
   pushd Faust
 
     echo "Installing Fauck"
-    make linux \
-      >> $EDGYR_LOGS/chuck.log 2>&1
-    sudo make install \
-      >> $EDGYR_LOGS/chuck.log 2>&1
+    make linux
+    sudo make install
     sudo ldconfig
     popd
 

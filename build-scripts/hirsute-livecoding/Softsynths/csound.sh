@@ -16,7 +16,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 set -e
-rm -f $EDGYR_LOGS/csound.log
 cd $PROJECT_HOME
 
 echo "Checking for faust"
@@ -38,6 +37,7 @@ sudo apt-get install -y --no-install-recommends \
   flex \
   gettext \
   hdf5-tools \
+  libcurl4-openssl-dev \
   libeigen3-dev \
   libgettextpo-dev \
   libgmm++-dev \
@@ -53,8 +53,7 @@ sudo apt-get install -y --no-install-recommends \
   libwebsockets-dev \
   python-dev \
   python3-dev \
-  swig3.0 \
-  >> $EDGYR_LOGS/csound.log 2>&1
+  swig3.0
 sudo apt-get clean
 
 echo "Downloading csound source"
@@ -71,7 +70,7 @@ pushd cs6make
   export CPATH=/usr/include/lame:/usr/include/pulse:$CPATH
   cmake \
     -Wno-dev \
-    -DBUILD_CUDA_OPCODES=ON \
+    -DBUILD_CUDA_OPCODES=OFF \
     -DBUILD_STATIC_LIBRARY=ON \
     -DLAME_HEADER="/usr/include/lame/lame.h" \
     -DPULSEAUDIO_HEADER="/usr/include/pulse/simple.h" \
@@ -82,15 +81,12 @@ pushd cs6make
     -DBUILD_VIRTUAL_KEYBOARD=OFF \
     -DBUILD_WIIMOTE_OPCODES=OFF \
     -DUSE_FLTK=OFF \
-    ../csound-$CSOUND_VERSION \
-    >> $EDGYR_LOGS/csound.log 2>&1
+    ../csound-$CSOUND_VERSION
 
   echo "Compiling CSound"
-  make --jobs=`nproc` \
-    >> $EDGYR_LOGS/csound.log 2>&1
+  make --jobs=`nproc`
   echo "Installing CSound"
-  sudo make install \
-    >> $EDGYR_LOGS/csound.log 2>&1
+  sudo make install
   sudo ldconfig
   popd
 

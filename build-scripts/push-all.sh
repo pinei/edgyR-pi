@@ -6,13 +6,13 @@ sudo docker login
 export EDGYR_RELEASE=0.9.5
 for image in \
   internal-ubuntu-builder \
-  edgyr
+  edgyr-pi
 do
-  sudo docker push "edgyr/$image:latest"
+  sudo docker push "pinei/$image:latest"
   if [ ${#EDGYR_RELEASE} -gt "0" ]
   then 
-    sudo docker tag "edgyr/$image:latest" "edgyr/$image:$EDGYR_RELEASE"
-    sudo docker push "edgyr/$image:$EDGYR_RELEASE"
+    sudo docker tag "pinei/$image:latest" "pinei/$image:$EDGYR_RELEASE"
+    sudo docker push "pinei/$image:$EDGYR_RELEASE"
   fi
 done
 

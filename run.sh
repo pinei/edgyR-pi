@@ -9,14 +9,14 @@ then
   exit -20
 fi
 
-echo "Force-removing old 'edgyr' container"
+echo "Force-removing old 'edgyr-pi' container"
 echo "You can ignore errors if it doesn't exist"
-sudo docker rm -f edgyr
-echo "Running image 'edgyr/edgyr:latest' in container 'edgyr'"
+sudo docker rm -f edgyr-pi
+echo "Running image 'pinei/edgyr-pi:latest' in container 'edgyr-pi'"
 sudo docker run --detach \
   --env EDGYR_PASSWORD="$EDGYR_PASSWORD" \
-  --network host --name edgyr \
-  "docker.io/edgyr/edgyr:latest"
+  --network host --name edgyr-pi \
+  "docker.io/pinei/edgyr-pi:latest"
 
 sleep 5
 sudo docker logs edgyr

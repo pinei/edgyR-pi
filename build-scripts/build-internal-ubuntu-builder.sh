@@ -3,6 +3,6 @@
 set -e
 
 export REGISTRY="docker.io"
-export ACCOUNT="edgyr"
+export ACCOUNT="pinei"
 pushd internal-ubuntu-builder; ../build.sh ; popd
 sudo docker images

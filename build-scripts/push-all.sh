@@ -5,7 +5,7 @@ set -e
 sudo docker login
 export EDGYR_RELEASE=0.9.5
 for image in \
-  internal-ubuntu-builder \
+  internal-r-builder \
   edgyr-pi
 do
   sudo docker push "pinei/$image:latest"

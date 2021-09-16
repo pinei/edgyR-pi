@@ -4,5 +4,5 @@ set -e
 
 export REGISTRY="docker.io"
 export ACCOUNT="pinei"
-pushd internal-ubuntu-builder; ../build.sh ; popd
+pushd internal-r-builder; ../build.sh ; popd
 sudo docker images

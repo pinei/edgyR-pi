@@ -1,4 +1,4 @@
 #! /bin/bash
 
-echo "Starting container 'edgyr'"
-sudo docker start edgyr
+echo "Starting container 'edgyr-pi'"
+sudo docker start edgyr-pi

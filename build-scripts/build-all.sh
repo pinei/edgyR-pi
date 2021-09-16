@@ -6,7 +6,7 @@ export REGISTRY="docker.io"
 export ACCOUNT="pinei"
 
 for repo in \
-  internal-ubuntu-builder \
+  internal-r-builder \
   edgyr-pi
 do
   pushd $repo; ../build.sh ; popd

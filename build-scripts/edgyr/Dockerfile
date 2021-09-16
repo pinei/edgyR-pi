@@ -1,4 +1,4 @@
-FROM "nvcr.io/nvidia/l4t-base:r32.5.0"
+FROM "ubuntu:bionic"  
 LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
 
 ARG DEBIAN_FRONTEND=noninteractive
@@ -86,10 +86,6 @@ WORKDIR $EDGYR_HOME
 COPY --chown=edgyr:edgyr miniforge.sh $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/miniforge.sh > $EDGYR_LOGS/miniforge.log 2>&1
 
-COPY --chown=edgyr:edgyr cusignal.sh $EDGYR_SCRIPTS/
-ENV CUSIGNAL_VERSION="21.06.00"
-RUN /usr/bin/time $EDGYR_SCRIPTS/cusignal.sh > $EDGYR_LOGS/cusignal.log 2>&1
-
 COPY --chown=edgyr:edgyr Rprofile $EDGYR_HOME/.Rprofile
 COPY --chown=edgyr:edgyr Renviron $EDGYR_HOME/.Renviron
 
@@ -102,15 +98,10 @@ RUN /usr/bin/time $EDGYR_SCRIPTS/r-depends.sh > $EDGYR_LOGS/r-depends.log 2>&1
 COPY --chown=edgyr:edgyr r-packages.R $EDGYR_SCRIPTS/
 RUN /usr/bin/time $EDGYR_SCRIPTS/r-packages.R > $EDGYR_LOGS/r-packages.log 2>&1
 
-COPY --chown=edgyr:edgyr r-kernel.sh $EDGYR_SCRIPTS/
-RUN /usr/bin/time $EDGYR_SCRIPTS/r-kernel.sh > $EDGYR_LOGS/r-kernel.log 2>&1
-
 COPY --chown=edgyr:edgyr bash_aliases $EDGYR_HOME/.bash_aliases
 COPY --chown=edgyr:edgyr edit-me-then-run-4-git-config.sh $EDGYR_HOME/
 COPY --chown=edgyr:edgyr Installers $EDGYR_HOME/Installers
-COPY --chown=edgyr:edgyr Softsynths $EDGYR_HOME/Softsynths
 COPY --chown=edgyr:edgyr vimrc-* $EDGYR_HOME/
-COPY --chown=edgyr:edgyr start-jupyter-lab.sh $EDGYR_HOME/
 RUN apt list --installed > $EDGYR_LOGS/installed-packages.log
 
 # switch back to 'root' for wrap-up
@@ -134,5 +125,4 @@ ENV SC3_PLUGINS_VERSION="3.11.1"
 ENV GOLANG_VERSION="1.16.6"
 ENV ARROW_VERSION="4.0.1"
 ENV LIBINSTPATCH_VERSION="1.1.6"
-ENV FLUIDSYNTH_VERSION="2.2.2"
 ENV GFORTH_VERSION="0.7.3"

@@ -9,13 +9,6 @@ then
   exit -20
 fi
 
-# run L4T images only on Tegra host
-if [ `uname -r | grep tegra | wc -l` -le "0" -o `uname -m` != "aarch64" ]
-then
-  echo "Cannot run - you need to be on an L4T / Tegra host!"
-  exit -10
-fi
-
 echo "Force-removing old 'edgyr' container"
 echo "You can ignore errors if it doesn't exist"
 sudo docker rm -f edgyr
@@ -23,7 +16,6 @@ echo "Running image 'edgyr/edgyr:latest' in container 'edgyr'"
 sudo docker run --detach \
   --env EDGYR_PASSWORD="$EDGYR_PASSWORD" \
   --network host --name edgyr \
-  --runtime nvidia \
   "docker.io/edgyr/edgyr:latest"
 
 sleep 5

@@ -33,7 +33,7 @@ it's your choice!
     -   Raspberry Pi 4 has a quad-core ARMv8 64-bit CPU.
 
     -   4 GB RAM: This is the minimum recommended environment for `edgyR`.
-        I use a 64 GB microSD card and an external 1 TB hard drive.
+        A 64 GB microSD card should be fine for docker use.
 
 2.  Set up Docker runtime
 

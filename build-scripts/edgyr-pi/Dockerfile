@@ -17,23 +17,23 @@ WORKDIR $SOURCE_DIR
 RUN echo "set bg=dark" >> /root/.vimrc
 
 # get binaries from builder image
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/R /usr/local/R
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/bin /usr/local/bin
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/db /usr/local/db
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/etc /usr/local/etc
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/extras /usr/local/extras
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/games /usr/local/games
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/include /usr/local/include
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/lib /usr/local/lib
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/man /usr/local/man
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/resources /usr/local/resources
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/sbin /usr/local/sbin
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/share /usr/local/share
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/src/logs /usr/local/src/logs
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/src/packages /usr/local/src/packages
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/src/scripts /usr/local/src/scripts
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/www /usr/local/www
-COPY --from="edgyr/internal-r-builder:latest" /usr/local/www-symbolmaps /usr/local/www-symbolmaps
+COPY --from="pinei/internal-r-builder:latest" /usr/local/R /usr/local/R
+COPY --from="pinei/internal-r-builder:latest" /usr/local/bin /usr/local/bin
+COPY --from="pinei/internal-r-builder:latest" /usr/local/db /usr/local/db
+COPY --from="pinei/internal-r-builder:latest" /usr/local/etc /usr/local/etc
+COPY --from="pinei/internal-r-builder:latest" /usr/local/extras /usr/local/extras
+COPY --from="pinei/internal-r-builder:latest" /usr/local/games /usr/local/games
+COPY --from="pinei/internal-r-builder:latest" /usr/local/include /usr/local/include
+COPY --from="pinei/internal-r-builder:latest" /usr/local/lib /usr/local/lib
+COPY --from="pinei/internal-r-builder:latest" /usr/local/man /usr/local/man
+COPY --from="pinei/internal-r-builder:latest" /usr/local/resources /usr/local/resources
+COPY --from="pinei/internal-r-builder:latest" /usr/local/sbin /usr/local/sbin
+COPY --from="pinei/internal-r-builder:latest" /usr/local/share /usr/local/share
+COPY --from="pinei/internal-r-builder:latest" /usr/local/src/logs /usr/local/src/logs
+COPY --from="pinei/internal-r-builder:latest" /usr/local/src/packages /usr/local/src/packages
+COPY --from="pinei/internal-r-builder:latest" /usr/local/src/scripts /usr/local/src/scripts
+COPY --from="pinei/internal-r-builder:latest" /usr/local/www /usr/local/www
+COPY --from="pinei/internal-r-builder:latest" /usr/local/www-symbolmaps /usr/local/www-symbolmaps
 
 # Linux dependencies
 COPY command-line.sh pgdg.list $SCRIPTS/

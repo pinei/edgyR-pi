@@ -3,6 +3,6 @@
 set -e
 
 export REGISTRY="docker.io"
-export ACCOUNT="edgyr"
-pushd synth; ../build.sh ; popd
+export ACCOUNT="pinei"
+pushd edgyr-pi; ../build.sh ; popd
 sudo docker images

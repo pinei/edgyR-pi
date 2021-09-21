@@ -1,7 +1,7 @@
 #! /bin/bash
 
-echo "Stopping container 'edgyr'"
-sudo docker stop edgyr
-echo "Committing 'edgyr' container to 'edgyr/edgyr:local'"
-sudo docker commit edgyr edgyr/edgyr:local
+echo "Stopping container 'edgyr-pi'"
+sudo docker stop edgyr-pi
+echo "Committing 'edgyr-pi' container to 'pinei/edgyr-pi:local'"
+sudo docker commit edgyr-pi pinei/edgyr-pi:local
 sudo docker images

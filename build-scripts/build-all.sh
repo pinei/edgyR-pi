@@ -3,11 +3,11 @@
 set -e
 
 export REGISTRY="docker.io"
-export ACCOUNT="edgyr"
+export ACCOUNT="pinei"
 
 for repo in \
-  internal-ubuntu-builder \
-  edgyr
+  internal-r-builder \
+  edgyr-pi
 do
   pushd $repo; ../build.sh ; popd
 done

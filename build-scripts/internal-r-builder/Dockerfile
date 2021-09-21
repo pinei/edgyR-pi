@@ -1,5 +1,5 @@
 FROM ubuntu:bionic
-LABEL maintainer="M. Edward (Ed) Borasky <znmeb@znmeb.net>"
+LABEL maintainer="Pinei <aldinei@gmail.com>"
 
 ARG DEBIAN_FRONTEND=noninteractive
 USER root

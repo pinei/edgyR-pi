@@ -26,7 +26,7 @@
         should be OK in a home environment, but in a lab setting, make
         sure you clear it with your LAN administrator.
     -   The RStudio server listens on IP address:port `0.0.0.0:7878`.
-        This means you can browse to it on the Jetson as
+        This means you can browse to it on the Raspberry as
         `localhost:7878` and from any other system on the LAN as
         `<Jetson IP address>:7878`. Note that this is a different port
         than the RStudio Server default, 8787.
